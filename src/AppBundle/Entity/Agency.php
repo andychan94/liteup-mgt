@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * House
@@ -28,6 +29,14 @@ class Agency extends BaseUser
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message="Please enter the name of the agency.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     protected $name;
 
@@ -35,13 +44,21 @@ class Agency extends BaseUser
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255)
+     * @Assert\NotBlank(message="Please enter the your phone number.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The number is too short.",
+     *     maxMessage="The number is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     protected $phone;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="budget", type="integer")
+     * @ORM\Column(name="budget", type="integer", nullable=false, options={"default" : 0})
      */
     protected $budget;
 
@@ -49,6 +66,14 @@ class Agency extends BaseUser
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
+     * @Assert\NotBlank(message="Please enter the your agency's address.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The address is too short.",
+     *     maxMessage="The address is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     protected $address;
 
@@ -75,6 +100,9 @@ class Agency extends BaseUser
     {
         parent::__construct();
         $this->houses = new ArrayCollection();
+        $this->setBudget(0);
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
