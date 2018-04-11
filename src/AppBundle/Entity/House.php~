@@ -1,0 +1,174 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * House
+ *
+ * @ORM\Table(name="house")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HouseRepository")
+ */
+class House
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="integer")
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Agency", inversedBy="houses")
+     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id")
+     */
+    private $agency;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="string", length=255)
+     */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="size", type="string", length=255)
+     */
+    private $size;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commute", type="string", length=255)
+     */
+    private $commute;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="essentials", type="string", length=255)
+     */
+    private $essentials;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="balcony_size", type="string", length=255)
+     */
+    private $balconySize;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="aircon", type="integer")
+     */
+    private $aircon;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="parking", type="integer")
+     */
+    private $parking;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="gas", type="integer")
+     */
+    private $gas;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="water", type="integer")
+     */
+    private $water;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="floor", type="string", length=255)
+     */
+    private $floor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="available", type="integer")
+     */
+    private $available;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="view_count", type="integer")
+     */
+    private $viewCount;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="like_count", type="integer")
+     */
+    private $likeCount;
+
+    /**
+     * @var DateTime $created
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var DateTime $updated
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
+     */
+    private $photos;
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+    }
+}

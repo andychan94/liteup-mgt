@@ -1,0 +1,86 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
+/**
+ * House
+ *
+ * @ORM\Table(name="agency")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ */
+class Agency extends BaseUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    protected $email;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="budget", type="integer")
+     */
+    protected $budget;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    protected $address;
+
+    /**
+     * @var DateTime $created
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * @var DateTime $updated
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    protected $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="House", mappedBy="agency")
+     */
+    protected $houses;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->houses = new ArrayCollection();
+    }
+}
