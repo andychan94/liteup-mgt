@@ -25,4 +25,15 @@ security:
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                provider: fos_userbundle
+#                csrf_provider: form.csrf_provider
+            logout_on_user_change: true
+
+    access_control:
+          - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/dashboard/, role: ROLE_ADMIN }

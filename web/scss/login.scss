@@ -1,0 +1,81 @@
+$liteup-primary-color: #62c7d7;
+$login-bg-top-grad-color: purple;
+$login-bg-gradient: top, $liteup-primary-color, $login-bg-top-grad-color;
+
+body, html {
+  background: #c6c6c6;
+  height: 100%;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+.notification {
+  padding: 0.5rem;
+
+}
+.login {
+  background: url("../images/login_bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .box {
+    color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #62c7d7;
+    background: -webkit-linear-gradient($login-bg-gradient);
+    background: -o-linear-gradient($login-bg-gradient);
+    background: -moz-linear-gradient($login-bg-gradient);
+    background: linear-gradient($login-bg-gradient);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    p.is-small {
+      font-size: 0.9rem;
+      a {
+        color: #fff;
+      }
+    }
+    .logo {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #fff;
+      margin: 0 auto 10px auto;
+      padding: 8px;
+
+      img {
+        display: inline-block;
+      }
+    }
+    form {
+      margin: 1.5em auto;
+      .checkbox:hover {
+        color: #fff;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .box {
+      padding: 55px 110px;
+    }
+  }
+}
+
+nav {
+  margin-bottom: 50px;
+}
+
+img.house-thumbnail {
+  max-height: 90px;
+}
