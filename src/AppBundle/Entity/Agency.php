@@ -78,6 +78,13 @@ class Agency extends BaseUser
     protected $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="logo", type="string", length=255)
+     */
+    protected $logo;
+
+    /**
      * @var DateTime $created
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -99,8 +106,10 @@ class Agency extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->roles = array('ROLE_ADMIN');
         $this->houses = new ArrayCollection();
         $this->setBudget(0);
+        $this->setLogo("");
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
     }
@@ -281,5 +290,29 @@ class Agency extends BaseUser
     public function getHouses()
     {
         return $this->houses;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Agency
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

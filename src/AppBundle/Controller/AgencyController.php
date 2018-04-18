@@ -2,23 +2,38 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Agency;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/admin/agency")
+ * @Route("/dashboard/agency")
  */
 class AgencyController extends Controller
 {
     /**
-     * @Route("/", name="list_agencies")
+     * @Route("/", name="agency_list")
      */
     public function indexAction(Request $request)
     {
-//        TODO list all
-//        TODO ALSO ONLY HIGHEST LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER
-        return $this->render('default/index.html.twig', [
+//        TODO list all ->DONE
+//        TODO ALSO ONLY HIGHEST LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER ^> DONE
+//        TODO split views into a separate entity, register IP (or device id) -> DONE
+//        TODO add agency
+//        TODO
+
+        $qb = $this->getDoctrine()->getRepository(Agency::class)->createQueryBuilder('u')
+            ->orderBy('u.createdAt', 'DESC')
+        ;
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page', 1),
+            20
+        );
+        return $this->render('dashboard/agency/index.html.twig', [
+            'pagination' => $pagination,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

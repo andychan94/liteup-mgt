@@ -2,33 +2,65 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\House;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
+/**
+ * @Route("/dashboard/house")
+ */
 class HouseController extends Controller
 {
     /**
-     * @Route("/admin/house", name="list_agencies")
+     * @Route("/", name="house_list")
      */
     public function indexAction(Request $request)
     {
-//        TODO list all
-//        TODO ALSO ONLY ( HIGHEST - 1 ) LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER
-//        TODO SEE IF YOU CAN AD A PARENT ROUTE CONTROLLER FOR A CLASS AND USE IT AS PARENT: eg instead of writing /agency/edit/{id} you have /edit/{id}
-//        TODO FOUND! https://symfony.com/doc/master/bundles/SensioFrameworkExtraBundle/annotations/routing.html#route-prefix
-        return $this->render('default/index.html.twig', [
+////        TODO list all -> DONE
+////        TODO ALSO ONLY (  HIGHEST - 1 ) LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER -> DONE
+////        TODO SEE IF YOU CAN AD A PARENT ROUTE CONTROLLER FOR A CLASS AND USE IT AS PARENT: eg instead of writing /agency/edit/{id} you have /edit/{id} -> DONE
+        $agencyKey = 'u.agency';
+        $agencyValue = $this->getUser();
+        // if getUser() is super admin, show all houses from all agencies
+        if (in_array('ROLE_SUPER_ADMIN',$this->getUser()->getRoles())) {
+            $agencyKey = '1';
+            $agencyValue = 1;
+        }
+        $qb = $this->getDoctrine()->getRepository(House::class)->createQueryBuilder('u')
+            ->where($agencyKey.' = :agency')
+            ->setParameter('agency', $agencyValue)
+            ->orderBy('u.createdAt', 'DESC')
+        ;
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page', 1),
+            20
+        );
+        return $this->render('dashboard/house/index.html.twig', [
+            'pagination' => $pagination,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
     /**
-     * @Route("/admin/house/edit/{id}", name="edit_house")
+     * @Route("/edit/{id}", name="house_edit")
      */
-    public function editAction(Request $request)
+    public function editAction(House $house, Request $request)
     {
 //        TODO edit single
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+
+        $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'House updated');
+            return $this->redirectToRoute('house_edit', array('id' => $house->getId()));
+        }
+        return $this->render('dashboard/house/edit.html.twig', [
+            'house' => $house,
+            'form' => $form->createView(),
         ]);
     }
     /**

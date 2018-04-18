@@ -9,10 +9,15 @@ body, html {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
+a {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 .notification {
   padding: 0.5rem;
-
 }
 .login {
   background: url("../images/login_bg.png");

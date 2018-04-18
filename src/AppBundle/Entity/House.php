@@ -95,28 +95,28 @@ class House
     /**
      * @var int
      *
-     * @ORM\Column(name="aircon", type="integer")
+     * @ORM\Column(name="aircon", type="boolean")
      */
     private $aircon;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="parking", type="integer")
+     * @ORM\Column(name="parking", type="boolean")
      */
     private $parking;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="gas", type="integer")
+     * @ORM\Column(name="gas", type="boolean")
      */
     private $gas;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="water", type="integer")
+     * @ORM\Column(name="water", type="boolean")
      */
     private $water;
 
@@ -130,9 +130,16 @@ class House
     /**
      * @var int
      *
-     * @ORM\Column(name="available", type="integer")
+     * @ORM\Column(name="available", type="boolean")
      */
     private $available;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="deleted", type="boolean")
+     */
+    private $deleted;
 
     /**
      * @var int
@@ -170,6 +177,12 @@ class House
     public function __construct()
     {
         $this->photos = new ArrayCollection();
+        $this->setViewCount(0);
+        $this->setDeleted(0);
+        $this->setAvailable(1);
+        $this->setLikeCount(0);
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -694,5 +707,29 @@ class House
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     *
+     * @return House
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return boolean
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }

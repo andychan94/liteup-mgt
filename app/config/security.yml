@@ -7,7 +7,7 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
         in_memory:
             memory: ~
 
@@ -29,11 +29,16 @@ security:
                 login_path: /login
                 check_path: /login_check
                 provider: fos_userbundle
-#                csrf_provider: form.csrf_provider
+                always_use_default_target_path: false
+                default_target_path: /dashboard
             logout_on_user_change: true
+            logout:
+                path: /logout
+                target: /login
 
     access_control:
           - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
           - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
           - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-          - { path: ^/dashboard/, role: ROLE_ADMIN }
+          - { path: ^/dashboard, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+          - { path: ^/dashboard/agency, roles: [ROLE_SUPER_ADMIN] }

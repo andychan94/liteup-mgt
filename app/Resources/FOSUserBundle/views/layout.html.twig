@@ -3,30 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    {% stylesheets 'css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bulma.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
+    {% endblock %}
 </head>
 <body>
-{#<div>#}
-{#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
-{#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |#}
-{#<a href="{{ path('fos_user_security_logout') }}">#}
-{#{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}#}
-{#</a>#}
-{#{% else %}#}
-{#<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
-{#{% endif %}#}
-{#</div>#}
-
-{#{% for type, messages in app.session.flashBag.all %}#}
-{#{% for message in messages %}#}
-{#<div class="{{ type }}">#}
-{#{{ message|trans({}, 'FOSUserBundle') }}#}
-{#</div>#}
-{#{% endfor %}#}
-{#{% endfor %}#}
-{#<div>#}
 <section class="hero is-fullheight login">
     <div class="hero-body">
         <div class="container has-text-centered">
@@ -40,14 +22,11 @@
                     </p>
                     {% if app.request.hasPreviousSession %}
                         {% if app.session.flashbag.all() is not empty %}
-                        <div class="notification is-info">
-                            <button class="delete"></button>
-                            {% for type, messages in app.session.flashbag.all() %}
-                                {% for message in messages %}
-                                    <p>Incorrect username or password.</p>
+                                {% for type, messages in app.session.flashbag.all() %}
+                                    {% for message in messages %}
+                                        <p>{{ message }}</p>
+                                    {% endfor %}
                                 {% endfor %}
-                            {% endfor %}
-                        </div>
                         {% endif %}
                     {% endif %}
                     {% block fos_user_content %}
@@ -57,7 +36,6 @@
         </div>
     </div>
 </section>
-{#</div>#}
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new AppBundle\AppBundle(),
         ];
 
@@ -54,12 +55,18 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(function (ContainerBuilder $container) {
-            $container->setParameter('container.autowiring.strict_mode', true);
-            $container->setParameter('container.dumper.inline_class_loader', true);
+        try {
+            $loader->load(function (ContainerBuilder $container) {
+                $container->setParameter('container.autowiring.strict_mode', true);
+                $container->setParameter('container.dumper.inline_class_loader', true);
 
-            $container->addObjectResource($this);
-        });
-        $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+                $container->addObjectResource($this);
+            });
+        } catch (Exception $e) {
+        }
+        try {
+            $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
+        } catch (Exception $e) {
+        }
     }
 }

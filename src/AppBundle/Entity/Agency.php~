@@ -78,6 +78,13 @@ class Agency extends BaseUser
     protected $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="logo", type="string", length=255)
+     */
+    protected $logo;
+
+    /**
      * @var DateTime $created
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -100,6 +107,9 @@ class Agency extends BaseUser
     {
         parent::__construct();
         $this->houses = new ArrayCollection();
+        $this->setBudget(0);
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
