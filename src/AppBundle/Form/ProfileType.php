@@ -21,6 +21,7 @@ class ProfileType extends AbstractType
         $builder->add('phone');
         $builder->add('address');
         $builder->add('about');
+        $builder->add('services');
         $builder->add('imageFile', 'Vich\UploaderBundle\Form\Type\VichFileType');
     }
     public function getParent()

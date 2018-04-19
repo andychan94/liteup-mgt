@@ -110,6 +110,13 @@ class Agency extends BaseUser
     protected $about;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="services", type="text")
+     */
+    protected $services;
+
+    /**
      * @var DateTime $created
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -285,7 +292,7 @@ class Agency extends BaseUser
     }
 
     /**
-     * Add house
+     * Add proprent
      *
      * @param \AppBundle\Entity\House $house
      *
@@ -299,7 +306,7 @@ class Agency extends BaseUser
     }
 
     /**
-     * Remove house
+     * Remove proprent
      *
      * @param \AppBundle\Entity\House $house
      */
@@ -413,5 +420,29 @@ class Agency extends BaseUser
     public function getLogoSize()
     {
         return $this->logoSize;
+    }
+
+    /**
+     * Set services
+     *
+     * @param string $services
+     *
+     * @return Agency
+     */
+    public function setServices($services)
+    {
+        $this->services = $services;
+
+        return $this;
+    }
+
+    /**
+     * Get services
+     *
+     * @return string
+     */
+    public function getServices()
+    {
+        return $this->services;
     }
 }

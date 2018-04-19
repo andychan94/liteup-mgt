@@ -40,8 +40,10 @@
             <div class="navbar-menu navbar-end" id="navMenu">
                 <a class="navbar-item is-tab is-hidden-tablet is-active">Home</a>
                 <a class="navbar-item is-tab is-hidden-tablet">About</a>
-                <span class="navbar-item navbar-highlighted">Budget: $1200.00
-                    <span class="icon"><i class="fas fa-plus-circle"></i></span>
+                <span class="navbar-item navbar-highlighted tooltip is-tooltip-bottom" data-tooltip="Click to add funds">
+                    <a href="#">
+                        Budget: ${{app.user.budget}} <i class="fas fa-plus-circle"></i>
+                    </a>
                 </span>
                 <a class="navbar-item nav-tag">
                     <span class="icon"><i class="fas fa-envelope-open"></i></span>
@@ -76,7 +78,9 @@
 {% block body %}{% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
     {#<script src="{{ asset('js/build.min.js') }}"></script>#}
 {% endblock %}
 </body>

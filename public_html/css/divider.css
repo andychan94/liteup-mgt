@@ -1,0 +1,54 @@
+/*
+Error: Undefined variable: "$grey-lighter".
+        on line 1 of divider.sass
+
+1: $divider-background-color: $grey-lighter !default
+2: $divider-font-size: $size-7 !default
+3: $divider-color: $grey-light !default
+4: 
+5: .is-divider, .is-divider-vertical
+6:   display: block
+
+Backtrace:
+divider.sass:1
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/script/tree/variable.rb:49:in `_perform'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/script/tree/node.rb:50:in `perform'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:482:in `visit_variable'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:135:in `with_frame'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/stack.rb:79:in `with_base'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:162:in `visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:52:in `map'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:161:in `visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/root_node.rb:36:in `css_tree'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/plugin/compiler.rb:209:in `each'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/plugin.rb:82:in `update_stylesheets'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/exec/base.rb:52:in `parse'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/lib/sass/exec/base.rb:19:in `parse!'
+/usr/local/lib/ruby/gems/2.5.0/gems/sass-3.5.5/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$grey-lighter\".\A         on line 1 of divider.sass\A \A 1: $divider-background-color: $grey-lighter !default\A 2: $divider-font-size: $size-7 !default\A 3: $divider-color: $grey-light !default\A 4: \A 5: .is-divider, .is-divider-vertical\A 6:   display: block"; }

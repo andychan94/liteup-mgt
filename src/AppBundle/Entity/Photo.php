@@ -132,7 +132,7 @@ class Photo
     }
 
     /**
-     * Set house
+     * Set proprent
      *
      * @param \AppBundle\Entity\House $house
      *
@@ -146,7 +146,7 @@ class Photo
     }
 
     /**
-     * Get house
+     * Get proprent
      *
      * @return \AppBundle\Entity\House
      */

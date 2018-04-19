@@ -156,6 +156,13 @@ class House
     private $likeCount;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="for_sale", type="integer")
+     */
+    private $forSale;
+
+    /**
      * @var DateTime $created
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -178,6 +185,8 @@ class House
     {
         $this->photos = new ArrayCollection();
         $this->setViewCount(0);
+        $this->setDeleted(0);
+        $this->setAvailable(1);
         $this->setLikeCount(0);
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
@@ -705,5 +714,29 @@ class House
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     *
+     * @return House
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return boolean
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }

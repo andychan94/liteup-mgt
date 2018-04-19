@@ -1,6 +1,9 @@
 .nav-tag {
   padding-right: 30px; }
 
+@media screen and (min-width: 769px), print {
+  .column.is-2, .column.is-2-tablet {
+    height: 100vh; } }
 .tag-notif {
   border-radius: 50%;
   position: absolute;

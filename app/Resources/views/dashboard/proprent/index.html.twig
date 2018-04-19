@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/base.html.twig' %}
 
 {% block body %}
 
@@ -12,14 +12,20 @@
                 <nav class="breadcrumb is-small" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li class="is-active"><a href="#" aria-current="page">Houses</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">Properties for rent</a></li>
                     </ul>
                 </nav>
 
                 <div class="level">
                     <div class="level-left">
                         <div class="level-item">
-                            <div class="title">Houses
+                            <div class="title">Properties for rent
+                                <a class="button is-success" href="#{#{ path('') }#}">
+                                    <span class="icon is-small">
+                                      <i class="fas fa-plus"></i>
+                                    </span>
+                                    <span>Add a property</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -58,19 +64,22 @@
                                         <img src="{{ house.photos | first.path }}">
                                     <td>{{ house.price }}</td>
                                     <td>
-                                        <a class="button is-info tooltip is-tooltip-bottom" data-tooltip="Edit the house"
-                                           href="{{ path('house_edit', {"id":house.id}) }}">
+                                        <a class="button is-info tooltip is-tooltip-bottom"
+                                           data-tooltip="Edit the property"
+                                           href="{{ path('proprent_edit', {"id":house.id}) }}">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
                                             </span>
                                         </a>
-                                        <a class="button is-warning tooltip is-tooltip-bottom" data-tooltip="Disable the house"
-                                           href="{{ path('house_edit', {"id":house.id}) }}">
+                                        <a class="button is-warning tooltip is-tooltip-bottom"
+                                           data-tooltip="Disable the property"
+                                           href="{{ path('proprent_edit', {"id":house.id}) }}">
                                             <span class="icon">
                                                 <i class="fas fa-ban"></i>
                                             </span>
                                         </a>
-                                        <a class="button is-danger tooltip is-tooltip-bottom" data-tooltip="Delete the house"
+                                        <a class="button is-danger tooltip is-tooltip-bottom"
+                                           data-tooltip="Delete the property"
                                            href="#">
                                             <span class="icon">
                                                 <i class="fas fa-trash"></i>
@@ -84,6 +93,12 @@
                         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                             {{ knp_pagination_render(pagination) }}
                         </nav>
+                        <a class="button is-success" href="#{#{ path('') }#}">
+                                    <span class="icon is-small">
+                                      <i class="fas fa-plus"></i>
+                                    </span>
+                            <span>Add a property</span>
+                        </a>
                     </div>
                 </div>
 

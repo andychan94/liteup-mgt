@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * @Route("/dashboard/house")
+ * @Route("/dashboard/proprent")
  */
-class HouseController extends Controller
+class PropertyRentController extends Controller
 {
     /**
-     * @Route("/", name="house_list")
+     * @Route("/", name="proprent_list")
      */
     public function indexAction(Request $request)
     {
@@ -31,6 +31,8 @@ class HouseController extends Controller
         $qb = $this->getDoctrine()->getRepository(House::class)->createQueryBuilder('u')
             ->where($agencyKey.' = :agency')
             ->setParameter('agency', $agencyValue)
+            ->andWhere('u.forSale = :forSale')
+            ->setParameter('forSale', 0)
             ->orderBy('u.createdAt', 'DESC')
         ;
         $paginator  = $this->get('knp_paginator');
@@ -39,42 +41,44 @@ class HouseController extends Controller
             $request->query->getInt('page', 1),
             20
         );
-        return $this->render('dashboard/house/index.html.twig', [
+        return $this->render('dashboard/proprent/index.html.twig', [
             'pagination' => $pagination,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
     /**
-     * @Route("/edit/{id}", name="house_edit")
+     * @Route("/edit/{id}", name="proprent_edit")
      */
     public function editAction(House $house, Request $request)
     {
-//        TODO edit single
-
         $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'House updated');
-            return $this->redirectToRoute('house_edit', array('id' => $house->getId()));
+            return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
         }
-        return $this->render('dashboard/house/edit.html.twig', [
+        return $this->render('dashboard/proprent/edit.html.twig', [
             'house' => $house,
             'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/admin/house/add", name="add_house")
+     * @Route("/add", name="proprent")
      */
-    public function addAction(Request $request)
+    public function addAction(House $house, Request $request)
     {
 //        TODO add single
+
+        $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
+        $form->handleRequest($request);
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'proprent' => $house,
+            'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/admin/house/remove", name="remove_houses")
+     * @Route("/admin/proprent/remove", name="remove_houses")
      */
     public function removeAction(Request $request)
     {

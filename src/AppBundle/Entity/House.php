@@ -156,6 +156,13 @@ class House
     private $likeCount;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="for_sale", type="integer")
+     */
+    private $forSale;
+
+    /**
      * @var DateTime $created
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
@@ -731,5 +738,29 @@ class House
     public function getDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * Set forSale
+     *
+     * @param integer $forSale
+     *
+     * @return House
+     */
+    public function setForSale($forSale)
+    {
+        $this->forSale = $forSale;
+
+        return $this;
+    }
+
+    /**
+     * Get forSale
+     *
+     * @return integer
+     */
+    public function getForSale()
+    {
+        return $this->forSale;
     }
 }
