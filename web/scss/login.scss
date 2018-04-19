@@ -24,6 +24,23 @@ a {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  .liteup-login-btn {
+    padding: 10px 15px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    background: -webkit-linear-gradient(#00A85E, #177E38);
+    background: linear-gradient(#00A85E, #177E38);
+    border: 0 none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    &:hover {
+      background: #177E38;
+    }
+  }
   .box {
     color: #fff;
     border-radius: 5px;

@@ -18,9 +18,9 @@ class HouseController extends Controller
      */
     public function indexAction(Request $request)
     {
-////        TODO list all -> DONE
-////        TODO ALSO ONLY (  HIGHEST - 1 ) LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER -> DONE
-////        TODO SEE IF YOU CAN AD A PARENT ROUTE CONTROLLER FOR A CLASS AND USE IT AS PARENT: eg instead of writing /agency/edit/{id} you have /edit/{id} -> DONE
+////        dTODO list all -> DONE
+////        dTODO ALSO ONLY (  HIGHEST - 1 ) LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER -> DONE
+////        dTODO SEE IF YOU CAN AD A PARENT ROUTE CONTROLLER FOR A CLASS AND USE IT AS PARENT: eg instead of writing /agency/edit/{id} you have /edit/{id} -> DONE
         $agencyKey = 'u.agency';
         $agencyValue = $this->getUser();
         // if getUser() is super admin, show all houses from all agencies
