@@ -6,13 +6,16 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * House
  *
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ * @Vich\Uploadable
  */
 class Agency extends BaseUser
 {
@@ -83,6 +86,28 @@ class Agency extends BaseUser
      * @ORM\Column(name="logo", type="string", length=255)
      */
     protected $logo;
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="agency_logo", fileNameProperty="logo", size="logoSize")
+     *
+     * @var File
+     */
+    protected $imageFile;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    protected $logoSize;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="about", type="text")
+     */
+    protected $about;
 
     /**
      * @var DateTime $created
@@ -106,8 +131,11 @@ class Agency extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->roles = array('ROLE_ADMIN');
         $this->houses = new ArrayCollection();
         $this->setBudget(0);
+        $this->setLogo("");
+        $this->setAbout("");
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
     }
@@ -288,5 +316,77 @@ class Agency extends BaseUser
     public function getHouses()
     {
         return $this->houses;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Agency
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     *
+     * @return Agency
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * Set imageSize
+     *
+     * @param integer $imageSize
+     *
+     * @return Agency
+     */
+    public function setImageSize($imageSize)
+    {
+        $this->imageSize = $imageSize;
+
+        return $this;
+    }
+
+    /**
+     * Get imageSize
+     *
+     * @return integer
+     */
+    public function getImageSize()
+    {
+        return $this->imageSize;
     }
 }

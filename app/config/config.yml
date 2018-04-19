@@ -83,6 +83,9 @@ fos_user:
             enabled: true
         form:
             type: AppBundle\Form\RegistrationType
+    profile:
+        form:
+            type: AppBundle\Form\ProfileType
 
 assetic:
     debug:          '%kernel.debug%'
@@ -106,3 +109,14 @@ liip_imagine :
 
         # use the default cache configuration
         cache : ~
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        agency_logo:
+            uri_prefix: /images/agencies
+            upload_destination: '%kernel.project_dir%/web/images/agencies'
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

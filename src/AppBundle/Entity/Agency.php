@@ -6,13 +6,16 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * House
  *
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ * @Vich\Uploadable
  */
 class Agency extends BaseUser
 {
@@ -83,6 +86,28 @@ class Agency extends BaseUser
      * @ORM\Column(name="logo", type="string", length=255)
      */
     protected $logo;
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="agency_logo", fileNameProperty="logo", size="logoSize")
+     *
+     * @var File
+     */
+    protected $imageFile;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
+    protected $logoSize;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="about", type="text")
+     */
+    protected $about;
 
     /**
      * @var DateTime $created
@@ -110,6 +135,7 @@ class Agency extends BaseUser
         $this->houses = new ArrayCollection();
         $this->setBudget(0);
         $this->setLogo("");
+        $this->setAbout("");
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
     }
@@ -314,5 +340,78 @@ class Agency extends BaseUser
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     *
+     * @return Agency
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile($image = null)
+    {
+        $this->imageFile = $image;
+
+        if (null !== $image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set logoSize
+     *
+     * @param integer $logoSize
+     *
+     * @return Agency
+     */
+    public function setLogoSize($logoSize)
+    {
+        $this->logoSize = $logoSize;
+
+        return $this;
+    }
+
+    /**
+     * Get logoSize
+     *
+     * @return integer
+     */
+    public function getLogoSize()
+    {
+        return $this->logoSize;
     }
 }
