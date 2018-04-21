@@ -142,6 +142,7 @@ class Agency extends BaseUser
         $this->houses = new ArrayCollection();
         $this->setBudget(0);
         $this->setLogo("");
+        $this->setLogoSize(0);
         $this->setAbout("");
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());

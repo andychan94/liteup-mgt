@@ -739,4 +739,28 @@ class House
     {
         return $this->deleted;
     }
+
+    /**
+     * Set forSale
+     *
+     * @param integer $forSale
+     *
+     * @return House
+     */
+    public function setForSale($forSale)
+    {
+        $this->forSale = $forSale;
+
+        return $this;
+    }
+
+    /**
+     * Get forSale
+     *
+     * @return integer
+     */
+    public function getForSale()
+    {
+        return $this->forSale;
+    }
 }
