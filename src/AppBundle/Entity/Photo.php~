@@ -50,6 +50,15 @@ class Photo
     private $updatedAt;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -132,7 +141,7 @@ class Photo
     }
 
     /**
-     * Set proprent
+     * Set house
      *
      * @param \AppBundle\Entity\House $house
      *
@@ -146,7 +155,7 @@ class Photo
     }
 
     /**
-     * Get proprent
+     * Get house
      *
      * @return \AppBundle\Entity\House
      */

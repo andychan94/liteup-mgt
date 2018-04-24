@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Dashboard\Super;
 
 use AppBundle\Entity\Agency;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

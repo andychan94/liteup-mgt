@@ -59,7 +59,7 @@
                             {% for house in pagination %}
                                 <tr>
                                     <td>{{ house.id }}</td>
-                                    <td>{{ house.title }}</td>
+                                    <td>{{ house.area.state.name }}</td>
                                     <td class="list-house-thumbnail">
                                         <img src="{{ house.photos | first.path }}">
                                     <td>{{ house.price }}</td>

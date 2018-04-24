@@ -3,15 +3,16 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * House
  *
- * @ORM\Table(name="photo")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
+ * @ORM\Table(name="state")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StateRepository")
  */
-class Photo
+class State
 {
     /**
      * @var int
@@ -23,17 +24,11 @@ class Photo
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="House", inversedBy="photos")
-     * @ORM\JoinColumn(name="house_id", referencedColumnName="id")
-     */
-    private $house;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $path;
+    private $name;
 
     /**
      * @var DateTime $created
@@ -50,10 +45,16 @@ class Photo
     private $updatedAt;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Area", mappedBy="state")
+     */
+    private $areas;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->areas = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
         $this->setUpdatedAt(new \DateTime());
     }
@@ -69,27 +70,27 @@ class Photo
     }
 
     /**
-     * Set path
+     * Set name
      *
-     * @param string $path
+     * @param string $name
      *
-     * @return Photo
+     * @return State
      */
-    public function setPath($path)
+    public function setName($name)
     {
-        $this->path = $path;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get path
+     * Get name
      *
      * @return string
      */
-    public function getPath()
+    public function getName()
     {
-        return $this->path;
+        return $this->name;
     }
 
     /**
@@ -97,7 +98,7 @@ class Photo
      *
      * @param \DateTime $createdAt
      *
-     * @return Photo
+     * @return State
      */
     public function setCreatedAt($createdAt)
     {
@@ -121,7 +122,7 @@ class Photo
      *
      * @param \DateTime $updatedAt
      *
-     * @return Photo
+     * @return State
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -141,26 +142,36 @@ class Photo
     }
 
     /**
-     * Set house
+     * Add area
      *
-     * @param \AppBundle\Entity\House $house
+     * @param \AppBundle\Entity\House $area
      *
-     * @return Photo
+     * @return State
      */
-    public function setHouse(\AppBundle\Entity\House $house = null)
+    public function addArea(\AppBundle\Entity\House $area)
     {
-        $this->house = $house;
+        $this->areas[] = $area;
 
         return $this;
     }
 
     /**
-     * Get house
+     * Remove area
      *
-     * @return \AppBundle\Entity\House
+     * @param \AppBundle\Entity\House $area
      */
-    public function getHouse()
+    public function removeArea(\AppBundle\Entity\House $area)
     {
-        return $this->house;
+        $this->areas->removeElement($area);
+    }
+
+    /**
+     * Get areas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAreas()
+    {
+        return $this->areas;
     }
 }

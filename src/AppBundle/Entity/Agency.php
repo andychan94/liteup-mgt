@@ -83,7 +83,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
     protected $logo;
     /**
@@ -96,7 +96,7 @@ class Agency extends BaseUser
     protected $imageFile;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer
      */
@@ -105,14 +105,14 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="about", type="text")
+     * @ORM\Column(name="about", type="text", nullable=true)
      */
     protected $about;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="services", type="text")
+     * @ORM\Column(name="services", type="text", nullable=true)
      */
     protected $services;
 
@@ -135,6 +135,9 @@ class Agency extends BaseUser
      */
     protected $houses;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -293,7 +296,7 @@ class Agency extends BaseUser
     }
 
     /**
-     * Add proprent
+     * Add house
      *
      * @param \AppBundle\Entity\House $house
      *
@@ -307,7 +310,7 @@ class Agency extends BaseUser
     }
 
     /**
-     * Remove proprent
+     * Remove house
      *
      * @param \AppBundle\Entity\House $house
      */

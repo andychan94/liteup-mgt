@@ -44,6 +44,12 @@ class House
     private $agency;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Area", inversedBy="houses")
+     * @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     */
+    private $area;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="price", type="string", length=255)
@@ -181,6 +187,9 @@ class House
      */
     private $photos;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -762,5 +771,29 @@ class House
     public function getForSale()
     {
         return $this->forSale;
+    }
+
+    /**
+     * Set area
+     *
+     * @param \AppBundle\Entity\Area $area
+     *
+     * @return House
+     */
+    public function setArea(\AppBundle\Entity\Area $area = null)
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return \AppBundle\Entity\Area
+     */
+    public function getArea()
+    {
+        return $this->area;
     }
 }

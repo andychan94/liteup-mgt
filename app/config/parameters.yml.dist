@@ -16,5 +16,7 @@ parameters:
     mailer_password: ~
     mailer_name: ~
 
+    agency_logo_path: /images/agencies/
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

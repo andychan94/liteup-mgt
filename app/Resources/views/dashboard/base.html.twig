@@ -55,17 +55,16 @@
                 </a>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        <figure class="image is-32x32" style="margin-right:.5em;"><img
-                                    src="http://minimini.jp/common_jp/image/v4/ogimage.png"></figure>
-                        MiniMini
+                        <span class="icon"><i class="fas fa-user-circle"></i></span>
+                        {{app.user.name}}
                     </a>
                     <div class="navbar-dropdown is-right">
-                        <a class="navbar-item">
-                            <span class="icon is-small"><i class="fas fa-user-o"></i></span>
-                            Profile
+                        <a class="navbar-item" href="{{ path('fos_user_profile_edit') }}">
+                            <span class="icon is-small"><i class="far fa-edit"></i></span>
+                            Edit agency info
                         </a>
                         <hr class="navbar-divider">
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="{{ path('fos_user_security_logout') }}">
                             <span class="icon is-small"><i class="fas fa-power-off"></i></span>
                             Logout
                         </a>
