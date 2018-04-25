@@ -1,3 +1,4 @@
+
 $('.delete').on('click', function(){
     var el = $(this).closest('.notification');
     cuteHide(el);

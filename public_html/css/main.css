@@ -79,4 +79,11 @@
 .list-house-thumbnail img {
   height: 100px; }
 
+.field.is-grouped.is-grouped-centered {
+  margin-left: auto;
+  margin-right: auto; }
+
+.table {
+  margin-top: 1.5rem; }
+
 /*# sourceMappingURL=main.css.map */

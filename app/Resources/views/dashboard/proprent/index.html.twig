@@ -20,12 +20,6 @@
                     <div class="level-left">
                         <div class="level-item">
                             <div class="title">Properties for rent
-                                <a class="button is-success" href="#{#{ path('') }#}">
-                                    <span class="icon is-small">
-                                      <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span>Add a property</span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -33,36 +27,141 @@
 
                 <div class="columns is-multiline">
                     <div class="column">
+                        <a class="button is-success" href="#{#{ path('') }#}">
+                                    <span class="icon is-small">
+                                      <i class="fas fa-plus"></i>
+                                    </span>
+                            <span>Add a property</span>
+                        </a>
+                        <a class="button is-link" href="#{#{ path('') }#}" id="open-modal">
+                                <span class="icon is-small">
+                                  <i class="fas fa-filter"></i>
+                                </span>
+                            <span>Filter</span>
+                        </a>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <form action="" method="get">
+                                    <header class="modal-card-head">
+                                        <p class="modal-card-title">Filter search:</p>
+                                        <a class="button delete close-modal" aria-label="close"></a>
+                                    </header>
+                                    <section class="modal-card-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input" type="text" placeholder="title or property ID">
+                                            </div>
+                                        </div>
+                                        <div class="field is-grouped">
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select name="state" id="stateSelect">
+                                                        <option value="0">State</option>
+                                                        {% for state in states %}
+                                                            <option value="{{ state.id }}">{{ state.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select name="area" id="areaSelect">
+                                                        <option>Area</option>
+                                                    </select>
+                                                    <select id="pot">
+                                                        <option class="state0">Area</option>
+                                                        {% for area in areas %}
+                                                            <option value="{{ area.id }}"
+                                                                    class="state{{ area.state.id }}">{{ area.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <p class="has-text-weight-bold">Price range</p>
+                                        <div class="field is-grouped">
+                                            <div class="control">
+                                                <div class="field has-addons">
+                                                    <p class="control">
+                                                        <a class="button is-static">
+                                                            Min: &#8358;
+                                                        </a>
+                                                    </p>
+                                                    <p class="control">
+                                                        <input class="input" type="text" id="amount" style="margin-right: 20px">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="control">
+                                                <div class="field has-addons">
+                                                    <p class="control">
+                                                        <a class="button is-static">
+                                                            Max: &#8358;
+                                                        </a>
+                                                    </p>
+                                                    <p class="control">
+                                                        <input class="input" type="text" id="amount2">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <div class="price-range">
+                                                    <div id="slider-range"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <footer class="modal-card-foot">
+                                        <div class="field is-grouped is-grouped-centered">
+                                            <p class="control">
+                                                <a class="button is-primary">
+                                                    Filter
+                                                </a>
+                                            </p>
+                                            <p class="control">
+                                                <a class="button is-text close-modal">
+                                                    Cancel
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </footer>
+                                </form>
+                            </div>
+                        </div>
+
+                        {% set heading %}
+                            <th></th>
+                            <th>Title</th>
+                            <th>Main photo</th>
+                            <th>Price</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        {% endset %}
+
                         <table class="table is-bordered is-striped is-narrow is-fullwidth">
                             <thead>
                             <tr>
-
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Main photo</th>
-                                <th>Price</th>
-                                <th>Action</th>
-
+                                {{ heading }}
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Main photo</th>
-                                <th>Price</th>
-                                <th>Action</th>
+                                {{ heading }}
                             </tr>
                             </tfoot>
                             <tbody>
 
                             {% for house in pagination %}
                                 <tr>
-                                    <td>{{ house.id }}</td>
+                                    <td><input type="checkbox"></td>
                                     <td>{{ house.area.state.name }}</td>
                                     <td class="list-house-thumbnail">
                                         <img src="{{ house.photos | first.path }}">
                                     <td>{{ house.price }}</td>
+                                    <td>{{ house.address }}</td>
                                     <td>
                                         <a class="button is-info tooltip is-tooltip-bottom"
                                            data-tooltip="Edit the property"
@@ -105,4 +204,79 @@
             </main>
         </div>
     </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $('#pot').hide();
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 10000,
+                step: 10,
+                values: [0, 10000],
+                slide: function (event, ui) {
+                    if (ui.values[0] < 1000) {
+                        $("#amount").val(ui.values[0] + "K");
+                        $("#amount2").val((ui.values[1] / 1000) + "M");
+
+                    }
+
+                    if (ui.values[1] < 1000) {
+                        $("#amount").val(ui.values[0] + "K");
+                        $("#amount2").val(ui.values[1] + "K");
+
+                    }
+
+                    if (ui.values[0] > 1000) {
+                        $("#amount").val((ui.values[0] / 1000) + "M");
+                        $("#amount2").val((ui.values[1] / 1000) + "M");
+                    }
+
+
+                }
+            });
+
+            $("#amount").val($("#slider-range").slider("values", 0) + "K");
+            $("#amount2").val($("#slider-range").slider("values", 1) / 1000 + "M");
+        });
+        $('#stateSelect').change(function () {
+            var select_class = $("option:selected", this).val();
+            var $options = $('#pot').find('> option.state' + select_class).clone();
+            $('#areaSelect')
+                .find('option')
+                .remove()
+                .end()
+                .append($options);
+        });
+        document.querySelector('a#open-modal').addEventListener('click', function (event) {
+            event.preventDefault();
+            var modal = document.querySelector('.modal');
+            var html = document.querySelector('html');
+            modal.classList.add('is-active');
+            html.classList.add('is-clipped');
+
+            function closeModal() {
+                modal.classList.remove('is-active');
+                html.classList.remove('is-clipped');
+            }
+
+            modal.querySelector('.modal-background').addEventListener('click', function (e) {
+                e.preventDefault();
+                closeModal(e);
+            });
+            var closeBtns = document.getElementsByClassName("close-modal");
+            console.log(closeBtns.length);
+            for (var i = 0; i < closeBtns.length; i++) {
+                closeBtns[i].addEventListener('click', closeModal);
+            }
+        });
+    </script>
 {% endblock %}

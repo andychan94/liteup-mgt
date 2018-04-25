@@ -2,35 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b4120f7-2799-4427-a511-16dd0e57b24a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/liteup-mgr2.iml" afterPath="$PROJECT_DIR$/.idea/liteup-mgr2.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180416140836.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180419030408.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180419081955.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180419082728.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180419101403.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20180419101940.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180416140836.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419030408.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419081955.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419082728.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419101403.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419101940.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419213239.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/DoctrineMigrations/Version20180419213451.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/css/divider.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/images/agencies/bulma-0.6.2.zip" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AgencyController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DashboardController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/DashboardController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PropertyRentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Agency.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Agency.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/House.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/House.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Photo.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Photo.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/AgencyRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/AgencyRepository.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/PhotoRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/PhotoRepository.php" />
+      <change beforePath="$PROJECT_DIR$/public_html/css/bulma.css" afterPath="$PROJECT_DIR$/public_html/css/bulma.css" />
+      <change beforePath="$PROJECT_DIR$/public_html/css/bulma.css.map" afterPath="$PROJECT_DIR$/public_html/css/bulma.css.map" />
+      <change beforePath="$PROJECT_DIR$/public_html/css/main.css" afterPath="$PROJECT_DIR$/public_html/css/main.css" />
+      <change beforePath="$PROJECT_DIR$/public_html/css/main.css.map" afterPath="$PROJECT_DIR$/public_html/css/main.css.map" />
+      <change beforePath="$PROJECT_DIR$/public_html/js/scripts.js" afterPath="$PROJECT_DIR$/public_html/js/scripts.js" />
+      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass" afterPath="$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass" />
+      <change beforePath="$PROJECT_DIR$/public_html/scss/main.scss" afterPath="$PROJECT_DIR$/public_html/scss/main.scss" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,12 +27,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Area.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Area.php">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            <state relative-caret-position="1277">
+              <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+              <folding>
+                <element signature="e#5306#5332#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initial-variables.sass" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/utilities/initial-variables.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/scss/main.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="118" column="1" lean-forward="false" selection-start-line="118" selection-start-column="1" selection-end-line="118" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="860">
+              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropertyRentController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1035">
+              <caret line="69" column="67" lean-forward="false" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
+              <folding>
+                <element signature="e#50#76#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,88 +84,8 @@
       <file leaf-file-name="State.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/State.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
+            <state relative-caret-position="720">
               <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="House.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/House.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1171">
-              <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AgencyRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/AgencyRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Agency.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Agency.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="68" column="95" lean-forward="false" selection-start-line="68" selection-start-column="95" selection-end-line="71" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="66" column="86" lean-forward="false" selection-start-line="66" selection-start-column="86" selection-end-line="66" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="39" lean-forward="false" selection-start-line="11" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.yml.dist" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -149,15 +96,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Sass File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>prop</find>
-      <find />
       <find />
       <find>&lt;option</find>
       <find>&lt;option class=&quot;.*_abuja select_option&quot; value=&quot;.*&quot;&gt;</find>
@@ -184,8 +130,8 @@
       <find>&lt;option class=&quot;.*_kogi select_option&quot; value=&quot;.*&quot;&gt;</find>
       <find>&lt;option class=&quot;.*_nassarawa select_option&quot; value=&quot;.*&quot;&gt;</find>
       <find>&lt;option class=&quot;.*_zamfara select_option&quot; value=&quot;.*&quot;&gt;</find>
-      <find />
       <find>www</find>
+      <find>$grey</find>
     </findStrings>
     <replaceStrings>
       <replace>private</replace>
@@ -226,11 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/scss/bulma/components/card.sass" />
-        <option value="$PROJECT_DIR$/web/scss/bulma.sass" />
-        <option value="$PROJECT_DIR$/web/scss/bulma/extensions/tooltip.sass" />
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/web/scss/login.scss" />
         <option value="$PROJECT_DIR$/web/css/land.css" />
@@ -258,7 +199,6 @@
         <option value="$PROJECT_DIR$/public_html/app.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/DashboardController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/AgencyRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/PhotoRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/StateRepository.php" />
@@ -270,13 +210,19 @@
         <option value="$PROJECT_DIR$/states.csv" />
         <option value="$PROJECT_DIR$/areas.html" />
         <option value="$PROJECT_DIR$/areas.csv" />
-        <option value="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/State.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Agency.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
+        <option value="$PROJECT_DIR$/public_html/js/scripts.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig" />
+        <option value="$PROJECT_DIR$/public_html/scss/main.scss" />
+        <option value="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
+        <option value="$PROJECT_DIR$/public_html/scss/bulma/extensions/calendar.sass" />
+        <option value="$PROJECT_DIR$/public_html/js/bulma-calendar.js" />
+        <option value="$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass" />
       </list>
     </option>
   </component>
@@ -349,10 +295,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="64" />
-    <option name="y" value="136" />
-    <option name="width" value="1440" />
-    <option name="height" value="809" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -419,7 +363,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -489,14 +433,13 @@
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public_html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="images" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public_html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="images" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="agencies" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scss" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
@@ -529,6 +472,15 @@
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Super" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -542,31 +494,31 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
     <property name="list.type.of.created.stylesheet" value="Sass" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="HTML" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public_html/images/agencies" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/AppBundle/Entity" />
-      <recent name="$PROJECT_DIR$/src/AppBundle/Repository" />
-      <recent name="$PROJECT_DIR$/web/scss/bulma/extensions" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super" />
       <recent name="$PROJECT_DIR$/app/Resources/views/dashboard/house" />
       <recent name="$PROJECT_DIR$/web/images" />
       <recent name="$PROJECT_DIR$/web/js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public_html/scss/bulma/extensions" />
+      <recent name="$PROJECT_DIR$/public_html/images/agencies" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Entity" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Repository" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -611,12 +563,13 @@
       <workItem from="1524546732871" duration="522000" />
       <workItem from="1524549121813" duration="1646000" />
       <workItem from="1524551149929" duration="89000" />
-      <workItem from="1524551261875" duration="8250000" />
+      <workItem from="1524551261875" duration="18263000" />
+      <workItem from="1524624150746" duration="7221000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89276000" />
+    <option name="totallyTimeSpent" value="106510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="809" extended-state="6" />
@@ -629,9 +582,9 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32700136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27001357" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2699029" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -675,56 +628,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/register.html.twig" />
-    <entry file="file://$PROJECT_DIR$/public_html/css/land.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="60" lean-forward="false" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/scss/login.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="81" column="5" lean-forward="true" selection-start-line="63" selection-start-column="4" selection-end-line="81" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/js/bulma.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/scss/land.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Resources/views/Security/login_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="0" selection-start-column="42" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -783,13 +686,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/AdminHousePhotoFormType.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/extensions/divider.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -815,13 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/scss/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -861,16 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="43" column="30" lean-forward="false" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-          <folding>
-            <element signature="e#1584#1620#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/StateRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -889,13 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -922,19 +794,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/areas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="385" column="7" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="417" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/areas.html" />
     <entry file="file://$PROJECT_DIR$/areas.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10548">
           <caret line="29" column="49" lean-forward="true" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="49" lean-forward="true" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,7 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -966,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -974,14 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/State.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1018,19 +871,127 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="68" column="95" lean-forward="false" selection-start-line="68" selection-start-column="95" selection-end-line="71" selection-end-column="51" />
+        <state relative-caret-position="18">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/State.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/js-forms/paired-selects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="55" column="54" lean-forward="false" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="66" column="86" lean-forward="false" selection-start-line="66" selection-start-column="86" selection-end-line="66" selection-end-column="86" />
+        <state relative-caret-position="148">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/scss/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="118" column="1" lean-forward="false" selection-start-line="118" selection-start-column="1" selection-end-line="118" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="67" lean-forward="false" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
+          <folding>
+            <element signature="e#50#76#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/utilities/initial-variables.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/extensions/calendar.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/js/bulma-calendar.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="52" column="84431" lean-forward="false" selection-start-line="52" selection-start-column="84431" selection-end-line="52" selection-end-column="84431" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/js/bulma.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1277">
+          <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+          <folding>
+            <element signature="e#5306#5332#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

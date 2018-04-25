@@ -94,8 +94,6 @@
     }
   }
 }
-
-// main area
 .main{
   padding: 2em 1em 0 1em;
 }
@@ -112,3 +110,10 @@
 .main{padding:2em 1em 0}.menu-label{color:#00d1b2;margin-left:.5em}
 .block{margin-top:.5em}
 .list-house-thumbnail img {height:100px;}
+.field.is-grouped.is-grouped-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+.table {
+  margin-top: 1.5rem;
+}

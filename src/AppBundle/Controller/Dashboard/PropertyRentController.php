@@ -2,7 +2,10 @@
 
 namespace AppBundle\Controller\Dashboard;
 
+use AppBundle\Entity\Area;
 use AppBundle\Entity\House;
+use AppBundle\Entity\State;
+use AppBundle\Repository\StateRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,8 +44,14 @@ class PropertyRentController extends Controller
             $request->query->getInt('page', 1),
             20
         );
+        $areas = $this->getDoctrine()->getRepository(Area::class)->findAll();
+        $states = $this->getDoctrine()->getRepository(State::class)->findAll();
+
+
         return $this->render('dashboard/proprent/index.html.twig', [
             'pagination' => $pagination,
+            'states' => $states,
+            'areas' => $areas,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
