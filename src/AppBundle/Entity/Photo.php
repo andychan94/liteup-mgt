@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use DateTime;
+use AppBundle\Mapping\EntityBase;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="photo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class Photo
+class Photo extends EntityBase
 {
     /**
      * @var int
@@ -34,29 +35,6 @@ class Photo
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
-
-    /**
-     * @var DateTime $created
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var DateTime $updated
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
-    }
 
     /**
      * Get id
@@ -90,54 +68,6 @@ class Photo
     public function getPath()
     {
         return $this->path;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Photo
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Photo
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

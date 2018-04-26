@@ -62,10 +62,16 @@ class PropertyRentController extends Controller
     {
         $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('success', 'House updated');
-            return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+                $this->addFlash('success', 'Property updated');
+                return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
+            }
+//            else {
+//                $this->addFlash('error', 'Could not update property. Please check your inputs.');
+//            }
         }
         return $this->render('dashboard/proprent/edit.html.twig', [
             'house' => $house,
@@ -87,7 +93,7 @@ class PropertyRentController extends Controller
         ]);
     }
     /**
-     * @Route("/admin/proprent/remove", name="remove_houses")
+     * @Route("/remove", name="remove_houses")
      */
     public function removeAction(Request $request)
     {

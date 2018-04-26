@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use DateTime;
+use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,8 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="area")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AreaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class Area
+class Area extends EntityBase
 {
     /**
      * @var int
@@ -41,28 +42,15 @@ class Area
      */
     protected $houses;
 
-    /**
-     * @var DateTime $created
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var DateTime $updated
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
+    public function __toString(){
+        return $this->getName();
+    }
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->houses = new ArrayCollection();
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -97,54 +85,6 @@ class Area
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Area
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Area
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

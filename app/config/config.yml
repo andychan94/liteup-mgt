@@ -40,6 +40,7 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
       agency_logo_folder: images/agencies/
+      currency: &#8358;
 
 # Doctrine Configuration
 doctrine:

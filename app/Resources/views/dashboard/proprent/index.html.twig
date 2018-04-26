@@ -85,7 +85,7 @@
                                                 <div class="field has-addons">
                                                     <p class="control">
                                                         <a class="button is-static">
-                                                            Min: &#8358;
+                                                            Min: {{currency}}
                                                         </a>
                                                     </p>
                                                     <p class="control">
@@ -97,7 +97,7 @@
                                                 <div class="field has-addons">
                                                     <p class="control">
                                                         <a class="button is-static">
-                                                            Max: &#8358;
+                                                            Max: {{currency}}
                                                         </a>
                                                     </p>
                                                     <p class="control">
@@ -134,10 +134,9 @@
 
                         {% set heading %}
                             <th></th>
-                            <th>Title</th>
                             <th>Main photo</th>
-                            <th>Price</th>
-                            <th>Address</th>
+                            <th>Details</th>
+                            <th>Status</th>
                             <th>Action</th>
                         {% endset %}
 
@@ -157,11 +156,23 @@
                             {% for house in pagination %}
                                 <tr>
                                     <td><input type="checkbox"></td>
-                                    <td>{{ house.area.state.name }}</td>
                                     <td class="list-house-thumbnail">
-                                        <img src="{{ house.photos | first.path }}">
-                                    <td>{{ house.price }}</td>
-                                    <td>{{ house.address }}</td>
+                                        <img src="{{ house.photos | first.path }}"></td>
+                                    <td>
+                                        <p>{{ house.title }}</p>
+                                        <p>
+                                            <span class="icon is-small">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </span>
+                                            {{ house.address }}, {{ house.area.name }}, {{ house.area.state.name }}</p>
+                                        <p>{{currency}}{{ house.price }}</p>
+
+                                    </td>
+                                    <td>
+                                        <span class="tag is-primary"><span class="icon"><i class="fas fa-eye"></i></span>{{ house.viewCount }} views</span>
+                                        <span class="tag is-success"><span class="icon"><i class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }} </span>
+                                        {% if house.available == 0 %}<span class="tag is-danger"><span class="icon"><i class="fas fa-ban"></i></span>Disabled</span>{% endif %}
+                                    </td>
                                     <td>
                                         <a class="button is-info tooltip is-tooltip-bottom"
                                            data-tooltip="Edit the property"
@@ -170,14 +181,25 @@
                                                 <i class="fas fa-edit"></i>
                                             </span>
                                         </a>
+                                        {% if house.available == 1 %}
                                         <a class="button is-warning tooltip is-tooltip-bottom"
-                                           data-tooltip="Disable the property"
+                                           data-tooltip="Make the property unavailable"
                                            href="{{ path('proprent_edit', {"id":house.id}) }}">
                                             <span class="icon">
                                                 <i class="fas fa-ban"></i>
                                             </span>
                                         </a>
-                                        <a class="button is-danger tooltip is-tooltip-bottom"
+                                        {% else %}
+                                        <a class="button is-success tooltip is-tooltip-bottom"
+                                           data-tooltip="Make the property available"
+                                           href="{{ path('proprent_edit', {"id":house.id}) }}">
+                                            <span class="icon">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                        </a>
+                                        {% endif %}
+
+                                        <a class="button is-dark tooltip is-tooltip-bottom"
                                            data-tooltip="Delete the property"
                                            href="#">
                                             <span class="icon">

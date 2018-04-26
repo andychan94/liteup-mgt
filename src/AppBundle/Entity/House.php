@@ -2,8 +2,9 @@
 
 namespace AppBundle\Entity;
 
-use DateTime;
+use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,8 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="house")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\HouseRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class House
+class House extends EntityBase
 {
     /**
      * @var int
@@ -34,6 +36,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank(message="Title cannot be blank")
      */
     private $title;
 
@@ -53,6 +56,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="price", type="string", length=255)
+     * @Assert\NotBlank(message="Price cannot be blank")
      */
     private $price;
 
@@ -60,6 +64,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
+     * @Assert\NotBlank(message="Address cannot be blank")
      */
     private $address;
 
@@ -67,6 +72,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="size", type="string", length=255)
+     * @Assert\NotBlank(message="Size cannot be blank")
      */
     private $size;
 
@@ -74,6 +80,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="commute", type="string", length=255)
+     * @Assert\NotBlank(message="Commute cannot be blank")
      */
     private $commute;
 
@@ -81,6 +88,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="essentials", type="string", length=255)
+     * @Assert\NotBlank(message="Essentials cannot be blank")
      */
     private $essentials;
 
@@ -88,6 +96,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\NotBlank(message="Type cannot be blank")
      */
     private $type;
 
@@ -95,6 +104,7 @@ class House
      * @var string
      *
      * @ORM\Column(name="balcony_size", type="string", length=255)
+     * @Assert\NotBlank(message="Balcony size cannot be blank")
      */
     private $balconySize;
 
@@ -169,20 +179,6 @@ class House
     private $forSale;
 
     /**
-     * @var DateTime $created
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var DateTime $updated
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
      */
     private $photos;
@@ -197,8 +193,6 @@ class House
         $this->setDeleted(0);
         $this->setAvailable(1);
         $this->setLikeCount(0);
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -617,54 +611,6 @@ class House
     public function getLikeCount()
     {
         return $this->likeCount;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return House
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return House
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**

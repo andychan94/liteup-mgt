@@ -9,7 +9,7 @@
             {{ include(':dashboard/blocks:left.html.twig') }}
 
             <main class="column main">
-                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Properties for rent</a></li>
@@ -27,38 +27,139 @@
                     </div>
                 </div>
 
-                <div class="columns is-multiline">
-                    <div class="column">
-                        {{ form_start(form, {'method': 'post', 'action': path('edit_agency', {"id":house.id})}) }}
+                <div class="columns is-mobile">
+                    <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
 
-                        {{ form_widget(form) }}
+                        {{ form_start(form, {'method': 'post', 'action': path('proprent_edit', {"id":house.id})}) }}
+                        {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+                        <div class="field">
+                            <label class="label">{{ form_label(form.title) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.title) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.title) }}</p>
+                        </div>
 
+                        <div class="field">
+                            <label class="label">{{ form_label(form.price) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.price) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.price) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">{{ form_label(form.address) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.address) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.address) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">{{ form_label(form.size) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.size) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.size) }}</p>
+                        </div>
+                        {#
+                        <div class="field">
+                            <label class="label">{{ form_label(form.area) }}</label>
+                            <div class="control">
+                                <span class="select">
+                                {{ form_widget(form.area) }}
+                                </span>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.area) }}</p>
+                        </div>
+                        #}
+                        <div class="field">
+                            <label class="label">{{ form_label(form.essentials) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.essentials) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.essentials) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">{{ form_label(form.commute) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.commute) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.commute) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">{{ form_label(form.type) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.type) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.type) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">{{ form_label(form.balcony_size) }}</label>
+                            <div class="control">
+                                {{ form_widget(form.balcony_size) }}
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.balcony_size) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">
+                                    {{ form_widget(form.available) }}
+                                    {{ form_label(form.available) }}
+                                </label>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.available) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">
+                                    {{ form_widget(form.parking) }}
+                                    {{ form_label(form.parking) }}
+                                </label>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.parking) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">
+                                    {{ form_widget(form.gas) }}
+                                    {{ form_label(form.gas) }}
+                                </label>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.gas) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">
+                                    {{ form_widget(form.water) }}
+                                    {{ form_label(form.water) }}
+                                </label>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.water) }}</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label class="label">
+                                    {{ form_widget(form.aircon) }}
+                                    {{ form_label(form.aircon) }}
+                                </label>
+                            </div>
+                            <p class="help is-danger">{{ form_errors(form.aircon) }}</p>
+                        </div>
+                        {{ form_rest(form) }}
                         <input class="button is-info" type="submit" id="_submit" name="_submit" value="Update"/>
-                        {{ form_end(form) }}
+                        {{ form_end(form, {'render_rest': false}) }}
                     </div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
             </main>
         </div>
     </div>
