@@ -6,6 +6,7 @@ use AppBundle\Entity\Area;
 use AppBundle\Entity\House;
 use AppBundle\Entity\State;
 use AppBundle\Repository\StateRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +18,10 @@ use Symfony\Component\HttpFoundation\Request;
 class PropertyRentController extends Controller
 {
     /**
-     * @Route("/", name="proprent_list")
+     * @Route("/", name="proprent_index")
      */
     public function indexAction(Request $request)
     {
-////        dTODO list all -> DONE
-////        dTODO ALSO ONLY (  HIGHEST - 1 ) LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER -> DONE
-////        dTODO SEE IF YOU CAN AD A PARENT ROUTE CONTROLLER FOR A CLASS AND USE IT AS PARENT: eg instead of writing /agency/edit/{id} you have /edit/{id} -> DONE
         $agencyKey = 'u.agency';
         $agencyValue = $this->getUser();
         // if getUser() is super admin, show all houses from all agencies
@@ -34,8 +32,10 @@ class PropertyRentController extends Controller
         $qb = $this->getDoctrine()->getRepository(House::class)->createQueryBuilder('u')
             ->where($agencyKey.' = :agency')
             ->setParameter('agency', $agencyValue)
-            ->andWhere('u.forSale = :forSale')
-            ->setParameter('forSale', 0)
+            ->andWhere('u.selling = :selling')
+            ->setParameter('selling', false)
+            ->andWhere('u.deleted = :deleted')
+            ->setParameter('deleted', false)
             ->orderBy('u.createdAt', 'DESC')
         ;
         $paginator  = $this->get('knp_paginator');
@@ -48,7 +48,7 @@ class PropertyRentController extends Controller
         $states = $this->getDoctrine()->getRepository(State::class)->findAll();
 
 
-        return $this->render('dashboard/proprent/index.html.twig', [
+        return $this->render(':dashboard/proprent:index.html.twig', [
             'pagination' => $pagination,
             'states' => $states,
             'areas' => $areas,
@@ -56,6 +56,7 @@ class PropertyRentController extends Controller
         ]);
     }
     /**
+     * TODO Make super admin able to add house for agencies
      * @Route("/edit/{id}", name="proprent_edit")
      */
     public function editAction(House $house, Request $request)
@@ -69,38 +70,83 @@ class PropertyRentController extends Controller
                 $this->addFlash('success', 'Property updated');
                 return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
             }
-//            else {
-//                $this->addFlash('error', 'Could not update property. Please check your inputs.');
-//            }
         }
-        return $this->render('dashboard/proprent/edit.html.twig', [
+        return $this->render(':dashboard/proprent:edit.html.twig', [
             'house' => $house,
             'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/add", name="proprent")
+     * @Route("/add", name="proprent_add")
      */
-    public function addAction(House $house, Request $request)
+    public function createAction(Request $request)
     {
-//        TODO add single
-
+        $house = new House();
         $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
         $form->handleRequest($request);
-        return $this->render('default/index.html.twig', [
-            'proprent' => $house,
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $house->setAgency($this->getUser());
+                $house->setSelling(0);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($house);
+                $em->flush();
+                $this->addFlash('success', 'Property added');
+                return $this->redirectToRoute('proprent_index');
+            }
+        }
+
+        return $this->render(':dashboard/proprent:create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/remove", name="remove_houses")
+     * TODO make this only POST
+     * @Route("/delete/{id}", name="proprent_delete")
      */
-    public function removeAction(Request $request)
+    public function deleteAction(House $house, Request $request)
     {
-//        TODO remove many
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $house->setDeleted(true);
+        $em->flush();
+        $this->addFlash('success', 'Property moved to Recycle bin');
+        return $this->redirectToRoute('proprent_index');
+    }
+    /**
+     * TODO make this only POST
+     * @Route("/enable/{id}", name="proprent_enable")
+     */
+    public function enableAction(House $house, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $house->setAvailable(true);
+        $em->flush();
+        $this->addFlash('success', 'Property made available');
+        return $this->redirectToRoute('proprent_index');
+    }
+    /**
+     * TODO make this only POST
+     * @Route("/disable/{id}", name="proprent_disable")
+     */
+    public function disableAction(House $house, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $house->setAvailable(false);
+        $em->flush();
+        $this->addFlash('success', 'Property made unavailable');
+        return $this->redirectToRoute('proprent_index');
+    }
+    /**
+     * TODO make this only POST
+     * @Route("/move/{id}", name="proprent_move")
+     */
+    public function moveAction(House $house, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $house->setSelling(true);
+        $em->flush();
+        $this->addFlash('success', 'Property moved to Properties for sale');
+        return $this->redirectToRoute('proprent_index');
     }
 
 //    TODO SPECIAL: Add Multiple from a csv file : instead of adding agencies manually, multiple agencies can be added at the same time using a csv file
@@ -113,5 +159,20 @@ class PropertyRentController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     *
+     * @param House $category
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Category $category)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('category_delete', array('id' => $category->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+            ;
     }
 }

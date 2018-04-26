@@ -1,78 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Houses</a></li>
+        </ul>
+    </nav>
 
-
-    <div class="wrapper">
-        <div class="columns">
-
-            {{ include(':dashboard/blocks:left.html.twig') }}
-
-            <main class="column main">
-                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li class="is-active"><a href="#" aria-current="page">Houses</a></li>
-                    </ul>
-                </nav>
-
-                <div class="level">
-                    <div class="level-left">
-                        <div class="level-item">
-                            <div class="title">Houses
-                            </div>
-                        </div>
-                    </div>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">Houses
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="columns is-multiline">
-                    <div class="column">
-                        <table class="table is-bordered is-striped is-narrow is-fullwidth">
-                            <thead>
-                            <tr>
+    <div class="columns is-multiline">
+        <div class="column">
+            <table class="table is-bordered is-striped is-narrow is-fullwidth">
+                <thead>
+                <tr>
 
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Budget</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Budget</th>
-                                <th>Action</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Budget</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Budget</th>
+                    <th>Action</th>
 
-                            </tr>
-                            </tfoot>
-                            <tbody>
+                </tr>
+                </tfoot>
+                <tbody>
 
-                            {% for agency in pagination %}
-                                <tr>
-                                    <td>{{ agency.id }}</td>
-                                    <td>{{ agency.name }}</td>
-                                    <td>{{ agency.budget }}</td>
-                                    <td>
-                                        <a class="button is-info" href="{{ path('house_edit', {"id":agency.id}) }}">
+                {% for agency in pagination %}
+                    <tr>
+                        <td>{{ agency.id }}</td>
+                        <td>{{ agency.name }}</td>
+                        <td>{{ agency.budget }}</td>
+                        <td>
+                            <a class="button is-info" href="{{ path('house_edit', {"id":agency.id}) }}">
                                     <span class="icon">
                                         <i class="fa fa-edit"></i>
                                     </span>
-                                        </a>
-                                        <a class="button is-danger" href="#"><span class="icon"><i
-                                                        class="fa fa-trash"></i></span></a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                            {{ knp_pagination_render(pagination) }}
-                        </nav>
-                    </div>
-                </div>
-
-            </main>
+                            </a>
+                            <a class="button is-danger" href="#"><span class="icon"><i
+                                            class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {{ knp_pagination_render(pagination) }}
+            </nav>
         </div>
     </div>
 {% endblock %}

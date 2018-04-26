@@ -12,10 +12,10 @@
                 </a>
             </li>
             <li><a
-                        {% if app.request.get('_route') == 'proprent_list' %}
+                        {% if app.request.get('_route') == 'proprent_index' %}
                             class="is-active"
                         {% endif %}
-                        href="{{ path('proprent_list') }}">
+                        href="{{ path('proprent_index') }}">
                     <span class="icon is-small">
                         <i class="fas fa-hourglass-half"></i>
                     </span> Properties for rent

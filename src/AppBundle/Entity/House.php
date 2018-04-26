@@ -79,44 +79,41 @@ class House extends EntityBase
     /**
      * @var string
      *
-     * @ORM\Column(name="commute", type="string", length=255)
-     * @Assert\NotBlank(message="Commute cannot be blank")
+     * @ORM\Column(name="commute", type="string", length=255, nullable=true)
      */
     private $commute;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="essentials", type="string", length=255)
-     * @Assert\NotBlank(message="Essentials cannot be blank")
+     * @ORM\Column(name="essentials", type="string", length=255, nullable=true)
      */
     private $essentials;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\NotBlank(message="Type cannot be blank")
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="balcony_size", type="string", length=255)
+     * @ORM\Column(name="balcony_size", type="string", length=255, nullable=true)
      * @Assert\NotBlank(message="Balcony size cannot be blank")
      */
     private $balconySize;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="aircon", type="boolean")
      */
     private $aircon;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="parking", type="boolean")
      */
@@ -130,7 +127,7 @@ class House extends EntityBase
     private $gas;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="water", type="boolean")
      */
@@ -139,19 +136,19 @@ class House extends EntityBase
     /**
      * @var string
      *
-     * @ORM\Column(name="floor", type="string", length=255)
+     * @ORM\Column(name="floor", type="string", length=255, nullable=true)
      */
     private $floor;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="available", type="boolean")
      */
     private $available;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="deleted", type="boolean")
      */
@@ -172,11 +169,11 @@ class House extends EntityBase
     private $likeCount;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="for_sale", type="integer")
+     * @ORM\Column(name="selling", type="boolean")
      */
-    private $forSale;
+    private $selling;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
@@ -190,8 +187,9 @@ class House extends EntityBase
     {
         $this->photos = new ArrayCollection();
         $this->setViewCount(0);
-        $this->setDeleted(0);
-        $this->setAvailable(1);
+        $this->setDeleted(false);
+        $this->setAvailable(true);
+        $this->setStatus(1);
         $this->setLikeCount(0);
     }
 
@@ -698,13 +696,13 @@ class House extends EntityBase
     /**
      * Set forSale
      *
-     * @param integer $forSale
+     * @param integer $selling
      *
      * @return House
      */
-    public function setForSale($forSale)
+    public function setSelling($selling)
     {
-        $this->forSale = $forSale;
+        $this->selling = $selling;
 
         return $this;
     }
@@ -714,9 +712,9 @@ class House extends EntityBase
      *
      * @return integer
      */
-    public function getForSale()
+    public function getSelling()
     {
-        return $this->forSale;
+        return $this->selling;
     }
 
     /**

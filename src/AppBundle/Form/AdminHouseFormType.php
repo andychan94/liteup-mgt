@@ -59,6 +59,7 @@ class AdminHouseFormType extends AbstractType
             ))
             ->add('balcony_size', TextType::class, array(
                 'label' => 'Balcony size',
+                'required' => false,
                 'attr'=> array('class'=>'input')
             ))
             ->add('available', CheckboxType::class, array(
