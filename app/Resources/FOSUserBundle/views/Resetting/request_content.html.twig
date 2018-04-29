@@ -4,13 +4,17 @@
 <p>Enter your username or email address and we will send you a link to reset your password.</p>
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
 
+
     <div class="field">
-        <div class="control">
-            <p></p>
+        <p class="control has-icons-left has-icons-right">
             <input class="input" type="text" id="username" name="username" required="required" placeholder="{{ 'resetting.request.username'|trans }}" />
-        </div>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+        </p>
     </div>
-    <input class="button is-success" type="submit" value="{{ 'resetting.request.submit'|trans }}"  />
+
+    <input class="liteup-login-btn" type="submit" value="{{ 'resetting.request.submit'|trans }}"  />
 </form>
 
 <p class="is-small">

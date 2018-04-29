@@ -14,15 +14,21 @@
 
 
     <div class="field">
-        <div class="control">
-            <input  class="input" type="text" placeholder="Username" autofocus="" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
-        </div>
+        <p class="control has-icons-left has-icons-right">
+            <input  class="input" type="text" placeholder="Username or Email" autofocus="" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+        </p>
     </div>
 
     <div class="field">
-        <div class="control">
+        <p class="control has-icons-left has-icons-right">
             <input class="input" type="password" placeholder="Password" id="password" name="_password" required="required" autocomplete="current-password" />
-        </div>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+        </p>
     </div>
 
 

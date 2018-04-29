@@ -1,11 +1,85 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input class="liteup-login-btn" type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-{{ form_end(form) }}
+    {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.username) }}
+        <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.username) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.email) }}
+        <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.email) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.plainPassword.first) }}
+        <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+        </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.plainPassword.first) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.plainPassword.second) }}
+        <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+        </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.plainPassword.second) }}</p>
+    <p class="help is-danger">{{ form_errors(form.plainPassword) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.name) }}
+        <span class="icon is-small is-left">
+            <i class="fas fa-file-alt"></i>
+        </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.phone) }}
+        <span class="icon is-small is-left">
+            <i class="fas fa-phone"></i>
+        </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.phone) }}</p>
+</div>
+
+<div class="field">
+    <p class="control has-icons-left has-icons-right">
+        {{ form_widget(form.address) }}
+        <span class="icon is-small is-left">
+            <i class="fas fa-map-marker-alt"></i>
+        </span>
+    </p>
+    <p class="help is-danger">{{ form_errors(form.address) }}</p>
+</div>
+<div style="margin-top:30px">
+    <p class="is-small has-text-left">By clicking “Register”, you agree to our <a href="{{ path('tos') }}" target="_blank">Terms of service</a>. We’ll occasionally send you account related emails.</p>
+
+    {{ form_rest(form) }}
+    <input class="liteup-login-btn" type="submit" value="{{ 'registration.submit'|trans }}"/>
+</div>
+{{ form_end(form, {'render_rest': false}) }}
 
 
 <p class="is-small">

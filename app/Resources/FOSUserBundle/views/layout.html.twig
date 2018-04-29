@@ -22,15 +22,20 @@
                     </p>
                     {% if app.request.hasPreviousSession %}
                         {% if app.session.flashbag.all() is not empty %}
-                                {% for type, messages in app.session.flashbag.all() %}
-                                    {% for message in messages %}
-                                        <p>{{ message }}</p>
-                                    {% endfor %}
+                            {% for type, messages in app.session.flashbag.all() %}
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
                                 {% endfor %}
+                            {% endfor %}
                         {% endif %}
                     {% endif %}
-                    {% block fos_user_content %}
-                    {% endblock fos_user_content %}
+
+                    <div class="columns is-mobile">
+                        <div class="column is-12-mobile is-8-tablet is-offset-2-tablet">
+                            {% block fos_user_content %}
+                            {% endblock fos_user_content %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,6 +44,9 @@
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
 {% endblock %}
 </body>
 </html>
