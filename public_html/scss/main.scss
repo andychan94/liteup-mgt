@@ -4,7 +4,6 @@
 @media screen and (min-width: 769px), print {
   .column.is-2, .column.is-2-tablet {
     min-height: 100vh;
-
   }
 }
 
@@ -84,6 +83,7 @@
 .aside{
   background: #2E363F;    
   padding: 2em .2em 0 1em;
+  min-height: 100vh;
 
   a{
     color: #afb8c3;

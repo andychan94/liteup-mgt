@@ -25,10 +25,10 @@ class Area extends EntityBase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\State", inversedBy="areas")
-     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="areas")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
      */
-    private $state;
+    private $lga;
 
     /**
      * @var string
@@ -88,27 +88,27 @@ class Area extends EntityBase
     }
 
     /**
-     * Set state
+     * Set lga
      *
-     * @param \AppBundle\Entity\State $state
+     * @param \AppBundle\Entity\Lga $lga
      *
      * @return Area
      */
-    public function setState(\AppBundle\Entity\State $state = null)
+    public function setLga(\AppBundle\Entity\Lga $lga = null)
     {
-        $this->state = $state;
+        $this->lga = $lga;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get lga
      *
-     * @return \AppBundle\Entity\State
+     * @return \AppBundle\Entity\Lga
      */
-    public function getState()
+    public function getLga()
     {
-        return $this->state;
+        return $this->lga;
     }
 
     /**

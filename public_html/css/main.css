@@ -3,7 +3,7 @@
 
 @media screen and (min-width: 769px), print {
   .column.is-2, .column.is-2-tablet {
-    height: 100vh; } }
+    min-height: 100vh; } }
 .tag-notif {
   border-radius: 50%;
   position: absolute;
@@ -50,7 +50,8 @@
 
 .aside {
   background: #2E363F;
-  padding: 2em .2em 0 1em; }
+  padding: 2em .2em 0 1em;
+  min-height: 100vh; }
   .aside a {
     color: #afb8c3; }
   .aside .menu-list li {
@@ -78,5 +79,12 @@
 
 .list-house-thumbnail img {
   height: 100px; }
+
+.field.is-grouped.is-grouped-centered {
+  margin-left: auto;
+  margin-right: auto; }
+
+.table {
+  margin-top: 1.5rem; }
 
 /*# sourceMappingURL=main.css.map */

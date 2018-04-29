@@ -1,8 +1,173 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+<nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('dashboard_home') }}">Home</a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Edit</a></li>
+    </ul>
+</nav>
+
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <div class="title">Edit profile
+
+            </div>
+        </div>
     </div>
-{{ form_end(form) }}
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-full-mobile is-two-thirds-tablet">
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.username) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.username) }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.username) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.email) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.email) }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.email) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.name) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.name) }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-file-alt"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.phone) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.phone) }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.phone) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.address) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.address) }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.address) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.about) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.about) }}
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.about) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.services) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        {{ form_widget(form.services) }}
+                    </p>
+                    <p class="help is-danger">{{ form_errors(form.services) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">{{ form_label(form.imageFile) }}</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="file is-info has-name is-boxed">
+                        <label class="file-label">
+                            {{ form_widget(form.imageFile) }}
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose a file…
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                <filename class="jpg">filename.jpg</filename>
+                            </span>
+                        </label>
+                    </div>
+                    <p class="help is-danger">{{ form_errors(form.imageFile) }}</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="has-text-centered">
+            <input class="button is-success" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+        </div>
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+</div>

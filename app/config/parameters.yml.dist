@@ -4,7 +4,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: ~
-    database_name: symfony
+    dev_database_name: dev_db
+    test_database_name: test_db
+    prod_database_name: prod_db
     database_user: root
     database_password: ~
     # You should uncomment this if you want to use pdo_sqlite

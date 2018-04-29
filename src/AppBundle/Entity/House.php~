@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\HouseRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class House
+class House extends EntityBase
 {
     /**
      * @var int
@@ -52,10 +53,17 @@ class House
     private $area;
 
     /**
-     * @var string
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
+     */
+    private $lga;
+
+    /**
+     * @var int
      *
-     * @ORM\Column(name="price", type="string", length=255)
+     * @ORM\Column(name="price", type="integer")
      * @Assert\NotBlank(message="Price cannot be blank")
+     * @Assert\Type("integer", message="Price must be a number")
      */
     private $price;
 
@@ -78,44 +86,40 @@ class House
     /**
      * @var string
      *
-     * @ORM\Column(name="commute", type="string", length=255)
-     * @Assert\NotBlank(message="Commute cannot be blank")
+     * @ORM\Column(name="commute", type="string", length=255, nullable=true)
      */
     private $commute;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="essentials", type="string", length=255)
-     * @Assert\NotBlank(message="Essentials cannot be blank")
+     * @ORM\Column(name="essentials", type="string", length=255, nullable=true)
      */
     private $essentials;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\NotBlank(message="Type cannot be blank")
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="balcony_size", type="string", length=255)
-     * @Assert\NotBlank(message="Balcony size cannot be blank")
+     * @ORM\Column(name="balcony_size", type="string", length=255, nullable=true)
      */
     private $balconySize;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="aircon", type="boolean")
      */
     private $aircon;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="parking", type="boolean")
      */
@@ -129,7 +133,7 @@ class House
     private $gas;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="water", type="boolean")
      */
@@ -138,19 +142,19 @@ class House
     /**
      * @var string
      *
-     * @ORM\Column(name="floor", type="string", length=255)
+     * @ORM\Column(name="floor", type="string", length=255, nullable=true)
      */
     private $floor;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="available", type="boolean")
      */
     private $available;
 
     /**
-     * @var int
+     * @var boolean
      *
      * @ORM\Column(name="deleted", type="boolean")
      */
@@ -171,11 +175,11 @@ class House
     private $likeCount;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="for_sale", type="integer")
+     * @ORM\Column(name="selling", type="boolean")
      */
-    private $forSale;
+    private $selling;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
@@ -189,8 +193,9 @@ class House
     {
         $this->photos = new ArrayCollection();
         $this->setViewCount(0);
-        $this->setDeleted(0);
-        $this->setAvailable(1);
+        $this->setDeleted(false);
+        $this->setAvailable(true);
+        $this->setStatus(1);
         $this->setLikeCount(0);
     }
 
@@ -255,7 +260,7 @@ class House
     /**
      * Set price
      *
-     * @param string $price
+     * @param int $price
      *
      * @return House
      */
@@ -269,7 +274,7 @@ class House
     /**
      * Get price
      *
-     * @return string
+     * @return integer
      */
     public function getPrice()
     {
@@ -697,13 +702,13 @@ class House
     /**
      * Set forSale
      *
-     * @param integer $forSale
+     * @param integer $selling
      *
      * @return House
      */
-    public function setForSale($forSale)
+    public function setSelling($selling)
     {
-        $this->forSale = $forSale;
+        $this->selling = $selling;
 
         return $this;
     }
@@ -713,9 +718,9 @@ class House
      *
      * @return integer
      */
-    public function getForSale()
+    public function getSelling()
     {
-        return $this->forSale;
+        return $this->selling;
     }
 
     /**
@@ -740,5 +745,29 @@ class House
     public function getArea()
     {
         return $this->area;
+    }
+
+    /**
+     * Set lga
+     *
+     * @param \AppBundle\Entity\Lga $lga
+     *
+     * @return House
+     */
+    public function setLga(\AppBundle\Entity\Lga $lga = null)
+    {
+        $this->lga = $lga;
+
+        return $this;
+    }
+
+    /**
+     * Get lga
+     *
+     * @return \AppBundle\Entity\Lga
+     */
+    public function getLga()
+    {
+        return $this->lga;
     }
 }

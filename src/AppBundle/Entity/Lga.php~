@@ -9,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Area
  *
- * @ORM\Table(name="area")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AreaRepository")
+ * @ORM\Table(name="lga")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LgaRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Area extends EntityBase
+class Lga extends EntityBase
 {
     /**
      * @var int
@@ -25,10 +25,10 @@ class Area extends EntityBase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="areas")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\State", inversedBy="areas")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      */
-    private $lga;
+    private $state;
 
     /**
      * @var string
@@ -38,9 +38,9 @@ class Area extends EntityBase
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="House", mappedBy="area")
+     * @ORM\OneToMany(targetEntity="Area", mappedBy="lga")
      */
-    protected $houses;
+    protected $areas;
 
     public function __toString(){
         return $this->getName();
@@ -50,7 +50,7 @@ class Area extends EntityBase
      */
     public function __construct()
     {
-        $this->houses = new ArrayCollection();
+        $this->areas = new ArrayCollection();
     }
 
     /**
@@ -68,7 +68,7 @@ class Area extends EntityBase
      *
      * @param string $name
      *
-     * @return Area
+     * @return Lga
      */
     public function setName($name)
     {
@@ -88,60 +88,60 @@ class Area extends EntityBase
     }
 
     /**
-     * Set lga
+     * Set state
      *
-     * @param \AppBundle\Entity\Lga $lga
+     * @param \AppBundle\Entity\State $state
      *
-     * @return Area
+     * @return Lga
      */
-    public function setLga(\AppBundle\Entity\Lga $lga = null)
+    public function setState(\AppBundle\Entity\State $state = null)
     {
-        $this->lga = $lga;
+        $this->state = $state;
 
         return $this;
     }
 
     /**
-     * Get lga
+     * Get state
      *
-     * @return \AppBundle\Entity\Lga
+     * @return \AppBundle\Entity\State
      */
-    public function getLga()
+    public function getState()
     {
-        return $this->lga;
+        return $this->state;
     }
 
     /**
-     * Add house
+     * Add area
      *
-     * @param \AppBundle\Entity\House $house
+     * @param \AppBundle\Entity\Area $area
      *
-     * @return Area
+     * @return Lga
      */
-    public function addHouse(\AppBundle\Entity\House $house)
+    public function addArea(\AppBundle\Entity\Area $area)
     {
-        $this->houses[] = $house;
+        $this->areas[] = $area;
 
         return $this;
     }
 
     /**
-     * Remove house
+     * Remove area
      *
-     * @param \AppBundle\Entity\House $house
+     * @param \AppBundle\Entity\Area $area
      */
-    public function removeHouse(\AppBundle\Entity\House $house)
+    public function removeArea(\AppBundle\Entity\Area $area)
     {
-        $this->houses->removeElement($house);
+        $this->areas->removeElement($area);
     }
 
     /**
-     * Get houses
+     * Get areas
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getHouses()
+    public function getAreas()
     {
-        return $this->houses;
+        return $this->areas;
     }
 }

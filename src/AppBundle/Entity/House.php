@@ -53,6 +53,12 @@ class House extends EntityBase
     private $area;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
+     */
+    private $lga;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
@@ -739,5 +745,29 @@ class House extends EntityBase
     public function getArea()
     {
         return $this->area;
+    }
+
+    /**
+     * Set lga
+     *
+     * @param \AppBundle\Entity\Lga $lga
+     *
+     * @return House
+     */
+    public function setLga(\AppBundle\Entity\Lga $lga = null)
+    {
+        $this->lga = $lga;
+
+        return $this;
+    }
+
+    /**
+     * Get lga
+     *
+     * @return \AppBundle\Entity\Lga
+     */
+    public function getLga()
+    {
+        return $this->lga;
     }
 }
