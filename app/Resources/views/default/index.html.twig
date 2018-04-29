@@ -8,7 +8,7 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <a class="navbar-item" href="/">
-                            <img src="{{ asset('images/liteup-logo-white.png') }}" alt="Logo">
+                            <img src="{{ asset('images/liteup-logo.png') }}" alt="Logo">
                         </a>
                         <span class="navbar-burger burger" data-target="navbarMenu">
               <span></span>
@@ -19,11 +19,11 @@
                     <div id="navbarMenu" class="navbar-menu">
                         <div class="navbar-end">
                            <span class="navbar-item">
-                <a class="button is-white is-outlined" href="#">
+                <a class="button is-white is-outlined" href="{{ path('fos_user_security_login') }}">
                   <span class="icon">
-                    <i class="fa fa-home"></i>
+                    <i class="fas fa-user"></i>
                   </span>
-                  <span>Home</span>
+                  <span>Sign in</span>
                 </a>
               </span>
                         </div>
@@ -36,11 +36,14 @@
             <div class="container has-text-centered">
                 <div class="column is-6 is-offset-3">
                     <h1 class="title">
-                        LINKING THE DREAM
+                        <a class="typewrite not-link" data-period="12000" data-type='[ "Linking the dream" ]'>
+                            <span class="hide">Dummy</span>
+                            <span class="wrap"></span>
+                        </a>
                     </h1>
-                    <a class="button is-info" href="#{#{ path('') }#}">
+                    <a class="button is-signup-front" href="{{ path('fos_user_security_login') }}">
                                     <span class="icon is-small">
-                                      <i class="fas fa-user"></i>
+                                        <i class="fas fa-users"></i>
                                     </span>
                         <span>Sign up</span>
                     </a>
@@ -52,5 +55,73 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('js/bulma.js') }}"></script>
+    <script>
+        var TxtType = function (el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function () {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+
+            // if (this.isDeleting) {
+            //     delta /= 2;
+            // }
+            //
+            // if (!this.isDeleting && this.txt === fullTxt) {
+            //     delta = this.period;
+            //     this.isDeleting = true;
+            // } else if (this.isDeleting && this.txt === '') {
+            //     this.isDeleting = false;
+            //     this.loopNum;
+            //     delta = 500;
+            // }
+
+            setTimeout(function () {
+                that.tick();
+            }, delta);
+        };
+        function wait(ms){
+            var start = new Date().getTime();
+            var end = start;
+            while(end < start + ms) {
+                end = new Date().getTime();
+            }
+        }
+        window.onload = function () {
+            wait(1000);
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+    </script>
 {% endblock %}

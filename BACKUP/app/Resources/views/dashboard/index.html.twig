@@ -1,0 +1,90 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="wrapper">
+        <div class="columns">
+
+            {{ include(':dashboard/blocks:left.html.twig') }}
+
+            <main class="column main">
+                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">Dashboard</a></li>
+                    </ul>
+                </nav>
+
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="title has-text-primary"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <button type="button" class="button is-small">
+                                April 1, 2018 - April 30, 2018
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-multiline">
+                    <div class="column">
+                        <div class="box notification is-primary">
+                            <div class="heading">Top viewed house</div>
+                            <div class="title">562 views</div>
+                            <a href="#">
+                                <img src="https://static.pexels.com/photos/164516/pexels-photo-164516.jpeg">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="box notification is-warning" style="height:245px">
+                            <div class="heading">Total views<br/>(this month)</div>
+                            <div class="title">35,562 views</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="box notification is-info" style="height:245px">
+                            <div class="heading">Some card</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="box notification is-danger" style="height:245px">
+                            <div class="heading">Some card</div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </main>
+        </div>
+    </div>
+{% endblock %}

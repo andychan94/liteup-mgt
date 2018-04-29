@@ -20,8 +20,15 @@
                         <i class="fas fa-hourglass-half"></i>
                     </span> Properties for rent
                 </a>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-hand-holding-usd"></i></span>
-                    Properties for sale</a></li>
+            <li><a
+                        {% if app.request.get('_route') == 'propsell_index' %}
+                            class="is-active"
+                        {% endif %}
+                        href="{{ path('propsell_index') }}">
+                    <span class="icon is-small"><i class="fas fa-hand-holding-usd"></i></span>
+                    Properties for sale
+                </a>
+            </li>
             <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-ban"></i></span>
                     Disabled properties</a></li>
             <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-th-list"></i></span>

@@ -20,7 +20,7 @@ a {
   background-size: cover; }
   .login .liteup-login-btn {
     padding: 10px 15px;
-    margin: 0px auto;
+    margin: 0 auto;
     color: #FFFFFF;
     background: -webkit-linear-gradient(#00A85E, #177E38);
     background: linear-gradient(#00A85E, #177E38);

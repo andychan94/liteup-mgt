@@ -53,10 +53,11 @@ class House extends EntityBase
     private $area;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="price", type="string", length=255)
+     * @ORM\Column(name="price", type="integer")
      * @Assert\NotBlank(message="Price cannot be blank")
+     * @Assert\Type("integer", message="Price must be a number")
      */
     private $price;
 
@@ -101,7 +102,6 @@ class House extends EntityBase
      * @var string
      *
      * @ORM\Column(name="balcony_size", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Balcony size cannot be blank")
      */
     private $balconySize;
 
@@ -254,7 +254,7 @@ class House extends EntityBase
     /**
      * Set price
      *
-     * @param string $price
+     * @param int $price
      *
      * @return House
      */
@@ -268,7 +268,7 @@ class House extends EntityBase
     /**
      * Get price
      *
-     * @return string
+     * @return integer
      */
     public function getPrice()
     {

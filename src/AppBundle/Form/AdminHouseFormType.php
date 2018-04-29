@@ -14,6 +14,7 @@ use AppBundle\Entity\House;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -26,7 +27,7 @@ class AdminHouseFormType extends AbstractType
                 'label' => 'Title',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('price', TextType::class, array(
+            ->add('price', IntegerType::class, array(
                 'label' => 'Price',
                 'attr'=> array('class'=>'input')
             ))

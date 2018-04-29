@@ -1,5 +1,9 @@
+@font-face {
+  font-family: liteupFront;
+  src: url(../fonts/liteup-front-font.ttf);
+}
 html, body {
-  font-family: 'Open Sans', serif;
+  font-family: "open sans", arial, sans-serif;
 }
 
 .hero {
@@ -16,6 +20,16 @@ html, body {
   .nav, &.is-success .nav {
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+  .navbar-item, .navbar-link {
+    padding: 0 !important;
+    position: relative;
+    &:hover {
+      background-color: unset !important;
+    }
+  }
+  .navbar-item img {
+    max-height: 3rem;
   }
   .subtitle {
     padding: 3rem 0;
@@ -38,6 +52,32 @@ html, body {
 
     img {
       display: inline-block;
+    }
+  }
+  &-body {
+    .is-signup-front {
+      background-color: #00afc0;
+      padding: 10px 20px 10px 30px;
+      font-size: 2rem;
+      border-color: transparent;
+      color: #fff;
+      letter-spacing: -2px;
+      &:hover {
+        background-color: #0095a4;
+      }
+    }
+    .title {
+      font-family: liteupFront, arial, sans-serif;
+      font-weight: 100 !important;
+      letter-spacing: -1px !important;
+      font-size: 60px !important;
+      text-shadow: 0 2px 3px rgba(0,0,0,.2) !important;
+      a.not-link {
+        cursor: default;
+      }
+      .hide {
+        visibility: hidden;
+      }
     }
   }
 }

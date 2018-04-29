@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="wrapper">
+        <div class="columns">
+
+            {{ include(':dashboard/blocks:left.html.twig') }}
+
+            <main class="column main">
+                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Properties for rent</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">Edit</a></li>
+                    </ul>
+                </nav>
+
+                <div class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="title">Properties for rent
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-multiline">
+                    <div class="column">
+                        {{ form_start(form, {'method': 'post', 'action': path('edit_agency', {"id":house.id})}) }}
+
+                        {{ form_widget(form) }}
+
+                        <input class="button is-info" type="submit" id="_submit" name="_submit" value="Update"/>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </main>
+        </div>
+    </div>
+{% endblock %}

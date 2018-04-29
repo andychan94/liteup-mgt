@@ -87,7 +87,7 @@ class PropertyRentController extends Controller
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $house->setAgency($this->getUser());
-                $house->setSelling(0);
+                $house->setSelling(false);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($house);
                 $em->flush();
@@ -159,20 +159,5 @@ class PropertyRentController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
-    }
-
-    /**
-     *
-     * @param House $category
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Category $category)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('category_delete', array('id' => $category->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-            ;
     }
 }
