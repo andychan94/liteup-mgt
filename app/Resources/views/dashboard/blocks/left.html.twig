@@ -3,7 +3,7 @@
         <ul class="menu-list">
             <li><a
                         {% if app.request.get('_route') == 'dashboard_home' %}
-                        class="is-active"
+                            class="is-active"
                         {% endif %}
                         href="{{ path('dashboard_home') }}">
                     <span class="icon is-small">
@@ -35,14 +35,21 @@
                     Agency details</a></li>
             <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-history"></i></span>
                     Contact history</a></li>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
+            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i
+                                class="fas fa-trash-alt"></i></span>
                     Recycle bin</a></li>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-sign-out-alt"></i></span>
+            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i
+                                class="fas fa-sign-out-alt"></i></span>
                     Logout</a></li>
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <div class="is-divider" data-content="EXTRA"></div>
                 <li>
-                    <a href="{{ path('agency_list') }}"><i class="fas fa-clipboard-list"></i> Agencies</a>
+                    <a href="{{ path('agency_list') }}"><span class="icon is-small"><i
+                                    class="fas fa-clipboard-list"></i></span>
+                        Agencies</a>
+                </li>
+                <li>
+                    <a href="{{ path('states_index') }}"><i class="fas fa-clipboard-list"></i> States</a>
                 </li>
             {% endif %}
 

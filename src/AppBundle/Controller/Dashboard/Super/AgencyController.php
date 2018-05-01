@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/dashboard/agency")
+ * @Route("/dashboard/admin/agency")
  */
 class AgencyController extends Controller
 {

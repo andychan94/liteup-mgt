@@ -1,34 +1,35 @@
-.nav-tag{
+.nav-tag {
   padding-right: 30px;
 }
+
 @media screen and (min-width: 769px), print {
   .column.is-2, .column.is-2-tablet {
     min-height: 100vh;
   }
 }
 
-.tag-notif{
+.tag-notif {
   border-radius: 50%;
   position: absolute;
   top: 5px;
   margin-left: 10px;
-  
+
   @media (max-width: 768px) {
     margin-left: -2px;
   }
 }
+
 .hero .navbar {
   background: #2E363F !important;
 }
 
-.navbar{
+.navbar {
   background: #2E363F;
 
-  
-  &-item{
+  &-item {
     background-color: #2E363F;
     color: #afb8c3 !important;
-    &.is-active{
+    &.is-active {
       background-color: #f5f5f5 !important;
       color: #363636 !important;
     }
@@ -38,36 +39,36 @@
     }
   }
 
-  .is--brand{
+  .is--brand {
     &:hover {
       background-color: #2E363F !important;
     }
   }
 
-  &-brand-logo{
+  &-brand-logo {
     max-height: 3rem !important;
     background-color: #fff;
     border-radius: .25em;
     padding: .25em;
   }
 
-  &-dropdown{
-    .navbar-item{
+  &-dropdown {
+    .navbar-item {
       background-color: #fff;
     }
   }
 
-  &-burger{
+  &-burger {
     background-color: #2E363F !important;
     border: 0;
-    span{
+    span {
       background-color: #00d1b2;
     }
   }
 
-  &-link{
-    figure{
-      img{
+  &-link {
+    figure {
+      img {
         border-radius: 50%;
         max-height: 2em;
       }
@@ -75,17 +76,17 @@
   }
 }
 
-.breadcrumb:not(:last-child){
+.breadcrumb:not(:last-child) {
   margin-bottom: 0;
 }
 
 // navigation left area
-.aside{
-  background: #2E363F;    
+.aside {
+  background: #2E363F;
   padding: 2em .2em 0 1em;
   min-height: 100vh;
 
-  a{
+  a {
     color: #afb8c3;
   }
 
@@ -95,26 +96,65 @@
     }
   }
 }
-.main{
+
+.main {
   padding: 2em 1em 0 1em;
 }
 
-.menu-label{
+.menu-label {
   color: #00d1b2;
   margin-left: .5em;
 }
 
-.block{
+.block {
   margin-top: .5em;
 }
 
-.main{padding:2em 1em 0}.menu-label{color:#00d1b2;margin-left:.5em}
-.block{margin-top:.5em}
-.list-house-thumbnail img {height:100px;}
+.main {
+  padding: 2em 1em 0
+}
+
+.menu-label {
+  color: #00d1b2;
+  margin-left: .5em
+}
+
+.block {
+  margin-top: .5em
+}
+
+.list-house-thumbnail img {
+  height: 100px;
+}
+
 .field.is-grouped.is-grouped-centered {
   margin-left: auto;
   margin-right: auto;
 }
+
 .table {
   margin-top: 1.5rem;
+  tr {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+}
+
+.liteup-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.csv {
+  &.file.is-boxed.has-name .file-name {
+    border-radius: 0 0 0 0;
+    border-width: 0 1px 0;
+    max-width: unset;
+  }
+  &.csv.file.is-boxed.has-name .file-submit {
+    width: 100%;
+    border-radius: 0 0 3px 3px;
+  }
 }

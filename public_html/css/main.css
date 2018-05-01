@@ -72,10 +72,10 @@
 
 .menu-label {
   color: #00d1b2;
-  margin-left: .5em; }
+  margin-left: 0.5em; }
 
 .block {
-  margin-top: .5em; }
+  margin-top: 0.5em; }
 
 .list-house-thumbnail img {
   height: 100px; }
@@ -86,5 +86,22 @@
 
 .table {
   margin-top: 1.5rem; }
+  .table tr {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease; }
+
+.liteup-center {
+  margin-left: auto;
+  margin-right: auto; }
+
+.csv.file.is-boxed.has-name .file-name {
+  border-radius: 0 0 0 0;
+  border-width: 0 1px 0;
+  max-width: unset; }
+.csv.csv.file.is-boxed.has-name .file-submit {
+  width: 100%;
+  border-radius: 0 0 3px 3px; }
 
 /*# sourceMappingURL=main.css.map */

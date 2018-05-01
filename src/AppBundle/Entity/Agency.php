@@ -31,7 +31,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      * @Assert\NotBlank(message="Please enter the name of the agency.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
@@ -46,7 +46,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, unique=true)
      * @Assert\NotBlank(message="Please enter the your phone number.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
@@ -83,7 +83,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true, unique=true)
      */
     protected $logo;
     /**

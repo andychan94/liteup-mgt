@@ -122,3 +122,9 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
+knp_paginator:
+    template:
+        pagination: 'dashboard/paginator/sliding.html.twig'     # sliding pagination controls template
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
+        filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template

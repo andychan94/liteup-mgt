@@ -5,8 +5,6 @@ namespace AppBundle\Controller\Dashboard;
 use AppBundle\Entity\Area;
 use AppBundle\Entity\House;
 use AppBundle\Entity\State;
-use AppBundle\Repository\StateRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
