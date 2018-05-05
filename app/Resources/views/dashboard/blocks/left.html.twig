@@ -49,7 +49,19 @@
                         Agencies</a>
                 </li>
                 <li>
-                    <a href="{{ path('states_index') }}"><i class="fas fa-clipboard-list"></i> States</a>
+                    <a href="{{ path('states_index') }}">
+                        <span class="icon is-small"><i class="fas fa-globe"></i></span>
+                        States</a>
+                </li>
+                <li>
+                    <a href="{{ path('lgas_index') }}">
+                        <span class="icon is-small"><i class="fas fa-flag"></i></span>
+                        LGAs</a>
+                </li>
+                <li>
+                    <a href="{{ path('states_index') }}">
+                        <span class="icon is-small"><i class="fas fa-sign"></i></span>
+                        Areas</a>
                 </li>
             {% endif %}
 

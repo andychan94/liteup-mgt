@@ -21,7 +21,7 @@
         <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item is--brand">
-                    <img class="navbar-brand-logo" src="{{ asset('images/logo-no-text.png') }}" alt="Liteup logo">
+                    <img class="navbar-brand-logo" src="{{ asset('images/liteup-logo.png') }}" alt="Liteup logo">
                 </a>
                 <a class="navbar-item is-tab is-hidden-mobile is-active">
                     <span class="icon is-medium"><i class="fa fa-home"></i></span>
@@ -103,6 +103,9 @@
             </div>
         {% endif %}
         {% block body %}{% endblock %}
+        </main>
+    </div>
+</div>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>

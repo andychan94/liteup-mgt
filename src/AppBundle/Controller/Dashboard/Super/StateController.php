@@ -4,7 +4,8 @@ namespace AppBundle\Controller\Dashboard\Super;
 
 use AppBundle\Controller\BaseController;
 use AppBundle\Entity\State;
-use Doctrine\DBAL\ConnectionException;
+use AppBundle\Form\AdminStatesFormType;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -16,16 +17,30 @@ use Symfony\Component\HttpFoundation\Response;
 
 
 /**
+ * Class BaseController
+ * @package AppBundle\Controller
  * @Route("/dashboard/admin/states")
  */
-class StatesController extends BaseController
+class StateController extends BaseController
 {
+    /**
+     * @var $objName string
+     */
+    private $objName = State::class;
+    /**
+     * @var $formTypeName string
+     */
+    private $formTypeName = AdminStatesFormType::class;
+
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
         $this->entityName = "State";
-        $this->entityAltName = "states";
-        $this->objName = State::class;
+        $this->entityAltName = "state";
+        $this->entityAltNamePlu = "states";
     }
 
     /**
@@ -59,9 +74,11 @@ class StatesController extends BaseController
             return $this->redirectToRoute('dashboard_home');
         }
 
-        return $this->render(':dashboard/admin/' . $this->entityAltName . ':index.html.twig', [
+        return $this->render(':dashboard/admin/' . $this->entityAltNamePlu . ':index.html.twig', [
             'pagination' => $pagination,
-            'limit' => $perpage
+            'limit' => $perpage,
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu
         ]);
     }
 
@@ -74,7 +91,7 @@ class StatesController extends BaseController
      */
     public function editAction(State $entity, Request $request, LoggerInterface $logger)
     {
-        $form = $this->createForm("AppBundle\Form\AdminStatesFormType", $entity);
+        $form = $this->createForm($this->formTypeName, $entity);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -90,7 +107,7 @@ class StatesController extends BaseController
                         $this->t('app.error')
                     );
                     $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index');
+                    return $this->redirectToRoute($this->entityAltNamePlu . '_index');
                 }
                 $this->addFlash(
                     'success',
@@ -99,11 +116,14 @@ class StatesController extends BaseController
                         array('%entity%' => $this->entityName)
                     )
                 );
+                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
             }
         }
-        return $this->render(':dashboard/admin/' . $this->entityAltName . ':edit.html.twig', [
+        return $this->render(':dashboard/admin/' . $this->entityAltNamePlu . ':edit.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu
         ]);
     }
 
@@ -116,7 +136,7 @@ class StatesController extends BaseController
     public function createAction(Request $request, LoggerInterface $logger)
     {
         $entity = new State();
-        $form = $this->createForm("AppBundle\Form\AdminStatesFormType", $entity);
+        $form = $this->createForm($this->formTypeName, $entity);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /**
@@ -132,17 +152,19 @@ class StatesController extends BaseController
                     $this->t('app.error')
                 );
                 $this->logger($logger, $e->getMessage());
-                return $this->redirectToRoute($this->entityAltName . '_index');
+                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
             }
             $this->addFlash(
                 'success',
-                $this->t('%entity%.added', array('%entity%' => $this->entityName))
+                $this->t('entity.added', array('%entity%' => $this->entityName))
             );
-            return $this->redirectToRoute($this->entityAltName . '_index');
+            return $this->redirectToRoute($this->entityAltNamePlu . '_index');
         }
 
-        return $this->render(':dashboard/admin/' . $this->entityAltName . ':create.html.twig', [
+        return $this->render(':dashboard/admin/' . $this->entityAltNamePlu . ':create.html.twig', [
             'form' => $form->createView(),
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu
         ]);
     }
 
@@ -162,20 +184,27 @@ class StatesController extends BaseController
             try {
                 $em->remove($entity);
                 $em->flush();
+            } /** @noinspection PhpRedundantCatchClauseInspection */
+            catch (ForeignKeyConstraintViolationException $e) {
+                $this->addFlash(
+                    'error',
+                    $this->t('app.unique_constraint_error')
+                );
+                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
             } catch (Exception $e) {
                 $this->addFlash(
                     'error',
                     $this->t('app.error')
                 );
                 $this->logger($logger, $e->getMessage());
-                return $this->redirectToRoute($this->entityAltName . '_index');
+                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
             }
             $this->addFlash(
                 'success',
-                $this->t('entity.deleted')
+                $this->t('entity.deleted', array('%entity%' => $this->entityName))
             );
         }
-        return $this->redirectToRoute($this->entityAltName . '_index');
+        return $this->redirectToRoute($this->entityAltNamePlu . '_index');
     }
 
     /**
@@ -187,7 +216,7 @@ class StatesController extends BaseController
     public function deleteManyAction(Request $request, LoggerInterface $logger)
     {
         if ($request != null) {
-            $param = $request->request->get($this->entityAltName, null);
+            $param = $request->request->get($this->entityAltNamePlu, null);
             if (!is_null($param)) {
                 /**
                  * @var $em EntityManager
@@ -201,13 +230,20 @@ class StatesController extends BaseController
                 }
                 try {
                     $em->flush();
+                } /** @noinspection PhpRedundantCatchClauseInspection */
+                catch (ForeignKeyConstraintViolationException $e) {
+                    $this->addFlash(
+                        'error',
+                        $this->t('app.unique_constraint_error')
+                    );
+                    return $this->redirectToRoute($this->entityAltNamePlu . '_index');
                 } catch (Exception $e) {
                     $this->addFlash(
                         'error',
                         $this->t('app.error')
                     );
                     $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index');
+                    return $this->redirectToRoute($this->entityAltNamePlu . '_index');
                 }
                 $this->addFlash(
                     'success',
@@ -221,32 +257,24 @@ class StatesController extends BaseController
                 );
             }
         }
-        return $this->redirectToRoute($this->entityAltName . '_index');
+        return $this->redirectToRoute($this->entityAltNamePlu . '_index');
     }
 
     /**
      * @Route("/empty", name="state_empty", methods={"POST"})
-     * @param Request $request
      * @param LoggerInterface $logger
      * @return RedirectResponse
      */
-    public function emptyAction(Request $request, LoggerInterface $logger)
+    public function emptyAction(LoggerInterface $logger)
     {
         /**
          * @var $em EntityManager
          */
         $em = $this->getDoctrine()->getManager();
-        $this->emptyTable($em, $logger);
-        $this->addFlash(
-            'success',
-            $this->t(
-                'entity.deleted_all',
-                array(
-                    '%entity%' => $this->entityName
-                )
-            )
-        );
-        return $this->redirectToRoute($this->entityAltName . '_index');
+        if (!$this->emptyTable($em, $logger, $this->objName)) {
+            return $this->redirectToRoute($this->entityAltNamePlu . '_index');
+        }
+        return $this->redirectToRoute($this->entityAltNamePlu . '_index');
     }
 
     /**
@@ -264,7 +292,9 @@ class StatesController extends BaseController
              */
             $em = $this->getDoctrine()->getManager();
             if ($request->request->has('deleteAll')) {
-                $this->emptyTable($em, $logger);
+                if (!$this->emptyTable($em, $logger, $this->objName)) {
+                    return $this->redirectToRoute($this->entityAltNamePlu . '_index');
+                }
             }
             foreach ($csv as $value) {
                 $entity = new State();
@@ -275,7 +305,7 @@ class StatesController extends BaseController
                 } catch (Exception $e) {
                     $this->addFlash('error', "An error occurred");
                     $logger->error($e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index');
+                    return $this->redirectToRoute($this->entityAltNamePlu . '_index');
                 }
             }
             try {
@@ -286,7 +316,7 @@ class StatesController extends BaseController
                     $this->t('app.error_upload')
                 );
                 $this->logger($logger, $e->getMessage(), "csv array:\n" . json_encode($csv));
-                return $this->redirectToRoute($this->entityAltName . '_index');
+                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
             }
             $this->addFlash(
                 'success',
@@ -305,40 +335,6 @@ class StatesController extends BaseController
             );
 
         }
-        return $this->redirectToRoute($this->entityAltName . '_index');
-    }
-
-    /**
-     * @param EntityManager $em
-     * @param LoggerInterface $logger
-     */
-    private function emptyTable(EntityManager $em, LoggerInterface $logger)
-    {
-        $classMetaData = $em->getClassMetadata($this->objName);
-        $connection = $em->getConnection();
-        $dbPlatform = $connection->getDatabasePlatform();
-        $connection->beginTransaction();
-        try {
-            $connection->query('SET FOREIGN_KEY_CHECKS=0');
-            $q = $dbPlatform->getTruncateTableSql($classMetaData->getTableName());
-            $connection->executeUpdate($q);
-            $connection->query('SET FOREIGN_KEY_CHECKS=1');
-            $connection->commit();
-        } catch (Exception $e) {
-            try {
-                $connection->rollback();
-            } catch (ConnectionException $ce) {
-                $this->addFlash(
-                    'error',
-                    $this->t('app.error')
-                );
-                $logger->error($e->getMessage());
-            }
-            $this->addFlash(
-                'error',
-                $this->t('app.error')
-            );
-            $logger->error($e->getMessage());
-        }
+        return $this->redirectToRoute($this->entityAltNamePlu . '_index');
     }
 }

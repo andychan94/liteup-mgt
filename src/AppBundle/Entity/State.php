@@ -32,16 +32,23 @@ class State extends EntityBase
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Area", mappedBy="state")
+     * @ORM\OneToMany(targetEntity="Lga", mappedBy="state")
      */
-    private $areas;
+    private $lgas;
 
+
+    /**
+     * @return string
+     */
+    public function __toString(){
+        return $this->getName();
+    }
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->areas = new ArrayCollection();
+        $this->lgas = new ArrayCollection();
     }
 
     /**
@@ -79,36 +86,36 @@ class State extends EntityBase
     }
 
     /**
-     * Add area
+     * Add lga
      *
-     * @param \AppBundle\Entity\House $area
+     * @param \AppBundle\Entity\Lga $lga
      *
      * @return State
      */
-    public function addArea(\AppBundle\Entity\House $area)
+    public function addLga(\AppBundle\Entity\Lga $lga)
     {
-        $this->areas[] = $area;
+        $this->lgas[] = $lga;
 
         return $this;
     }
 
     /**
-     * Remove area
+     * Remove lga
      *
-     * @param \AppBundle\Entity\House $area
+     * @param \AppBundle\Entity\Lga $lga
      */
-    public function removeArea(\AppBundle\Entity\House $area)
+    public function removeLga(\AppBundle\Entity\Lga $lga)
     {
-        $this->areas->removeElement($area);
+        $this->lgas->removeElement($lga);
     }
 
     /**
-     * Get areas
+     * Get lgas
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAreas()
+    public function getLgas()
     {
-        return $this->areas;
+        return $this->lgas;
     }
 }

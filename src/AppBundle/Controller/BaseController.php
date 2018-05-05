@@ -2,9 +2,18 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\DBAL\ConnectionException;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
+use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class BaseController
+ * @package AppBundle\Controller
+ */
 class BaseController extends Controller
 {
     /**
@@ -16,16 +25,16 @@ class BaseController extends Controller
      */
     protected $entityAltName;
     /**
-     * @var $objName String
+     * @var $entityAltNamePlu String
      */
-    protected $objName;
+    protected $entityAltNamePlu;
 
     /**
-     * @param $key
+     * @param string $key
      * @param array $params
      * @return string
      */
-    public function t($key, $params = array())
+    protected function t($key, $params = array())
     {
         return $this->get('translator')->trans(
             $key,
@@ -38,7 +47,7 @@ class BaseController extends Controller
      * @param String $message
      * @param String $option
      */
-    public function logger(LoggerInterface $logger, $message, $option = null)
+    protected function logger(LoggerInterface $logger, $message, $option = null)
     {
         $logger->error(
             $message .
@@ -46,5 +55,77 @@ class BaseController extends Controller
             "\nUser email: " . $this->getUser()->getEmail() .
             "\n" . $option
         );
+    }
+
+    /**
+     * @param EntityManager $em
+     * @param LoggerInterface $logger
+     * @param $objName
+     * @return bool
+     */
+    protected function emptyTable(EntityManager $em, LoggerInterface $logger, $objName)
+    {
+
+        $queryBuilder = $this->getDoctrine()->getRepository($objName)->findAll();
+        foreach ($queryBuilder as $v) {
+            $em->remove($v);
+        }
+        try {
+            $em->flush();
+        } catch (OptimisticLockException $e) {
+            $this->addFlash(
+                'error',
+                $this->t('app.error')
+            );
+            $logger->error($e->getMessage());
+            return false;
+        }
+
+        $classMetaData = $em->getClassMetadata($objName);
+        $connection = $em->getConnection();
+        $dbPlatform = $connection->getDatabasePlatform();
+        $connection->beginTransaction();
+        try {
+            $connection->query('SET FOREIGN_KEY_CHECKS=0');
+            $q = $dbPlatform->getTruncateTableSql($classMetaData->getTableName());
+            $connection->executeUpdate($q);
+            $connection->query('SET FOREIGN_KEY_CHECKS=1');
+            $connection->commit();
+        } /** @noinspection PhpRedundantCatchClauseInspection */
+        catch (ForeignKeyConstraintViolationException $e) {
+            $this->addFlash(
+                'error',
+                $this->t('app.unique_constraint_error')
+            );
+            return false;
+        } catch (Exception $e) {
+            try {
+                $connection->rollback();
+            } catch (ConnectionException $ce) {
+                $this->addFlash(
+                    'error',
+                    $this->t('app.error')
+                );
+                $logger->error($e->getMessage());
+                return false;
+            }
+            $this->addFlash(
+                'error',
+                $this->t('app.error')
+            );
+            $logger->error($e->getMessage());
+            return false;
+        }
+
+        $this->addFlash(
+            'success',
+            $this->t(
+                'entity.deleted_all',
+                array(
+                    '%entity%' => $this->entityName
+                )
+            )
+        );
+        return true;
     }
 }

@@ -25,8 +25,8 @@ class Lga extends EntityBase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\State", inversedBy="areas")
-     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="State", inversedBy="lgas")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $state;
 
@@ -42,6 +42,11 @@ class Lga extends EntityBase
      */
     protected $areas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="House", mappedBy="lga")
+     */
+    protected $houses;
+
     public function __toString(){
         return $this->getName();
     }
@@ -51,6 +56,7 @@ class Lga extends EntityBase
     public function __construct()
     {
         $this->areas = new ArrayCollection();
+        $this->houses = new ArrayCollection();
     }
 
     /**
@@ -143,5 +149,39 @@ class Lga extends EntityBase
     public function getAreas()
     {
         return $this->areas;
+    }
+
+    /**
+     * Add house
+     *
+     * @param \AppBundle\Entity\House $house
+     *
+     * @return Lga
+     */
+    public function addHouse(\AppBundle\Entity\House $house)
+    {
+        $this->houses[] = $house;
+
+        return $this;
+    }
+
+    /**
+     * Remove house
+     *
+     * @param \AppBundle\Entity\House $house
+     */
+    public function removeHouse(\AppBundle\Entity\House $house)
+    {
+        $this->houses->removeElement($house);
+    }
+
+    /**
+     * Get houses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHouses()
+    {
+        return $this->houses;
     }
 }

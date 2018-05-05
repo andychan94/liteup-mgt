@@ -25,7 +25,7 @@ class Photo extends EntityBase
 
     /**
      * @ORM\ManyToOne(targetEntity="House", inversedBy="photos")
-     * @ORM\JoinColumn(name="house_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="house_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $house;
 

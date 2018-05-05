@@ -25,8 +25,8 @@ class Area extends EntityBase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="areas")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Lga", inversedBy="areas")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $lga;
 

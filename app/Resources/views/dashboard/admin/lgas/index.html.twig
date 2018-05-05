@@ -52,6 +52,7 @@
             </label></th>
         <th>{{ knp_pagination_sortable(pagination, 'h_id'|trans, 'id') }}</th>
         <th>{{ knp_pagination_sortable(pagination, 'h_name'|trans, 'name') }}</th>
+        <th>{{ knp_pagination_sortable(pagination, 'lga.form.state'|trans, 'state') }}</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
     <form action="{{ path(entityAltName~'_delete_many') }}" method="post" onsubmit="return confirmDelete()">
@@ -79,6 +80,9 @@
                     </td>
                     <td>
                         {{ entity.name }}
+                    </td>
+                    <td>
+                        {{ (entity.state) ? entity.state.name : '-' }}
                     </td>
                     <td>
                         <a class="button is-info tooltip is-tooltip-bottom"

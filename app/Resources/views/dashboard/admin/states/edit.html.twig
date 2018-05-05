@@ -4,7 +4,7 @@
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
-            <li><a href="{{ path('states_index') }}">{{ 'state.title'|trans }}</a></li>
+            <li><a href="{{ path(entityAltNamePlu~'_index') }}">{{ (entityAltName~'.title')|trans }}</a></li>
             <li class="is-active"><a href="#" aria-current="page">{{ 'edit'|trans }}</a></li>
         </ul>
     </nav>
@@ -12,14 +12,14 @@
         <div class="level-left">
             <div class="level-item">
                 <div class="title">
-                    {{ 'edit'|trans~' '~'state.name'|trans }}
+                    {{ 'edit'|trans~' '~(entityAltName~'.name')|trans }}
                 </div>
             </div>
         </div>
     </div>
     <div class="columns is-mobile">
         <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-            {{ form_start(form, {'method': 'post', 'action': path('states_edit', {"id":entity.id})}) }}
+            {{ form_start(form, {'method': 'post', 'action': path(entityAltNamePlu~'_edit', {"id":entity.id})}) }}
             {% form_theme form ':dashboard/form:custom_form.html.twig' %}
             <div class="field">
                 <label class="label">{{ form_label(form.name) }}</label>
@@ -33,4 +33,15 @@
             {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %}

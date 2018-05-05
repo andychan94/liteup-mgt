@@ -4,7 +4,7 @@
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
-            <li><a href="{{ path('states_index') }}">{{ 'state.title'|trans }}</a></li>
+            <li><a href="{{ path(entityAltNamePlu~'_index') }}">{{ (entityAltName~'.title')|trans }}</a></li>
             <li class="is-active"><a href="#" aria-current="page">{{ 'add'|trans }}</a></li>
         </ul>
     </nav>
@@ -13,7 +13,7 @@
         <div class="level-left">
             <div class="level-item">
                 <div class="title">
-                    {{ 'add'|trans~' a '~'state.name'|trans }}
+                    {{ 'add'|trans~' '~(entityAltName~'.name')|trans }}
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <div class="columns is-mobile">
         <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
 
-            {{ form_start(form, {'method': 'post', 'action': path('states_add_single')}) }}
+            {{ form_start(form, {'method': 'post', 'action': path(entityAltNamePlu~'_add_single')}) }}
             {% form_theme form ':dashboard/form:custom_form.html.twig' %}
             <div class="field">
                 <label class="label">{{ form_label(form.name) }}</label>

@@ -42,19 +42,19 @@ class House extends EntityBase
 
     /**
      * @ORM\ManyToOne(targetEntity="Agency", inversedBy="houses")
-     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $agency;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Area", inversedBy="houses")
-     * @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="area_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $area;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $lga;
 

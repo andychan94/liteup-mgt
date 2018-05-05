@@ -24,9 +24,8 @@ class AgencyController extends Controller
 //        TODO
 
         $qb = $this->getDoctrine()->getRepository(Agency::class)->createQueryBuilder('u')
-            ->orderBy('u.createdAt', 'DESC')
-        ;
-        $paginator  = $this->get('knp_paginator');
+            ->orderBy('u.createdAt', 'DESC');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $qb,
             $request->query->getInt('page', 1),
@@ -34,9 +33,10 @@ class AgencyController extends Controller
         );
         return $this->render('dashboard/agency/index.html.twig', [
             'pagination' => $pagination,
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
     /**
      * @Route("/admin/agency/edit/{id}", name="edit_agency")
      */
@@ -44,9 +44,10 @@ class AgencyController extends Controller
     {
 //        TODO edit single
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
     /**
      * @Route("/admin/agency/disable/{id}", name="disable_agency")
      */
@@ -54,9 +55,10 @@ class AgencyController extends Controller
     {
 //        TODO set status to 0 and also pass a message to the agency (setStatus(0), setCallingMessage($somevar) eg Your agency has been disabled. $message
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
     /**
      * @Route("/admin/agency/add", name="add_agency")
      */
@@ -64,9 +66,10 @@ class AgencyController extends Controller
     {
 //        TODO add single
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
     /**
      * @Route("/admin/agency/remove", name="remove_agencies")
      */
@@ -74,11 +77,12 @@ class AgencyController extends Controller
     {
 //        TODO remove many
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
 
 //    TODO SPECIAL: Add Multiple from a csv file : instead of adding agencies manually, multiple agencies can be added at the same time using a csv file
+
     /**
      * @Route("/admin/agency/csv", name="csv_add_agencies")
      */
@@ -86,7 +90,7 @@ class AgencyController extends Controller
     {
 //        TODO csv file upload; handler (insert into DB)
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
 }
