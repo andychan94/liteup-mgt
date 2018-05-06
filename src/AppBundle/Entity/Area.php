@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
@@ -27,6 +28,7 @@ class Area extends EntityBase
     /**
      * @ORM\ManyToOne(targetEntity="Lga", inversedBy="areas")
      * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @OrderBy({"name" = "ASC"})
      */
     private $lga;
 
@@ -42,6 +44,9 @@ class Area extends EntityBase
      */
     protected $houses;
 
+    /**
+     * @return string
+     */
     public function __toString(){
         return $this->getName();
     }

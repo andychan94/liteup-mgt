@@ -94,6 +94,24 @@ $('#limit').change(function () {
     window.location.href = url.replace(limit, item);
 });
 
+$(function () {
+    var lgaSelect = $("#lgaSelect") || null;
+    var stateSelect = $("#stateSelect") || null;
+    $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed'));
+    var selectedLga = $("#lgaSelectSeed").find("option:selected").parent().attr('label');
+    stateSelect.find("option").filter(function() {
+        return $(this).text() === selectedLga;
+    }).prop('selected', true);
+    var select_class = stateSelect.find("option:selected").text();
+    lgaSelect.children().not('optgroup[label="'+select_class+'"]').remove();
+    stateSelect.change(function () {
+        var select_class = $("option:selected", this).text();
+        var options = $('#lgaSelectSeed').find('optgroup[label="'+select_class+'"]');
+        lgaSelect.children().remove();
+        lgaSelect.append(options);
+    });
+});
+
 function confirmDelete(csv, nocheck) {
     csv = csv || false;
     nocheck = nocheck || false;

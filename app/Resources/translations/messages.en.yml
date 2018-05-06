@@ -18,7 +18,7 @@ total_entities: 'Total %entity%: %count%.'
 show: 'Show'
 per_page: 'per page'
 h_actions: 'Actions'
-b_add: 'Add a '
+b_add: 'Add '
 b_delete: 'Remove'
 b_edit: 'Edit'
 b_empty: 'Remove all'
@@ -46,6 +46,13 @@ lga:
     form:
         name: 'LGA name'
         state: 'Belongs to:'
+area:
+    name: 'Area'
+    plural: 'Areas'
+    title: 'Nigerian areas'
+    form:
+        name: 'Area name'
+        lga: 'Belongs to:'
 
 proprent:
     name: 'Poperty'

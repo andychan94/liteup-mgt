@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
@@ -47,9 +48,14 @@ class Lga extends EntityBase
      */
     protected $houses;
 
-    public function __toString(){
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
         return $this->getName();
     }
+
     /**
      * Constructor
      */

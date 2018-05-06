@@ -397,6 +397,9 @@ class Agency extends BaseUser
         }
     }
 
+    /**
+     * @return File
+     */
     public function getImageFile()
     {
         return $this->imageFile;

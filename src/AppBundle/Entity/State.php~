@@ -36,13 +36,14 @@ class State extends EntityBase
      */
     private $lgas;
 
-
     /**
      * @return string
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->getName();
     }
+
     /**
      * Constructor
      */
