@@ -86,6 +86,7 @@ class PropertyRentController extends BaseController
             'lgas' => $lgas,
             'limit' => $perpage,
             'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
@@ -131,8 +132,10 @@ class PropertyRentController extends BaseController
                 return $this->redirectToRoute('proprent_index');
             }
         }
+        $states = $this->getDoctrine()->getRepository(State::class)->findAll();
 
         return $this->render(':dashboard/proprent:create.html.twig', [
+            'states' => $states,
             'form' => $form->createView(),
         ]);
     }

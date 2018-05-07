@@ -9,6 +9,10 @@
 namespace AppBundle\Form;
 
 
+use AppBundle\Entity\Area;
+use AppBundle\Entity\Lga;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -36,10 +40,28 @@ class AdminHouseFormType extends AbstractType
                 'label' => 'Size',
                 'attr'=> array('class'=>'input')
             ))
-//            ->add('area', EntityType::class, array(
-//                'class'  => Area::class,
-//                'choice_label' => 'Area'
-//            ))
+            ->add('lga', EntityType::class, array(
+                'class' => 'AppBundle\Entity\Lga',
+                'query_builder' => function (EntityRepository $repository) {
+                    return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
+                },
+                'label' => 'area.form.lga',
+                'group_by' => 'state',
+                'choice_attr' => array(
+                    'class' => 'someClass'
+                )
+            ))
+            ->add('area', EntityType::class, array(
+                'class' => 'AppBundle\Entity\Area',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
+                },
+                'label' => 'area.form.lga',
+                'group_by' => 'lga',
+                'choice_attr' => array(
+                    'class' => 'someClass'
+                )
+            ))
             ->add('essentials', TextType::class, array(
                 'label' => 'Essentials',
                 'required' => false,

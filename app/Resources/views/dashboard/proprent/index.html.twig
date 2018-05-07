@@ -178,11 +178,14 @@
             <tbody>
 
             {% for house in pagination %}
+                {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lga.state.name %}
+                {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lga.name %}
+                {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
                 <tr>
                     <td class="has-text-right">
                         <label>
                             <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
-                                   value="{{ entity.id }}">
+                                   value="{{ house.id }}">
                         </label></td>
                     <td><input type="checkbox"></td>
                     <td class="list-house-thumbnail">
@@ -194,10 +197,16 @@
                             <span class="icon is-small">
                                 <i class="fas fa-map-marker-alt"></i>
                             </span>
-                            {{ house.address }}{% if house.area is not empty %}, {{ house.area.name }}, {{ house.area.state.name }}{% endif %}
+                            {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
                         </p>
                         <p>{{ currency }}{{ house.price }}</p>
 
+                    </td>
+                    <td>
+                        {{ stateName }}
+                    </td>
+                    <td>
+                        {{ lgaName }}
                     </td>
                     <td>
                         <span class="tag is-primary"><span class="icon"><i

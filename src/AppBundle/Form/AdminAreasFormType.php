@@ -35,17 +35,17 @@ class AdminAreasFormType extends AbstractType
                     'class' => 'someClass'
                 )
             ))
-            ->add('lga', EntityType::class, array(
-            'class' => 'AppBundle\Entity\Lga',
-            'query_builder' => function (EntityRepository $repository) {
-                return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
-            },
-            'label' => 'area.form.lga',
-            'group_by' => 'state',
-            'choice_attr' => array(
-                'class' => 'someClass'
-            )
-    ));
+//            ->add('lga', EntityType::class, array(
+//            'class' => 'AppBundle\Entity\Lga',
+//            'query_builder' => function (EntityRepository $repository) {
+//                return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
+//            },
+//            'label' => 'area.form.lga',
+//            'group_by' => 'state',
+//            'choice_attr' => array(
+//                'class' => 'someClass'
+//            )
+        ;
     }
 
     public function getBlockPrefix()
