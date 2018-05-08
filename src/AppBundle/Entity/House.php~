@@ -2,6 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Enum\HouseBathroomsEnum;
+use AppBundle\Enum\HouseBedroomsEnum;
+use AppBundle\Enum\HouseKindEnum;
+use AppBundle\Enum\HouseToiletsEnum;
+use AppBundle\Enum\HouseTypeEnum;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -59,6 +64,14 @@ class House extends EntityBase
     private $lga;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     * @Assert\NotBlank(message="Address cannot be blank")
+     */
+    private $address;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
@@ -70,46 +83,51 @@ class House extends EntityBase
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
-     * @Assert\NotBlank(message="Address cannot be blank")
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="size", type="string", length=255)
-     * @Assert\NotBlank(message="Size cannot be blank")
-     */
-    private $size;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="commute", type="string", length=255, nullable=true)
-     */
-    private $commute;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="essentials", type="string", length=255, nullable=true)
-     */
-    private $essentials;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="balcony_size", type="string", length=255, nullable=true)
+     * @ORM\Column(name="kind", type="string", length=255, nullable=false)
      */
-    private $balconySize;
+    private $kind;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bedrooms", type="integer", length=255, nullable=false)
+     */
+    private $bedrooms;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bathrooms", type="integer", length=255, nullable=false)
+     */
+    private $bathrooms;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="toilets", type="integer", length=255, nullable=false)
+     */
+    private $toilets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65500, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_residential", type="boolean")
+     */
+    private $isResidential;
 
     /**
      * @var boolean
@@ -121,30 +139,51 @@ class House extends EntityBase
     /**
      * @var boolean
      *
+     * @ORM\Column(name="balcony", type="boolean")
+     */
+    private $balcony;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="fence", type="boolean")
+     */
+    private $fence;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="garage", type="boolean")
+     */
+    private $garage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="garden", type="boolean")
+     */
+    private $garden;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="swpool", type="boolean")
+     */
+    private $swpool;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="parking", type="boolean")
      */
     private $parking;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="gas", type="boolean")
-     */
-    private $gas;
-
-    /**
      * @var boolean
      *
-     * @ORM\Column(name="water", type="boolean")
+     * @ORM\Column(name="fountain", type="boolean")
      */
-    private $water;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="floor", type="string", length=255, nullable=true)
-     */
-    private $floor;
+    private $fountain;
 
     /**
      * @var boolean
@@ -196,6 +235,7 @@ class House extends EntityBase
         $this->setDeleted(false);
         $this->setAvailable(true);
         $this->setStatus(1);
+        $this->setIsResidential(1);
         $this->setLikeCount(0);
     }
 
@@ -306,78 +346,6 @@ class House extends EntityBase
     }
 
     /**
-     * Set size
-     *
-     * @param string $size
-     *
-     * @return House
-     */
-    public function setSize($size)
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return string
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    /**
-     * Set commute
-     *
-     * @param string $commute
-     *
-     * @return House
-     */
-    public function setCommute($commute)
-    {
-        $this->commute = $commute;
-
-        return $this;
-    }
-
-    /**
-     * Get commute
-     *
-     * @return string
-     */
-    public function getCommute()
-    {
-        return $this->commute;
-    }
-
-    /**
-     * Set essentials
-     *
-     * @param string $essentials
-     *
-     * @return House
-     */
-    public function setEssentials($essentials)
-    {
-        $this->essentials = $essentials;
-
-        return $this;
-    }
-
-    /**
-     * Get essentials
-     *
-     * @return string
-     */
-    public function getEssentials()
-    {
-        return $this->essentials;
-    }
-
-    /**
      * Set type
      *
      * @param string $type
@@ -386,8 +354,10 @@ class House extends EntityBase
      */
     public function setType($type)
     {
+        if (!in_array($type, HouseTypeEnum::getAvailableTypes())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
         $this->type = $type;
-
         return $this;
     }
 
@@ -399,30 +369,6 @@ class House extends EntityBase
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set balconySize
-     *
-     * @param string $balconySize
-     *
-     * @return House
-     */
-    public function setBalconySize($balconySize)
-    {
-        $this->balconySize = $balconySize;
-
-        return $this;
-    }
-
-    /**
-     * Get balconySize
-     *
-     * @return string
-     */
-    public function getBalconySize()
-    {
-        return $this->balconySize;
     }
 
     /**
@@ -471,78 +417,6 @@ class House extends EntityBase
     public function getParking()
     {
         return $this->parking;
-    }
-
-    /**
-     * Set gas
-     *
-     * @param integer $gas
-     *
-     * @return House
-     */
-    public function setGas($gas)
-    {
-        $this->gas = $gas;
-
-        return $this;
-    }
-
-    /**
-     * Get gas
-     *
-     * @return integer
-     */
-    public function getGas()
-    {
-        return $this->gas;
-    }
-
-    /**
-     * Set water
-     *
-     * @param integer $water
-     *
-     * @return House
-     */
-    public function setWater($water)
-    {
-        $this->water = $water;
-
-        return $this;
-    }
-
-    /**
-     * Get water
-     *
-     * @return integer
-     */
-    public function getWater()
-    {
-        return $this->water;
-    }
-
-    /**
-     * Set floor
-     *
-     * @param string $floor
-     *
-     * @return House
-     */
-    public function setFloor($floor)
-    {
-        $this->floor = $floor;
-
-        return $this;
-    }
-
-    /**
-     * Get floor
-     *
-     * @return string
-     */
-    public function getFloor()
-    {
-        return $this->floor;
     }
 
     /**
@@ -620,11 +494,11 @@ class House extends EntityBase
     /**
      * Set agency
      *
-     * @param \AppBundle\Entity\Agency $agency
+     * @param Agency $agency
      *
      * @return House
      */
-    public function setAgency(\AppBundle\Entity\Agency $agency = null)
+    public function setAgency(Agency $agency = null)
     {
         $this->agency = $agency;
 
@@ -648,7 +522,7 @@ class House extends EntityBase
      *
      * @return House
      */
-    public function addPhoto(\AppBundle\Entity\Photo $photo)
+    public function addPhoto(Photo $photo)
     {
         $this->photos[] = $photo;
 
@@ -660,7 +534,7 @@ class House extends EntityBase
      *
      * @param \AppBundle\Entity\Photo $photo
      */
-    public function removePhoto(\AppBundle\Entity\Photo $photo)
+    public function removePhoto(Photo $photo)
     {
         $this->photos->removeElement($photo);
     }
@@ -730,7 +604,7 @@ class House extends EntityBase
      *
      * @return House
      */
-    public function setArea(\AppBundle\Entity\Area $area = null)
+    public function setArea(Area $area = null)
     {
         $this->area = $area;
 
@@ -754,7 +628,7 @@ class House extends EntityBase
      *
      * @return House
      */
-    public function setLga(\AppBundle\Entity\Lga $lga = null)
+    public function setLga(Lga $lga = null)
     {
         $this->lga = $lga;
 
@@ -769,5 +643,305 @@ class House extends EntityBase
     public function getLga()
     {
         return $this->lga;
+    }
+
+    /**
+     * Set isResidential
+     *
+     * @param boolean $isResidential
+     *
+     * @return House
+     */
+    public function setIsResidential($isResidential)
+    {
+        $this->isResidential = $isResidential;
+
+        return $this;
+    }
+
+    /**
+     * Get isResidential
+     *
+     * @return boolean
+     */
+    public function getIsResidential()
+    {
+        return $this->isResidential;
+    }
+
+    /**
+     * Set kind
+     *
+     * @param string $kind
+     *
+     * @return House
+     */
+    public function setKind($kind)
+    {
+        if (!in_array($kind, HouseKindEnum::getAvailableTypes())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+        $this->kind = $kind;
+
+        return $this;
+    }
+
+    /**
+     * Get kind
+     *
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Set bedrooms
+     *
+     * @param integer $bedrooms
+     *
+     * @return House
+     */
+    public function setBedrooms($bedrooms)
+    {
+        if (!in_array($bedrooms, HouseBedroomsEnum::getAvailableTypes())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+        $this->bedrooms = $bedrooms;
+
+        return $this;
+    }
+
+    /**
+     * Get bedrooms
+     *
+     * @return integer
+     */
+    public function getBedrooms()
+    {
+        return $this->bedrooms;
+    }
+
+    /**
+     * Set bathrooms
+     *
+     * @param integer $bathrooms
+     *
+     * @return House
+     */
+    public function setBathrooms($bathrooms)
+    {
+        if (!in_array($bathrooms, HouseBathroomsEnum::getAvailableTypes())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+        $this->bathrooms = $bathrooms;
+
+        return $this;
+    }
+
+    /**
+     * Get bathrooms
+     *
+     * @return integer
+     */
+    public function getBathrooms()
+    {
+        return $this->bathrooms;
+    }
+
+    /**
+     * Set toilets
+     *
+     * @param integer $toilets
+     *
+     * @return House
+     */
+    public function setToilets($toilets)
+    {
+        if (!in_array($toilets, HouseToiletsEnum::getAvailableTypes())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+        $this->toilets = $toilets;
+
+        return $this;
+    }
+
+    /**
+     * Get toilets
+     *
+     * @return integer
+     */
+    public function getToilets()
+    {
+        return $this->toilets;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return House
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set balcony
+     *
+     * @param boolean $balcony
+     *
+     * @return House
+     */
+    public function setBalcony($balcony)
+    {
+        $this->balcony = $balcony;
+
+        return $this;
+    }
+
+    /**
+     * Get balcony
+     *
+     * @return boolean
+     */
+    public function getBalcony()
+    {
+        return $this->balcony;
+    }
+
+    /**
+     * Set fence
+     *
+     * @param boolean $fence
+     *
+     * @return House
+     */
+    public function setFence($fence)
+    {
+        $this->fence = $fence;
+
+        return $this;
+    }
+
+    /**
+     * Get fence
+     *
+     * @return boolean
+     */
+    public function getFence()
+    {
+        return $this->fence;
+    }
+
+    /**
+     * Set garage
+     *
+     * @param boolean $garage
+     *
+     * @return House
+     */
+    public function setGarage($garage)
+    {
+        $this->garage = $garage;
+
+        return $this;
+    }
+
+    /**
+     * Get garage
+     *
+     * @return boolean
+     */
+    public function getGarage()
+    {
+        return $this->garage;
+    }
+
+    /**
+     * Set garden
+     *
+     * @param boolean $garden
+     *
+     * @return House
+     */
+    public function setGarden($garden)
+    {
+        $this->garden = $garden;
+
+        return $this;
+    }
+
+    /**
+     * Get garden
+     *
+     * @return boolean
+     */
+    public function getGarden()
+    {
+        return $this->garden;
+    }
+
+    /**
+     * Set swpool
+     *
+     * @param boolean $swpool
+     *
+     * @return House
+     */
+    public function setSwpool($swpool)
+    {
+        $this->swpool = $swpool;
+
+        return $this;
+    }
+
+    /**
+     * Get swpool
+     *
+     * @return boolean
+     */
+    public function getSwpool()
+    {
+        return $this->swpool;
+    }
+
+    /**
+     * Set fountain
+     *
+     * @param boolean $fountain
+     *
+     * @return House
+     */
+    public function setFountain($fountain)
+    {
+        $this->fountain = $fountain;
+
+        return $this;
+    }
+
+    /**
+     * Get fountain
+     *
+     * @return boolean
+     */
+    public function getFountain()
+    {
+        return $this->fountain;
     }
 }

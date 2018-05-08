@@ -1,16 +1,16 @@
-
-$('.delete').on('click', function(){
+$('.delete').on('click', function () {
     var el = $(this).closest('.notification');
     cuteHide(el);
 });
 
 function cuteHide(el) {
-    el.animate({opacity: '0'}, 150, function(){
-        el.animate({height: '0px'}, 150, function(){
+    el.animate({opacity: '0'}, 150, function () {
+        el.animate({height: '0px'}, 150, function () {
             el.remove();
         });
     });
 }
+
 $(".checkbox").change(function () {
     if (this.checked) {
         $(this).closest("tr").addClass('is-selected');
@@ -95,20 +95,62 @@ $('#limit').change(function () {
 });
 
 $(function () {
+    var areaSelect = $("#areaSelect") || null;
     var lgaSelect = $("#lgaSelect") || null;
     var stateSelect = $("#stateSelect") || null;
     $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed'));
+    $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed'));
     var selectedLga = $("#lgaSelectSeed").find("option:selected").parent().attr('label');
-    stateSelect.find("option").filter(function() {
+    var selectedArea = $("#areaSelectSeed").find("option:selected").parent().attr('label');
+    stateSelect.find("option").filter(function () {
         return $(this).text() === selectedLga;
     }).prop('selected', true);
+    lgaSelect.find("option").filter(function () {
+        return $(this).text() === selectedArea;
+    }).prop('selected', true);
     var select_class = stateSelect.find("option:selected").text();
-    lgaSelect.children().not('optgroup[label="'+select_class+'"]').remove();
+    var select_class_lga = lgaSelect.find("option:selected").text();
+    lgaSelect.children().not('optgroup[label="' + select_class + '"]').remove();
+    areaSelect.children().not('optgroup[label="' + select_class_lga + '"]').remove();
+
+    var select_class_ = $("option:selected", this).text();
+    var options = $('#areaSelectSeed').find('optgroup[label="' + select_class_ + '"]');
+    areaSelect.children().remove();
+    areaSelect.append(options);
+    var areaLength = areaSelect.find("option").length;
+    if (areaLength === 0) {
+        areaSelect.prop('disabled', true);
+    } else {
+        areaSelect.prop('disabled', false);
+    }
     stateSelect.change(function () {
         var select_class = $("option:selected", this).text();
-        var options = $('#lgaSelectSeed').find('optgroup[label="'+select_class+'"]');
+        var options = $('#lgaSelectSeed').find('optgroup[label="' + select_class + '"]');
         lgaSelect.children().remove();
         lgaSelect.append(options);
+
+        // var select_class_lga = $("#lgaSelect").find("option:selected").text();
+        // var options_lga = $('#areaSelectSeed').find('optgroup[label="' + select_class_lga + '"]');
+        // areaSelect.children().remove();
+        // areaSelect.append(options_lga);
+        // var areaLength = areaSelect.find("option").length;
+        // if (areaLength === 0) {
+        //     areaSelect.prop('disabled', true);
+        // } else {
+        //     areaSelect.prop('disabled', false);
+        // }
+    });
+    lgaSelect.change(function () {
+        var select_class = $("option:selected", this).text();
+        var options = $('#areaSelectSeed').find('optgroup[label="' + select_class + '"]');
+        areaSelect.children().remove();
+        areaSelect.append(options);
+        var areaLength = areaSelect.find("option").length;
+        if (areaLength === 0) {
+            areaSelect.prop('disabled', true);
+        } else {
+            areaSelect.prop('disabled', false);
+        }
     });
 });
 

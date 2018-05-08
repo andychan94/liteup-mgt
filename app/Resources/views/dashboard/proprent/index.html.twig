@@ -24,112 +24,112 @@
             </span>
             <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
         </a>
-        <a class="button is-link" href="#{#{ path('') }#}" id="open-modal">
-            <span class="icon is-small">
-                <i class="fas fa-filter"></i>
-            </span>
-            <span>
-                {{ 'b_filter'|trans }}
-            </span>
-        </a>
-        <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <form action="" method="get">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Filter search:</p>
-                        <a class="button delete close-modal" aria-label="close"></a>
-                    </header>
-                    <section class="modal-card-body">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" type="text" placeholder="title or property ID">
-                            </div>
-                        </div>
-                        <div class="field is-grouped">
-                            <div class="control has-icons-left">
-                                <div class="select">
-                                    <select name="state" id="stateSelect">
-                                        <option value="0">State</option>
-                                        {% for state in states %}
-                                            <option value="{{ state.id }}">{{ state.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <span class="icon is-left">
-                                    <i class="fas fa-globe"></i>
-                                </span>
-                            </div>
-                            <div class="control has-icons-left">
-                                <div class="select">
-                                    <select name="area" id="areaSelect">
-                                        <option>Area</option>
-                                    </select>
-                                    <select id="pot">
-                                        <option class="state0">Area</option>
-                                        {% for lga in lgas %}
-                                            <option value="{{ lga.id }}"
-                                                    class="state{{ lga.state.id }}">{{ lga.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <span class="icon is-left">
-                                    <i class="fas fa-flag"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <p class="has-text-weight-bold">Price range</p>
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <div class="field has-addons">
-                                    <p class="control">
-                                        <a class="button is-static">
-                                            Min: {{ currency }}
-                                        </a>
-                                    </p>
-                                    <p class="control">
-                                        <input class="input" type="text" id="amount" style="margin-right: 20px">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="control">
-                                <div class="field has-addons">
-                                    <p class="control">
-                                        <a class="button is-static">
-                                            Max: {{ currency }}
-                                        </a>
-                                    </p>
-                                    <p class="control">
-                                        <input class="input" type="text" id="amount2">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <div class="price-range">
-                                    <div id="slider-range"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <footer class="modal-card-foot">
-                        <div class="field is-grouped is-grouped-centered">
-                            <p class="control">
-                                <a class="button is-primary">
-                                    Filter
-                                </a>
-                            </p>
-                            <p class="control">
-                                <a class="button is-text close-modal">
-                                    Cancel
-                                </a>
-                            </p>
-                        </div>
-                    </footer>
-                </form>
-            </div>
-        </div>
+        {#<a class="button is-link" href="##}{#{ path('') }#}{#" id="open-modal">#}
+            {#<span class="icon is-small">#}
+                {#<i class="fas fa-filter"></i>#}
+            {#</span>#}
+            {#<span>#}
+                {#{{ 'b_filter'|trans }}#}
+            {#</span>#}
+        {#</a>#}
+        {#<div class="modal">#}
+            {#<div class="modal-background"></div>#}
+            {#<div class="modal-card">#}
+                {#<form action="" method="get">#}
+                    {#<header class="modal-card-head">#}
+                        {#<p class="modal-card-title">Filter search:</p>#}
+                        {#<a class="button delete close-modal" aria-label="close"></a>#}
+                    {#</header>#}
+                    {#<section class="modal-card-body">#}
+                        {#<div class="field">#}
+                            {#<div class="control">#}
+                                {#<input class="input" type="text" placeholder="title or property ID">#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="field is-grouped">#}
+                            {#<div class="control has-icons-left">#}
+                                {#<div class="select">#}
+                                    {#<select name="state" id="stateSelect">#}
+                                        {#<option value="0">State</option>#}
+                                        {#{% for state in states %}#}
+                                            {#<option value="{{ state.id }}">{{ state.name }}</option>#}
+                                        {#{% endfor %}#}
+                                    {#</select>#}
+                                {#</div>#}
+                                {#<span class="icon is-left">#}
+                                    {#<i class="fas fa-globe"></i>#}
+                                {#</span>#}
+                            {#</div>#}
+                            {#<div class="control has-icons-left">#}
+                                {#<div class="select">#}
+                                    {#<select name="area" id="areaSelect">#}
+                                        {#<option>Area</option>#}
+                                    {#</select>#}
+                                    {#<select id="pot">#}
+                                        {#<option class="state0">Area</option>#}
+                                        {#{% for lga in lgas %}#}
+                                            {#<option value="{{ lga.id }}"#}
+                                                    {#class="state{{ lga.state.id }}">{{ lga.name }}</option>#}
+                                        {#{% endfor %}#}
+                                    {#</select>#}
+                                {#</div>#}
+                                {#<span class="icon is-left">#}
+                                    {#<i class="fas fa-flag"></i>#}
+                                {#</span>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<p class="has-text-weight-bold">Price range</p>#}
+                        {#<div class="field is-grouped">#}
+                            {#<div class="control">#}
+                                {#<div class="field has-addons">#}
+                                    {#<p class="control">#}
+                                        {#<a class="button is-static">#}
+                                            {#Min: {{ currency }}#}
+                                        {#</a>#}
+                                    {#</p>#}
+                                    {#<p class="control">#}
+                                        {#<input class="input" type="text" id="amount" style="margin-right: 20px">#}
+                                    {#</p>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<div class="control">#}
+                                {#<div class="field has-addons">#}
+                                    {#<p class="control">#}
+                                        {#<a class="button is-static">#}
+                                            {#Max: {{ currency }}#}
+                                        {#</a>#}
+                                    {#</p>#}
+                                    {#<p class="control">#}
+                                        {#<input class="input" type="text" id="amount2">#}
+                                    {#</p>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="field">#}
+                            {#<div class="control">#}
+                                {#<div class="price-range">#}
+                                    {#<div id="slider-range"></div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</section>#}
+                    {#<footer class="modal-card-foot">#}
+                        {#<div class="field is-grouped is-grouped-centered">#}
+                            {#<p class="control">#}
+                                {#<a class="button is-primary">#}
+                                    {#Filter#}
+                                {#</a>#}
+                            {#</p>#}
+                            {#<p class="control">#}
+                                {#<a class="button is-text close-modal">#}
+                                    {#Cancel#}
+                                {#</a>#}
+                            {#</p>#}
+                        {#</div>#}
+                    {#</footer>#}
+                {#</form>#}
+            {#</div>#}
+        {#</div>#}
     </div>
     <div class="block">
         <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
@@ -187,7 +187,7 @@
                             <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
                                    value="{{ house.id }}">
                         </label></td>
-                    <td><input type="checkbox"></td>
+                    <td>{{ house.id }}</td>
                     <td class="list-house-thumbnail">
                         {% if house.photos is not empty %}<img src="{{ house.photos | first.path }}">{% endif %}
                     </td>
@@ -199,7 +199,7 @@
                             </span>
                             {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
                         </p>
-                        <p>{{ currency }}{{ house.price }}</p>
+                        <p>{{ currency|raw }}{{ house.price }}</p>
 
                     </td>
                     <td>

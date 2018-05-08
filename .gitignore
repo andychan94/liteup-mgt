@@ -15,6 +15,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public_html/bundles/
+/public_html/uploads/*
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -67,3 +68,38 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.composer
+.contactemail
+.cpanel
+.cphorde
+.dns
+.emacs
+.gemrc
+.htpasswds
+.lastlogin
+.lesshst
+.spamassassinenable
+.spamboxenable
+.sqmailattac
+.sqmaildata
+.ssh
+.subaccounts
+.trash
+.viminfo
+.zshrc
+README.md
+access-logs
+certbot-auto
+error_log
+etc
+liteup.xyz
+mail
+perl5
+public_ftp
+ssl
+www

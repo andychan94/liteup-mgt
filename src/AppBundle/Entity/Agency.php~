@@ -143,7 +143,7 @@ class Agency extends BaseUser
         parent::__construct();
         $this->roles = array('ROLE_ADMIN');
         $this->houses = new ArrayCollection();
-        $this->setBudget(0);
+        $this->setBudget(2000);
         $this->setLogo("");
         $this->setLogoSize(0);
         $this->setAbout("");

@@ -11,11 +11,17 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Area;
 use AppBundle\Entity\Lga;
+use AppBundle\Enum\HouseBathroomsEnum;
+use AppBundle\Enum\HouseBedroomsEnum;
+use AppBundle\Enum\HouseKindEnum;
+use AppBundle\Enum\HouseTypeEnum;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -24,22 +30,6 @@ class AdminHouseFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array(
-                'label' => 'Title',
-                'attr'=> array('class'=>'input')
-            ))
-            ->add('price', IntegerType::class, array(
-                'label' => 'Price',
-                'attr'=> array('class'=>'input')
-            ))
-            ->add('address', TextType::class, array(
-                'label' => 'Address',
-                'attr'=> array('class'=>'input')
-            ))
-            ->add('size', TextType::class, array(
-                'label' => 'Size',
-                'attr'=> array('class'=>'input')
-            ))
             ->add('lga', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Lga',
                 'query_builder' => function (EntityRepository $repository) {
@@ -62,50 +52,102 @@ class AdminHouseFormType extends AbstractType
                     'class' => 'someClass'
                 )
             ))
-            ->add('essentials', TextType::class, array(
-                'label' => 'Essentials',
-                'required' => false,
+            ->add('address', TextType::class, array(
+                'label' => 'Street',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('commute', TextType::class, array(
-                'label' => 'Commute',
-                'required' => false,
+            ->add('type', ChoiceType::class, array(
+                'required' => true,
+                'choices' => HouseTypeEnum::getAvailableTypes(),
+                'choices_as_values' => true,
+                'choice_label' => function($choice) {
+                    return HouseTypeEnum::getTypeName($choice);
+                },
+            ))
+            ->add('price', IntegerType::class, array(
+                'label' => 'Price',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('type', TextType::class, array(
-                'required' => false,
-                'label' => 'Type',
+
+            ->add('title', TextType::class, array(
+                'label' => 'Title',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('balcony_size', TextType::class, array(
-                'label' => 'Balcony size',
-                'required' => false,
-                'attr'=> array('class'=>'input')
+            ->add('kind', ChoiceType::class, array(
+                'required' => true,
+                'choices' => HouseKindEnum::getAvailableTypes(),
+                'choices_as_values' => true,
+                'choice_label' => function($choice) {
+                    return HouseKindEnum::getTypeName($choice);
+                },
             ))
-            ->add('available', CheckboxType::class, array(
-                'label' => 'Available',
-                'required' => false,
-                'attr'=> array('class'=>'checkbox')
+            ->add('bedrooms', ChoiceType::class, array(
+                'required' => true,
+                'choices' => HouseBedroomsEnum::getAvailableTypes(),
+                'choices_as_values' => true,
+                'choice_label' => function($choice) {
+                    return HouseBedroomsEnum::getTypeName($choice);
+                },
             ))
-            ->add('parking', CheckboxType::class, array(
-                'label' => 'Parking',
-                'required' => false,
-                'attr'=> array('class'=>'checkbox')
+            ->add('bathrooms', ChoiceType::class, array(
+                'required' => true,
+                'choices' => HouseBathroomsEnum::getAvailableTypes(),
+                'choices_as_values' => true,
+                'choice_label' => function($choice) {
+                    return HouseBathroomsEnum::getTypeName($choice);
+                },
             ))
-            ->add('gas', CheckboxType::class, array(
-                'label' => 'Gas',
-                'required' => false,
-                'attr'=> array('class'=>'checkbox')
+            ->add('toilets', ChoiceType::class, array(
+                'required' => true,
+                'choices' => HouseBathroomsEnum::getAvailableTypes(),
+                'choices_as_values' => true,
+                'choice_label' => function($choice) {
+                    return HouseBathroomsEnum::getTypeName($choice);
+                },
             ))
-            ->add('water', CheckboxType::class, array(
-                'label' => 'Water',
-                'required' => false,
-                'attr'=> array('class'=>'checkbox')
+            ->add('description', TextareaType::class, array(
+                'required' => true,
+                'attr'=> array('class'=>'textarea')
             ))
             ->add('aircon', CheckboxType::class, array(
                 'label' => 'Aircon',
                 'required' => false,
-                'attr'=> array('class'=>'checkbox')
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('balcony', CheckboxType::class, array(
+                'label' => 'Aircon',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('fence', CheckboxType::class, array(
+                'label' => 'Aircon',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('garage', CheckboxType::class, array(
+                'label' => 'Aircon',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('garden', CheckboxType::class, array(
+                'label' => 'Parking',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('swpool', CheckboxType::class, array(
+                'label' => 'Water',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('fountain', CheckboxType::class, array(
+                'label' => 'Water',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
+            ))
+            ->add('parking', CheckboxType::class, array(
+                'label' => 'Water',
+                'required' => false,
+                'attr'=> array('class'=>'switch is-rounded')
             ))
         ;
     }

@@ -7,6 +7,9 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    agency_logo_folder: images/agencies/
+    uploads_folder: uploads/
+    currency: "&#x20A6;"
 
 framework:
     templating:
@@ -39,8 +42,9 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-      agency_logo_folder: images/agencies/
-      currency: &#8358;
+      agency_logo_folder: '%agency_logo_folder%'
+      uploads_folder: '%uploads_folder%'
+      currency: '%currency%'
 
 # Doctrine Configuration
 doctrine:
@@ -128,3 +132,10 @@ knp_paginator:
         pagination: 'dashboard/paginator/sliding.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+oneup_uploader:
+    mappings:
+        gallery:
+            storage:
+                directory: "%kernel.project_dir%/public_html/uploads/"
+            frontend: fineuploader

@@ -92,31 +92,47 @@ class PropertyRentController extends BaseController
     }
 
     /**
-     * TODO Make super admin able to add house for agencies
      * @Route("/edit/{id}", name="proprent_edit")
+     * @param House $house
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(House $house, Request $request)
+    public function editAction(House $house, Request $request, LoggerInterface $logger)
     {
         $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                $em->flush();
+                try {
+                    $em->flush();
+                } catch (Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        $this->t('app.error')
+                    );
+                    $this->logger($logger, $e->getMessage());
+                    return $this->redirectToRoute('proprent_index');
+                }
                 $this->addFlash('success', 'Property updated');
                 return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
             }
         }
+        $states = $this->getDoctrine()->getRepository(State::class)->findAll();
         return $this->render(':dashboard/proprent:edit.html.twig', [
             'house' => $house,
             'form' => $form->createView(),
+            'states' => $states,
         ]);
     }
 
     /**
      * @Route("/add", name="proprent_add")
+     * @param Request $request
+     * @param LoggerInterface $logger
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, LoggerInterface $logger)
     {
         $house = new House();
         $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
@@ -126,10 +142,19 @@ class PropertyRentController extends BaseController
                 $house->setAgency($this->getUser());
                 $house->setSelling(false);
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($house);
-                $em->flush();
+                try {
+                    $em->persist($house);
+                    $em->flush();
+                } catch (Exception $e) {
+                    $this->addFlash(
+                        'error',
+                        $this->t('app.error')
+                    );
+                    $this->logger($logger, $e->getMessage());
+                    return $this->redirectToRoute('proprent_index');
+                }
                 $this->addFlash('success', 'Property added');
-                return $this->redirectToRoute('proprent_index');
+                return $this->redirectToRoute('photo_add', array('id' => $house->getId()));
             }
         }
         $states = $this->getDoctrine()->getRepository(State::class)->findAll();

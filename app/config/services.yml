@@ -39,6 +39,12 @@ services:
            tags:
                - { name: form.type, alias: app_user_profile }
 
+    app.upload_listener:
+            class: AppBundle\EventListener\UploadListener
+            arguments: ["@doctrine.orm.entity_manager"]
+            tags:
+                - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
