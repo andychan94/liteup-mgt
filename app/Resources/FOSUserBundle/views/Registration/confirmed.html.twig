@@ -3,8 +3,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <div class="block">
+        <p class="is-size-5">
+            {{ 'registration.confirmed'|trans({'%username%': user.username}) }}
+        </p>
+    </div>
+    <div class="block">
+        <p class="has-text-left is-size-6">
+            Please wait until the page redirects you to the dashboard.
+            Or <a href="{{ path('dashboard_home') }}">click here</a> if your browser does not support redirection
+        </p>
+    </div>
     {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
 {% endblock fos_user_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        window.setTimeout(function () {
+            window.location.href = "{{ path('dashboard_home') }}";
+        }, 5000);
+    </script>
+{% endblock %}

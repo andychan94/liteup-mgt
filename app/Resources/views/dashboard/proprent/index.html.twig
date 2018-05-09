@@ -24,6 +24,7 @@
             </span>
             <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
         </a>
+        <!--
         {#<a class="button is-link" href="##}{#{ path('') }#}{#" id="open-modal">#}
             {#<span class="icon is-small">#}
                 {#<i class="fas fa-filter"></i>#}
@@ -130,6 +131,7 @@
                 {#</form>#}
             {#</div>#}
         {#</div>#}
+        -->
     </div>
     <div class="block">
         <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
@@ -189,7 +191,15 @@
                         </label></td>
                     <td>{{ house.id }}</td>
                     <td class="list-house-thumbnail">
-                        {% if house.photos is not empty %}<img src="{{ house.photos | first.path }}">{% endif %}
+                        <figure class="has-text-centered">
+                            <img src={% if house.photos is not empty %}"{{ uploads_folder }}{{ house.photos | first.path }}"
+                        {% else %}
+                            {{ asset('images/placesholder.jpg') }}
+                        {% endif %}
+                        /></figure>
+                        <div class="has-text-centered">
+                            <a class="button is-success" href="{{ path('photo_index', {'id': house.id}) }}"><span>Manage Photos</span></a>
+                        </div>
                     </td>
                     <td>
                         <p>{{ house.title }}</p>

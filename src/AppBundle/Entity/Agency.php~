@@ -83,7 +83,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
     protected $logo;
     /**

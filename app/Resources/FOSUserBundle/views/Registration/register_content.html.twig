@@ -4,77 +4,79 @@
     {% form_theme form ':dashboard/form:custom_form.html.twig' %}
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.username) }}
         <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
+            <i class="fas fa-user"></i>
+        </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.username) }}</p>
+    {{ form_errors(form.username) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.email) }}
         <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
+            <i class="fas fa-envelope"></i>
+        </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.email) }}</p>
+    {{ form_errors(form.email) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.plainPassword.first) }}
         <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
         </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.plainPassword.first) }}</p>
+    {{ form_errors(form.plainPassword.first) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.plainPassword.second) }}
         <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
         </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.plainPassword.second) }}</p>
-    <p class="help is-danger">{{ form_errors(form.plainPassword) }}</p>
+    {{ form_errors(form.plainPassword.second) }}
+    {{ form_errors(form.plainPassword) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.name) }}
         <span class="icon is-small is-left">
             <i class="fas fa-file-alt"></i>
         </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+    {{ form_errors(form.name) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.phone) }}
         <span class="icon is-small is-left">
             <i class="fas fa-phone"></i>
         </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.phone) }}</p>
+    {{ form_errors(form.phone) }}
 </div>
 
 <div class="field">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left">
         {{ form_widget(form.address) }}
         <span class="icon is-small is-left">
             <i class="fas fa-map-marker-alt"></i>
         </span>
     </p>
-    <p class="help is-danger">{{ form_errors(form.address) }}</p>
+    {{ form_errors(form.address) }}
 </div>
 <div style="margin-top:30px">
-    <p class="is-small has-text-left">By clicking “Register”, you agree to our <a href="{{ path('tos') }}" target="_blank">Terms of service</a>. We’ll occasionally send you account related emails.</p>
+    <p class="is-small has-text-left">By clicking “Register”, you agree to our <a href="{{ path('tos') }}"
+                                                                                  target="_blank">Terms of service</a>.
+        We’ll occasionally send you account related emails.</p>
 
     {{ form_rest(form) }}
     <input class="liteup-login-btn" type="submit" value="{{ 'registration.submit'|trans }}"/>

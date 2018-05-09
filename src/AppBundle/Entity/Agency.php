@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -15,6 +16,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ * @UniqueEntity(
+ *     fields={"name", "phone", "address", "email"}
+ * )
+ * @UniqueEntity(fields="name")
+ * @UniqueEntity(fields="phone")
+ * @UniqueEntity(fields="address")
+ * @UniqueEntity(fields="email")
  * @Vich\Uploadable
  */
 class Agency extends BaseUser
@@ -83,7 +91,7 @@ class Agency extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=true, unique=true)
+     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
      */
     protected $logo;
     /**

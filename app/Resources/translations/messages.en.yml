@@ -3,6 +3,7 @@ app:
     error_upload: 'An error occurred! Please make sure you followed the instructions of the file format before uploading it. If this error was on our side, our engineers have already been notified to address this problem. We will send you an email as soon as we resolve this issue.'
     error_no_csv: 'Please select a CSV file first!'
     unique_constraint_error: 'There are subitems that belong to the item(s) you tried to remove. Please edit/remove those first'
+    balance: 'Balance'
 entity:
     added: '%entity% added'
     added_many: 'Added %count% %entity%(s)'
@@ -10,7 +11,8 @@ entity:
     deleted: '%entity% deleted'
     deleted_many: 'Deleted %count% %entity%(s)'
     deleted_all: 'All %entity%(s) have been deleted'
-
+fos_user.username.already_used: 'This username is taken'
+#        already_used: 'This username is taken'
 home: 'Home'
 edit: 'Edit'
 add: 'Add'

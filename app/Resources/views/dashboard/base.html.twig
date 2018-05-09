@@ -32,8 +32,8 @@
             </div>
             <div class="navbar-menu navbar-end" id="navMenu">
                 <span class="navbar-item navbar-highlighted tooltip is-tooltip-bottom" data-tooltip="Click to add funds">
-                    <a href="https://paystack.com/pay/liteup" target="_blank">
-                        Budget: ${{app.user.budget}} <i class="fas fa-plus-circle"></i>
+                    <a href="#" target="_blank">
+                        {{ 'app.balance'|trans}}: {{ currency|raw }}{{app.user.budget}} <i class="fas fa-plus-circle"></i>
                     </a>
                 </span>
                 {#<a class="navbar-item nav-tag">#}

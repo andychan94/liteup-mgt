@@ -103,3 +103,8 @@ perl5
 public_ftp
 ssl
 www
+
+public_html/error_log
+public_html/app.php
+public_html/.htaccess
+app/DoctrineMigrations/*
