@@ -49,6 +49,10 @@ class BaseController extends Controller
      */
     protected function logger(LoggerInterface $logger, $message, $option = null)
     {
+        if ($this->getUser() !== null) {
+            $userId = (is_null($this->getUser())? "guest" :$this->getUser()->getId());
+
+        }
         $logger->error(
             $message .
             "\nUser id: " . $this->getUser()->getId() .

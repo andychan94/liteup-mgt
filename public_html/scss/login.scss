@@ -49,16 +49,21 @@ a {
   .box {
     color: #fff;
     border-radius: 5px;
-    overflow: hidden;
     background: #62c7d7;
     background: -webkit-linear-gradient($login-bg-gradient);
     background: -o-linear-gradient($login-bg-gradient);
     background: -moz-linear-gradient($login-bg-gradient);
     background: linear-gradient($login-bg-gradient);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 2px 14px 2px rgba(0, 0, 0, 0.3);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     &:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 2px 14px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    @media screen and (min-width: 768px) {
+      p.is-normal {
+        margin-bottom: 20px;
+      }
     }
     p.is-small {
       font-size: 0.9rem;
@@ -67,6 +72,7 @@ a {
       }
     }
     .logo {
+      transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
@@ -74,13 +80,15 @@ a {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 60px;
-      height: 60px;
+      width: 8rem;
+      height: 8rem;
       border-radius: 50%;
       background-color: #fff;
-      margin: 0 auto 10px auto;
+      margin: 0 auto 20px auto;
       padding: 8px;
-
+      box-shadow: 0 2px 14px 2px rgba(0, 0, 0, 0.3);
+      margin-top: -6rem;
+      z-index: 999999;
       img {
         display: inline-block;
       }
@@ -90,6 +98,12 @@ a {
       .checkbox:hover {
         color: #fff;
       }
+    }
+    .main-form {
+      margin-top: -2rem;
+    }
+    p.is-small {
+
     }
   }
   @media screen and (min-width: 768px) {
@@ -116,6 +130,9 @@ img.house-thumbnail {
   &.is-danger {
     background: #B0413E;
     color: #fff;
-    padding: 3px 0;
+    padding: 3px;
   }
+}
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+  color: #ccc;
 }

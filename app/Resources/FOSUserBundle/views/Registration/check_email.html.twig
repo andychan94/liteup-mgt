@@ -3,10 +3,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
-
-    <p><a href="{{ path('resend_email') }}">Click here</a> if you have not received the email from us.</p>
-    <p class="is-small">If you dont see the email, please check your Spam folder</p>
+    <p class="has-text-left">{{ 'registration.check_email'|trans({'%email%': user.email}) }} <a href="{{ path('resend_email', {token: user.confirmationToken}) }}">Resend email</a></p>
+    <p class="is-small">If you dont see the email in your Inbox, please check your Spam folder</p>
 
     <p class="is-small">
         <a href="{{ path('fos_user_security_login') }}">Log in</a> &nbsp;·&nbsp;

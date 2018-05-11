@@ -1,4 +1,5 @@
 app:
+    title: 'Liteup! Linking the dream'
     error: 'An error occurred! Our engineers have already been notified to address this problem. We will send you an email as soon as we resolve this issue.'
     error_upload: 'An error occurred! Please make sure you followed the instructions of the file format before uploading it. If this error was on our side, our engineers have already been notified to address this problem. We will send you an email as soon as we resolve this issue.'
     error_no_csv: 'Please select a CSV file first!'

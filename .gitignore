@@ -16,7 +16,9 @@
 /vendor/
 /public_html/bundles/
 /public_html/uploads/*
-
+/public_html/error_log
+/public_html/.htaccess
+/app/DoctrineMigrations/*
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -103,8 +105,3 @@ perl5
 public_ftp
 ssl
 www
-
-public_html/error_log
-public_html/app.php
-public_html/.htaccess
-app/DoctrineMigrations/*

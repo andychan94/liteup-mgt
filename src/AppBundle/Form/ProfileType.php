@@ -11,6 +11,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -40,7 +41,7 @@ class ProfileType extends AbstractType
                     'class' => 'input'
                 )
             ))
-            ->add('phone', TextType::class, array(
+            ->add('phone', TelType::class, array(
                 'label' => 'Agency phone number',
                 'attr' => array(
                     'class' => 'input'

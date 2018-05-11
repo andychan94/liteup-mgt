@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="{{ asset('css/bulma.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
     {% endblock %}
+    <title>{{ 'app.title'|trans }}</title>
+    {% include ':helper:favicon.html.twig' %}
 </head>
 <body>
 <section class="hero is-fullheight login">
@@ -18,7 +20,7 @@
                         <img src="{{ asset('images/liteup-logo.png') }}" alt="Liteup"/>
                     </span>
                     <p class="is-normal">
-                        Liteup Management Tool
+                        Liteup Property Management Tool
                     </p>
                     {% if app.request.hasPreviousSession %}
                         {% if app.session.flashbag.all() is not empty %}
@@ -43,6 +45,7 @@
 </section>
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
