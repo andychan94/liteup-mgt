@@ -49,6 +49,11 @@
                         required: "Password is required",
                         equalTo: "Passwords must match"
                     }
+                },
+                submitHandler: function(form) {
+                    if ($(form).valid())
+                        form.submit();
+                    return false; // prevent normal form posting
                 }
             });
 
@@ -59,7 +64,8 @@
                         && /[a-z]/.test(value) // has a lowercase letter
                         && /[A-Z]/.test(value) // has an uppercase letter
                         && /\d/.test(value) // has a digit
-                });
+                }
+            );
 
         });
     </script>

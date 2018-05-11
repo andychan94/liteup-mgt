@@ -44,6 +44,8 @@ services:
             arguments: ["@doctrine.orm.entity_manager"]
             tags:
                 - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+    AppBundle\Controller\DefaultController:
+            arguments: ['@fos_user.mailer.twig_swift']
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

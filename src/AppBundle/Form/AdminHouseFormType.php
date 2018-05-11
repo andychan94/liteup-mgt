@@ -59,7 +59,6 @@ class AdminHouseFormType extends AbstractType
             ->add('type', ChoiceType::class, array(
                 'required' => true,
                 'choices' => HouseTypeEnum::getAvailableTypes(),
-                'choices_as_values' => true,
                 'choice_label' => function($choice) {
                     return HouseTypeEnum::getTypeName($choice);
                 },
@@ -76,7 +75,6 @@ class AdminHouseFormType extends AbstractType
             ->add('kind', ChoiceType::class, array(
                 'required' => true,
                 'choices' => HouseKindEnum::getAvailableTypes(),
-                'choices_as_values' => true,
                 'choice_label' => function($choice) {
                     return HouseKindEnum::getTypeName($choice);
                 },
@@ -84,7 +82,6 @@ class AdminHouseFormType extends AbstractType
             ->add('bedrooms', ChoiceType::class, array(
                 'required' => true,
                 'choices' => HouseBedroomsEnum::getAvailableTypes(),
-                'choices_as_values' => true,
                 'choice_label' => function($choice) {
                     return HouseBedroomsEnum::getTypeName($choice);
                 },
@@ -92,7 +89,6 @@ class AdminHouseFormType extends AbstractType
             ->add('bathrooms', ChoiceType::class, array(
                 'required' => true,
                 'choices' => HouseBathroomsEnum::getAvailableTypes(),
-                'choices_as_values' => true,
                 'choice_label' => function($choice) {
                     return HouseBathroomsEnum::getTypeName($choice);
                 },
@@ -100,7 +96,6 @@ class AdminHouseFormType extends AbstractType
             ->add('toilets', ChoiceType::class, array(
                 'required' => true,
                 'choices' => HouseBathroomsEnum::getAvailableTypes(),
-                'choices_as_values' => true,
                 'choice_label' => function($choice) {
                     return HouseBathroomsEnum::getTypeName($choice);
                 },
