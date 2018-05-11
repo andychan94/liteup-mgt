@@ -129,16 +129,16 @@ $(function () {
         lgaSelect.children().remove();
         lgaSelect.append(options);
 
-        // var select_class_lga = $("#lgaSelect").find("option:selected").text();
-        // var options_lga = $('#areaSelectSeed').find('optgroup[label="' + select_class_lga + '"]');
-        // areaSelect.children().remove();
-        // areaSelect.append(options_lga);
-        // var areaLength = areaSelect.find("option").length;
-        // if (areaLength === 0) {
-        //     areaSelect.prop('disabled', true);
-        // } else {
-        //     areaSelect.prop('disabled', false);
-        // }
+        var select_class_lga = $("#lgaSelect").find("option:selected").text();
+        var options_lga = $('#areaSelectSeed').find('optgroup[label="' + select_class_lga + '"]');
+        areaSelect.children().remove();
+        areaSelect.append(options_lga);
+        var areaLength = areaSelect.find("option").length;
+        if (areaLength === 0) {
+            areaSelect.prop('disabled', true);
+        } else {
+            areaSelect.prop('disabled', false);
+        }
     });
     lgaSelect.change(function () {
         var select_class = $("option:selected", this).text();
@@ -152,61 +152,6 @@ $(function () {
             areaSelect.prop('disabled', false);
         }
     });
-
-});
-$(document).ready(function () {
-
-    $('form').validate({ // initialize the plugin
-        debug: true,
-        inputErrorClass: 'is-danger',
-        errorClass: 'help is-danger',
-        validClass: 'is-success',
-        errorElement: 'p',
-        highlight: function (element, inputErrorClass, validClass) {
-            $(element).addClass("is-danger").removeClass(validClass);
-        },
-        unhighlight: function (element, inputErrorClass, validClass) {
-            $(element).removeClass("is-danger").addClass(validClass);
-        },
-        rules: {
-            "fos_user_registration_form[phone]": {
-                required: true,
-                number: true
-            },
-            "fos_user_registration_form[plainPassword][first]": {
-                required: true,
-                pwcheck: true,
-                minlength: 8
-            },
-            "fos_user_registration_form[plainPassword][second]": {
-                required: true,
-                equalTo: "#fos_user_registration_form_plainPassword_first"
-            }
-        },
-        messages: {
-            "fos_user_registration_form[phone]": {
-                number: "Please enter a valid phone number (numbers ONLY)"
-            },
-            "fos_user_registration_form[plainPassword][first]": {
-                required: "Password is required",
-                pwcheck: "Password must contain at least: one lowercase, one uppercase letter and one number",
-                minlength: "Password must be at least 8 characters long"
-            },
-            "fos_user_registration_form[plainPassword][second]": {
-                required: "Password is required",
-                equalTo: "Passwords must match"
-            }
-        }
-    });
-
-
-    $.validator.addMethod("pwcheck",
-        function (value) {
-            return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
-                && /[a-z]/.test(value) // has a lowercase letter
-                && /[A-Z]/.test(value) // has an uppercase letter
-                && /\d/.test(value) // has a digit
-        });
 
 });
 
