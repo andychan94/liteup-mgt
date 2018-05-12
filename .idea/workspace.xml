@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0b4120f7-2799-4427-a511-16dd0e57b24a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig" />
       <change beforePath="$PROJECT_DIR$/public_html/js/scripts.js" afterPath="$PROJECT_DIR$/public_html/js/scripts.js" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,94 +19,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <file leaf-file-name="scripts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1117">
-              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="1408">
+              <caret line="94" column="3" lean-forward="false" selection-start-line="94" selection-start-column="3" selection-end-line="94" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropertyRentController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="334" column="13" lean-forward="false" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="13" />
               <folding>
-                <element signature="e#40#54#0#PHP" expanded="true" />
+                <element signature="e#12#36#0#Twig" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Session.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Session/Session.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login_content.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Request.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="836" column="32" lean-forward="true" selection-start-line="836" selection-start-column="32" selection-end-line="836" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Security.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Security.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthorizationChecker.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Authorization/AuthorizationChecker.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register_content.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="88" column="4" lean-forward="false" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="54" column="38" lean-forward="false" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -213,7 +150,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/AppBundle/Enum/HouseToiletsEnum.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/House.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig" />
         <option value="$PROJECT_DIR$/public_html/scss/main.scss" />
         <option value="$PROJECT_DIR$/public_html/fine-uploader/fine-uploader-new.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventListener/UploadListener.php" />
@@ -256,12 +192,13 @@
         <option value="$PROJECT_DIR$/public_html/scss/login.scss" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/setup.sh" />
-        <option value="$PROJECT_DIR$/public_html/js/scripts.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/public_html/js/scripts.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig" />
       </list>
     </option>
   </component>
@@ -423,12 +360,6 @@
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -436,14 +367,6 @@
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FOSUserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FOSUserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -451,23 +374,47 @@
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FOSUserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Registration" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FOSUserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Security" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="areas" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="proprent" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public_html" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public_html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
@@ -497,40 +444,12 @@
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Form" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="liteup-mgr2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="friendsofsymfony" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user-bundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
             <path>
               <item name="liteup-mgr2" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+              <item name="jquery-1.12.4" type="70bed36:NamedLibraryElementNode" />
             </path>
           </expand>
           <select />
@@ -624,12 +543,13 @@
       <workItem from="1525950557788" duration="2631000" />
       <workItem from="1525960901584" duration="8600000" />
       <workItem from="1526014475263" duration="4456000" />
-      <workItem from="1526032936393" duration="4306000" />
+      <workItem from="1526032936393" duration="6163000" />
+      <workItem from="1526121461875" duration="4152000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336221000" />
+    <option name="totallyTimeSpent" value="342230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="810" extended-state="0" />
@@ -667,20 +587,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/FOSUserBundle.en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="8" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/translations/validators.en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Resources/translations/security.lv.xlf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -911,26 +817,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-703">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PhotoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-466">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/js/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355">
-          <caret line="97" column="31" lean-forward="false" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -947,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="46" column="26" lean-forward="false" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -959,19 +848,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="88" column="4" lean-forward="false" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="54" column="38" lean-forward="false" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -979,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,7 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,23 +873,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Request.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
-          <caret line="836" column="32" lean-forward="true" selection-start-line="836" selection-start-column="32" selection-end-line="836" selection-end-column="32" />
-          <folding />
+          <caret line="836" column="32" lean-forward="false" selection-start-line="836" selection-start-column="32" selection-end-line="836" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
-          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-          <folding />
+          <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1019,7 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1802">
           <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1027,16 +901,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1117">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
-            <element signature="e#40#54#0#PHP" expanded="true" />
+            <element signature="e#40#54#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="88" column="4" lean-forward="false" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="94" column="3" lean-forward="false" selection-start-line="94" selection-start-column="3" selection-end-line="94" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/admin/areas/create.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="94" selection-end-column="13" />
+          <folding>
+            <element signature="e#12#36#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="334" column="13" lean-forward="false" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="13" />
+          <folding>
+            <element signature="e#12#36#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>

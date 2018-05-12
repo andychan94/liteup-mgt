@@ -302,7 +302,8 @@
                             </div>
                         </div>
                         <div class="block has-text-centered">
-                            <input class="button is-primary" type="submit" id="_submit" name="_submit" value="Save and Proceed to adding Photos"/>
+                            <input class="button is-primary" type="submit" id="_submit" name="_submit"
+                                   value="Save and Proceed to adding Photos"/>
                         </div>
                     </div>
                 </div>
@@ -326,4 +327,59 @@
     {{ parent() }}
     <script src="{{ asset('js/bulma-steps.js') }}"></script>
     <script type="text/javascript" src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <script>
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+    <script>
+        $(function () {
+            var areaSelect = $("#areaSelect") || null;
+            var lgaSelect = $("#lgaSelect") || null;
+            var stateSelect = $("#stateSelect") || null;
+            $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed'));
+            $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed'));
+            var areaSelectSeed = $("#areaSelectSeed") || null;
+            var lgaSelectSeed = $("#lgaSelectSeed") || null;
+            var selectedState = $(stateSelect).find("option:selected").text();
+            lgaSelect.children().not('optgroup[label="' + selectedState + '"]').remove();
+            var selectedLga = $(lgaSelect).find("option:selected").text();
+            areaSelect.children().not('optgroup[label="' + selectedLga + '"]').remove();
+            var areaLength = areaSelect.find("option").length;
+            if (areaLength === 0) {
+                areaSelect.prop('disabled', true);
+            } else {
+                areaSelect.prop('disabled', false);
+            }
+            stateSelect.change(function () {
+                var selectedState = $("option:selected", this).text();
+                var optionsLga = $(lgaSelectSeed).find('optgroup[label="' + selectedState + '"]');
+                lgaSelect.html(optionsLga.children().clone());
+
+                var selectedLga = $(lgaSelect).find("option:selected").text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.children().clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+            lgaSelect.change(function () {
+                var selectedLga = $("option:selected", this).text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+        });
+    </script>
 {% endblock %}
