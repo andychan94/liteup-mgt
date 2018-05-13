@@ -1,0 +1,21 @@
+{% block feature_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            <div class="field">
+                <div class="columns is-multiline is-mobile">
+                    {% for child in form %}
+                        <div class="column is-6-mobile is-4-desktop has-text-centered">
+                            {{ form_widget(child, { 'attr': {'class': 'switch is-thin is-rounded is-outlined is-info'} }) }}
+                            {{ form_label(child) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <ul {{ block('widget_container_attributes') }}>
+            </ul>
+        {% else %}
+            {# just let the choice widget render the select tag #}
+            {{ block('choice_widget') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

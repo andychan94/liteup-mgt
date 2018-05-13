@@ -88,10 +88,4 @@ class ProfileType extends AbstractType
         return 'app_user_profile';
     }
 
-    public function getName()
-
-    {
-        return $this->getBlockPrefix();
-    }
-
 }

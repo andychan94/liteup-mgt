@@ -39,10 +39,4 @@ class AdminLgasFormType extends AbstractType
         return 'lgas_registration';
     }
 
-    public function getName()
-
-    {
-        return $this->getBlockPrefix();
-    }
-
 }

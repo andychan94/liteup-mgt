@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 
 use AppBundle\Entity\Area;
+use AppBundle\Entity\Feature;
 use AppBundle\Entity\Lga;
 use AppBundle\Enum\HouseBathroomsEnum;
 use AppBundle\Enum\HouseBedroomsEnum;
@@ -104,45 +105,10 @@ class AdminHouseFormType extends AbstractType
                 'required' => true,
                 'attr'=> array('class'=>'textarea')
             ))
-            ->add('aircon', CheckboxType::class, array(
-                'label' => 'Aircon',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('balcony', CheckboxType::class, array(
-                'label' => 'Aircon',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('fence', CheckboxType::class, array(
-                'label' => 'Aircon',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('garage', CheckboxType::class, array(
-                'label' => 'Aircon',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('garden', CheckboxType::class, array(
-                'label' => 'Parking',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('swpool', CheckboxType::class, array(
-                'label' => 'Water',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('fountain', CheckboxType::class, array(
-                'label' => 'Water',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
-            ))
-            ->add('parking', CheckboxType::class, array(
-                'label' => 'Water',
-                'required' => false,
-                'attr'=> array('class'=>'switch is-rounded')
+            ->add('features', FeatureType::class, array(
+                'class' => Feature::class,
+                'expanded' => true,
+                'multiple' => true,
             ))
         ;
     }
@@ -151,12 +117,6 @@ class AdminHouseFormType extends AbstractType
 
     {
         return 'house_registration';
-    }
-
-    public function getName()
-
-    {
-        return $this->getBlockPrefix();
     }
 
 }

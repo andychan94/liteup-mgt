@@ -247,58 +247,7 @@
                     <div class="step-content">
                         <div class="columns">
                             <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.aircon, { 'id': 'airconWidget' }) }}
-                                    <label for="airconWidget">Aircon</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.balcony, { 'id': 'balconyWidget' }) }}
-                                    <label for="balconyWidget">Balcony</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.fence, { 'id': 'fenceWidget' }) }}
-                                    <label for="fenceWidget">Fence</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.garage, { 'id': 'garageWidget' }) }}
-                                    <label for="garageWidget">Garage</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.garden, { 'id': 'gardenWidget' }) }}
-                                    <label for="gardenWidget">Garden</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.swpool, { 'id': 'swpoolWidget' }) }}
-                                    <label for="swpoolWidget">Swimming pool</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.fountain, { 'id': 'fountainWidget' }) }}
-                                    <label for="fountainWidget">Water fountain</label>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    {{ form_widget(form.parking, { 'id': 'parkingWidget' }) }}
-                                    <label for="parkingWidget">Parking area</label>
-                                </div>
+                                {{ form_widget(form.features, {'class':'switch is-rounded'}) }}
                             </div>
                         </div>
                         <div class="block has-text-centered">

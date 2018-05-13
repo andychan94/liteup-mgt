@@ -132,62 +132,6 @@ class House extends EntityBase
     /**
      * @var boolean
      *
-     * @ORM\Column(name="aircon", type="boolean")
-     */
-    private $aircon;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="balcony", type="boolean")
-     */
-    private $balcony;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="fence", type="boolean")
-     */
-    private $fence;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="garage", type="boolean")
-     */
-    private $garage;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="garden", type="boolean")
-     */
-    private $garden;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="swpool", type="boolean")
-     */
-    private $swpool;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="parking", type="boolean")
-     */
-    private $parking;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="fountain", type="boolean")
-     */
-    private $fountain;
-
-    /**
-     * @var boolean
-     *
      * @ORM\Column(name="available", type="boolean")
      */
     private $available;
@@ -198,20 +142,6 @@ class House extends EntityBase
      * @ORM\Column(name="deleted", type="boolean")
      */
     private $deleted;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="view_count", type="integer")
-     */
-    private $viewCount;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="like_count", type="integer")
-     */
-    private $likeCount;
 
     /**
      * @var boolean
@@ -226,17 +156,21 @@ class House extends EntityBase
     private $photos;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Feature")
+     */
+    protected $features;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->photos = new ArrayCollection();
-        $this->setViewCount(0);
         $this->setDeleted(false);
         $this->setAvailable(true);
         $this->setStatus(1);
         $this->setIsResidential(1);
-        $this->setLikeCount(0);
+        $this->photos = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     /**
@@ -372,54 +306,6 @@ class House extends EntityBase
     }
 
     /**
-     * Set aircon
-     *
-     * @param integer $aircon
-     *
-     * @return House
-     */
-    public function setAircon($aircon)
-    {
-        $this->aircon = $aircon;
-
-        return $this;
-    }
-
-    /**
-     * Get aircon
-     *
-     * @return integer
-     */
-    public function getAircon()
-    {
-        return $this->aircon;
-    }
-
-    /**
-     * Set parking
-     *
-     * @param integer $parking
-     *
-     * @return House
-     */
-    public function setParking($parking)
-    {
-        $this->parking = $parking;
-
-        return $this;
-    }
-
-    /**
-     * Get parking
-     *
-     * @return integer
-     */
-    public function getParking()
-    {
-        return $this->parking;
-    }
-
-    /**
      * Set available
      *
      * @param integer $available
@@ -441,54 +327,6 @@ class House extends EntityBase
     public function getAvailable()
     {
         return $this->available;
-    }
-
-    /**
-     * Set viewCount
-     *
-     * @param integer $viewCount
-     *
-     * @return House
-     */
-    public function setViewCount($viewCount)
-    {
-        $this->viewCount = $viewCount;
-
-        return $this;
-    }
-
-    /**
-     * Get viewCount
-     *
-     * @return integer
-     */
-    public function getViewCount()
-    {
-        return $this->viewCount;
-    }
-
-    /**
-     * Set likeCount
-     *
-     * @param integer $likeCount
-     *
-     * @return House
-     */
-    public function setLikeCount($likeCount)
-    {
-        $this->likeCount = $likeCount;
-
-        return $this;
-    }
-
-    /**
-     * Get likeCount
-     *
-     * @return integer
-     */
-    public function getLikeCount()
-    {
-        return $this->likeCount;
     }
 
     /**
@@ -802,146 +640,36 @@ class House extends EntityBase
     }
 
     /**
-     * Set balcony
+     * Add feature
      *
-     * @param boolean $balcony
+     * @param \AppBundle\Entity\Feature $feature
      *
      * @return House
      */
-    public function setBalcony($balcony)
+    public function addFeature(Feature $feature)
     {
-        $this->balcony = $balcony;
+        $this->features[] = $feature;
 
         return $this;
     }
 
     /**
-     * Get balcony
+     * Remove feature
      *
-     * @return boolean
+     * @param \AppBundle\Entity\Feature $feature
      */
-    public function getBalcony()
+    public function removeFeature(Feature $feature)
     {
-        return $this->balcony;
+        $this->features->removeElement($feature);
     }
 
     /**
-     * Set fence
+     * Get features
      *
-     * @param boolean $fence
-     *
-     * @return House
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setFence($fence)
+    public function getFeatures()
     {
-        $this->fence = $fence;
-
-        return $this;
-    }
-
-    /**
-     * Get fence
-     *
-     * @return boolean
-     */
-    public function getFence()
-    {
-        return $this->fence;
-    }
-
-    /**
-     * Set garage
-     *
-     * @param boolean $garage
-     *
-     * @return House
-     */
-    public function setGarage($garage)
-    {
-        $this->garage = $garage;
-
-        return $this;
-    }
-
-    /**
-     * Get garage
-     *
-     * @return boolean
-     */
-    public function getGarage()
-    {
-        return $this->garage;
-    }
-
-    /**
-     * Set garden
-     *
-     * @param boolean $garden
-     *
-     * @return House
-     */
-    public function setGarden($garden)
-    {
-        $this->garden = $garden;
-
-        return $this;
-    }
-
-    /**
-     * Get garden
-     *
-     * @return boolean
-     */
-    public function getGarden()
-    {
-        return $this->garden;
-    }
-
-    /**
-     * Set swpool
-     *
-     * @param boolean $swpool
-     *
-     * @return House
-     */
-    public function setSwpool($swpool)
-    {
-        $this->swpool = $swpool;
-
-        return $this;
-    }
-
-    /**
-     * Get swpool
-     *
-     * @return boolean
-     */
-    public function getSwpool()
-    {
-        return $this->swpool;
-    }
-
-    /**
-     * Set fountain
-     *
-     * @param boolean $fountain
-     *
-     * @return House
-     */
-    public function setFountain($fountain)
-    {
-        $this->fountain = $fountain;
-
-        return $this;
-    }
-
-    /**
-     * Get fountain
-     *
-     * @return boolean
-     */
-    public function getFountain()
-    {
-        return $this->fountain;
+        return $this->features;
     }
 }

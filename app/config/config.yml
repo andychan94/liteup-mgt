@@ -41,11 +41,12 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'dashboard/form/fields.html.twig'
     globals:
       agency_logo_folder: '%agency_logo_folder%'
       uploads_folder: '%uploads_folder%'
       currency: '%currency%'
-
 # Doctrine Configuration
 doctrine:
     dbal:

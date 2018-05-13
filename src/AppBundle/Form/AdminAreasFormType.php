@@ -53,9 +53,4 @@ class AdminAreasFormType extends AbstractType
         return 'areas_registration';
     }
 
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
 }
