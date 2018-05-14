@@ -2898,7 +2898,11 @@ a.box:active {
 .table {
   background-color: white;
   color: #363636;
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%; }
   .table td,
   .table th {
     border: 1px solid #dbdbdb;
@@ -3009,6 +3013,8 @@ a.box:active {
     padding: 0.25em 0.5em; }
   .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
     background-color: #fafafa; }
+  .table:not(:last-child) {
+    margin-bottom: 1.5rem; }
 
 .tags {
   align-items: center;

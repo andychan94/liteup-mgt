@@ -24,13 +24,13 @@
                     <img class="navbar-brand-logo" src="{{ asset('images/liteup-logo.png') }}" alt="Liteup logo">
                 </a>
 
-                <button class="button navbar-burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
-            <div class="navbar-menu navbar-end" id="navMenu">
+            <div class="navbar-end">
                 <span class="navbar-item navbar-highlighted tooltip is-tooltip-bottom" data-tooltip="Click to add funds">
                     <a href="#" target="_blank">
                         {{ 'app.balance'|trans}}: {{ currency|raw }}{{app.user.budget}} <i class="fas fa-plus-circle"></i>
@@ -69,7 +69,7 @@
 
 
 <div class="wrapper">
-    <div class="columns">
+    <div class="columns is-multiline is-marginless">
 
         {{ include(':dashboard/blocks:left.html.twig') }}
 
@@ -104,7 +104,33 @@
             integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
             crossorigin="anonymous"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
-    {#<script src="{{ asset('js/build.min.js') }}"></script>#}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Get all "navbar-burger" elements
+            var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(function ($el) {
+                    $el.addEventListener('click', function () {
+
+                        // Get the target from the "data-target" attribute
+                        var target = $el.dataset.target;
+                        var $target = document.getElementById(target);
+
+                        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                        $el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

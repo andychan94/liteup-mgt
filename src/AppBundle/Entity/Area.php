@@ -40,6 +40,13 @@ class Area extends EntityBase
     private $name;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
      * @ORM\OneToMany(targetEntity="House", mappedBy="area")
      */
     protected $houses;
@@ -99,7 +106,7 @@ class Area extends EntityBase
      *
      * @return Area
      */
-    public function setLga(\AppBundle\Entity\Lga $lga = null)
+    public function setLga(Lga $lga = null)
     {
         $this->lga = $lga;
 
@@ -123,7 +130,7 @@ class Area extends EntityBase
      *
      * @return Area
      */
-    public function addHouse(\AppBundle\Entity\House $house)
+    public function addHouse(House $house)
     {
         $this->houses[] = $house;
 
@@ -135,7 +142,7 @@ class Area extends EntityBase
      *
      * @param \AppBundle\Entity\House $house
      */
-    public function removeHouse(\AppBundle\Entity\House $house)
+    public function removeHouse(House $house)
     {
         $this->houses->removeElement($house);
     }
@@ -148,5 +155,29 @@ class Area extends EntityBase
     public function getHouses()
     {
         return $this->houses;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Area
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

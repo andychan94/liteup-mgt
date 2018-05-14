@@ -19,7 +19,7 @@ class AdminFeaturesFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => 'state.form.name',
+                'label' => 'feature.form.name',
                 'attr'=> array('class'=>'input')
             ))
         ;

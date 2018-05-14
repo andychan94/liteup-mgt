@@ -32,6 +32,13 @@ class State extends EntityBase
     private $name;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
      * @ORM\OneToMany(targetEntity="Lga", mappedBy="state")
      */
     private $lgas;
@@ -93,7 +100,7 @@ class State extends EntityBase
      *
      * @return State
      */
-    public function addLga(\AppBundle\Entity\Lga $lga)
+    public function addLga(Lga $lga)
     {
         $this->lgas[] = $lga;
 
@@ -105,7 +112,7 @@ class State extends EntityBase
      *
      * @param \AppBundle\Entity\Lga $lga
      */
-    public function removeLga(\AppBundle\Entity\Lga $lga)
+    public function removeLga(Lga $lga)
     {
         $this->lgas->removeElement($lga);
     }
@@ -118,5 +125,29 @@ class State extends EntityBase
     public function getLgas()
     {
         return $this->lgas;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return State
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

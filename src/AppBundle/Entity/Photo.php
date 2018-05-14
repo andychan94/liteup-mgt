@@ -37,6 +37,13 @@ class Photo extends EntityBase
     private $path;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
      * Get id
      *
      * @return integer
@@ -77,7 +84,7 @@ class Photo extends EntityBase
      *
      * @return Photo
      */
-    public function setHouse(\AppBundle\Entity\House $house = null)
+    public function setHouse(House $house = null)
     {
         $this->house = $house;
 
@@ -92,5 +99,29 @@ class Photo extends EntityBase
     public function getHouse()
     {
         return $this->house;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Photo
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

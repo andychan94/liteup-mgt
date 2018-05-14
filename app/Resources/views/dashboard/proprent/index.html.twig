@@ -165,123 +165,142 @@
         <th>Status</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
-    <form action="{#{ path(entityAltName~'_delete_many') }#}" method="post" onsubmit="return confirmDelete()">
-        <table class="table is-striped is-fullwidth">
-            <thead>
-            <tr>
-                {{ heading }}
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-                {{ heading }}
-            </tr>
-            </tfoot>
-            <tbody>
-
-            {% for house in pagination %}
-                {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lga.state.name %}
-                {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lga.name %}
-                {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
+    <form action="{{ path(entityAltName~'_delete_many') }}" method="post" onsubmit="return confirmDelete()">
+        <div class="table-container">
+            <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+                <thead>
                 <tr>
-                    <td class="has-text-right">
-                        <label>
-                            <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
-                                   value="{{ house.id }}">
-                        </label></td>
-                    <td>{{ house.id }}</td>
-                    <td class="list-house-thumbnail">
-                        <figure class="has-text-centered">
-                            <img src={% if house.photos is not empty %}"{{ uploads_folder }}{{ house.photos | first.path }}"
-                        {% else %}
-                            {{ asset('images/placesholder.jpg') }}
-                        {% endif %}
-                        /></figure>
-                        <div class="has-text-centered">
-                            <a class="button is-success" href="{{ path('photo_index', {'id': house.id}) }}"><span>Manage Photos</span></a>
-                        </div>
-                    </td>
-                    <td>
-                        <p>{{ house.title }}</p>
-                        <p>
-                            <span class="icon is-small">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </span>
-                            {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
-                        </p>
-                        <p>{{ currency|raw }}{{ house.price }}</p>
-
-                    </td>
-                    <td>
-                        {{ stateName }}
-                    </td>
-                    <td>
-                        {{ lgaName }}
-                    </td>
-                    <td>
-                        <span class="tag is-primary"><span class="icon"><i
-                                        class="fas fa-eye"></i></span>{#{ house.viewCount }#} views</span>
-                        <span class="tag is-success"><span class="icon"><i
-                                        class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }}
-                        </span>
-                        {% if house.available == 0 %}<span class="tag is-danger"><span class="icon"><i
-                                        class="fas fa-ban"></i></span>Unavailable</span>{% endif %}
-                    </td>
-                    <td>
-                        <a class="button is-info tooltip is-tooltip-bottom"
-                           data-tooltip="Edit the property"
-                           href="{{ path(entityAltName~'_edit', {"id":house.id}) }}">
-                            <span class="icon">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                        </a>
-                        {% if house.available == true %}
-                            <a class="button is-warning tooltip is-tooltip-bottom"
-                               data-tooltip="Make the property unavailable"
-                               href="{{ path(entityAltName~'_disable', {"id":house.id}) }}">
-                                <span class="icon">
-                                    <i class="fas fa-ban"></i>
-                                </span>
-                            </a>
-                        {% else %}
-                            <a class="button is-success tooltip is-tooltip-bottom"
-                               data-tooltip="Make the property available"
-                               href="{{ path(entityAltName~'_enable', {"id":house.id}) }}">
-                                <span class="icon">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </a>
-                        {% endif %}
-                        <a class="button is-dark tooltip is-tooltip-bottom"
-                           data-tooltip="Move the property to Properties for sale"
-                           href="{{ path(entityAltName~'_move', {"id":house.id}) }}">
-                            <span class="icon">
-                                <i class="fas fas fa-hand-holding-usd"></i>
-                            </span>
-                        </a>
-
-                        <a class="button is-danger tooltip is-tooltip-bottom"
-                           data-tooltip="Delete the property"
-                           href="{{ path(entityAltName~'_delete', {"id":house.id}) }}">
-                            <span class="icon">
-                                <i class="fas fa-trash"></i>
-                            </span>
-                        </a>
-                    </td>
+                    {{ heading }}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tfoot>
+                <tr>
+                    {{ heading }}
+                </tr>
+                </tfoot>
+                <tbody>
+
+                {% for house in pagination %}
+                    {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lga.state.name %}
+                    {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lga.name %}
+                    {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
+                    <tr>
+                        <td class="has-text-right">
+                            <label>
+                                <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
+                                       value="{{ house.id }}">
+                            </label></td>
+                        <td>{{ house.id }}</td>
+                        <td class="list-house-thumbnail">
+                            <figure class="has-text-centered">
+                                <img src={% if house.photos is not empty %}"{{ uploads_folder }}{{ house.photos | first.path }}"
+                                        {% else %}
+                                            {{ asset('images/placesholder.jpg') }}
+                                        {% endif %}
+                                /></figure>
+                            <div class="has-text-centered">
+                                <a class="button is-success" href="{{ path('photo_index', {'id': house.id}) }}"><span>Manage
+                                        Photos</span></a>
+                            </div>
+                        </td>
+                        <td>
+                            <p>{{ house.title }}</p>
+                            <p>
+                                <span class="icon is-small">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                                {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
+                            </p>
+                            <p>{{ currency|raw }}{{ house.price }}</p>
+
+                        </td>
+                        <td>
+                            {{ stateName }}
+                        </td>
+                        <td>
+                            {{ lgaName }}
+                        </td>
+                        <td>
+                            {#TODO view count#}
+                            <span class="tag is-primary"><span class="icon"><i
+                                            class="fas fa-eye"></i></span>0 views</span>
+                            <span class="tag is-success"><span class="icon"><i
+                                            class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }}
+                            </span>
+                            {% if house.available == 0 %}<span class="tag is-danger"><span class="icon"><i
+                                            class="fas fa-ban"></i></span>Unavailable</span>{% endif %}
+                        </td>
+                        <td>
+                            <a class="button is-info tooltip is-tooltip-bottom"
+                               data-tooltip="Edit the property"
+                               href="{{ path(entityAltName~'_edit', {"id":house.id}) }}">
+                                <span class="icon">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                            </a>
+                            {% if house.available == true %}
+                                <a class="button is-warning tooltip is-tooltip-bottom is-tooltip-multiline"
+                                   data-tooltip="Make the property unavailable"
+                                   href="{{ path(entityAltName~'_disable', {"id":house.id}) }}">
+                                    <span class="icon">
+                                        <i class="fas fa-ban"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <a class="button is-success tooltip is-tooltip-bottom"
+                                   data-tooltip="Make the property available"
+                                   href="{{ path(entityAltName~'_enable', {"id":house.id}) }}">
+                                    <span class="icon">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {#<a class="button is-dark tooltip is-tooltip-bottom"
+                               data-tooltip="Move the property to Properties for sale"
+                               href="{{ path(entityAltName~'_move', {"id":house.id}) }}">
+                                <span class="icon">
+                                    <i class="fas fas fa-hand-holding-usd"></i>
+                                </span>
+                            </a>#}
+
+                            <a class="button is-danger tooltip is-tooltip-bottom"
+                               data-tooltip="Delete the property"
+                               href="{{ path(entityAltName~'_delete', {"id":house.id}) }}">
+                                <span class="icon">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="buttons">
+            {{ 'with_selected'|trans }}
+            <button class="button is-warning is-small" type="submit">
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>{{ 'b_delete'|trans }}</span>
+            </button>
+        </div>
     </form>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        {{ knp_pagination_render(pagination) }}
-    </nav>
-    <a class="button is-primary" href="{{ path(entityAltName~'_add') }}">
-        <span class="icon is-small">
-            <i class="fas fa-plus"></i>
-        </span>
-        <span>Add a property</span>
-    </a>
+
+    <div class="block">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </nav>
+    </div>
+    <div class="block">
+        <a class="button is-primary liteup-center" href="{{ path(entityAltName~'_add') }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+        </a>
+    </div>
+    <div class="block"></div>
 {% endblock %}
         {% block stylesheets %}
             {{ parent() }}

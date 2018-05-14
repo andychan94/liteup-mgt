@@ -37,6 +37,13 @@ class Photo extends EntityBase
     private $path;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
      * Get id
      *
      * @return integer

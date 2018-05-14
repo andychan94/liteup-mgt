@@ -11,7 +11,10 @@ entity:
     updated: '%entity% updated'
     deleted: '%entity% deleted'
     deleted_many: 'Deleted %count% %entity%(s)'
+    moved_to_deleted: '%count% %entity%(s) were moved to Recycle Bin'
     deleted_all: 'All %entity%(s) have been deleted'
+    made_available: '%count% %entity%(s) made available'
+    made_unavailable: '%count% %entity%(s) made unavailable'
 fos_user.username.already_used: 'This username is taken'
 #        already_used: 'This username is taken'
 home: 'Home'
@@ -62,10 +65,20 @@ area:
     form:
         name: 'Area name'
         lga: 'Belongs to:'
+feature:
+    name: 'Feature'
+    plural: 'Features'
+    title: 'Property Features'
+    form:
+        name: 'Feature Name'
 proprent:
     name: 'Poperty'
     plural: 'Properties'
     title: 'Properties for Rent'
+propsell:
+    name: 'Poperty'
+    plural: 'Properties'
+    title: 'Properties for Sale'
 photo:
     name: 'Photo'
     plural: 'Photos'

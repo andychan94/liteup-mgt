@@ -156,7 +156,7 @@ class House extends EntityBase
     private $photos;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Feature", mappedBy="houses", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Feature")
      */
     protected $features;
 
@@ -637,5 +637,39 @@ class House extends EntityBase
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Add feature
+     *
+     * @param \AppBundle\Entity\Feature $feature
+     *
+     * @return House
+     */
+    public function addFeature(Feature $feature)
+    {
+        $this->features[] = $feature;
+
+        return $this;
+    }
+
+    /**
+     * Remove feature
+     *
+     * @param \AppBundle\Entity\Feature $feature
+     */
+    public function removeFeature(Feature $feature)
+    {
+        $this->features->removeElement($feature);
+    }
+
+    /**
+     * Get features
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFeatures()
+    {
+        return $this->features;
     }
 }

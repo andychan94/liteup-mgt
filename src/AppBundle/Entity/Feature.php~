@@ -5,13 +5,12 @@ namespace AppBundle\Entity;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
  *
  * @ORM\Table(name="feature")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\FeatureRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FeatureRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Feature extends EntityBase
@@ -32,23 +31,51 @@ class Feature extends EntityBase
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="House", mappedBy="features", cascade={"persist"})
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
      */
-    protected $houses;
-
-//    /**
-//     * @return string
-//     */
-//    public function __toString()
-//    {
-//        return $this->getName();
-//    }
+    private $position;
 
     /**
-     * Constructor
+     * @return string
      */
-    public function __construct()
+    public function __toString()
     {
-        $this->houses = new ArrayCollection();
+        return $this->getName();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Feature
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

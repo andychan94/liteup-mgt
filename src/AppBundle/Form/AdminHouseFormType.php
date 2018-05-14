@@ -57,13 +57,13 @@ class AdminHouseFormType extends AbstractType
                 'label' => 'Street',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('type', ChoiceType::class, array(
-                'required' => true,
-                'choices' => HouseTypeEnum::getAvailableTypes(),
-                'choice_label' => function($choice) {
-                    return HouseTypeEnum::getTypeName($choice);
-                },
-            ))
+//            ->add('type', ChoiceType::class, array(
+//                'required' => true,
+//                'choices' => HouseTypeEnum::getAvailableTypes(),
+//                'choice_label' => function($choice) {
+//                    return HouseTypeEnum::getTypeName($choice);
+//                },
+//            ))
             ->add('price', IntegerType::class, array(
                 'label' => 'Price',
                 'attr'=> array('class'=>'input')

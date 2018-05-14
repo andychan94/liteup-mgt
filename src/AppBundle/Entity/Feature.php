@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Mapping\EntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +28,13 @@ class Feature extends EntityBase
      * @ORM\Column(name="name", type="string")
      */
     private $name;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     /**
      * @return string
@@ -70,5 +76,29 @@ class Feature extends EntityBase
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Feature
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

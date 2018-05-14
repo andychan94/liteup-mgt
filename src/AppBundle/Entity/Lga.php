@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
@@ -37,6 +36,13 @@ class Lga extends EntityBase
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     /**
      * @ORM\OneToMany(targetEntity="Area", mappedBy="lga")
@@ -106,7 +112,7 @@ class Lga extends EntityBase
      *
      * @return Lga
      */
-    public function setState(\AppBundle\Entity\State $state = null)
+    public function setState(State $state = null)
     {
         $this->state = $state;
 
@@ -130,7 +136,7 @@ class Lga extends EntityBase
      *
      * @return Lga
      */
-    public function addArea(\AppBundle\Entity\Area $area)
+    public function addArea(Area $area)
     {
         $this->areas[] = $area;
 
@@ -142,7 +148,7 @@ class Lga extends EntityBase
      *
      * @param \AppBundle\Entity\Area $area
      */
-    public function removeArea(\AppBundle\Entity\Area $area)
+    public function removeArea(Area $area)
     {
         $this->areas->removeElement($area);
     }
@@ -164,7 +170,7 @@ class Lga extends EntityBase
      *
      * @return Lga
      */
-    public function addHouse(\AppBundle\Entity\House $house)
+    public function addHouse(House $house)
     {
         $this->houses[] = $house;
 
@@ -176,7 +182,7 @@ class Lga extends EntityBase
      *
      * @param \AppBundle\Entity\House $house
      */
-    public function removeHouse(\AppBundle\Entity\House $house)
+    public function removeHouse(House $house)
     {
         $this->houses->removeElement($house);
     }
@@ -189,5 +195,29 @@ class Lga extends EntityBase
     public function getHouses()
     {
         return $this->houses;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Lga
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

@@ -144,13 +144,6 @@ class House extends EntityBase
     private $deleted;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="selling", type="boolean")
-     */
-    private $selling;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
      */
     private $photos;
@@ -409,30 +402,6 @@ class House extends EntityBase
     public function getDeleted()
     {
         return $this->deleted;
-    }
-
-    /**
-     * Set forSale
-     *
-     * @param integer $selling
-     *
-     * @return House
-     */
-    public function setSelling($selling)
-    {
-        $this->selling = $selling;
-
-        return $this;
-    }
-
-    /**
-     * Get forSale
-     *
-     * @return integer
-     */
-    public function getSelling()
-    {
-        return $this->selling;
     }
 
     /**

@@ -32,6 +32,13 @@ class State extends EntityBase
     private $name;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+
+    /**
      * @ORM\OneToMany(targetEntity="Lga", mappedBy="state")
      */
     private $lgas;
