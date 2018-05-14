@@ -62,6 +62,7 @@ class Area extends EntityBase
      */
     public function __construct()
     {
+        $this->setPosition(0);
         $this->houses = new ArrayCollection();
     }
 

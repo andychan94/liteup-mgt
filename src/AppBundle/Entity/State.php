@@ -56,6 +56,7 @@ class State extends EntityBase
      */
     public function __construct()
     {
+        $this->setPosition(0);
         $this->lgas = new ArrayCollection();
     }
 

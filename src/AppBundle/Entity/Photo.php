@@ -44,6 +44,14 @@ class Photo extends EntityBase
     private $position;
 
     /**
+     * Photo constructor.
+     */
+    public function __construct()
+    {
+        $this->setPosition(0);
+    }
+
+    /**
      * Get id
      *
      * @return integer

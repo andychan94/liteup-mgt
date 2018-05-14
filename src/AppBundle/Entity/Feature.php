@@ -45,6 +45,14 @@ class Feature extends EntityBase
     }
 
     /**
+     * Feature constructor.
+     */
+    public function __construct()
+    {
+        $this->setPosition(0);
+    }
+
+    /**
      * Get id
      *
      * @return integer
