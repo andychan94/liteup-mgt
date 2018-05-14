@@ -157,11 +157,11 @@
         <th class="has-text-right"><label>
                 <input type="checkbox" class="check_all">
             </label></th>
-        <th>{{ knp_pagination_sortable(pagination, 'h_id'|trans, 'id') }}</th>
+        <th>ID</th>
         <th>Main photo</th>
         <th>Details</th>
-        <th>{{ knp_pagination_sortable(pagination, 'state.name'|trans, 'state') }}</th>
-        <th>{{ knp_pagination_sortable(pagination, 'lga.name'|trans, 'lga') }}</th>
+        <th>{{ 'state.name'|trans }}</th>
+        <th>{{ 'lga.name'|trans }}</th>
         <th>Status</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
@@ -220,7 +220,7 @@
                     </td>
                     <td>
                         <span class="tag is-primary"><span class="icon"><i
-                                        class="fas fa-eye"></i></span>{{ house.viewCount }} views</span>
+                                        class="fas fa-eye"></i></span>{#{ house.viewCount }#} views</span>
                         <span class="tag is-success"><span class="icon"><i
                                         class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }}
                         </span>
@@ -230,7 +230,7 @@
                     <td>
                         <a class="button is-info tooltip is-tooltip-bottom"
                            data-tooltip="Edit the property"
-                           href="{{ path('proprent_edit', {"id":house.id}) }}">
+                           href="{{ path(entityAltName~'_edit', {"id":house.id}) }}">
                             <span class="icon">
                                 <i class="fas fa-edit"></i>
                             </span>
@@ -238,7 +238,7 @@
                         {% if house.available == true %}
                             <a class="button is-warning tooltip is-tooltip-bottom"
                                data-tooltip="Make the property unavailable"
-                               href="{{ path('proprent_disable', {"id":house.id}) }}">
+                               href="{{ path(entityAltName~'_disable', {"id":house.id}) }}">
                                 <span class="icon">
                                     <i class="fas fa-ban"></i>
                                 </span>
@@ -246,7 +246,7 @@
                         {% else %}
                             <a class="button is-success tooltip is-tooltip-bottom"
                                data-tooltip="Make the property available"
-                               href="{{ path('proprent_enable', {"id":house.id}) }}">
+                               href="{{ path(entityAltName~'_enable', {"id":house.id}) }}">
                                 <span class="icon">
                                     <i class="fas fa-check"></i>
                                 </span>
@@ -254,7 +254,7 @@
                         {% endif %}
                         <a class="button is-dark tooltip is-tooltip-bottom"
                            data-tooltip="Move the property to Properties for sale"
-                           href="{{ path('proprent_move', {"id":house.id}) }}">
+                           href="{{ path(entityAltName~'_move', {"id":house.id}) }}">
                             <span class="icon">
                                 <i class="fas fas fa-hand-holding-usd"></i>
                             </span>
@@ -262,7 +262,7 @@
 
                         <a class="button is-danger tooltip is-tooltip-bottom"
                            data-tooltip="Delete the property"
-                           href="{{ path('proprent_delete', {"id":house.id}) }}">
+                           href="{{ path(entityAltName~'_delete', {"id":house.id}) }}">
                             <span class="icon">
                                 <i class="fas fa-trash"></i>
                             </span>
@@ -276,7 +276,7 @@
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         {{ knp_pagination_render(pagination) }}
     </nav>
-    <a class="button is-primary" href="{{ path('proprent_add') }}">
+    <a class="button is-primary" href="{{ path(entityAltName~'_add') }}">
         <span class="icon is-small">
             <i class="fas fa-plus"></i>
         </span>

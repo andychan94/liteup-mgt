@@ -33,7 +33,7 @@ class PropertyRentController extends BaseController
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
-        $this->entityName = "House";
+        $this->entityName = "Property";
         $this->entityAltName = "proprent";
         $this->entityAltNamePlu = "proprents";
     }
@@ -93,13 +93,13 @@ class PropertyRentController extends BaseController
 
     /**
      * @Route("/edit/{id}", name="proprent_edit")
-     * @param House $house
+     * @param House $entity
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function editAction(House $house, Request $request, LoggerInterface $logger)
+    public function editAction(House $entity, Request $request, LoggerInterface $logger)
     {
-        $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
+        $form = $this->createForm($this->formTypeName, $entity);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -112,17 +112,25 @@ class PropertyRentController extends BaseController
                         $this->t('app.error')
                     );
                     $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute('proprent_index');
+                    return $this->redirectToRoute($this->entityAltName.'_index');
                 }
-                $this->addFlash('success', 'Property updated');
-                return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
+                $this->addFlash(
+                    'success',
+                    $this->t(
+                        'entity.updated',
+                        array('%entity%' => $this->entityName)
+                    )
+                );
+                return $this->redirectToRoute('proprent_edit', array('id' => $entity->getId()));
             }
         }
         $states = $this->getDoctrine()->getRepository(State::class)->findAll();
         return $this->render(':dashboard/proprent:edit.html.twig', [
-            'house' => $house,
+            'entity' => $entity,
             'form' => $form->createView(),
             'states' => $states,
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu
         ]);
     }
 
@@ -135,7 +143,7 @@ class PropertyRentController extends BaseController
     public function createAction(Request $request, LoggerInterface $logger)
     {
         $house = new House();
-        $form = $this->createForm("AppBundle\Form\AdminHouseFormType", $house);
+        $form = $this->createForm($this->formTypeName, $house);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -161,6 +169,8 @@ class PropertyRentController extends BaseController
 
         return $this->render(':dashboard/proprent:create.html.twig', [
             'states' => $states,
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu,
             'form' => $form->createView(),
         ]);
     }

@@ -3,26 +3,25 @@
 {% block body %}
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
-            <li><a href="{{ path('dashboard_home') }}">Home</a></li>
-            <li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Add</a></li>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(entityAltName~'_index') }}">{{ (entityAltName~'.title')|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ 'add'|trans }}</a></li>
         </ul>
     </nav>
 
     <div class="level">
         <div class="level-left">
             <div class="level-item">
-                <div class="title">Properties for rent
-
+                <div class="title">
+                    {{ 'add'|trans~' '~(entityAltName~'.name')|trans }}
                 </div>
             </div>
         </div>
     </div>
 
-
     <div class="columns is-mobile">
         <div class="column is-full-mobile is-two-thirds-tablet">
-            {{ form_start(form, {'method': 'post', 'action': path('proprent_add')}) }}
+            {{ form_start(form, {'method': 'post', 'action': path(entityAltName~'_add')}) }}
             {% form_theme form ':dashboard/form:custom_form.html.twig' %}
             <div class="steps" id="stepsDemo">
                 <div class="step-item is-active is-success">
@@ -275,7 +274,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/bulma-steps.js') }}"></script>
-    <script type="text/javascript" src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <script>
         var limit = null;
         var pathWithLimit = null;
@@ -287,8 +285,8 @@
             var areaSelect = $("#areaSelect") || null;
             var lgaSelect = $("#lgaSelect") || null;
             var stateSelect = $("#stateSelect") || null;
-            $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed'));
-            $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed'));
+            $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed').prop('name', 'lgaSeed'));
+            $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed').prop('name', 'areaSeed'));
             var areaSelectSeed = $("#areaSelectSeed") || null;
             var lgaSelectSeed = $("#lgaSelectSeed") || null;
             var selectedState = $(stateSelect).find("option:selected").text();
