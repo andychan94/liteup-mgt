@@ -28,17 +28,14 @@ class DefaultController extends BaseController
     {
         $this->mailer = $mailer;
     }
+
     /**
      * @Route("/", name="homepage")
      * @param UserManagerInterface $userManager
-     * @param \FOS\UserBundle\Mailer\MailerInterface $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(UserManagerInterface $userManager)
     {
-        $user = $userManager->findUserByEmail("nrashidov@yahoo.com");
-        if (is_null($user)) {return $this->redirectToRoute('fos_user_registration_register');}
-        $this->mailer->sendConfirmationEmailMessage($user);
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);

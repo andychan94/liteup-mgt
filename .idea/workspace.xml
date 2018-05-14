@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b4120f7-2799-4427-a511-16dd0e57b24a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/translations/messages.en.yml" afterPath="$PROJECT_DIR$/app/Resources/translations/messages.en.yml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/blocks/left.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/blocks/left.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-mgr.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-mgr.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-upload.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-upload.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/create.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/edit.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/index.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropTypeDeterminerController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropTypeDeterminerController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertySellController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProfileType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProfileType.php" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,13 +21,13 @@
         <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="299">
-              <caret line="57" column="53" lean-forward="true" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="91" />
+              <caret line="57" column="53" lean-forward="false" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="91" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/propbin/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1711">
@@ -48,6 +35,16 @@
               <folding>
                 <element signature="e#12#36#0#Twig" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,7 +159,6 @@
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig" />
         <option value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/public_html/js/scripts.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Features.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/AdminAreasFormType.php" />
@@ -204,6 +200,7 @@
         <option value="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/dashboard/blocks/left.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
       </list>
     </option>
   </component>
@@ -647,7 +644,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369743000" />
+    <option name="totallyTimeSpent" value="369896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="810" extended-state="0" />
@@ -955,14 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-752">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/DashboardController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1098,7 +1087,7 @@
     <entry file="file://$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
-          <caret line="57" column="53" lean-forward="true" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="91" />
+          <caret line="57" column="53" lean-forward="false" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="91" />
           <folding />
         </state>
       </provider>
@@ -1118,6 +1107,14 @@
           <folding>
             <element signature="e#12#36#0#Twig" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
