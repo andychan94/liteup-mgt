@@ -8,7 +8,14 @@
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ path('dashboard_home') }}">Home</a></li>
-            <li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>
+            {% if house.type == 'rent' %}
+                <li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>
+            {% elseif house.type == 'sell' %}
+                <li><a href="{{ path('propsell_index') }}">Properties for sale</a></li>
+            {% elseif house.type == 'short' %}
+                {#<li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>#}
+            {% endif %}
+            <li><a href="{{ path('determiner', {"id":house.id}) }}">{{ 'prop_id'|trans }}: {{ house.id }}</a></li>
             <li class="is-active"><a href="#" aria-current="page">Photos</a></li>
         </ul>
     </nav>
@@ -17,7 +24,7 @@
         <div class="level-left">
             <div class="level-item">
                 <div class="title">
-                    Photos
+                    Upload Photos
                 </div>
             </div>
         </div>
@@ -33,7 +40,7 @@
                 <span class="icon is-small">
                     <i class="fas fa-location-arrow"></i>
                 </span>
-                <span>{{ 'b_manage'|trans~'photo.plural'|trans~'b_manage_'|trans }}</span>
+                <span>Save and {{ 'b_manage'|trans~'photo.plural'|trans~'b_manage_'|trans }}</span>
             </a>
 
 

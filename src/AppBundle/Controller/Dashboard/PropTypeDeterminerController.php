@@ -23,10 +23,16 @@ class PropTypeDeterminerController extends BaseController
     public function determinerAction(House $house, Request $request)
     {
         try {
-            if ($house->getSelling() === 1) {
+            if ($house->getType() === 'rent') {
+                return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
+            }
+            if ($house->getType() === 'sell') {
                 return $this->redirectToRoute('propsell_edit', array('id' => $house->getId()));
             }
-            return $this->redirectToRoute('proprent_edit', array('id' => $house->getId()));
+//            if ($house->getType() === 'short') {
+//                return $this->redirectToRoute('propshort_edit', array('id' => $house->getId()));
+//            }
+            return $this->redirectToRoute('dashboard_home');
         } catch (Exception $e) {
             return $this->redirectToRoute('dashboard_home');
         }

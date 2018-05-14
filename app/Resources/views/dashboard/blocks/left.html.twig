@@ -29,16 +29,22 @@
                     Properties for sale
                 </a>
             </li>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-ban"></i></span>
-                    Disabled properties</a></li>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-th-list"></i></span>
+            <li><a
+                        {% if app.request.get('_route') == 'propunaval_index' %}
+                            class="is-active"
+                        {% endif %}
+                        href="{{ path('propunaval_index') }}">
+                    <span class="icon is-small"><i class="fas fa-ban"></i></span>
+                    Unavailable properties</a>
+            </li>
+            <li><a href="{{ path('fos_user_profile_edit') }}"><span class="icon is-small"><i class="fas fa-th-list"></i></span>
                     Agency details</a></li>
             <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i class="fas fa-history"></i></span>
                     Contact history</a></li>
             <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i
                                 class="fas fa-trash-alt"></i></span>
                     Recycle bin</a></li>
-            <li><a href="#{#{ path('house_list') }#}"><span class="icon is-small"><i
+            <li><a href="{{ path('fos_user_security_logout') }}"><span class="icon is-small"><i
                                 class="fas fa-sign-out-alt"></i></span>
                     Logout</a></li>
             {% if is_granted('ROLE_SUPER_ADMIN') %}

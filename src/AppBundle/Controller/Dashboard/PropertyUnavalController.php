@@ -18,9 +18,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 
 /**
- * @Route("/dashboard/propsell")
+ * @Route("/dashboard/propunaval")
  */
-class PropertySellController extends BaseController
+class PropertyUnavalController extends BaseController
 {
     /**
      * @var $objName string
@@ -35,12 +35,12 @@ class PropertySellController extends BaseController
     {
         parent::setContainer($container);
         $this->entityName = "Property";
-        $this->entityAltName = "propsell";
-        $this->entityAltNamePlu = "propsells";
+        $this->entityAltName = "propunaval";
+        $this->entityAltNamePlu = "propunaval";
     }
 
     /**
-     * @Route("/", name="propsell_index")
+     * @Route("/", name="propunaval_index")
      * @param Request $request
      * @param LoggerInterface $logger
      * @return Response
@@ -60,8 +60,8 @@ class PropertySellController extends BaseController
             $queryBuilder = $this->getDoctrine()->getRepository($this->objName)->createQueryBuilder('u')
                 ->where($agencyKey . ' = :agency')
                 ->setParameter('agency', $agencyValue)
-                ->andWhere('u.type = :type')
-                ->setParameter('type', HouseTypeEnum::TYPE_SELL)
+                ->andWhere('u.available = :available')
+                ->setParameter('available', false)
                 ->andWhere('u.deleted = :deleted')
                 ->setParameter('deleted', false)
                 ->orderBy('u.createdAt', 'DESC');
@@ -93,7 +93,7 @@ class PropertySellController extends BaseController
     }
 
     /**
-     * @Route("/edit/{id}", name="propsell_edit")
+     * @Route("/edit/{id}", name="propunaval_edit")
      * @param House $entity
      * @param Request $request
      * @param LoggerInterface $logger
@@ -137,49 +137,7 @@ class PropertySellController extends BaseController
     }
 
     /**
-     * @Route("/add", name="propsell_add")
-     * @param Request $request
-     * @param LoggerInterface $logger
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     */
-    public function createAction(Request $request, LoggerInterface $logger)
-    {
-        $house = new House();
-        $form = $this->createForm($this->formTypeName, $house);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                $house->setAgency($this->getUser());
-                $house->setType(HouseTypeEnum::TYPE_SELL);
-                $house->setDeleted(false);
-                $em = $this->getDoctrine()->getManager();
-                try {
-                    $em->persist($house);
-                    $em->flush();
-                } catch (Exception $e) {
-                    $this->addFlash(
-                        'error',
-                        $this->t('app.error')
-                    );
-                    $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index');
-                }
-                $this->addFlash('success', 'Property added');
-                return $this->redirectToRoute('photo_add', array('id' => $house->getId()));
-            }
-        }
-        $states = $this->getDoctrine()->getRepository(State::class)->findAll();
-
-        return $this->render(':dashboard/' . $this->entityAltName . ':create.html.twig', [
-            'states' => $states,
-            'entityAltName' => $this->entityAltName,
-            'entityAltNamePlu' => $this->entityAltNamePlu,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/delete/{id}", name="propsell_delete")
+     * @Route("/delete/{id}", name="propunaval_delete")
      * @param House $entity
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -214,7 +172,7 @@ class PropertySellController extends BaseController
     }
 
     /**
-     * @Route("/delete", name="propsell_delete_many", methods={"POST"})
+     * @Route("/delete", name="propunaval_delete_many", methods={"POST"})
      * @param Request $request
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -260,7 +218,7 @@ class PropertySellController extends BaseController
     }
 
     /**
-     * @Route("/enable/{id}", name="propsell_enable")
+     * @Route("/enable/{id}", name="propunaval_enable")
      * @param House $entity
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -295,7 +253,7 @@ class PropertySellController extends BaseController
     }
 
     /**
-     * @Route("/enable", name="propsell_enable_many")
+     * @Route("/enable", name="propunaval_enable_many")
      * @param Request $request
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -329,87 +287,6 @@ class PropertySellController extends BaseController
                     'success',
                     $this->t(
                         'entity.moved_to_deleted',
-                        array(
-                            '%count%' => count($param),
-                            '%entity%' => $this->entityName
-                        )
-                    )
-                );
-            }
-        }
-        return $this->redirectToRoute($this->entityAltName . '_index');
-    }
-
-    /**
-     * @Route("/disable/{id}", name="propsell_disable")
-     * @param House $entity
-     * @param LoggerInterface $logger
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function disableAction(House $entity, LoggerInterface $logger)
-    {
-        $em = $this->getDoctrine()->getManager();
-        if ($entity != null) {
-            try {
-                $entity->setAvailable(false);
-                $em->flush();
-            } catch (Exception $e) {
-                $this->addFlash(
-                    'error',
-                    $this->t('app.error')
-                );
-                $this->logger($logger, $e->getMessage());
-                return $this->redirectToRoute($this->entityAltNamePlu . '_index');
-            }
-            $this->addFlash(
-                'success',
-                $this->t(
-                    'entity.made_unavailable',
-                    array(
-                        '%count%' => 1,
-                        '%entity%' => $this->entityName
-                    )
-                )
-            );
-        }
-        return $this->redirectToRoute($this->entityAltName . '_index');
-    }
-
-    /**
-     * @Route("/disable", name="propsell_disable_many")
-     * @param Request $request
-     * @param LoggerInterface $logger
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function disableManyAction(Request $request, LoggerInterface $logger)
-    {
-        if ($request != null) {
-            $param = $request->request->get($this->entityAltNamePlu, null);
-            if (!is_null($param)) {
-                /**
-                 * @var $em EntityManager
-                 */
-                $em = $this->getDoctrine()->getManager();
-                foreach ($param as $id) {
-                    $entity = $this->getDoctrine()
-                        ->getRepository($this->objName)
-                        ->find($id);
-                    $entity->setAvailable(false);
-                }
-                try {
-                    $em->flush();
-                } catch (Exception $e) {
-                    $this->addFlash(
-                        'error',
-                        $this->t('app.error')
-                    );
-                    $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index');
-                }
-                $this->addFlash(
-                    'success',
-                    $this->t(
-                        'entity.made_unavailable',
                         array(
                             '%count%' => count($param),
                             '%entity%' => $this->entityName

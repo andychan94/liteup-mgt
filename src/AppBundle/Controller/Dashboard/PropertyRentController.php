@@ -123,11 +123,11 @@ class PropertyRentController extends BaseController
                         array('%entity%' => $this->entityName)
                     )
                 );
-                return $this->redirectToRoute('proprent_edit', array('id' => $entity->getId()));
+                return $this->redirectToRoute($this->entityAltName . '_edit', array('id' => $entity->getId()));
             }
         }
         $states = $this->getDoctrine()->getRepository(State::class)->findAll();
-        return $this->render(':dashboard/proprent:edit.html.twig', [
+        return $this->render(':dashboard/' . $this->entityAltName . ':edit.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
             'states' => $states,
@@ -162,7 +162,7 @@ class PropertyRentController extends BaseController
                         $this->t('app.error')
                     );
                     $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute('proprent_index');
+                    return $this->redirectToRoute($this->entityAltName . '_index');
                 }
                 $this->addFlash('success', 'Property added');
                 return $this->redirectToRoute('photo_add', array('id' => $house->getId()));
@@ -170,7 +170,7 @@ class PropertyRentController extends BaseController
         }
         $states = $this->getDoctrine()->getRepository(State::class)->findAll();
 
-        return $this->render(':dashboard/proprent:create.html.twig', [
+        return $this->render(':dashboard/' . $this->entityAltName . ':create.html.twig', [
             'states' => $states,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
@@ -210,7 +210,7 @@ class PropertyRentController extends BaseController
                 )
             );
         }
-        return $this->redirectToRoute($this->entityAltName.'_index');
+        return $this->redirectToRoute($this->entityAltName . '_index');
     }
 
     /**
@@ -291,7 +291,7 @@ class PropertyRentController extends BaseController
                 )
             );
         }
-        return $this->redirectToRoute($this->entityAltName.'_index');
+        return $this->redirectToRoute($this->entityAltName . '_index');
     }
 
     /**
@@ -372,7 +372,7 @@ class PropertyRentController extends BaseController
                 )
             );
         }
-        return $this->redirectToRoute($this->entityAltName.'_index');
+        return $this->redirectToRoute($this->entityAltName . '_index');
     }
 
     /**

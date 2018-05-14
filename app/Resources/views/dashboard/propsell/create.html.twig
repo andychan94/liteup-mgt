@@ -3,153 +3,330 @@
 {% block body %}
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
-            <li><a href="{{ path('dashboard_home') }}">Home</a></li>
-            <li><a href="{{ path('propsell_index') }}">Properties for sale</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Add</a></li>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(entityAltName~'_index') }}">{{ (entityAltName~'.title')|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ 'add'|trans }}</a></li>
         </ul>
     </nav>
 
     <div class="level">
         <div class="level-left">
             <div class="level-item">
-                <div class="title">Properties for sale
-
+                <div class="title">
+                    {{ 'add'|trans~' '~(entityAltName~'.name')|trans }}
                 </div>
             </div>
         </div>
     </div>
 
     <div class="columns is-mobile">
-        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-
-            {{ form_start(form, {'method': 'post', 'action': path('propsell_add')}) }}
+        <div class="column is-full-mobile is-two-thirds-tablet">
+            {{ form_start(form, {'method': 'post', 'action': path(entityAltName~'_add')}) }}
             {% form_theme form ':dashboard/form:custom_form.html.twig' %}
-            <div class="field">
-                <label class="label">{{ form_label(form.title) }}</label>
-                <div class="control">
-                    {{ form_widget(form.title) }}
+            <div class="steps" id="stepsDemo">
+                <div class="step-item is-active is-success">
+                    <div class="step-marker">1</div>
+                    <div class="step-details">
+                        <p class="step-title">Location</p>
+                    </div>
                 </div>
-                <p class="help is-danger">{{ form_errors(form.title) }}</p>
-            </div>
+                <div class="step-item">
+                    <div class="step-marker">2</div>
+                    <div class="step-details">
+                        <p class="step-title">Price and details</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-marker">3</div>
+                    <div class="step-details">
+                        <p class="step-title">Description</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-marker">4</div>
+                    <div class="step-details">
+                        <p class="step-title">Features and photos</p>
+                    </div>
+                </div>
+                <div class="steps-content">
+                    <div class="step-content has-text-centered is-active">
 
-            <div class="field">
-                <label class="label">{{ form_label(form.price) }}</label>
-                <div class="control">
-                    {{ form_widget(form.price) }}
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">State</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <div class="select">
+                                            <select name="state" id="stateSelect">
+                                                {% for state in states %}
+                                                    <option value="{{ state.id }}">{{ state.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <span class="icon is-left">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">LGA</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <div class="select">
+                                            {{ form_widget(form.lga, { 'id': 'lgaSelect' }) }}
+                                        </div>
+                                        <span class="icon is-left">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <div id="hiddenLgas" class="hider">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Area</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <div class="select">
+                                            {{ form_widget(form.area, { 'id': 'areaSelect' }) }}
+                                        </div>
+                                        <span class="icon is-left">
+                                            <i class="fas fa-sign"></i>
+                                        </span>
+                                        <div id="hiddenAreas" class="hider">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Street</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control has-icon has-icons-left">
+                                        {{ form_widget(form.address) }}
+                                        <span class="icon is-left">
+                                            <i class="fas fa-street-view"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content has-text-centered">
+                        {#<div class="field is-horizontal">#}
+                            {#<div class="field-label is-normal">#}
+                                {#<label class="label">Type</label>#}
+                            {#</div>#}
+                            {#<div class="field-body">#}
+                                {#<div class="field">#}
+                                    {#<div class="control">#}
+                                        {#<div class="select">#}
+                                            {#{{ form_widget(form.type) }}#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Price</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field is-expanded">
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <a class="button is-static">
+                                                {{ currency|raw }}
+                                            </a>
+                                        </p>
+                                        <div class="control is-expanded">
+                                            {{ form_widget(form.price) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content has-text-centered">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Title</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        {{ form_widget(form.title) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Type</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select">
+                                            {{ form_widget(form.kind) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Bedrooms</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select">
+                                            {{ form_widget(form.bedrooms) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Bathrooms</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select">
+                                            {{ form_widget(form.bathrooms) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Toilets</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select">
+                                            {{ form_widget(form.toilets) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Description</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        {{ form_widget(form.description) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <div class="columns">
+                            <div class="column">
+                                {{ form_widget(form.features, {'class':'switch is-rounded'}) }}
+                            </div>
+                        </div>
+                        <div class="block has-text-centered">
+                            <input class="button is-primary" type="submit" id="_submit" name="_submit"
+                                   value="Save and Proceed to adding Photos"/>
+                        </div>
+                    </div>
                 </div>
-                <p class="help is-danger">{{ form_errors(form.price) }}</p>
-            </div>
-
-            <div class="field">
-                <label class="label">{{ form_label(form.address) }}</label>
-                <div class="control">
-                    {{ form_widget(form.address) }}
+                <div class="steps-actions">
+                    <div class="steps-action">
+                        <a href="#" data-nav="previous" class="button is-info">Previous</a>
+                    </div>
+                    <div class="steps-action">
+                        <a href="#" data-nav="next" class="button is-info">Next</a>
+                    </div>
                 </div>
-                <p class="help is-danger">{{ form_errors(form.address) }}</p>
-            </div>
-
-            <div class="field">
-                <label class="label">{{ form_label(form.size) }}</label>
-                <div class="control">
-                    {{ form_widget(form.size) }}
-                </div>
-                <p class="help is-danger">{{ form_errors(form.size) }}</p>
-            </div>
-            {#
-            <div class="field">
-                <label class="label">{{ form_label(form.area) }}</label>
-                <div class="control">
-                    <span class="select">
-                    {{ form_widget(form.area) }}
-                    </span>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.area) }}</p>
-            </div>
-            #}
-            <div class="field">
-                <label class="label">{{ form_label(form.essentials) }}</label>
-                <div class="control">
-                    {{ form_widget(form.essentials) }}
-                </div>
-                <p class="help is-danger">{{ form_errors(form.essentials) }}</p>
-            </div>
-
-            <div class="field">
-                <label class="label">{{ form_label(form.commute) }}</label>
-                <div class="control">
-                    {{ form_widget(form.commute) }}
-                </div>
-                <p class="help is-danger">{{ form_errors(form.commute) }}</p>
-            </div>
-
-            <div class="field">
-                <label class="label">{{ form_label(form.type) }}</label>
-                <div class="control">
-                    {{ form_widget(form.type) }}
-                </div>
-                <p class="help is-danger">{{ form_errors(form.type) }}</p>
-            </div>
-
-            <div class="field">
-                <label class="label">{{ form_label(form.balcony_size) }}</label>
-                <div class="control">
-                    {{ form_widget(form.balcony_size) }}
-                </div>
-                <p class="help is-danger">{{ form_errors(form.balcony_size) }}</p>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="label">
-                        {{ form_widget(form.available) }}
-                        {{ form_label(form.available) }}
-                    </label>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.available) }}</p>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="label">
-                        {{ form_widget(form.parking) }}
-                        {{ form_label(form.parking) }}
-                    </label>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.parking) }}</p>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="label">
-                        {{ form_widget(form.gas) }}
-                        {{ form_label(form.gas) }}
-                    </label>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.gas) }}</p>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="label">
-                        {{ form_widget(form.water) }}
-                        {{ form_label(form.water) }}
-                    </label>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.water) }}</p>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="label">
-                        {{ form_widget(form.aircon) }}
-                        {{ form_label(form.aircon) }}
-                    </label>
-                </div>
-                <p class="help is-danger">{{ form_errors(form.aircon) }}</p>
             </div>
             {{ form_rest(form) }}
-            <input class="button is-primary" type="submit" id="_submit" name="_submit" value="Create"/>
             {{ form_end(form, {'render_rest': false}) }}
+            {#<form action="{{ oneup_uploader_endpoint('gallery') }}" class="dropzone" style="width:200px; height:200px; border:4px dashed black">#}
+            {#</form>#}
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bulma-steps.js') }}"></script>
+    <script>
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+    <script>
+        $(function () {
+            var areaSelect = $("#areaSelect") || null;
+            var lgaSelect = $("#lgaSelect") || null;
+            var stateSelect = $("#stateSelect") || null;
+            $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed').prop('name', 'lgaSeed'));
+            $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed').prop('name', 'areaSeed'));
+            var areaSelectSeed = $("#areaSelectSeed") || null;
+            var lgaSelectSeed = $("#lgaSelectSeed") || null;
+            var selectedState = $(stateSelect).find("option:selected").text();
+            lgaSelect.children().not('optgroup[label="' + selectedState + '"]').remove();
+            var selectedLga = $(lgaSelect).find("option:selected").text();
+            areaSelect.children().not('optgroup[label="' + selectedLga + '"]').remove();
+            var areaLength = areaSelect.find("option").length;
+            if (areaLength === 0) {
+                areaSelect.prop('disabled', true);
+            } else {
+                areaSelect.prop('disabled', false);
+            }
+            stateSelect.change(function () {
+                var selectedState = $("option:selected", this).text();
+                var optionsLga = $(lgaSelectSeed).find('optgroup[label="' + selectedState + '"]');
+                lgaSelect.html(optionsLga.children().clone());
+
+                var selectedLga = $(lgaSelect).find("option:selected").text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.children().clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+            lgaSelect.change(function () {
+                var selectedLga = $("option:selected", this).text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+        });
+    </script>
 {% endblock %}

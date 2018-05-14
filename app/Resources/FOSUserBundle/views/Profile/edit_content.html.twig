@@ -23,22 +23,22 @@
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         {% form_theme form ':dashboard/form:custom_form.html.twig' %}
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.username) }}</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        {{ form_widget(form.username) }}
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </p>
-                    <p class="help is-danger">{{ form_errors(form.username) }}</p>
-                </div>
-            </div>
-        </div>
+        {#<div class="field is-horizontal">#}
+            {#<div class="field-label is-normal">#}
+                {#<label class="label">{{ form_label(form.username) }}</label>#}
+            {#</div>#}
+            {#<div class="field-body">#}
+                {#<div class="field">#}
+                    {#<p class="control is-expanded has-icons-left">#}
+                        {#{{ form_widget(form.username) }}#}
+                        {#<span class="icon is-small is-left">#}
+                            {#<i class="fas fa-user"></i>#}
+                        {#</span>#}
+                    {#</p>#}
+                    {#<p class="help is-danger">{{ form_errors(form.username) }}</p>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">

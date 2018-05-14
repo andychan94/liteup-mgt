@@ -37,6 +37,7 @@ b_update: 'Update'
 b_upload: 'Upload'
 b_manage: 'Manage '
 b_manage_: ' for this property'
+b_available: 'Make available'
 more: ' More'
 prop_id: 'Property ID'
 with_selected: 'With selected: '
@@ -79,6 +80,10 @@ propsell:
     name: 'Poperty'
     plural: 'Properties'
     title: 'Properties for Sale'
+propunaval:
+    name: 'Poperty'
+    plural: 'Properties'
+    title: 'Unavailable Properties'
 photo:
     name: 'Photo'
     plural: 'Photos'
