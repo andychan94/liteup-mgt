@@ -59,7 +59,7 @@ class House extends EntityBase
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $lga;
 

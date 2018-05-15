@@ -59,7 +59,7 @@ class House extends EntityBase
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $lga;
 
@@ -142,13 +142,6 @@ class House extends EntityBase
      * @ORM\Column(name="deleted", type="boolean")
      */
     private $deleted;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="selling", type="boolean")
-     */
-    private $selling;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
@@ -409,30 +402,6 @@ class House extends EntityBase
     public function getDeleted()
     {
         return $this->deleted;
-    }
-
-    /**
-     * Set forSale
-     *
-     * @param integer $selling
-     *
-     * @return House
-     */
-    public function setSelling($selling)
-    {
-        $this->selling = $selling;
-
-        return $this;
-    }
-
-    /**
-     * Get forSale
-     *
-     * @return integer
-     */
-    public function getSelling()
-    {
-        return $this->selling;
     }
 
     /**

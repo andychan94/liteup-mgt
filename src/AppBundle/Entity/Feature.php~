@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Mapping\EntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +45,14 @@ class Feature extends EntityBase
     }
 
     /**
+     * Feature constructor.
+     */
+    public function __construct()
+    {
+        $this->setPosition(0);
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -77,5 +84,29 @@ class Feature extends EntityBase
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Feature
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

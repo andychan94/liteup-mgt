@@ -56,6 +56,7 @@ class State extends EntityBase
      */
     public function __construct()
     {
+        $this->setPosition(0);
         $this->lgas = new ArrayCollection();
     }
 
@@ -100,7 +101,7 @@ class State extends EntityBase
      *
      * @return State
      */
-    public function addLga(\AppBundle\Entity\Lga $lga)
+    public function addLga(Lga $lga)
     {
         $this->lgas[] = $lga;
 
@@ -112,7 +113,7 @@ class State extends EntityBase
      *
      * @param \AppBundle\Entity\Lga $lga
      */
-    public function removeLga(\AppBundle\Entity\Lga $lga)
+    public function removeLga(Lga $lga)
     {
         $this->lgas->removeElement($lga);
     }
@@ -125,5 +126,29 @@ class State extends EntityBase
     public function getLgas()
     {
         return $this->lgas;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return State
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

@@ -310,7 +310,7 @@ class Agency extends BaseUser
      *
      * @return Agency
      */
-    public function addHouse(\AppBundle\Entity\House $house)
+    public function addHouse(House $house)
     {
         $this->houses[] = $house;
 
@@ -322,7 +322,7 @@ class Agency extends BaseUser
      *
      * @param \AppBundle\Entity\House $house
      */
-    public function removeHouse(\AppBundle\Entity\House $house)
+    public function removeHouse(House $house)
     {
         $this->houses->removeElement($house);
     }
