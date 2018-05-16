@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Mapping\EntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
@@ -27,6 +27,7 @@ class Lga extends EntityBase
     /**
      * @ORM\ManyToOne(targetEntity="State", inversedBy="lgas")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @OrderBy({"name" = "ASC"})
      */
     private $state;
 
@@ -45,16 +46,6 @@ class Lga extends EntityBase
     private $position;
 
     /**
-     * @ORM\OneToMany(targetEntity="Area", mappedBy="lga")
-     */
-    protected $areas;
-
-    /**
-     * @ORM\OneToMany(targetEntity="House", mappedBy="lga")
-     */
-    protected $houses;
-
-    /**
      * @return string
      */
     public function __toString()
@@ -68,8 +59,6 @@ class Lga extends EntityBase
     public function __construct()
     {
         $this->setPosition(0);
-        $this->areas = new ArrayCollection();
-        $this->houses = new ArrayCollection();
     }
 
     /**
@@ -128,74 +117,6 @@ class Lga extends EntityBase
     public function getState()
     {
         return $this->state;
-    }
-
-    /**
-     * Add area
-     *
-     * @param \AppBundle\Entity\Area $area
-     *
-     * @return Lga
-     */
-    public function addArea(Area $area)
-    {
-        $this->areas[] = $area;
-
-        return $this;
-    }
-
-    /**
-     * Remove area
-     *
-     * @param \AppBundle\Entity\Area $area
-     */
-    public function removeArea(Area $area)
-    {
-        $this->areas->removeElement($area);
-    }
-
-    /**
-     * Get areas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAreas()
-    {
-        return $this->areas;
-    }
-
-    /**
-     * Add house
-     *
-     * @param \AppBundle\Entity\House $house
-     *
-     * @return Lga
-     */
-    public function addHouse(House $house)
-    {
-        $this->houses[] = $house;
-
-        return $this;
-    }
-
-    /**
-     * Remove house
-     *
-     * @param \AppBundle\Entity\House $house
-     */
-    public function removeHouse(House $house)
-    {
-        $this->houses->removeElement($house);
-    }
-
-    /**
-     * Get houses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getHouses()
-    {
-        return $this->houses;
     }
 
     /**

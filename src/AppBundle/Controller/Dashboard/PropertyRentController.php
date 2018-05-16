@@ -49,7 +49,7 @@ class PropertyRentController extends BaseController
     {
         $limit = (int)$request->query->get('limit');
         $perpage = (!is_null($limit) && $limit > 0) ? $limit : 20;
-        $agencyKey = 'u.agency';
+        $agencyKey = 'h.agency';
         $agencyValue = $this->getUser();
 //         if getUser() is super admin, show all houses from all agencies
         if (in_array('ROLE_SUPER_ADMIN', $this->getUser()->getRoles())) {
@@ -57,14 +57,15 @@ class PropertyRentController extends BaseController
             $agencyValue = 1;
         }
         try {
-            $queryBuilder = $this->getDoctrine()->getRepository($this->objName)->createQueryBuilder('u')
-                ->where($agencyKey . ' = :agency')
+            $queryBuilder = $this->getDoctrine()->getRepository($this->objName)->createQueryBuilder('h')
+                ->innerJoin('h.types', 't')
+                ->where('t.name = :typeName')
+                ->setParameter('typeName', 'rent')
+                ->andwhere($agencyKey . ' = :agency')
                 ->setParameter('agency', $agencyValue)
-                ->andWhere('u.type = :type')
-                ->setParameter('type', HouseTypeEnum::TYPE_RENT)
-                ->andWhere('u.deleted = :deleted')
+                ->andWhere('h.deleted = :deleted')
                 ->setParameter('deleted', false)
-                ->orderBy('u.createdAt', 'DESC');
+                ->orderBy('h.createdAt', 'DESC');
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate(
                 $queryBuilder,
@@ -150,7 +151,6 @@ class PropertyRentController extends BaseController
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $house->setAgency($this->getUser());
-                $house->setType(HouseTypeEnum::TYPE_RENT);
                 $house->setDeleted(false);
                 $em = $this->getDoctrine()->getManager();
                 try {

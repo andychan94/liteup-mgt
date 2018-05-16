@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Mapping\EntityBase;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OrderBy;
 
@@ -47,11 +46,6 @@ class Area extends EntityBase
     private $position;
 
     /**
-     * @ORM\OneToMany(targetEntity="House", mappedBy="area")
-     */
-    protected $houses;
-
-    /**
      * @return string
      */
     public function __toString(){
@@ -63,7 +57,6 @@ class Area extends EntityBase
     public function __construct()
     {
         $this->setPosition(0);
-        $this->houses = new ArrayCollection();
     }
 
     /**
@@ -122,40 +115,6 @@ class Area extends EntityBase
     public function getLga()
     {
         return $this->lga;
-    }
-
-    /**
-     * Add house
-     *
-     * @param \AppBundle\Entity\House $house
-     *
-     * @return Area
-     */
-    public function addHouse(House $house)
-    {
-        $this->houses[] = $house;
-
-        return $this;
-    }
-
-    /**
-     * Remove house
-     *
-     * @param \AppBundle\Entity\House $house
-     */
-    public function removeHouse(House $house)
-    {
-        $this->houses->removeElement($house);
-    }
-
-    /**
-     * Get houses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getHouses()
-    {
-        return $this->houses;
     }
 
     /**

@@ -13,7 +13,6 @@ use AppBundle\Entity\House;
 use AppBundle\Entity\Photo;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 class UploadListener
 {

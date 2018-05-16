@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Area
@@ -43,9 +42,9 @@ class User extends EntityBase
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $lga;
+    private $lgaIdUser;
 
     /**
      * @ORM\Column(name="address", type="string", length=255, unique=true)
@@ -56,17 +55,17 @@ class User extends EntityBase
      * @ORM\Column(name="phone", type="string", length=255, unique=true)
      */
     private $phone;
-
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\House")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserHasHouses", mappedBy="users", cascade={"persist","remove"})
      */
-    protected $views;
+    protected $hasHouses;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->views = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->hasHouses = new ArrayCollection();
     }
 
     /**
@@ -158,7 +157,7 @@ class User extends EntityBase
      *
      * @return User
      */
-    public function setArea(\AppBundle\Entity\Area $area = null)
+    public function setArea(Area $area = null)
     {
         $this->area = $area;
 
@@ -178,13 +177,13 @@ class User extends EntityBase
     /**
      * Set lga
      *
-     * @param \AppBundle\Entity\Lga $lga
+     * @param \AppBundle\Entity\Lga $lgaIdUser
      *
      * @return User
      */
-    public function setLga(\AppBundle\Entity\Lga $lga)
+    public function setLgaIdUser(Lga $lgaIdUser)
     {
-        $this->lga = $lga;
+        $this->lgaIdUser = $lgaIdUser;
 
         return $this;
     }
@@ -194,42 +193,66 @@ class User extends EntityBase
      *
      * @return \AppBundle\Entity\Lga
      */
-    public function getLga()
+    public function getLgaIdUser()
     {
-        return $this->lga;
+        return $this->lgaIdUser;
     }
 
     /**
-     * Add view
+     * Set phone
      *
-     * @param \AppBundle\Entity\House $view
+     * @param string $phone
      *
      * @return User
      */
-    public function addView(\AppBundle\Entity\House $view)
+    public function setPhone($phone)
     {
-        $this->views[] = $view;
+        $this->phone = $phone;
 
         return $this;
     }
 
     /**
-     * Remove view
+     * Get phone
      *
-     * @param \AppBundle\Entity\House $view
+     * @return string
      */
-    public function removeView(\AppBundle\Entity\House $view)
+    public function getPhone()
     {
-        $this->views->removeElement($view);
+        return $this->phone;
     }
 
     /**
-     * Get views
+     * Add hasHouse
+     *
+     * @param \AppBundle\Entity\UserHasHouses $hasHouse
+     *
+     * @return User
+     */
+    public function addHasHouse(UserHasHouses $hasHouse)
+    {
+        $this->hasHouses[] = $hasHouse;
+
+        return $this;
+    }
+
+    /**
+     * Remove hasHouse
+     *
+     * @param \AppBundle\Entity\UserHasHouses $hasHouse
+     */
+    public function removeHasHouse(UserHasHouses $hasHouse)
+    {
+        $this->hasHouses->removeElement($hasHouse);
+    }
+
+    /**
+     * Get hasHouses
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getViews()
+    public function getHasHouses()
     {
-        return $this->views;
+        return $this->hasHouses;
     }
 }

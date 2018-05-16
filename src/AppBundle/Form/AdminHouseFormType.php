@@ -9,17 +9,14 @@
 namespace AppBundle\Form;
 
 
-use AppBundle\Entity\Area;
 use AppBundle\Entity\Feature;
-use AppBundle\Entity\Lga;
+use AppBundle\Entity\Type;
 use AppBundle\Enum\HouseBathroomsEnum;
 use AppBundle\Enum\HouseBedroomsEnum;
 use AppBundle\Enum\HouseKindEnum;
-use AppBundle\Enum\HouseTypeEnum;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -31,7 +28,7 @@ class AdminHouseFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lga', EntityType::class, array(
+            ->add('lgaId', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Lga',
                 'query_builder' => function (EntityRepository $repository) {
                     return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
@@ -57,13 +54,12 @@ class AdminHouseFormType extends AbstractType
                 'label' => 'Street',
                 'attr'=> array('class'=>'input')
             ))
-//            ->add('type', ChoiceType::class, array(
-//                'required' => true,
-//                'choices' => HouseTypeEnum::getAvailableTypes(),
-//                'choice_label' => function($choice) {
-//                    return HouseTypeEnum::getTypeName($choice);
-//                },
-//            ))
+            ->add('types', TypeType::class, array(
+                'required' => true,
+                'class' => Type::class,
+                'expanded' => true,
+                'multiple' => true,
+            ))
             ->add('price', IntegerType::class, array(
                 'label' => 'Price',
                 'attr'=> array('class'=>'input')

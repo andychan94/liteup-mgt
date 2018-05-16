@@ -36,7 +36,6 @@ interface EntityBaseInterface
     /**
      * Get updatedAt
      *
-     * @param DateTime $createdAt
      * @return self
      */
     public function getUpdatedAt();

@@ -6,7 +6,6 @@ use AppBundle\Enum\HouseBathroomsEnum;
 use AppBundle\Enum\HouseBedroomsEnum;
 use AppBundle\Enum\HouseKindEnum;
 use AppBundle\Enum\HouseToiletsEnum;
-use AppBundle\Enum\HouseTypeEnum;
 use AppBundle\Mapping\EntityBase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -46,22 +45,22 @@ class House extends EntityBase
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Agency", inversedBy="houses")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency")
      * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $agency;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Area", inversedBy="houses")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Area")
      * @ORM\JoinColumn(name="area_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $area;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga", inversedBy="houses")
-     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga")
+     * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
-    private $lga;
+    private $lgaId;
 
     /**
      * @var string
@@ -79,13 +78,6 @@ class House extends EntityBase
      * @Assert\Type("integer", message="Price must be a number")
      */
     private $price;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
-     */
-    private $type;
 
     /**
      * @var string
@@ -154,6 +146,16 @@ class House extends EntityBase
     protected $features;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserHasHouses", mappedBy="groups", cascade={"persist","remove"})
+     */
+    protected $hasUsers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Type")
+     */
+    protected $types;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -164,6 +166,8 @@ class House extends EntityBase
         $this->setIsResidential(1);
         $this->photos = new ArrayCollection();
         $this->features = new ArrayCollection();
+        $this->types = new ArrayCollection();
+        $this->hasUsers = new ArrayCollection();
     }
 
     /**
@@ -270,32 +274,6 @@ class House extends EntityBase
     public function getAddress()
     {
         return $this->address;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return House
-     */
-    public function setType($type)
-    {
-        if (!in_array($type, HouseTypeEnum::getAvailableTypes())) {
-            throw new \InvalidArgumentException("Invalid type");
-        }
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -431,13 +409,13 @@ class House extends EntityBase
     /**
      * Set lga
      *
-     * @param \AppBundle\Entity\Lga $lga
+     * @param \AppBundle\Entity\Lga $lgaId
      *
      * @return House
      */
-    public function setLga(Lga $lga = null)
+    public function setLgaId(Lga $lgaId = null)
     {
-        $this->lga = $lga;
+        $this->lgaId = $lgaId;
 
         return $this;
     }
@@ -447,9 +425,9 @@ class House extends EntityBase
      *
      * @return \AppBundle\Entity\Lga
      */
-    public function getLga()
+    public function getLgaId()
     {
-        return $this->lga;
+        return $this->lgaId;
     }
 
     /**
@@ -640,5 +618,73 @@ class House extends EntityBase
     public function getFeatures()
     {
         return $this->features;
+    }
+
+    /**
+     * Add hasUser
+     *
+     * @param \AppBundle\Entity\UserHasHouses $hasUser
+     *
+     * @return House
+     */
+    public function addHasUser(UserHasHouses $hasUser)
+    {
+        $this->hasUsers[] = $hasUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove hasUser
+     *
+     * @param \AppBundle\Entity\UserHasHouses $hasUser
+     */
+    public function removeHasUser(UserHasHouses $hasUser)
+    {
+        $this->hasUsers->removeElement($hasUser);
+    }
+
+    /**
+     * Get hasUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHasUsers()
+    {
+        return $this->hasUsers;
+    }
+
+    /**
+     * Add type
+     *
+     * @param \AppBundle\Entity\Type $type
+     *
+     * @return House
+     */
+    public function addType(Type $type)
+    {
+        $this->types[] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Remove type
+     *
+     * @param \AppBundle\Entity\Type $type
+     */
+    public function removeType(Type $type)
+    {
+        $this->types->removeElement($type);
+    }
+
+    /**
+     * Get types
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTypes()
+    {
+        return $this->types;
     }
 }
