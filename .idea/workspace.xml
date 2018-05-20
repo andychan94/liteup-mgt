@@ -1,120 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b4120f7-2799-4427-a511-16dd0e57b24a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/js/jquery.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/scss/main.scss" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/liteup-mgr2.iml" afterPath="$PROJECT_DIR$/.idea/liteup-mgr2.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/edit_content.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/translations/messages.en.yml" afterPath="$PROJECT_DIR$/app/Resources/translations/messages.en.yml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/admin/agency/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/admin/agency/index.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/blocks/left.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/blocks/left.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-mgr.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-mgr.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-upload.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/photo/photo-upload.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propbin/edit.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propbin/index.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/create.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/edit.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/dashboard/proprent/index.html.twig" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/create.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/edit.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propsell/index.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propunaval/edit.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/dashboard/propunaval/index.html.twig" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change beforePath="$PROJECT_DIR$/public_html/css/main.css" afterPath="$PROJECT_DIR$/public_html/css/main.css" />
-      <change beforePath="$PROJECT_DIR$/public_html/css/main.css.map" afterPath="$PROJECT_DIR$/public_html/css/main.css.map" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/bulma-steps.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/bulma.js" afterPath="$PROJECT_DIR$/assets/js/bulma.js" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/dropzone.js" afterPath="$PROJECT_DIR$/assets/js/dropzone.js" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/jquery-3.3.1.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/jquery.validate.js" afterPath="$PROJECT_DIR$/assets/js/jquery.validate.js" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/jquery.validate.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public_html/js/scripts.js" afterPath="$PROJECT_DIR$/assets/js/scripts.js" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/base/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/base/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/base/generic.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/base/generic.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/base/helpers.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/base/helpers.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/base/minireset.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/base/minireset.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/breadcrumb.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/breadcrumb.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/card.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/card.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/dropdown.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/dropdown.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/level.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/level.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/media.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/media.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/menu.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/menu.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/message.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/message.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/modal.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/modal.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/navbar.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/navbar.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/pagination.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/pagination.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/panel.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/panel.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/components/tabs.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/components/tabs.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/box.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/box.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/button.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/button.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/container.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/container.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/content.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/content.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/form.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/form.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/icon.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/icon.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/image.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/image.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/notification.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/notification.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/other.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/other.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/progress.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/progress.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/table.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/table.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/tag.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/tag.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/elements/title.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/elements/title.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/calendar.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/calendar.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/checkradio.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/checkradio.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/divider.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/divider.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/steps.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/steps.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/switch.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/switch.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/extensions/tooltip.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/extensions/tooltip.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/grid/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/grid/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/grid/columns.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/grid/columns.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/grid/tiles.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/grid/tiles.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/layout/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/layout/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/layout/footer.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/layout/footer.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/layout/hero.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/layout/hero.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/layout/section.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/layout/section.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/_all.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/_all.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/animations.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/animations.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/controls.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/controls.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/derived-variables.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/derived-variables.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/functions.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/functions.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/initial-variables.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/initial-variables.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/bulma/utilities/mixins.sass" afterPath="$PROJECT_DIR$/assets/scss/bulma/utilities/mixins.sass" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/land.scss" afterPath="$PROJECT_DIR$/assets/scss/land.scss" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/login.scss" afterPath="$PROJECT_DIR$/assets/scss/login.scss" />
-      <change beforePath="$PROJECT_DIR$/public_html/scss/main.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PhotoController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PhotoController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropTypeDeterminerController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyRentController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertySellController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyUnavalController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyUnavalController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/Super/AgencyController.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Agency.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Agency.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/House.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/House.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Lga.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Lga.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Photo.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Photo.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Type.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/UserHasHouses.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/UserHasHouses.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProfileType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProfileType.php" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/StateRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/StateRepository.php" />
-    </list>
+    <list default="true" id="0b4120f7-2799-4427-a511-16dd0e57b24a" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PropertyBinController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PropertyBinController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyBinController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
@@ -136,6 +23,16 @@
               <folding>
                 <element signature="e#50#90#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -748,12 +645,12 @@
       <workItem from="1526365992716" duration="31058000" />
       <workItem from="1526574082853" duration="22425000" />
       <workItem from="1526662026696" duration="2481000" />
-      <workItem from="1526731166527" duration="42634000" />
+      <workItem from="1526731166527" duration="42707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="473558000" />
+    <option name="totallyTimeSpent" value="473631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="810" extended-state="0" />
@@ -791,14 +688,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/AdminHouseFormType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="72" column="76" lean-forward="false" selection-start-line="72" selection-start-column="76" selection-end-line="72" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Dashboard/PropertyShortController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-127">
@@ -1200,6 +1089,14 @@
           <folding>
             <element signature="e#50#90#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
