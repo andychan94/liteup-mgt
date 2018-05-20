@@ -96,7 +96,12 @@ class Agency extends BaseUser
     protected $logo;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\File(
+     *     maxSize = "2M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"},
+     *     maxSizeMessage = "The maxmimum allowed file size is 2MB.",
+     *     mimeTypesMessage = "Only image files are allowed."
+     * )
      * @Vich\UploadableField(mapping="agency_logo", fileNameProperty="logo", size="logoSize")
      *
      * @var File
@@ -151,7 +156,7 @@ class Agency extends BaseUser
         parent::__construct();
         $this->roles = array('ROLE_ADMIN');
         $this->houses = new ArrayCollection();
-        $this->setBudget(2000);
+        $this->setBudget(4000);
         $this->setLogo("");
         $this->setLogoSize(0);
         $this->setAbout("");

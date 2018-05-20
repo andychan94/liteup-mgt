@@ -16,6 +16,15 @@
             </div>
         </div>
     </div>
+
+    <div class="block">
+        <a class="button is-primary" href="{{ path('property_add', {prev: entityAltName}) }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+        </a>
+    </div>
     <div class="block">
         <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
             <label for="limit">{{ 'show'|trans }}
@@ -42,13 +51,16 @@
             </label></th>
         <th>ID</th>
         <th>Main photo</th>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <th>Agency</th>
+    {% endif %}
         <th>Details</th>
         <th>{{ 'state.name'|trans }}</th>
         <th>{{ 'lga.name'|trans }}</th>
         <th>Status</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
-    <form action="{{ path(entityAltName~'_enable_many') }}" method="post">
+    <form action="{{ path('property_delete_many', {prev: entityAltName}) }}" method="post" onsubmit="return confirmDelete()">
         <div class="table-container">
             <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
                 <thead>
@@ -64,28 +76,32 @@
                 <tbody>
 
                 {% for house in pagination %}
-                    {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lga.state.name %}
-                    {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lga.name %}
+                    {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lgaId.state.name %}
+                    {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lgaId.name %}
                     {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
                     <tr>
                         <td class="has-text-right">
                             <label>
-                                <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
+                                <input class="checkbox" name="properties[]" type="checkbox"
                                        value="{{ house.id }}">
                             </label></td>
                         <td>{{ house.id }}</td>
                         <td class="list-house-thumbnail">
-                            <figure class="has-text-centered">
+                            <figure class="has-text-centered is-4by3">
                                 <img src={% if house.photos is not empty %}"{{ uploads_folder }}{{ house.photos | first.path }}"
                                         {% else %}
                                             {{ asset('images/placesholder.jpg') }}
                                         {% endif %}
                                 /></figure>
                             <div class="has-text-centered">
-                                <a class="button is-success" href="{{ path('photo_index', {'id': house.id}) }}"><span>Manage
+                                <a class="button is-success" href="{{ path('photo_index', {'id': house.id, prev: entityAltName}) }}"><span>Manage
                                         Photos</span></a>
                             </div>
                         </td>
+
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <td>{{ house.agency.name }}</td>
+                    {% endif %}
                         <td>
                             <p>{{ house.title }}</p>
                             <p>
@@ -94,7 +110,21 @@
                                 </span>
                                 {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
                             </p>
-                            <p>{{ currency|raw }}{{ house.price }}</p>
+                            {% if house.isShort %}
+                            <p class="sm-block">
+                                <span class="tag is-primary is-medium">{{ 'propshort.kind'|trans }}: {{ currency|raw }}{{ house.priceShort|number_format(0, '.', ',') }}</span>
+                            </p>
+                            {% endif %}
+                            {% if house.isRent %}
+                            <p class="sm-block">
+                                <span class="tag is-link is-medium">{{ 'proprent.kind'|trans }}: {{ currency|raw }}{{ house.priceRent|number_format(0, '.', ',') }}</span>
+                            </p>
+                            {% endif %}
+                            {% if house.isBuy %}
+                            <p class="sm-block">
+                                <span class="tag is-info is-medium">{{ 'propsell.kind'|trans }}: {{ currency|raw }}{{ house.priceBuy|number_format(0, '.', ',') }}</span>
+                            </p>
+                            {% endif %}
 
                         </td>
                         <td>
@@ -110,24 +140,34 @@
                             <span class="tag is-success"><span class="icon"><i
                                             class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }}
                             </span>
-                            {% if house.available == 0 %}<span class="tag is-danger"><span class="icon"><i
+                            {% if house.isAvailable == 0 %}<span class="tag is-danger"><span class="icon"><i
                                             class="fas fa-ban"></i></span>Unavailable</span>{% endif %}
                         </td>
                         <td>
                             <a class="button is-info tooltip is-tooltip-bottom"
                                data-tooltip="Edit the property"
-                               href="{{ path(entityAltName~'_edit', {"id":house.id}) }}">
+                               href="{{ path('property_edit', {"id":house.id, prev: entityAltName}) }}">
                                 <span class="icon">
                                     <i class="fas fa-edit"></i>
                                 </span>
                             </a>
-                            <a class="button is-success tooltip is-tooltip-bottom"
-                               data-tooltip="Make the property available"
-                               href="{{ path(entityAltName~'_enable', {"id":house.id}) }}">
-                                <span class="icon">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </a>
+                            {% if house.isAvailable %}
+                                <a class="button is-warning tooltip is-tooltip-bottom"
+                                   data-tooltip="Make the property unavailable"
+                                   href="{{ path('property_disable', {"id":house.id, prev: entityAltName}) }}">
+                                    <span class="icon">
+                                        <i class="fas fa-ban"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <a class="button is-success tooltip is-tooltip-bottom"
+                                   data-tooltip="Make the property available"
+                                   href="{{ path('property_enable', {"id":house.id, prev: entityAltName}) }}">
+                                    <span class="icon">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
                             {#<a class="button is-dark tooltip is-tooltip-bottom"
                                data-tooltip="Move the property to Properties for sale"
                                href="{{ path(entityAltName~'_move', {"id":house.id}) }}">
@@ -138,7 +178,7 @@
 
                             <a class="button is-danger tooltip is-tooltip-bottom"
                                data-tooltip="Delete the property"
-                               href="{{ path(entityAltName~'_delete', {"id":house.id}) }}">
+                               href="{{ path('property_delete', {"id":house.id, prev: entityAltName}) }}" onclick="return confirmDelete()">
                                 <span class="icon">
                                     <i class="fas fa-trash"></i>
                                 </span>
@@ -151,11 +191,11 @@
         </div>
         <div class="buttons">
             {{ 'with_selected'|trans }}
-            <button class="button is-success is-small" type="submit">
+            <button class="button is-warning is-small" type="submit">
                 <span class="icon is-small">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-trash"></i>
                 </span>
-                <span>{{ 'b_available'|trans }}</span>
+                <span>{{ 'b_delete'|trans }}</span>
             </button>
         </div>
     </form>
@@ -165,12 +205,19 @@
             {{ knp_pagination_render(pagination) }}
         </nav>
     </div>
+    <div class="block">
+        <a class="button is-primary liteup-center" href="{{ path('property_add', {prev: entityAltName}) }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+        </a>
+    </div>
     <div class="block"></div>
 {% endblock %}
         {% block stylesheets %}
             {{ parent() }}
-
-            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            {#<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">#}
         {% endblock %}
         {% block javascripts %}
             {{ parent() }}
@@ -180,7 +227,7 @@
                 var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
                 var confirmDel = '{{ 'confirm_del'|trans }}';
             </script>
-            <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            {#<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
             {#<script>#}
             {#$(function () {#}
             {#$('#pot').hide();#}

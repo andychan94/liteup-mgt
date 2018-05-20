@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ (entityAltName~'.title')|trans }}</a></li>
+        </ul>
+    </nav>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ (entityAltName~'.title')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="has-text-left">
+            <em>Coming soon..</em>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+{% endblock %}

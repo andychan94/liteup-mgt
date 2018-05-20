@@ -45,7 +45,7 @@ class House extends EntityBase
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="houses")
      * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $agency;
@@ -71,13 +71,49 @@ class House extends EntityBase
     private $address;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="short", type="boolean")
+     */
+    private $isShort;
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="price", type="integer")
-     * @Assert\NotBlank(message="Price cannot be blank")
+     * @ORM\Column(name="price_short", type="integer", nullable=true)
      * @Assert\Type("integer", message="Price must be a number")
      */
-    private $price;
+    private $priceShort;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="rent", type="boolean")
+     */
+    private $isRent;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price_rent", type="integer", nullable=true)
+     * @Assert\Type("integer", message="Price must be a number")
+     */
+    private $priceRent;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sell", type="boolean")
+     */
+    private $isBuy;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price_buy", type="integer", nullable=true)
+     * @Assert\Type("integer", message="Price must be a number")
+     */
+    private $priceBuy;
 
     /**
      * @var string
@@ -126,17 +162,17 @@ class House extends EntityBase
      *
      * @ORM\Column(name="available", type="boolean")
      */
-    private $available;
+    private $isAvailable;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="deleted", type="boolean")
      */
-    private $deleted;
+    private $isDeleted;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="house", fetch="EAGER")
      */
     private $photos;
 
@@ -146,27 +182,23 @@ class House extends EntityBase
     protected $features;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserHasHouses", mappedBy="groups", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserHasHouses", mappedBy="houses", cascade={"persist","remove"})
      */
     protected $hasUsers;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Type")
-     */
-    protected $types;
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->setDeleted(false);
-        $this->setAvailable(true);
+        $this->setIsDeleted(false);
+        $this->setIsAvailable(true);
         $this->setStatus(1);
         $this->setIsResidential(1);
+        $this->setIsShort(false);
+        $this->setIsRent(false);
+        $this->setIsBuy(false);
         $this->photos = new ArrayCollection();
         $this->features = new ArrayCollection();
-        $this->types = new ArrayCollection();
         $this->hasUsers = new ArrayCollection();
     }
 
@@ -229,30 +261,6 @@ class House extends EntityBase
     }
 
     /**
-     * Set price
-     *
-     * @param int $price
-     *
-     * @return House
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return integer
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * Set address
      *
      * @param string $address
@@ -279,13 +287,13 @@ class House extends EntityBase
     /**
      * Set available
      *
-     * @param integer $available
+     * @param integer $isAvailable
      *
      * @return House
      */
-    public function setAvailable($available)
+    public function setIsAvailable($isAvailable)
     {
-        $this->available = $available;
+        $this->isAvailable = $isAvailable;
 
         return $this;
     }
@@ -295,9 +303,9 @@ class House extends EntityBase
      *
      * @return integer
      */
-    public function getAvailable()
+    public function getIsAvailable()
     {
-        return $this->available;
+        return $this->isAvailable;
     }
 
     /**
@@ -361,13 +369,13 @@ class House extends EntityBase
     /**
      * Set deleted
      *
-     * @param boolean $deleted
+     * @param boolean $isDeleted
      *
      * @return House
      */
-    public function setDeleted($deleted)
+    public function setIsDeleted($isDeleted)
     {
-        $this->deleted = $deleted;
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
@@ -377,9 +385,9 @@ class House extends EntityBase
      *
      * @return boolean
      */
-    public function getDeleted()
+    public function getIsDeleted()
     {
-        return $this->deleted;
+        return $this->isDeleted;
     }
 
     /**
@@ -655,36 +663,149 @@ class House extends EntityBase
     }
 
     /**
-     * Add type
+     * Set isShort
      *
-     * @param \AppBundle\Entity\Type $type
+     * @param boolean $isShort
      *
      * @return House
      */
-    public function addType(Type $type)
+    public function setIsShort($isShort)
     {
-        $this->types[] = $type;
+        $this->isShort = $isShort;
 
         return $this;
     }
 
     /**
-     * Remove type
+     * Get isShort
      *
-     * @param \AppBundle\Entity\Type $type
+     * @return boolean
      */
-    public function removeType(Type $type)
+    public function getIsShort()
     {
-        $this->types->removeElement($type);
+        return $this->isShort;
     }
 
     /**
-     * Get types
+     * Set priceShort
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param integer $priceShort
+     *
+     * @return House
      */
-    public function getTypes()
+    public function setPriceShort($priceShort)
     {
-        return $this->types;
+        $priceShort = (int)$priceShort;
+        $this->priceShort = ($priceShort > 0)? $priceShort: null;
+
+        return $this;
+    }
+
+    /**
+     * Get priceShort
+     *
+     * @return integer
+     */
+    public function getPriceShort()
+    {
+        return $this->priceShort;
+    }
+
+    /**
+     * Set isRent
+     *
+     * @param boolean $isRent
+     *
+     * @return House
+     */
+    public function setIsRent($isRent)
+    {
+        $this->isRent = $isRent;
+
+        return $this;
+    }
+
+    /**
+     * Get isRent
+     *
+     * @return boolean
+     */
+    public function getIsRent()
+    {
+        return $this->isRent;
+    }
+
+    /**
+     * Set priceRent
+     *
+     * @param integer $priceRent
+     *
+     * @return House
+     */
+    public function setPriceRent($priceRent)
+    {
+        $priceRent = (int)$priceRent;
+        $this->priceRent = ($priceRent > 0)? $priceRent: null;
+
+        return $this;
+    }
+
+    /**
+     * Get priceRent
+     *
+     * @return integer
+     */
+    public function getPriceRent()
+    {
+        return $this->priceRent;
+    }
+
+    /**
+     * Set isBuy
+     *
+     * @param boolean $isBuy
+     *
+     * @return House
+     */
+    public function setIsBuy($isBuy)
+    {
+        $this->isBuy = $isBuy;
+
+        return $this;
+    }
+
+    /**
+     * Get isBuy
+     *
+     * @return boolean
+     */
+    public function getIsBuy()
+    {
+        return $this->isBuy;
+    }
+
+    /**
+     * Set priceSell
+     *
+     * @param integer $priceBuy
+     *
+     * @return House
+     */
+    public function setPriceBuy($priceBuy)
+    {
+        $priceBuy = (int)$priceBuy;
+        $this->priceBuy = ($priceBuy > 0)? $priceBuy: null;
+
+        return $this;
+    }
+
+    /**
+     * Get priceSell
+     *
+     * @return integer
+     */
+    public function getPriceBuy()
+    {
+        return $this->priceBuy;
     }
 }

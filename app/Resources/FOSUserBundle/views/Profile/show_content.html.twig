@@ -1,6 +1,65 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{#{% trans_default_domain 'FOSUserBundle' %}#}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('dashboard_home') }}">Home</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Profile</a></li>
+    </ul>
+</nav>
+
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <div class="title">Agency Profile
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column is-full-mobile is-one-third-tablet">
+        <a href="{{ path('fos_user_profile_edit') }}" class="button is-primary">Edit</a>
+        <div class="block card">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src="{{ agency_logo_folder }}{{ user.logo }}">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">{{ user.name }}</p>
+                        <p class="subtitle is-6">@{{ user.username }}</p>
+                    </div>
+                </div>
+
+                <div class="content liteup-profile">
+                    <p>
+                        <span class="icon">
+                            <i class="fas fa-envelope-square"></i>
+                        </span> {{ user.email }}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <i class="fas fa-phone-square"></i>
+                        </span> {{ user.phone }}
+                    </p>
+                    <p>
+                        <span class="icon">
+                            <i class="fas fa-map-marker"></i>
+                        </span> {{ user.address }}
+                    </p>
+                    <p>
+                        {{ user.about|nl2br }}
+                    </p>
+                    <br>
+                    <p>
+                        {{ user.services|nl2br }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

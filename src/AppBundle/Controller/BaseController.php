@@ -28,6 +28,10 @@ class BaseController extends Controller
      * @var $entityAltNamePlu String
      */
     protected $entityAltNamePlu;
+    /**
+     * @var $prevEntity String
+     */
+    protected $prevEntity;
 
     /**
      * @param string $key

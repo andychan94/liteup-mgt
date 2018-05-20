@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55a96f9cb8f89b8d4962877434c07c52",
+    "content-hash": "3c82311661d3762a6a8a4e14ef094692",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2541,6 +2541,7 @@
                 "compression",
                 "minification"
             ],
+            "abandoned": "symfony/webpack-encore-pack",
             "time": "2017-07-14T07:26:46+00:00"
         },
         {

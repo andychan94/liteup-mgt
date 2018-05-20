@@ -39,12 +39,12 @@ class PhotoController extends BaseController
     }
 
     /**
-     * @Route("{id}/", name="photo_index")
+     * @Route("{id}/mgr/{prev}", defaults={"prev"="property"}, name="photo_index", methods={"GET"})
      * @param House $house
      * @param Request $request
      * @return Response
      */
-    public function photoManagerAction(House $house, Request $request)
+    public function photoManagerAction(House $house, $prev, Request $request)
     {
         $limit = (int)$request->query->get('limit');
         $perpage = (!is_null($limit) && $limit > 0) ? $limit : 20;
@@ -64,32 +64,34 @@ class PhotoController extends BaseController
             'pagination' => $pagination,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
+            'prev' => $prev,
             'limit' => $perpage
         ]);
     }
 
     /**
-     * @Route("{id}/upload", name="photo_add")
+     * @Route("{id}/upload/{prev}", defaults={"prev"="property"}, name="photo_add")
      * @param House $house
      * @return Response
      */
-    public function photoUploadAction(House $house)
+    public function photoUploadAction(House $house, $prev)
     {
         return $this->render(':dashboard/photo:photo-upload.html.twig', [
             'house' => $house,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
+            'prev' => $prev,
         ]);
     }
 
     /**
-     * @Route("{id}/delete/{photo_id}", name="photo_delete_single")
+     * @Route("{id}/delete/{photo_id}/{prev}", defaults={"prev"="property"}, name="photo_delete_single")
      * @param $id
      * @param $photo_id
      * @param LoggerInterface $logger
      * @return RedirectResponse
      */
-    public function deleteSingleAction($id, $photo_id, LoggerInterface $logger)
+    public function deleteSingleAction($id, $photo_id, $prev, LoggerInterface $logger)
     {
         /**
          * @var $em EntityManager
@@ -98,8 +100,9 @@ class PhotoController extends BaseController
         $entity = $em->getRepository(Photo::class)->find($photo_id);
         if ($entity != null) {
             try {
-                $filename = $this->getParameter('uploads_folder') . $entity->getPath();
+                $filename = $this->get('kernel')->getRootDir() . '/../public_html' . $this->getParameter('uploads_folder') . $entity->getPath();
                 $filesystem = new Filesystem();
+
                 $filesystem->remove($filename);
                 $em->remove($entity);
                 $em->flush();
@@ -109,23 +112,25 @@ class PhotoController extends BaseController
                     $this->t('app.error')
                 );
                 $this->logger($logger, $e->getMessage());
-                return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id));
+                return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id, 'prev' => $prev));
             }
             $this->addFlash(
                 'success',
                 $this->t('entity.deleted', array('%entity%' => $this->entityName))
             );
         }
-        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id));
+        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id, 'prev' => $prev));
     }
 
     /**
-     * @Route("{id}/delete", name="photo_delete_many", methods={"POST"})
+     * @Route("{id}/mgr/{prev}", defaults={"prev"="property"}, name="photo_delete_many", methods={"POST"})
+     * @param $id
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return RedirectResponse
      */
-    public function deleteManyAction($id, Request $request, LoggerInterface $logger)
+    public function deleteManyAction($id, $prev, Request $request, LoggerInterface $logger)
     {
         if ($request != null) {
             $param = $request->request->get($this->entityAltNamePlu, null);
@@ -148,7 +153,7 @@ class PhotoController extends BaseController
                             $this->t('app.error')
                         );
                         $this->logger($logger, $e->getMessage());
-                        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id));
+                        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id, 'prev' => $prev));
                     }
                     $em->remove($entity);
                 }
@@ -160,7 +165,7 @@ class PhotoController extends BaseController
                         $this->t('app.error')
                     );
                     $this->logger($logger, $e->getMessage());
-                    return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id));
+                    return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id, 'prev' => $prev));
                 }
                 $this->addFlash(
                     'success',
@@ -174,6 +179,6 @@ class PhotoController extends BaseController
                 );
             }
         }
-        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id));
+        return $this->redirectToRoute($this->entityAltName . '_index', array('id' => $id, 'prev' => $prev));
     }
 }

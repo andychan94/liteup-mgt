@@ -37,6 +37,11 @@ class Lga extends EntityBase
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Area", mappedBy="lga")
+     */
+    protected $areas;
 
     /**
      * @var int
@@ -141,5 +146,39 @@ class Lga extends EntityBase
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Add area
+     *
+     * @param \AppBundle\Entity\Area $area
+     *
+     * @return Lga
+     */
+    public function addArea(\AppBundle\Entity\Area $area)
+    {
+        $this->areas[] = $area;
+
+        return $this;
+    }
+
+    /**
+     * Remove area
+     *
+     * @param \AppBundle\Entity\Area $area
+     */
+    public function removeArea(\AppBundle\Entity\Area $area)
+    {
+        $this->areas->removeElement($area);
+    }
+
+    /**
+     * Get areas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAreas()
+    {
+        return $this->areas;
     }
 }

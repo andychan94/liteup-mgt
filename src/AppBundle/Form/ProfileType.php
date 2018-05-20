@@ -21,60 +21,53 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('username', TextType::class, array(
-//                'label' => 'Username',
-//                'attr' => array(
-//                    'class' => 'input',
-//                    'placeholder' => "Username"
-//                )
-//            ))
             ->add('email', EmailType::class, array(
-                'label' => 'Agency email',
+                'label' => 'profile.email',
                 'attr' => array(
                     'class' => 'input',
                     'placeholder' => "Agency email address"
                 )
             ))
             ->add('name', TextType::class, array(
-                'label' => 'Agency name',
+                'label' => 'profile.name',
                 'attr' => array(
                     'class' => 'input'
                 )
             ))
             ->add('phone', TelType::class, array(
-                'label' => 'Agency phone number',
+                'label' => 'profile.phone',
                 'attr' => array(
                     'class' => 'input'
                 )
             ))
             ->add('address', TextType::class, array(
-                'label' => 'Agency address',
+                'label' => 'profile.address',
                 'attr' => array(
                     'class' => 'input'
                 )
             ))
             ->add('about', TextareaType::class, array(
-                'label' => 'About the agency',
+                'label' => 'profile.about',
                 'required' => false,
                 'attr' => array(
                     'class' => 'textarea'
                 )
             ))
             ->add('services', TextareaType::class, array(
-                'label' => 'Agency services',
+                'label' => 'profile.services',
                 'required' => false,
                 'attr' => array(
                     'class' => 'textarea'
                 )
             ))
             ->add('imageFile', 'Vich\UploaderBundle\Form\Type\VichFileType', array(
-                'label' => 'Agency logo',
                 'required' => false,
                 'attr' => array(
                     'class' => 'file-input'
                 )
             ));
         $builder->remove('current_password');
+        $builder->remove('username');
     }
 
     public function getParent()

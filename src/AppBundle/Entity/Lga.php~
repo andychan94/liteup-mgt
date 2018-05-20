@@ -37,6 +37,11 @@ class Lga extends EntityBase
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Area", mappedBy="lga")
+     */
+    protected $areas;
 
     /**
      * @var int

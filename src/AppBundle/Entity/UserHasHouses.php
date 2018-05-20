@@ -13,7 +13,6 @@ use AppBundle\Mapping\EntityBase;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -45,13 +44,13 @@ class UserHasHouses extends EntityBase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", cascade={"persist","remove"}, fetch="LAZY" )
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", cascade={"persist","remove"}, fetch="LAZY", inversedBy="hasHouses")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id",nullable=true)
      */
     protected $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\House", cascade={"persist"}, fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\House", cascade={"persist"}, fetch="LAZY", inversedBy="hasUsers")
      * @ORM\JoinColumn(name="house_id", referencedColumnName="id", nullable=true)
      */
     protected $houses;

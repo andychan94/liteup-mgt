@@ -2,94 +2,74 @@
 
 namespace AppBundle\Controller\Dashboard\Super;
 
+use AppBundle\Controller\BaseController;
 use AppBundle\Entity\Agency;
+use AppBundle\Entity\House;
+use AppBundle\Entity\Lga;
+use AppBundle\Entity\State;
+use AppBundle\Form\AdminHouseFormType;
+use Doctrine\ORM\EntityManager;
+use Exception;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
+ * Class BaseController
+ * @package AppBundle\Controller
  * @Route("/dashboard/admin/agency")
  */
-class AgencyController extends Controller
+class AgencyController extends BaseController
 {
     /**
-     * @Route("/", name="agency_list")
+     * @var $objName string
      */
-    public function indexAction(Request $request)
-    {
-//        TODO list all ->DONE
-//        TODO ALSO ONLY HIGHEST LEVEL ADMIN CAN SEE THE ROUTES IN THIS CONTROLLER ^> DONE
-//        TODO split views into a separate entity, register IP (or device id) -> DONE
-//        TODO add agency
-//        TODO
+    private $objName = Agency::class;
 
-        $qb = $this->getDoctrine()->getRepository(Agency::class)->createQueryBuilder('u')
-            ->orderBy('u.createdAt', 'DESC');
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $qb,
-            $request->query->getInt('page', 1),
-            20
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->entityName = "Agency";
+        $this->entityAltName = "agency";
+        $this->entityAltNamePlu = "agencies";
+    }
+
+    /**
+     * @Route("/", name="agency_index")
+     * @param Request $request
+     * @param LoggerInterface $logger
+     * @return Response
+     */
+    public function indexAction(Request $request, LoggerInterface $logger)
+    {
+        $limit = (int)$request->query->get('limit');
+        $perpage = (!is_null($limit) && $limit > 0) ? $limit : 20;
+        $queryBuilder = $this->getDoctrine()->getRepository($this->objName);
+        $findParams = array(
         );
-        return $this->render('dashboard/agency/index.html.twig', [
+        try {
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                $queryBuilder->findBy($findParams, array('updatedAt' => 'DESC')),
+                $request->query->getInt('page', 1),
+                $perpage
+            );
+        } catch (Exception $e) {
+            $this->addFlash(
+                'error',
+                $this->t('app.error')
+            );
+            $this->logger($logger, $e->getMessage());
+            return $this->redirectToRoute('dashboard_home');
+        }
+        return $this->render(':dashboard/admin/' . $this->entityAltName . ':index.html.twig', [
             'pagination' => $pagination,
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/agency/edit/{id}", name="edit_agency")
-     */
-    public function editAction(Request $request)
-    {
-//        TODO edit single
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/agency/disable/{id}", name="disable_agency")
-     */
-    public function disableAction(Request $request)
-    {
-//        TODO set status to 0 and also pass a message to the agency (setStatus(0), setCallingMessage($somevar) eg Your agency has been disabled. $message
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/agency/add", name="add_agency")
-     */
-    public function addAction(Request $request)
-    {
-//        TODO add single
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/agency/remove", name="remove_agencies")
-     */
-    public function removeAction(Request $request)
-    {
-//        TODO remove many
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-//    TODO SPECIAL: Add Multiple from a csv file : instead of adding agencies manually, multiple agencies can be added at the same time using a csv file
-
-    /**
-     * @Route("/admin/agency/csv", name="csv_add_agencies")
-     */
-    public function csvAction(Request $request)
-    {
-//        TODO csv file upload; handler (insert into DB)
-        return $this->render('default/index.html.twig', [
+            'limit' => $perpage,
+            'entityAltName' => $this->entityAltName,
+            'entityAltNamePlu' => $this->entityAltNamePlu,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }

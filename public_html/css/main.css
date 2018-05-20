@@ -50,7 +50,7 @@
 
 .aside {
   background: #2E363F;
-  padding: 2em .2em 0 1em;
+  padding: 2em 0 0;
   min-height: 100vh; }
   .aside a {
     color: #afb8c3; }
@@ -105,12 +105,150 @@
   border-radius: 0 0 3px 3px; }
 
 .hider {
-  display: none; }
+  display: none !important; }
+
+.invisible {
+  visibility: hidden !important; }
 
 @media screen and (max-width: 1023px) {
   .navbar-menu {
     display: none; }
     .navbar-menu.is-active {
       display: block; } }
+.types .is-checkradio[type="checkbox"].is-block + label {
+  padding: 0.75em 0.75em 0.75em 2rem;
+  width: unset !important; }
+.types .is-checkradio[type="checkbox"].is-block + label::after {
+  top: 0.90rem;
+  left: 0.78rem; }
+.types .is-checkradio[type="checkbox"] + label:after {
+  border-width: unset !important; }
+.types .is-checkradio[type="checkbox"] + label:after {
+  width: 0.65rem;
+  height: 0.95rem;
+  top: 0.8rem;
+  left: 0.9rem; }
+
+.wizard .steps ul {
+  width: 100%; }
+.wizard .steps li {
+  float: left;
+  width: 25%;
+  display: block;
+  padding: 0;
+  line-height: 1.5em;
+  text-align: center;
+  position: relative; }
+  .wizard .steps li a {
+    color: #3b3b3b; }
+  .wizard .steps li .audible {
+    display: none; }
+  .wizard .steps li.disabled {
+    cursor: default; }
+    .wizard .steps li.disabled a {
+      color: #CCCCCC !important;
+      cursor: default; }
+.wizard .steps li.current span.number {
+  background-color: white;
+  border-color: #23d160;
+  color: #23d160;
+  display: block; }
+.wizard .steps li.current span.number {
+  background-color: white;
+  border-color: #00d1b2;
+  color: #00d1b2; }
+.wizard .steps li span.number {
+  height: 2rem;
+  width: 2rem;
+  display: block;
+  font-size: unset;
+  margin: 0 auto;
+  min-width: unset;
+  padding: unset;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  justify-content: center;
+  background: #b5b5b5;
+  color: white;
+  border: 0.2em solid #fff;
+  z-index: 1; }
+.wizard .steps li.done span.number {
+  background: #23d160; }
+.wizard .steps li:not(:first-child)::before {
+  z-index: -1;
+  height: 0.2em;
+  width: 100%;
+  bottom: 0;
+  left: -50%;
+  top: 1rem;
+  content: " ";
+  display: block;
+  position: absolute; }
+.wizard .steps li::before {
+  background: linear-gradient(to left, #dbdbdb 50%, #00d1b2 50%);
+  background-size: 200% 100%;
+  background-position: right bottom; }
+.wizard input.error, .wizard textarea.error, .wizard select.error {
+  border-color: #ff3860; }
+.wizard label.error {
+  color: #ff3860; }
+.wizard input.valid, .wizard textarea.valid, .wizard select.valid {
+  border-color: #23d160; }
+.wizard .input.liteupNumber {
+  width: unset !important; }
+.wizard > .actions {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%; }
+.wizard > .actions > ul {
+  display: inline-flex;
+  text-align: right; }
+.wizard > .actions > ul > li {
+  margin: 0 .5em; }
+.wizard > .actions .disabled a, .wizard > .actions .disabled a:hover, .wizard > .actions .disabled a:active {
+  background: #eee;
+  color: #aaa;
+  cursor: default; }
+.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+  background: #2184be;
+  color: #fff;
+  display: block;
+  padding: .5em 1em;
+  text-decoration: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+  background: #2184be;
+  color: #fff;
+  display: block;
+  padding: .5em 1em;
+  text-decoration: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+.wizard > .content > .title, .wizard .tabcontrol > .content > .title {
+  display: none; }
+.wizard .clearfix:before, .wizard .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0; }
+.wizard .clearfix:after {
+  clear: both; }
+
+*:focus {
+  outline-color: unset !important;
+  outline-style: none !important;
+  outline-width: 0 !important; }
+
+.sm-block {
+  margin-top: 5px; }
+
+.liteup-profile.content p {
+  margin-bottom: 0.4em !important; }
 
 /*# sourceMappingURL=main.css.map */

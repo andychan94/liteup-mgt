@@ -3,15 +3,10 @@
 {% block body %}
     <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
         <ul>
-            <li><a href="{{ path('dashboard_home') }}">Home</a></li>
-            {% if house.type == 'rent' %}
-                <li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>
-            {% elseif house.type == 'sell' %}
-                <li><a href="{{ path('propsell_index') }}">Properties for sale</a></li>
-            {% elseif house.type == 'short' %}
-                {#<li><a href="{{ path('proprent_index') }}">Properties for rent</a></li>#}
-            {% endif %}
-            <li><a href="{{ path('determiner', {"id":house.id}) }}">{{ 'prop_id'|trans }}: {{ house.id }}</a></li>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(prev~'_index') }}">{{ (prev~'.title')|trans }}</a></li>
+            <li><a href="{{ path('property_edit', {id:house.id, prev:prev}) }}">{{ 'prop_id'|trans }}
+                    : {{ house.id }}</a></li>
             <li class="is-active"><a href="#" aria-current="page">Photos</a></li>
         </ul>
     </nav>
@@ -26,7 +21,7 @@
     </div>
 
     <div class="block">
-        <a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id}) }}">
+        <a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id, prev:prev}) }}">
             <span class="icon is-small">
                 <i class="fas fa-plus"></i>
             </span>
@@ -59,7 +54,7 @@
             <th>{{ knp_pagination_sortable(pagination, 'h_photo'|trans, 'photo') }}</th>
             <th>{{ 'h_actions'|trans }}</th>
         {% endset %}
-        <form action="{{ path(entityAltName~'_delete_many', {"id":house.id}) }}" method="post"
+        <form action="{{ path(entityAltName~'_delete_many', {"id": house.id, "prev": prev}) }}" method="post"
               onsubmit="return confirmDelete()">
             <table class="table is-striped is-fullwidth">
                 <thead>
@@ -87,7 +82,7 @@
                         <td>
                             <a class="button is-danger tooltip is-tooltip-bottom"
                                data-tooltip="Delete the property"
-                               href="{{ path('photo_delete_single', {"id":house.id, "photo_id" :photo.id}) }}">
+                               href="{{ path('photo_delete_single', {id:house.id, photo_id :photo.id, prev:prev}) }}">
                                 <span class="icon">
                                     <i class="fas fa-trash"></i>
                                 </span>
@@ -115,7 +110,7 @@
         </nav>
     </div>
     <div class="block">
-        <a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id}) }}">
+        <a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id, prev:prev}) }}">
             <span class="icon is-small">
                 <i class="fas fa-plus"></i>
             </span>
@@ -132,7 +127,7 @@
             {{ parent() }}
             <script>
                 var limit = {{ limit }};
-                var pathWithLimit = '{{ path(entityAltName~'_index',{'id':house.id,'limit':limit}) }}';
+                var pathWithLimit = '{{ path(entityAltName~'_index',{'id':house.id,'limit':limit, prev:prev}) }}';
                 var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
                 var confirmDel = '{{ 'confirm_del'|trans }}';
             </script>

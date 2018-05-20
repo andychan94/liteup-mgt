@@ -19,8 +19,6 @@ class StateRepository extends EntityRepository
      */
     public function findAll()
     {
-        $qb = $this->createQueryBuilder('s')
-            ->getQuery();
-        return $qb->execute();
+        return $this->findBy(array(), array('name' => 'ASC'));
     }
 }

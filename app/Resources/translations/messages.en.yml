@@ -12,11 +12,30 @@ entity:
     deleted: '%entity% deleted'
     deleted_many: 'Deleted %count% %entity%(s)'
     moved_to_deleted: '%count% %entity%(s) were moved to Recycle Bin'
+    removed: '%count% %entity%(s) were permanently deleted'
     deleted_all: 'All %entity%(s) have been deleted'
     made_available: '%count% %entity%(s) made available'
     made_unavailable: '%count% %entity%(s) made unavailable'
 fos_user.username.already_used: 'This username is taken'
 #        already_used: 'This username is taken'
+per_month: '/month'
+per_year: '/year'
+house:
+    form:
+        address: 'Address'
+        isShort: 'Short'
+        isRent: 'Rent'
+        isBuy: 'Buy'
+        priceShort: 'Price for short stay'
+        priceRent: 'Price for rent'
+        priceBuy: 'Price for sale'
+        title: 'Title'
+        kind: 'Type'
+        bedrooms: 'Number of bedrooms'
+        bathrooms: 'Number of bathrooms'
+        toilets: 'Number of toilets'
+        description: 'Description'
+        features: 'Features'
 home: 'Home'
 edit: 'Edit'
 add: 'Add'
@@ -26,7 +45,8 @@ per_page: 'per page'
 h_actions: 'Actions'
 h_photo: 'Photo'
 b_add: 'Add '
-b_delete: 'Remove'
+b_delete: 'Move to trash'
+b_remove: 'Remove'
 b_edit: 'Edit'
 b_empty: 'Remove all'
 b_filter: 'Filter'
@@ -45,6 +65,7 @@ add_from_file: 'Add from a file'
 supported_files: '(Excel or CSV files)'
 delete_all_current: 'Delete all'
 confirm_del: 'Delete selected?'
+confirm_rem: 'This cannot be undone! Continue to remove?'
 confirm_del_all: 'This will delete all current data. Continue?'
 state:
     name: 'State'
@@ -72,21 +93,54 @@ feature:
     title: 'Property Features'
     form:
         name: 'Feature Name'
+property:
+    name: 'Property'
+    title: 'All Properties'
+    kind: 'All'
+    plural: 'Properties'
+propshort:
+    name: 'Property'
+    plural: 'Properties'
+    title: 'Properties for Short stay'
+    kind: 'Short'
 proprent:
-    name: 'Poperty'
+    name: 'Property'
     plural: 'Properties'
     title: 'Properties for Rent'
+    kind: 'Rent'
 propsell:
-    name: 'Poperty'
+    name: 'Property'
     plural: 'Properties'
     title: 'Properties for Sale'
+    kind: 'Sale'
 propunaval:
-    name: 'Poperty'
+    name: 'Property'
     plural: 'Properties'
     title: 'Unavailable Properties'
+
+proptbin:
+    title: 'Deleted Properties'
+    plural: 'Properties'
 photo:
     name: 'Photo'
     plural: 'Photos'
     title: 'Property photos'
 
+agency:
+    name: 'Agency'
+    plural: 'Agencies'
+    title: 'Agency'
+
 State name: 'State name'
+
+profile:
+    email: 'Agency email'
+    name: 'Agency name'
+    phone: 'Agency phone'
+    address: 'Agency address'
+    about: 'About the agency'
+    services: 'Agency services'
+    image_file: 'Agency logo'
+
+history:
+    title: 'Contact History'

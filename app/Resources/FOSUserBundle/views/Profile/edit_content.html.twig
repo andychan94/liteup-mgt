@@ -22,27 +22,9 @@
     <div class="column is-full-mobile is-two-thirds-tablet">
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         {% form_theme form ':dashboard/form:custom_form.html.twig' %}
-
-        {#<div class="field is-horizontal">#}
-            {#<div class="field-label is-normal">#}
-                {#<label class="label">{{ form_label(form.username) }}</label>#}
-            {#</div>#}
-            {#<div class="field-body">#}
-                {#<div class="field">#}
-                    {#<p class="control is-expanded has-icons-left">#}
-                        {#{{ form_widget(form.username) }}#}
-                        {#<span class="icon is-small is-left">#}
-                            {#<i class="fas fa-user"></i>#}
-                        {#</span>#}
-                    {#</p>#}
-                    {#<p class="help is-danger">{{ form_errors(form.username) }}</p>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.email) }}</label>
+                {{ form_label(form.email) }}
             </div>
             <div class="field-body">
                 <div class="field">
@@ -52,14 +34,14 @@
                             <i class="fas fa-envelope"></i>
                         </span>
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.email) }}</p>
+                    {{ form_errors(form.email) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.name) }}</label>
+                {{ form_label(form.name) }}
             </div>
             <div class="field-body">
                 <div class="field">
@@ -69,14 +51,14 @@
                             <i class="fas fa-file-alt"></i>
                         </span>
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                    {{ form_errors(form.name) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.phone) }}</label>
+                {{ form_label(form.phone) }}
             </div>
             <div class="field-body">
                 <div class="field">
@@ -86,14 +68,14 @@
                             <i class="fas fa-phone"></i>
                         </span>
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.phone) }}</p>
+                    {{ form_errors(form.phone) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.address) }}</label>
+                {{ form_label(form.address) }}
             </div>
             <div class="field-body">
                 <div class="field">
@@ -103,42 +85,42 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </span>
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.address) }}</p>
+                    {{ form_errors(form.address) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.about) }}</label>
+                {{ form_label(form.about) }}
             </div>
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
                         {{ form_widget(form.about) }}
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.about) }}</p>
+                    {{ form_errors(form.about) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.services) }}</label>
+                {{ form_label(form.services) }}
             </div>
             <div class="field-body">
                 <div class="field">
                     <p class="control is-expanded has-icons-left">
                         {{ form_widget(form.services) }}
                     </p>
-                    <p class="help is-danger">{{ form_errors(form.services) }}</p>
+                    {{ form_errors(form.services) }}
                 </div>
             </div>
         </div>
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">{{ form_label(form.imageFile) }}</label>
+                Agency logo
             </div>
             <div class="field-body">
                 <div class="field">
@@ -153,12 +135,11 @@
                                     Choose a file…
                                 </span>
                             </span>
-                            <span class="file-name">
-                                <filename class="jpg">filename.jpg</filename>
+                            <span class="file-name" id="fileName">
                             </span>
                         </label>
                     </div>
-                    <p class="help is-danger">{{ form_errors(form.imageFile) }}</p>
+                    {{ form_errors(form.imageFile) }}
                 </div>
             </div>
         </div>
@@ -168,6 +149,7 @@
         <div class="has-text-centered">
             <input class="button is-success" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
         </div>
+        {{ form_rest(form) }}
         {{ form_end(form, {'render_rest': false}) }}
     </div>
 </div>

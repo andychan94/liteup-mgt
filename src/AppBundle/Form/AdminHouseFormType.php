@@ -17,7 +17,9 @@ use AppBundle\Enum\HouseKindEnum;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,10 +35,10 @@ class AdminHouseFormType extends AbstractType
                 'query_builder' => function (EntityRepository $repository) {
                     return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
                 },
-                'label' => 'area.form.lga',
+                'label' => 'lga.name',
                 'group_by' => 'state',
                 'choice_attr' => array(
-                    'class' => 'someClass'
+                    'class' => 'someClass',
                 )
             ))
             ->add('area', EntityType::class, array(
@@ -44,32 +46,50 @@ class AdminHouseFormType extends AbstractType
                 'query_builder' => function(EntityRepository $repository) {
                     return $repository->createQueryBuilder('u')->orderBy('u.name', 'ASC');
                 },
-                'label' => 'area.form.lga',
+                'required' => false,
+                'label' => 'area.name',
                 'group_by' => 'lga',
                 'choice_attr' => array(
                     'class' => 'someClass'
                 )
             ))
             ->add('address', TextType::class, array(
-                'label' => 'Street',
+                'label' => 'house.form.address',
                 'attr'=> array('class'=>'input')
             ))
-            ->add('types', TypeType::class, array(
-                'required' => true,
-                'class' => Type::class,
-                'expanded' => true,
-                'multiple' => true,
+            ->add('isShort', CheckboxType::class, array(
+                'required' => false,
+                'label' => 'house.form.isShort',
+                'attr' => array('class' => 'is-checkradio is-block is-info')
             ))
-            ->add('price', IntegerType::class, array(
-                'label' => 'Price',
-                'attr'=> array('class'=>'input')
+            ->add('isRent', CheckboxType::class, array(
+                'required' => false,
+                'label' => 'house.form.isRent',
+                'attr' => array('class' => 'is-checkradio is-block is-info')
             ))
-
+            ->add('isBuy', CheckboxType::class, array(
+                'required' => false,
+                'label' => 'house.form.isBuy',
+                'attr' => array('class' => 'is-checkradio is-block is-info')
+            ))
+            ->add('priceShort', HiddenType::class, array(
+                'label' => 'house.form.priceShort',
+                'required' => false
+            ))
+            ->add('priceRent', HiddenType::class, array(
+                'label' => 'house.form.priceRent',
+                'required' => false
+            ))
+            ->add('priceBuy', HiddenType::class, array(
+                'label' => 'house.form.priceBuy',
+                'required' => false
+            ))
             ->add('title', TextType::class, array(
-                'label' => 'Title',
+                'label' => 'house.form.title',
                 'attr'=> array('class'=>'input')
             ))
             ->add('kind', ChoiceType::class, array(
+                'label' => 'house.form.kind',
                 'required' => true,
                 'choices' => HouseKindEnum::getAvailableTypes(),
                 'choice_label' => function($choice) {
@@ -77,6 +97,7 @@ class AdminHouseFormType extends AbstractType
                 },
             ))
             ->add('bedrooms', ChoiceType::class, array(
+                'label' => 'house.form.bedrooms',
                 'required' => true,
                 'choices' => HouseBedroomsEnum::getAvailableTypes(),
                 'choice_label' => function($choice) {
@@ -84,6 +105,7 @@ class AdminHouseFormType extends AbstractType
                 },
             ))
             ->add('bathrooms', ChoiceType::class, array(
+                'label' => 'house.form.bathrooms',
                 'required' => true,
                 'choices' => HouseBathroomsEnum::getAvailableTypes(),
                 'choice_label' => function($choice) {
@@ -91,6 +113,7 @@ class AdminHouseFormType extends AbstractType
                 },
             ))
             ->add('toilets', ChoiceType::class, array(
+                'label' => 'house.form.toilets',
                 'required' => true,
                 'choices' => HouseBathroomsEnum::getAvailableTypes(),
                 'choice_label' => function($choice) {
@@ -98,10 +121,12 @@ class AdminHouseFormType extends AbstractType
                 },
             ))
             ->add('description', TextareaType::class, array(
+                'label' => 'house.form.description',
                 'required' => true,
                 'attr'=> array('class'=>'textarea')
             ))
             ->add('features', FeatureType::class, array(
+                'label' => 'house.form.features',
                 'class' => Feature::class,
                 'expanded' => true,
                 'multiple' => true,
