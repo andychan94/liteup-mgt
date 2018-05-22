@@ -351,3 +351,8 @@
 .liteup-profile.content p {
   margin-bottom: 0.4em !important;
 }
+.liteup-agency-table .table td {
+  max-width: 160px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -57,14 +57,14 @@
         <th>Email</th>
         <th>Address</th>
         <th>Phone</th>
-        <th>Active</th>
+        <th>Verified</th>
         <th>Logo</th>
         <th>Last login</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
     {#<form action="{{ path('property_delete_many', {prev: entityAltName}) }}" method="post" onsubmit="return confirmDelete()">#}
     <div class="table-container">
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+        <table class="liteup-agency-table table is-striped is-narrow is-hoverable is-fullwidth table-container">
             <thead>
             <tr>
                 {{ heading }}
@@ -84,24 +84,24 @@
                             <input class="checkbox" name="agencies[]" type="checkbox"
                                    value="{{ agency.id }}">
                         </label></td>
-                    <td>{{ agency.id }}</td>
+                    <td><span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.id }}">{{ agency.id }}</span></td>
                     <td>
-                        {{ agency.name }}
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.name }}">{{ agency.name }}</span>
                     </td>
                     <td>
-                        {{ agency.username }}
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.username }}">{{ agency.username }}</span>
                     </td>
                     <td>
-                        {{ agency.email }}
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.email }}">{{ agency.email }}</span>
                     </td>
                     <td>
-                        {{ agency.address }}
+                        <span class="tooltip is-tooltip-bottom is-tooltip-multiline" data-tooltip="{{ agency.address }}">{{ agency.address }}</span>
                     </td>
                     <td>
-                        {{ agency.phone }}
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.phone }}">{{ agency.phone }}</span>
                     </td>
                     <td>
-                        {{ agency.enabled ? 'Activated':'Not activated' }}
+                        <span class="tag {{ agency.enabled ? 'is-success':'is-danger' }}">{{ agency.enabled ? 'Yes':'No' }}</span>
                     </td>
                     <td>
                         <figure class="has-text-centered image is-64x64">
@@ -112,10 +112,10 @@
                         </figure>
                     </td>
                     <td>
-                        {{ (agency.lastLogin|date("H:i:s\nd F, Y", "Africa/Lagos"))|nl2br }}
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ (agency.lastLogin|date("H:i:s d F, Y", "Africa/Lagos"))|nl2br }}">{{ (agency.lastLogin|date("H:i:s\nd F, Y", "Africa/Lagos"))|nl2br }}</span>
                     </td>
                     <td>
-                        <em>Coming soon</em>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="Coming soon"><em>Coming soon</em></span>
                     </td>
                 </tr>
             {% endfor %}
