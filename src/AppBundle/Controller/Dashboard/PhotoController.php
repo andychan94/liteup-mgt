@@ -3,12 +3,8 @@
 namespace AppBundle\Controller\Dashboard;
 
 use AppBundle\Controller\BaseController;
-use AppBundle\Entity\Area;
 use AppBundle\Entity\House;
-use AppBundle\Entity\Lga;
 use AppBundle\Entity\Photo;
-use AppBundle\Entity\State;
-use AppBundle\Form\AdminHouseFormType;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Log\LoggerInterface;
@@ -30,6 +26,9 @@ class PhotoController extends BaseController
      */
     private $objName = Photo::class;
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
@@ -40,17 +39,19 @@ class PhotoController extends BaseController
 
     /**
      * @Route("{id}/mgr/{prev}", defaults={"prev"="property"}, name="photo_index", methods={"GET"})
-     * @param House $house
+     * @param House $entity
+     * @param $prev
      * @param Request $request
      * @return Response
      */
-    public function photoManagerAction(House $house, $prev, Request $request)
+    public function photoManagerAction(House $entity, $prev, Request $request)
     {
+        $this->denyAccessUnlessGranted('edit', $entity);
         $limit = (int)$request->query->get('limit');
         $perpage = (!is_null($limit) && $limit > 0) ? $limit : 20;
         $queryBuilder = $this->getDoctrine()->getRepository($this->objName)->createQueryBuilder('p')
             ->where('p.house = :house')
-            ->setParameter('house', $house->getId())
+            ->setParameter('house', $entity->getId())
             ->orderBy('p.createdAt', 'DESC');
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -60,7 +61,7 @@ class PhotoController extends BaseController
         );
 
         return $this->render(':dashboard/photo:photo-mgr.html.twig', [
-            'house' => $house,
+            'house' => $entity,
             'pagination' => $pagination,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
@@ -71,13 +72,15 @@ class PhotoController extends BaseController
 
     /**
      * @Route("{id}/upload/{prev}", defaults={"prev"="property"}, name="photo_add")
-     * @param House $house
+     * @param House $entity
+     * @param $prev
      * @return Response
      */
-    public function photoUploadAction(House $house, $prev)
+    public function photoUploadAction(House $entity, $prev)
     {
+        $this->denyAccessUnlessGranted('edit', $entity);
         return $this->render(':dashboard/photo:photo-upload.html.twig', [
-            'house' => $house,
+            'house' => $entity,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
             'prev' => $prev,
@@ -88,6 +91,7 @@ class PhotoController extends BaseController
      * @Route("{id}/delete/{photo_id}/{prev}", defaults={"prev"="property"}, name="photo_delete_single")
      * @param $id
      * @param $photo_id
+     * @param $prev
      * @param LoggerInterface $logger
      * @return RedirectResponse
      */
@@ -99,6 +103,8 @@ class PhotoController extends BaseController
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository(Photo::class)->find($photo_id);
         if ($entity != null) {
+            $house = $entity->getHouse();
+            $this->denyAccessUnlessGranted('edit', $house);
             try {
                 $filename = $this->get('kernel')->getRootDir() . '/../public_html' . $this->getParameter('uploads_folder') . $entity->getPath();
                 $filesystem = new Filesystem();
@@ -132,18 +138,20 @@ class PhotoController extends BaseController
      */
     public function deleteManyAction($id, $prev, Request $request, LoggerInterface $logger)
     {
+        $em = $this->getDoctrine()->getManager();
         if ($request != null) {
             $param = $request->request->get($this->entityAltNamePlu, null);
             if (!is_null($param)) {
                 /**
                  * @var $em EntityManager
                  */
-                $em = $this->getDoctrine()->getManager();
                 $filesystem = new Filesystem();
                 foreach ($param as $val) {
                     $entity = $this->getDoctrine()
                         ->getRepository($this->objName)
                         ->find($val);
+                    $house = $entity->getHouse();
+                    $this->denyAccessUnlessGranted('edit', $house);
                     $filename = $this->getParameter('uploads_folder') . $entity->getPath();
                     try {
                         $filesystem->remove($filename);

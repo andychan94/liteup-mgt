@@ -4,6 +4,7 @@ app:
     error_upload: 'An error occurred! Please make sure you followed the instructions of the file format before uploading it. If this error was on our side, our engineers have already been notified to address this problem. We will send you an email as soon as we resolve this issue.'
     error_no_csv: 'Please select a CSV file first!'
     unique_constraint_error: 'There are subitems that belong to the item(s) you tried to remove. Please edit/remove those first'
+    perimssion_error: 'You do not have permissions to perform this action'
     balance: 'Balance'
 entity:
     added: '%entity% added'

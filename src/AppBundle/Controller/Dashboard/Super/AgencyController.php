@@ -4,11 +4,6 @@ namespace AppBundle\Controller\Dashboard\Super;
 
 use AppBundle\Controller\BaseController;
 use AppBundle\Entity\Agency;
-use AppBundle\Entity\House;
-use AppBundle\Entity\Lga;
-use AppBundle\Entity\State;
-use AppBundle\Form\AdminHouseFormType;
-use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -29,6 +24,9 @@ class AgencyController extends BaseController
      */
     private $objName = Agency::class;
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);

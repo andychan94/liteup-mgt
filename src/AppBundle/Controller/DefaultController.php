@@ -7,7 +7,6 @@ use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
@@ -31,10 +30,9 @@ class DefaultController extends BaseController
 
     /**
      * @Route("/", name="homepage")
-     * @param UserManagerInterface $userManager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction(UserManagerInterface $userManager)
+    public function indexAction()
     {
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
@@ -58,10 +56,9 @@ class DefaultController extends BaseController
      * @param $token
      * @param LoggerInterface $logger
      * @param UserManagerInterface $userManager
-     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-public function resendActivationEmail($token, LoggerInterface $logger, UserManagerInterface $userManager, Request $request)
+public function resendActivationEmail($token, LoggerInterface $logger, UserManagerInterface $userManager)
 {
     $user = $userManager->findUserByConfirmationToken($token);
     if (is_null($user)) {return $this->redirectToRoute('fos_user_registration_register');}

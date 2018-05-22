@@ -30,6 +30,9 @@ class PropertyController extends BaseController
      */
     private $formTypeName = AdminHouseFormType::class;
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
@@ -88,12 +91,14 @@ class PropertyController extends BaseController
      * @Route("/edit/{id}/{prev}", defaults={"prev"="property"}, name="property_edit")
      * @param House $entity
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(House $entity, Request $request, $prev, LoggerInterface $logger)
     {
         $houseError = "";
+        $this->denyAccessUnlessGranted('edit', $entity);
         $form = $this->createForm($this->formTypeName, $entity);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -150,6 +155,7 @@ class PropertyController extends BaseController
     /**
      * @Route("/add/{prev}", defaults={"prev"="property"}, name="property_add")
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -213,11 +219,13 @@ class PropertyController extends BaseController
     /**
      * @Route("/delete/{id}/{prev}", defaults={"prev"="property"}, name="property_delete")
      * @param House $entity
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(House $entity, $prev, LoggerInterface $logger)
     {
+        $this->denyAccessUnlessGranted('edit', $entity);
         $em = $this->getDoctrine()->getManager();
         if ($entity != null) {
             try {
@@ -248,6 +256,7 @@ class PropertyController extends BaseController
     /**
      * @Route("/delete/{prev}", defaults={"prev"="property"}, name="property_delete_many", methods={"POST"})
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -264,6 +273,7 @@ class PropertyController extends BaseController
                     $entity = $this->getDoctrine()
                         ->getRepository($this->objName)
                         ->find($id);
+                    $this->denyAccessUnlessGranted('edit', $entity);
                     $entity->setIsDeleted(true);
                 }
                 try {
@@ -294,11 +304,13 @@ class PropertyController extends BaseController
     /**
      * @Route("/enable/{id}/{prev}", name="property_enable")
      * @param House $entity
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function enableAction(House $entity, $prev, LoggerInterface $logger)
     {
+        $this->denyAccessUnlessGranted('edit', $entity);
         $em = $this->getDoctrine()->getManager();
         if ($entity != null) {
             try {
@@ -329,6 +341,7 @@ class PropertyController extends BaseController
     /**
      * @Route("/enable/{prev}", defaults={"prev"="property"}, name="property_enable_many")
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -345,6 +358,7 @@ class PropertyController extends BaseController
                     $entity = $this->getDoctrine()
                         ->getRepository($this->objName)
                         ->find($id);
+                    $this->denyAccessUnlessGranted('edit', $entity);
                     $entity->setIsAvailable(true);
                 }
                 try {
@@ -375,11 +389,13 @@ class PropertyController extends BaseController
     /**
      * @Route("/disable/{id}/{prev}", defaults={"prev"="property"}, name="property_disable")
      * @param House $entity
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function disableAction(House $entity, $prev, LoggerInterface $logger)
     {
+        $this->denyAccessUnlessGranted('edit', $entity);
         $em = $this->getDoctrine()->getManager();
         if ($entity != null) {
             try {
@@ -410,6 +426,7 @@ class PropertyController extends BaseController
     /**
      * @Route("/disable/{prev}", defaults={"prev"="property"}, name="property_disable_many")
      * @param Request $request
+     * @param $prev
      * @param LoggerInterface $logger
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -426,6 +443,7 @@ class PropertyController extends BaseController
                     $entity = $this->getDoctrine()
                         ->getRepository($this->objName)
                         ->find($id);
+                    $this->denyAccessUnlessGranted('edit', $entity);
                     $entity->setIsAvailable(false);
                 }
                 try {

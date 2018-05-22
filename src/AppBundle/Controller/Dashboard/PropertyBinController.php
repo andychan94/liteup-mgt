@@ -6,8 +6,6 @@ use AppBundle\Controller\BaseController;
 use AppBundle\Entity\House;
 use AppBundle\Entity\Lga;
 use AppBundle\Entity\State;
-use AppBundle\Form\AdminHouseFormType;
-use Doctrine\ORM\EntityManager;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +25,9 @@ class PropertyBinController extends BaseController
      */
     private $objName = House::class;
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
@@ -90,9 +91,11 @@ class PropertyBinController extends BaseController
     public function deleteAction(House $entity, LoggerInterface $logger)
     {
         $em = $this->getDoctrine()->getManager();
+        $this->denyAccessUnlessGranted('edit', $entity);
         if ($entity != null) {
             try {
                 $photos = $entity->getPhotos()->getValues();
+                /* @var $photoPath \AppBundle\Entity\Photo */
                 foreach ($photos as $key=>$photoPath) {
                     $filesystem = new Filesystem();
                     $filesystem->remove($this->get('kernel')->getRootDir().'/../public_html'.$this->getParameter('uploads_folder') . $photoPath->getPath());

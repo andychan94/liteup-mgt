@@ -81,10 +81,10 @@
                         </td>
                         <td>
                             <a class="button is-danger tooltip is-tooltip-bottom"
-                               data-tooltip="Delete the property"
+                               data-tooltip="Remove the photo"
                                href="{{ path('photo_delete_single', {id:house.id, photo_id :photo.id, prev:prev}) }}">
                                 <span class="icon">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-times"></i>
                                 </span>
                             </a>
                         </td>
@@ -98,7 +98,7 @@
                     <span class="icon is-small">
                         <i class="fas fa-times"></i>
                     </span>
-                    <span>{{ 'b_delete'|trans }}</span>
+                    <span>{{ 'b_remove'|trans }}</span>
                 </button>
             </div>
         </form>
