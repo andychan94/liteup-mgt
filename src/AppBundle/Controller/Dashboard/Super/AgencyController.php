@@ -63,9 +63,11 @@ class AgencyController extends BaseController
             $this->logger($logger, $e->getMessage());
             return $this->redirectToRoute('dashboard_home');
         }
+        $timezone = date_default_timezone_get();
         return $this->render(':dashboard/admin/' . $this->entityAltName . ':index.html.twig', [
             'pagination' => $pagination,
             'limit' => $perpage,
+            'timezone' => $timezone,
             'entityAltName' => $this->entityAltName,
             'entityAltNamePlu' => $this->entityAltNamePlu,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,

@@ -54,10 +54,12 @@
         <th>ID</th>
         <th>Agency name</th>
         <th>Username</th>
+        <th>Email</th>
         <th>Address</th>
         <th>Phone</th>
         <th>Active</th>
         <th>Logo</th>
+        <th>Last login</th>
         <th>{{ 'h_actions'|trans }}</th>
     {% endset %}
     {#<form action="{{ path('property_delete_many', {prev: entityAltName}) }}" method="post" onsubmit="return confirmDelete()">#}
@@ -90,6 +92,9 @@
                         {{ agency.username }}
                     </td>
                     <td>
+                        {{ agency.email }}
+                    </td>
+                    <td>
                         {{ agency.address }}
                     </td>
                     <td>
@@ -105,6 +110,9 @@
                                         {{ asset('images/placesholder.jpg') }}
                                     {% endif %}/>
                         </figure>
+                    </td>
+                    <td>
+                        {{ (agency.lastLogin|date("H:i:s\nd F, Y", "Africa/Lagos"))|nl2br }}
                     </td>
                     <td>
                         <em>Coming soon</em>

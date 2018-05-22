@@ -25,7 +25,10 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-128x128">
-                            <img src="{{ agency_logo_folder }}{{ user.logo }}">
+                            <img src={% if user.logo is not empty %}"{{ agency_logo_folder }}{{ user.logo }}"
+                                    {% else %}
+                                        {{ asset('images/placesholder.jpg') }}
+                                    {% endif %}>
                         </figure>
                     </div>
                     <div class="media-content">

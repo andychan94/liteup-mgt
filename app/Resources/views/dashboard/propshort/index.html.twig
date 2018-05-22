@@ -232,7 +232,7 @@
                             <span class="tag is-primary"><span class="icon"><i
                                             class="fas fa-eye"></i></span>0 views</span>
                             <span class="tag is-success"><span class="icon"><i
-                                            class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y") }}
+                                            class="fas fa-calendar"></i></span>{{ house.createdAt|date("d F, Y", "Africa/Lagos") }}
                             </span>
                             {% if house.isAvailable == 0 %}<span class="tag is-danger"><span class="icon"><i
                                             class="fas fa-ban"></i></span>Unavailable</span>{% endif %}
