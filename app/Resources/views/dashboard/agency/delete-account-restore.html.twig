@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="reactivate-container">
+        <div class="reactivate-header-content">
+            <p>Your Account Is Scheduled For {{ app.user.deactivateAt  |date("Y-M-d H:i:s") }}</p>
+            <hr>
+        </div>
+        <div class="reactivate-text-content">
+            <p>
+                If you want to cancel the deletion of your account or retrieve any of the content or information you have added, click Cancel Deletion.
+            </p>
+            <hr>
+        </div>
+        <div class="reactivate-btn-content">
+            <div ><a href="{{ path('reactivation_confirmation', {'id': app.user.id} ) }}" class="reactivate-btn  reactivate-btn-cancel p-1" >Cancel delete</a></div>
+            <div ><a href="{{ path('fos_user_security_logout') }}" class="reactivate-btn reactivate-btn-confirm p-1" >Confirm delete</a></div>
+        </div>
+    </div>
+{% endblock %}

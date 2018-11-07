@@ -1,0 +1,11 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        <a href="{{ asset('/uploads/verify_docs/') }}{{ object.verifyDocs }}" download="{{ object.verifyDocs }}">
+            <img src="{{ asset('/uploads/verify_docs/') }}{{ object.verifyDocs }}" width="100%"
+                 style="box-shadow: 0 2px 5px 0 #9e9e9e"
+                 data-toggle="tooltip" title="Click to Download">
+        </a>
+    </div>
+{% endblock %}

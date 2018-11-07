@@ -1,0 +1,358 @@
+.nav-tag {
+  padding-right: 30px;
+}
+
+@media screen and (min-width: 769px), print {
+  .column.is-2, .column.is-2-tablet {
+    min-height: 100vh;
+  }
+}
+
+.tag-notif {
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  margin-left: 10px;
+
+  @media (max-width: 768px) {
+    margin-left: -2px;
+  }
+}
+
+.hero .navbar {
+  background: #2E363F !important;
+}
+
+.navbar {
+  background: #2E363F;
+
+  &-item {
+    background-color: #2E363F;
+    color: #afb8c3 !important;
+    &.is-active {
+      background-color: #f5f5f5 !important;
+      color: #363636 !important;
+    }
+    &:hover {
+      background-color: #f5f5f5 !important;
+      color: #363636 !important;
+    }
+  }
+
+  .is--brand {
+    &:hover {
+      background-color: #2E363F !important;
+    }
+  }
+
+  &-brand-logo {
+    max-height: 3rem !important;
+    background-color: #fff;
+    border-radius: .25em;
+    padding: .25em;
+  }
+
+  &-dropdown {
+    .navbar-item {
+      background-color: #fff;
+    }
+  }
+
+  &-burger {
+    background-color: #2E363F !important;
+    border: 0;
+    span {
+      background-color: #00d1b2;
+    }
+  }
+
+  &-link {
+    figure {
+      img {
+        border-radius: 50%;
+        max-height: 2em;
+      }
+    }
+  }
+}
+
+.breadcrumb:not(:last-child) {
+  margin-bottom: 0;
+}
+
+// navigation left area
+.aside {
+  background: #2E363F;
+  padding: 2em 0 0;
+  min-height: 100vh;
+
+  a {
+    color: #afb8c3;
+  }
+
+  .menu-list {
+    li {
+      margin-top: .5em;
+    }
+  }
+}
+
+.main {
+  padding: 2em 1em 0 1em;
+}
+
+.menu-label {
+  color: #00d1b2;
+  margin-left: .5em;
+}
+
+.block {
+  margin-top: .5em;
+}
+
+.main {
+  padding: 2em 1em 0
+}
+
+.menu-label {
+  color: #00d1b2;
+  margin-left: .5em
+}
+
+.block {
+  margin-top: .5em
+}
+
+.list-house-thumbnail img {
+  height: 100px;
+}
+
+.field.is-grouped.is-grouped-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table {
+  margin-top: 1.5rem;
+  tr {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+}
+
+.liteup-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.csv {
+  &.file.is-boxed.has-name .file-name {
+    border-radius: 0 0 0 0;
+    border-width: 0 1px 0;
+    max-width: unset;
+  }
+  &.csv.file.is-boxed.has-name .file-submit {
+    width: 100%;
+    border-radius: 0 0 3px 3px;
+  }
+}
+
+.hider {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    display: none;
+    &.is-active {
+      display: block;
+    }
+  }
+}
+
+.types {
+  .is-checkradio[type="checkbox"].is-block + label {
+    padding: 0.75em 0.75em 0.75em 2rem;
+    width: unset !important;
+  }
+  .is-checkradio[type="checkbox"].is-block + label::after {
+    top: 0.90rem;
+    left: 0.78rem;
+  }
+  .is-checkradio[type="checkbox"] + label:after {
+    border-width: unset !important;
+  }
+  .is-checkradio[type="checkbox"] + label:after {
+    width: 0.65rem;
+    height: 0.95rem;
+    top: 0.8rem;
+    left: 0.9rem;
+  }
+}
+
+
+.wizard {
+  .steps {
+    ul {
+      width: 100%;
+    }
+    li {
+      a {
+        color: #3b3b3b;
+      }
+      float: left;
+      width: 25%;
+      display: block;
+      padding: 0;
+      line-height: 1.5em;
+      text-align: center;
+      .audible {
+        display: none;
+      }
+      position: relative;
+      &.disabled {
+        cursor: default;
+        a {
+          color: #CCCCCC !important;
+          cursor: default;
+        }
+      }
+    }
+    li.current span.number {
+      background-color: white;
+      border-color: #23d160;
+      color: #23d160;
+      display: block;
+    }
+    li.current span.number {
+      background-color: white;
+      border-color: #00d1b2;
+      color: #00d1b2;
+    }
+    li span.number {
+      height: 2rem;
+      width: 2rem;
+      display: block;
+      font-size: unset;
+      margin: 0 auto;
+      min-width: unset;
+      padding: unset;
+      text-align: center;
+      vertical-align: middle;
+      align-items: center;
+      border-radius: 50%;
+      font-weight: 700;
+      justify-content: center;
+      background: #b5b5b5;
+      color: white;
+      border: 0.2em solid #fff;
+      z-index: 1;
+    }
+    li.done span.number {
+      background: #23d160;
+    }
+
+    li:not(:first-child)::before {
+      z-index: -1;
+      height: 0.2em;
+      width: 100%;
+      bottom: 0;
+      left: -50%;
+      top: 1rem;
+      content: " ";
+      display: block;
+      position: absolute;
+    }
+    li::before {
+      background: linear-gradient(to left, #dbdbdb 50%, #00d1b2 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+    }
+  }
+  input.error, textarea.error, select.error {
+    border-color: #ff3860;
+  }
+  label.error {
+    color: #ff3860;
+  }
+  input.valid, textarea.valid, select.valid {
+    border-color: #23d160;
+  }
+  .input.liteupNumber {
+    width: unset !important;
+  }
+
+  >.actions {
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  >.actions>ul {
+    display: inline-flex;
+    text-align: right;
+  }
+  >.actions>ul>li {
+    margin: 0 .5em;
+  }
+  >.actions .disabled a, >.actions .disabled a:hover, >.actions .disabled a:active {
+    background: #eee;
+    color: #aaa;
+    cursor: default;
+  }
+  >.actions a, >.actions a:hover, >.actions a:active {
+    background: #2184be;
+    color: #fff;
+    display: block;
+    padding: .5em 1em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+  >.actions a, > .actions a:hover, > .actions a:active {
+    background: #2184be;
+    color: #fff;
+    display: block;
+    padding: .5em 1em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+  > .content > .title, .tabcontrol > .content > .title {
+    display: none;
+  }
+  .clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  .clearfix:after {
+    clear: both;
+  }
+}
+*:focus {
+  outline-color: unset !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+}
+.sm-block {
+  margin-top:5px;
+}
+.liteup-profile.content p {
+  margin-bottom: 0.4em !important;
+}
+.liteup-agency-table.table td {
+  max-width: 160px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

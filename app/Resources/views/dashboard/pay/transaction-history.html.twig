@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="transaction-content" style="overflow-x:auto;">
+        <table id="transaction-table">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Bin</th>
+                    <th>Last4</th>
+                    <th>Exp Month</th>
+                    <th>Exp Year</th>
+                    <th>Card Type</th>
+                    <th>Bank</th>
+                    <th>Country Code</th>
+                    <th>Brand</th>
+                    <th>Customer Email</th>
+                    <th>Paid At</th>
+                    <th>Created At</th>
+                    <th>Transaction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.bin }}</td>
+                    <td>{{ transaction.last4 }}</td>
+                    <td>{{ transaction.expMonth }}</td>
+                    <td>{{ transaction.expYear }}</td>
+                    <td>{{ transaction.cardType }}</td>
+                    <td>{{ transaction.bank }}</td>
+                    <td>{{ transaction.countryCode }}</td>
+                    <td>{{ transaction.brand }}</td>
+                    <td>{{ transaction.customerEmail }}</td>
+                    <td>{{ transaction.paidAt }}</td>
+                    <td>{{ transaction.createdAt }}</td>
+                    <td>{{ transaction.transactionDate }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

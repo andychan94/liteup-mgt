@@ -1,0 +1,54 @@
+{% extends ":dashboard:base.html.twig" %}
+
+{% block body %}
+    <div class="delete-account-content">
+        <div class="delete-account-header">
+            <p>Remove Account</p>
+        </div>
+        <form action="{{ path('delete_account') }}" method="post">
+            <div class="delete-account-body">
+                <div class="account-data">
+                    <div class="account-condition-actions">
+                        <p>Username:</p>
+                    </div>
+                    <div class="account-condition">
+                        <p>{{ app.user.username }}</p>
+                    </div>
+                </div>
+                <div class="account-data">
+                    <div class="account-condition-actions">
+                        <p>Account expiration:</p>
+                    </div>
+                    <div class="account-condition">
+                        <p id="delete-condition-text">The account will be disabled.</p>
+                    </div>
+                </div>
+                <div class="account-data">
+                    <div class="account-condition-actions">
+                        <p>* Action</p>
+                    </div>
+                    <div class="account-condition">
+                        <div>
+                            <label for="temporary">
+                                <input type="radio" id="temporary" name="delete_type" value="1" checked="checked">
+                                Disabled account
+                            </label>
+                        </div>
+                        <div>
+                            <label for="permanently">
+                                <input type="radio" id="permanently" name="delete_type" value="2">
+                                Delete account
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="delete-account-footer">
+                <span class="dlt-icon-content">
+                <i class="far fa-trash-alt"></i>
+            </span>
+                <input type="submit" class="dlt-account-btn" value="Make Changes">
+            </div>
+        </form>
+    </div>
+{% endblock body %}

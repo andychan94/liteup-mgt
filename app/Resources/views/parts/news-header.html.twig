@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <ul class="navbar-nav justify-content-center m-auto">
+            <li class="nav-item">
+                <a class="nav-link news-top-logo-link" href="{{ path('homepage') }}">
+                    <img src="{{ asset('images/liteup-logo.png') }}" class="new-top-logo" alt="LiteUp">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light border-top box-shadow">
+    <div class="container">
+        <a class="navbar-brand mobile-news-top-logo-link" href="{{ path('homepage') }}">
+            <img src="{{ asset('images/liteup-logo.png') }}" class="new-top-logo" alt="LiteUp">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{ (indexActive is defined)? 'new-active active' : '' }}">
+                    <a class="nav-link m-nav-link" href="{{ path('blog_list_page') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                {{ render(controller('AppBundle:Blog:blogCategory')) }}
+            </ul>
+            <form class="form-inline my-2 my-md-0">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,94 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(entityAltNamePlu~'_index') }}">{{ (entityAltName~'.title')|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ 'edit'|trans }}</a></li>
+        </ul>
+    </nav>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ 'edit'|trans~' '~(entityAltName~'.name')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns is-mobile">
+        <div class="column is-full-mobile is-two-thirds-tablet">
+            {{ form_start(form, {'method': 'post', 'action': path(entityAltNamePlu~'_edit', {"id":entity.id})}) }}
+            {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">{{ form_label(form.name) }}</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            {{ form_widget(form.name) }}
+                        </div>
+                        <p class="help is-danger">{{ form_errors(form.name) }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for>{{ form_label(form.lga) }}</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-grouped">
+                        <div class="control has-icons-left">
+                            <div class="select">
+                                <select name="state" id="stateSelect">
+                                    {% for state in states %}
+                                        <option value="{{ state.id }}">{{ state.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <span class="icon is-left">
+                                <i class="fas fa-globe"></i>
+                            </span>
+                        </div>
+                        <div class="control has-icons-left">
+                            <div class="select">
+                                {{ form_widget(form.lga, { 'id': 'lgaSelect' }) }}
+                                <div id="hiddenLgas" class="hider">
+                                </div>
+                            </div>
+                            <span class="icon is-left">
+                                <i class="fas fa-flag"></i>
+                            </span>
+                            <p class="help is-danger">{{ form_errors(form.lga) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_rest(form) }}
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input class="button is-info" type="submit" id="_submit" name="_submit" value="{{ 'b_update'|trans }}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+{% endblock %}

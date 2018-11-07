@@ -1,0 +1,43 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function(){
+
+            // Sonata Collection On Add
+            $(document).on('click', '.sonata-collection-add', function (){
+
+                var fileBrowser = $('.filebrowser');
+
+                $.each(fileBrowser, function(){
+
+                    var currentFileBrowser = $(this);
+                    var currentFileBrowserParent = currentFileBrowser.parent();
+
+                    if(!currentFileBrowserParent.hasClass('toolbox-filebrowser')){
+
+                        currentFileBrowser.toolboxFilebrowser({
+                            image_directory: '{{ admin.tbOptions.image_directory }}',
+                            thumbWidth: {{ admin.tbOptions.thumbWidth }},
+                            thumbHeight: {{ admin.tbOptions.thumbHeight }},
+                            cropOptions: {{ admin.tbOptions.cropOptions|json_encode|raw }}
+                        });
+
+                    }
+
+                });
+
+            });
+
+            $('.filebrowser').toolboxFilebrowser({
+                image_directory: '{{ admin.tbOptions.image_directory }}',
+                thumbWidth: {{ admin.tbOptions.thumbWidth }},
+                thumbHeight: {{ admin.tbOptions.thumbHeight }},
+                cropOptions: {{ admin.tbOptions.cropOptions|json_encode|raw }}
+            });
+
+        });
+    </script>
+{% endblock %}

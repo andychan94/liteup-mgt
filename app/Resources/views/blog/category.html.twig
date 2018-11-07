@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="box-shadow">
+        {% include 'parts/news-header.html.twig' %}
+    </header>
+    <div class="container">
+
+    <div class="news-section news-bg-light  mt-4 mb-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('blog_list_page') }}" class="text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ bc.blogCategoryTitle }}</li>
+            </ol>
+        </nav>
+        <div class="news-content-header">
+            <h3 class="news-content-category-title">{{ bc.blogCategoryTitle }}</h3>
+        </div>
+        <div class="news-content-body mt-4 text-dark">
+            {% set currentRow = 0 %}
+            {% for b in blogs %}
+                {% if currentRow == 0 %}
+                    <div class="row">
+                {% endif %}
+                <div class="col-md-6 mt-4">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-7">
+
+                            <div class="news-content-news-item-image">
+                                <a href="{{ path("blog_view_page", {'slug': b.blogSlug}) }}">
+                                    <img src="{{ b.blogOgImage | get_thumb }}" width="100%" alt="{{ b.blogTitle }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="news-content-news-item-info">
+                                <span><i class="fa fa-clock-o fa-fw"></i>{{ b.blogCreatedAt | date("F jS \\a\\t g:ia") }}</span>
+                                <h6 class="news-content-news-title mt-2">
+                                    <a href="{{ path("blog_view_page", {'slug': b.blogSlug}) }}" class="text-dark">
+                                        {{ b.blogTitle }}
+                                    </a>
+                                </h6>
+                                <a href="{{ path("blog_view_page", {'slug': b.blogSlug}) }}" class="btn btn-primary btn-sm">Read more<i class="fa fa-angle-double-right fa-fw"
+                                                                                                                  aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set currentRow = currentRow +1 %}
+                {% if currentRow == 2 %}
+                    </div>
+                    {% set currentRow = 0 %}
+                {% endif %}
+            {% endfor %}
+            {% if paginationTotal > 1 %}
+                <div class="mt-5 d-flex justify-content-center align-items-center">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item {{ (paginate == 1)? 'disabled': '' }}">
+                                <a class="page-link" href="{{ path('blog_category_page', {'slug' : bc.blogCategorySlug ,'paginate': paginate - 1}) }}"
+                                   tabindex="-1">Previous</a>
+                            </li>
+                            {% for pgnt in 1..paginationTotal %}
+                                <li class="page-item {{ (pgnt == paginate)? 'active': '' }}">
+                                    <a class="page-link" href="{{ path('blog_category_page', {'slug' : bc.blogCategorySlug ,'paginate': pgnt}) }}">{{ pgnt }}
+                                        <span class="sr-only">(current)</span></a>
+                                </li>
+                            {% endfor %}
+                            <li class="page-item {{ (paginate == paginationTotal)? 'disabled': '' }}">
+                                <a class="page-link" href="{{ path('blog_category_page', {'slug' : bc.blogCategorySlug ,'paginate': paginate + 1}) }}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

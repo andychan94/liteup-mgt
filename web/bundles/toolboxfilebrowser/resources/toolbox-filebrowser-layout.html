@@ -1,0 +1,99 @@
+<div class="tb-filebrowser-container">
+    <div class="toolbox-filebrowser-layout">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 tb-file-tree">
+                    <div class="row">
+                        <div class="tb-nav-pane">
+                            <button class="tb-button tb-to-root"><i class="fa fa-chevron-up" aria-hidden="true"></i> <i class="fa fa-folder" aria-hidden="true"></i></button> <i class="fa fa-sitemap" aria-hidden="true"></i> File System
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="tb-tree"></div>
+                    </div>
+                </div>
+                <div class="col-md-10 tb-preview">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="tb-nav-pane">
+                                <button class="tb-button get-selection"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button class="tb-button dir-new"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-folder" aria-hidden="true"></i></button>
+                                <button class="tb-button dir-delete"><i class="fa fa-minus" aria-hidden="true"></i> <i class="fa fa-folder" aria-hidden="true"></i></button>
+                                <button class="tb-button file-upload"><i class="fa fa-upload" aria-hidden="true"></i></button>
+
+                                <button class="tb-button file-crop" ><i class="fa fa-crop" aria-hidden="true"></i></button>
+
+                                <button class="tb-button select-all"><i class="fa fa-check-square" aria-hidden="true"></i></button>
+                                <button class="tb-button deselect-all"><i class="fa fa-square-o" aria-hidden="true"></i></button>
+                                <button class="tb-button trash-selected"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button class="tb-button tb-close-window"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="tb-message alert-dismissible" role="alert">
+                                <button type="button" class="tb-message-close close" style="right: 15px;"><span aria-hidden="true">&times;</span></button>
+                                <div class="tb-message-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 tb-preview__content">
+                            No Files In This Directory
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="functions.php" class="dropzone" method="post" enctype="multipart/form-data">
+                                <button class="tb-close-dropzone"><i class="fa fa-close"></i></button>
+                                <div class="fallback"><input name="img" type="file" multiple /></div>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="tb-nav-pane tb-nav-pane--footer">
+                                <div class="tb-filepath">Copy path: </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade tb-crop-modal" id="crop-modal" tabindex="-1" role="dialog" aria-labelledby="crop-modal-label" data-backdrop="static">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="col-md-11">
+                            <div class="form-inline">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-crop"></i></span>
+                                    <select class="form-control input-sm tb-crop-options">
+                                        <optgroup>
+                                            <option value="custom">Custom</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" name="crop-width" class="form-control input-sm" />
+                                    <span class="input-group-addon"><i class="fa fa-times"></i></span>
+                                    <input type="text" name="crop-height" class="form-control input-sm" />
+                                    <span class="input-group-addon tb-crop-switch-wh"><i class="fa fa-exchange"></i></span>
+                                </div>
+                                <div class="input-group">
+                                    <button class="btn btn-success tb-crop-final">Crop</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tb-crop-container"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

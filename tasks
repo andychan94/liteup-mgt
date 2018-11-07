@@ -1,0 +1,89 @@
+Landing page:
+LITEUP LINKING THE DREAM
+
+{ Main } -- Horizontal sticky navbar (links to the sections on the page. +2 buttons - "EFA" & "Sign in"
+
+{Company intro}
+
+{ Product 1} 
+
+{Product 2}
+
+{ News block }
+
+{ Contact }
+
+{Footer}
+
+TODO state,area management for super admin
+TODO add short stay to houses
+TODO house prop. -> + residential or commercial
+
+TODO steps for adding a house
+1 address
+    state
+    LGA
+    area
+    street
+2 price
+    type
+        checkboxes: [short let, rent, sell]
+    price
+        selectbox changes based on Type
+        price value separated by commas
+        only allow numbers
+
+3 detail
+    title
+    purpose
+        checkboxes: [residential, commercial]
+    type of property
+        same as propertypro.ng
+    number of bedrooms:
+        same as propertypro + add 0
+    number of bathrooms:
+        same as propertypro + add 0
+    number of toilet:
+        same as propertypro + add 0
+    description:
+        tinymce without imgpload
+
+4 photos and features
+    features:
+        copy from propertypo,
+        security -> security camera
+        add gardener, security personnel, new house (noviy dom ili net)
+    upload pictures
+
+
+
+TODO rename area to LGA
+TODO add area property to houses (if NULL, see LGA)
+TODO quick contact box
+
+
+TODO - homepage links:
+ABOUT US
+TERMS AND CONDITIONS
+CONTACT (send email to customercare@qidy.net)
+MOVING
+JOBS (only display email recruit@qidy.net)
+PARTNERS (empty for now)
+
+
+TODO - property can have multiple: SELL, RENT, SHORT
+TODO - property : SELL
+price: per year - make invisible
+
+TODO - property : RENT
+price: per year, month
+
+TODO - property : SHORT
+price: per month, day
+
+
+TODO------later
+blog (controller in dashboard for superadmin)
+
+when clicked on budget show url for paystack payment page, paypal payment page (establish it)
+

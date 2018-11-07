@@ -1,0 +1,88 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ page.pageTitle }}{% endblock %}
+{% block body %}
+    <section class="page-image-content">
+        {# ------------------ section header start ------------------#}
+        <header class="">
+            {% include 'parts/nav.html.twig' %}
+        </header>
+         {#------------------ section header end ------------------#}
+        <div class="about-page-image" style="background-image: url('{{ page.pageImage }}');">
+
+            <div class="container about-page-text-content">
+                <h2 class="text-white display-2">
+                    {{ page.pageTitle }}
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container mt-5">
+            <h3 class="text-center mb-5">{{ page.pageShortText }}</h3>
+            <div class="col-md-12 mb-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="contact-block-content">
+                            <p class="text-center"><i class="fa fa-phone fa-2x"></i></p>
+                            {% for contact in contacts if  contact.contactGroup.id == 1 %}
+                                    <p class="mt-2 text-center">{{ contact.contactInfo   }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-block-content">
+                            <p class="text-center"><i class="fa fa-envelope-o fa-2x"></i></p>
+                            {% for contact in contacts if  contact.contactGroup.id == 2 %}
+                                    <p class="mt-2 text-center">{{ contact.contactInfo   }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-block-content">
+                            <p class="text-center"><i class="fa fa-map-marker fa-2x"></i></p>
+                            {% for contact in contacts if  contact.contactGroup.id == 3 %}
+                                    <p class="mt-2 text-center">{{ contact.contactInfo   }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4034971.4777660873!2d6.433451053734171!3d9.027058883989225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1536389544304" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-center mb-4">Send Message</h4>
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ message }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        {% endfor %}
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea  name="message" id="message" rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

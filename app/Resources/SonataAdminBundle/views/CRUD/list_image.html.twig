@@ -1,0 +1,13 @@
+{%  extends get_admin_template('base_list_field', admin.code) %}
+
+{% block field%}
+    <div>
+        <img src="
+                {% if object.logo is not empty %}
+                    {{ asset('images/agencies/') }}{{ object.logo }}
+                {% else %}
+                    {{ asset('/images/placesholder.jpg') }}
+                {% endif %}
+            " style="box-shadow: 0 2px 5px 0 #9e9e9e; max-width: 100%"/>
+    </div>
+{% endblock %}

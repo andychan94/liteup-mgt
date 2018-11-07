@@ -1,0 +1,10 @@
+{% if notificationCount > 0 %}
+<span class="notification-count">
+    {% if  notificationCount > 9 %}
+        9+
+    {% else %}
+        {{ notificationCount }}
+    {% endif %}
+</span>
+<input type="hidden" class="notification-total-count" value="{{ notificationCount }}">
+{% endif %}

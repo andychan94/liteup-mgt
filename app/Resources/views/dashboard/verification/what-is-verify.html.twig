@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <section class="section notification">
+        <div class="column has-text-centered ">
+            <img src="{{ asset('images/favicon/check-mark.svg') }}" width="100" alt="Verify image">
+            <div class=" content is-half">
+
+            <p class="subtitle is-5">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type
+                specimen book. It has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was popularised in
+                the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            </div>
+        </div>
+        <div class="column has-text-centered">
+            <a href="{{ path('verification_step_one') }}" class="button is-warning">
+               <span class="icon  has-text-weight-bold is-warning">
+                    <i class="fas fa-angle-left"></i>
+                </span>
+                Go Back
+            </a>
+            <a  href="{{ path('verification_step_three') }}" class="button is-primary">
+                <span class="icon  has-text-weight-bold is-marginless">
+                    <i class="fas fa-check"></i>
+                </span>
+                Verify now
+            </a>
+            <a  href="{{ asset('uploads/compressed.tracemonkey-pldi-09.pdf') }}" download="Verification-condition" class="button is-danger">
+                <span class="icon  has-text-weight-bold is-marginless">
+                    <i class="far fa-file-pdf"></i>
+                </span>
+                Download PDF
+            </a>
+        </div>
+    </section>
+{% endblock %}

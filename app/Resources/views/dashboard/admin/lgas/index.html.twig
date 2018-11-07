@@ -1,0 +1,184 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ (entityAltName~'.title')|trans }}</a></li>
+        </ul>
+    </nav>
+
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ (entityAltName~'.title')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <a class="button is-primary" href="{{ path(entityAltNamePlu~'_add_single') }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+        </a>
+    </div>
+    <div class="block">
+        <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
+            <label for="limit">{{ 'show'|trans }}
+                <span class="select is-small">
+                    <select name="limit" id="limit">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </span>
+                {{ 'per_page'|trans }}
+            </label>
+        </div>
+    </div>
+    {% set heading %}
+        <th class="has-text-right"><label>
+                <input type="checkbox" class="check_all">
+            </label></th>
+        <th>{{ knp_pagination_sortable(pagination, 'h_id'|trans, 'id') }}</th>
+        <th>{{ knp_pagination_sortable(pagination, 'h_name'|trans, 'name') }}</th>
+        <th>{{ knp_pagination_sortable(pagination, 'lga.form.state'|trans, 'state') }}</th>
+        <th>{{ 'h_actions'|trans }}</th>
+    {% endset %}
+    <form action="{{ path(entityAltName~'_delete_many') }}" method="post" onsubmit="return confirmDelete()">
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <tr>
+                {{ heading }}
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                {{ heading }}
+            </tr>
+            </tfoot>
+            <tbody>
+
+            {% for entity in pagination %}
+                <tr>
+                    <td class="has-text-right"><label>
+                            <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
+                                   value="{{ entity.id }}">
+                        </label></td>
+                    <td class="list-house-thumbnail">
+                        {{ entity.id }}
+                    </td>
+                    <td>
+                        {{ entity.name }}
+                    </td>
+                    <td>
+                        {{ (entity.state) ? entity.state.name : '-' }}
+                    </td>
+                    <td>
+                        <a class="button is-info tooltip is-tooltip-bottom"
+                           data-tooltip="{{ 'b_edit'|trans }}"
+                           href="{{ path(entityAltNamePlu~'_edit', {"id":entity.id}) }}">
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
+                        </a>
+                        <a class="button is-warning tooltip is-tooltip-bottom"
+                           data-tooltip="{{ 'b_delete'|trans }}"
+                           href="{{ path(entityAltName~'_delete_single', {"id":entity.id}) }}"
+                           onclick="return confirmDelete()">
+                            <span class="icon">
+                                <i class="fas fa-times"></i>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="buttons">
+            {{ 'with_selected'|trans }}
+            <button class="button is-warning is-small" type="submit">
+                <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>{{ 'b_delete'|trans }}</span>
+            </button>
+        </div>
+    </form>
+
+    <div class="block">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </nav>
+    </div>
+    <div class="block">
+        <form action="{{ path(entityAltName~'_empty') }}" method="post" onsubmit="return confirmDelete(true, true)">
+            <a class="button is-primary liteup-center" href="{{ path(entityAltNamePlu~'_add_single') }}">
+                <span class="icon is-small">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+            </a>
+            <button class="button is-danger liteup-center" type="submit">
+                <span class="icon is-small">
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <span>{{ 'b_empty'|trans }}</span>
+            </button>
+        </form>
+    </div>
+    <form action="{{ path(entityAltName~'_csv') }}" method="post" enctype="multipart/form-data"
+          onsubmit="return confirmDelete(true)">
+        <div class="block field">
+            <div class="csv file is-warning has-name is-boxed">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="csv">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </span>
+                        <span class="file-label has-text-centered">
+                            {{ 'add_from_file'|trans }}<br>
+                            {{ 'supported_files'|trans }}
+                        </span>
+                        <span class="block field">
+                            <input id="deleteAll" type="checkbox" name="deleteAll" class="switch is-danger">
+                            <label for="deleteAll">{{ 'delete_all_current'|trans }}</label>
+                        </span>
+                    </span>
+                    <span class="file-name" id="fileName">
+                    </span>
+                    <button id="csvUploadBtn" type="submit" class="file-submit button is-warning liteup-center"
+                            disabled>
+                        <span class="icon is-small">
+                            <i class="fas fa-database"></i>
+                        </span>
+                        <span>{{ 'b_submit'|trans }}</span>
+                    </button>
+                </label>
+            </div>
+        </div>
+    </form>
+    <div class="block"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var limit = {{ limit }};
+        var pathWithLimit = '{{ path(entityAltNamePlu~'_index',{'limit':limit}) }}';
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+{% endblock %}

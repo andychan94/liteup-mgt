@@ -1,0 +1,55 @@
+{# app/Resources/views/admin/layout.html.twig #}
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <style type="text/css">
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif !important;
+        }
+
+        .locale_switcher img {
+            width: 25px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{ asset('bundles/toolboxfilebrowser/vendor/tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/toolboxfilebrowser/vendor/jqueryFileTree/jqueryFileTree.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/toolboxfilebrowser/vendor/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/toolboxfilebrowser/css/jquery.toolbox-filebrowser.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/toolboxfilebrowser/vendor/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/sonatatranslation/css/sonata-translation.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('bundles/sonataadmin/favicon.png') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('.editor').removeAttr('required');
+
+            tinymce.init({
+                selector: ".editor",
+                height: 500,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor colorpicker textpattern imagetools"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview | forecolor backcolor emoticons"
+            });
+        });
+    </script>
+
+    <script src="{{ asset('bundles/toolboxfilebrowser/vendor/tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/toolboxfilebrowser/vendor/jqueryFileTree/jqueryFileTree.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/toolboxfilebrowser/vendor/dropzone.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/toolboxfilebrowser/js/jquery.toolbox-filebrowser.js') }}" type="text/javascript"></script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+
+
+    {% if app.session.flashBag.has('error') %}
+        <div class="notification is-danger">
+            <button class="delete"></button>
+            {% set _flashMessage='' %}
+            {% for flashMessage in app.session.flashBag.get('error') %}
+                {% set _flashMessage=flashMessage %}
+            {% endfor %}
+            <p>{{ _flashMessage }}</p>
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="notification is-success">
+            <button class="delete"></button>
+            {% for flashMessage in app.session.flashBag.get('success') %}
+                <p>{{ flashMessage }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="tabs is-boxed">
+        <ul>
+            <li class="{{ (app.request.get('_route') == 'call_contact_history') ? 'is-active':''}}">
+                <a href="{{ path('call_contact_history') }}">
+                    <span class="icon is-small"><i class="fas fa-phone" aria-hidden="true"></i></span>
+                    <span>Call request</span>
+                </a>
+            </li>
+            <li class="{{ (app.request.get('_route') == 'inspection_contact_history') ? 'is-active':''}}">
+                <a href="{{ path('inspection_contact_history') }}">
+                    <span class="icon is-small"><i class="fas fa-home" aria-hidden="true"></i></span>
+                    <span>Inspection request</span>
+                </a>
+            </li>
+            <li class="{{ (app.request.get('_route') == 'user_property_request_history') ? 'is-active':''}}">
+                <a href="{{ path('user_property_request_history') }}">
+                    <span class="icon is-small"><i class="fas fa-hourglass-start" aria-hidden="true"></i></span>
+                    <span>Accepted property request</span>
+                </a>
+            </li>
+            {#<li>#}
+                {#<a>#}
+                    {#<span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>#}
+                    {#<span>Documents</span>#}
+                {#</a>#}
+            {#</li>#}
+        </ul>
+    </div>

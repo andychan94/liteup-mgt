@@ -1,0 +1,16 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="container">
+    <div class="row">
+        <p class="check-email-text">{{ 'registration.check_email'|trans({'%email%': user.email}) }} <a href="{{ path('resend_email', {token: user.confirmationToken}) }}" class="text-white" style="text-decoration: underline;">Resend email</a></p>
+        <p class="check-email-text">If you dont see the email in your Inbox, please check your Spam folder</p>
+        <p class="is-small" style="margin-left: 10px;" >
+            <a class="text-white" style="text-decoration: underline;" href="{{ path('fos_user_security_login') }}">Log in</a> &nbsp;·&nbsp;
+            <a class="text-white" style="text-decoration: underline;" href="{{ path('fos_user_registration_register') }}">Register</a>
+        </p>
+    </div>
+</div>
+{% endblock fos_user_content %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=7">
+    <meta name="language" content="en-EN"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/bulma.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+    {% endblock %}
+    <title>{{ 'app.title'|trans }}</title>
+    {% include ':helper:favicon.html.twig' %}
+</head>
+<body>
+
+<header class="hero is-light">
+    <div class="hero-head">
+        <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item is--brand top-logo-link" href="{{ path('dashboard_home') }}">
+                    <img class="top-logo" src="{{ asset('images/bg-image/logo-white.png') }}"  alt="Liteup logo">
+                </a>
+                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-end">
+                {% if app.user.userPlan.limitBalanceAmount is defined and app.user.userPlan.limitBalanceAmount is not null %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-item">
+                            <span class="tag is-danger">{{ app.user.userPlan.limitBalanceAmount }} coins remain</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ 'app.balance'|trans }}: {{ currency|raw }} <span class="agency-budget">{{ app.user.budget }}</span>
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        <div class="main-drop-pay">
+                            <a href="{{ path('buy_coins_dashboard') }}" class="button is-dark is-fullwidth">Buy Coins</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <span class="icon mr-5"><i class="fas fa-user-circle fa-fw"></i></span>
+                        {{ app.user.name }}
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        <a class="navbar-item" href="{{ path('fos_user_profile_edit') }}">
+                            <span class="icon is-small mr-5"><i class="far fa-edit fa-fw"></i></span>
+                            Edit agency info
+                        </a>
+                        <hr class="navbar-divider">
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <a class="navbar-item" href="{{ path('sonata_admin_dashboard') }}">
+                                <span class="icon is-small mr-5"><i class="fas fa-tachometer-alt fa-fw"></i></span>
+                                Go to Admin Dashboard
+                            </a>
+                            <hr class="navbar-divider">
+                        {% endif %}
+                        <a class="navbar-item" href="{{ path('fos_user_security_logout') }}">
+                            <span class="icon is-small mr-5"><i class="fas fa-power-off fa-fw"></i></span>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div class="columns is-multiline is-marginless">
+
+        {{ include(':dashboard/blocks:left.html.twig') }}
+        <main class="column main">
+            {{ include('dashboard/verification/verification-notification.html.twig') }}
+            {% if app.session.flashBag.has('error') %}
+                <div class="notification is-danger alert-content">
+                    <button class="delete"></button>
+                    {% set _flashMessage='' %}
+                    {% for flashMessage in app.session.flashBag.get('error') %}
+                        {% set _flashMessage=flashMessage %}
+                    {% endfor %}
+                    <p>{{ _flashMessage }}</p>
+                </div>
+            {% endif %}
+            {% if app.session.flashBag.has('success') %}
+                <div class="notification is-success alert-content">
+                    <button class="delete"></button>
+                    {% for flashMessage in app.session.flashBag.get('success') %}
+                        <p>{{ flashMessage }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% block body %}{% endblock %}
+        </main>
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Get all "navbar-burger" elements
+            var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(function ($el) {
+                    $el.addEventListener('click', function () {
+
+                        // Get the target from the "data-target" attribute
+                        var target = $el.dataset.target;
+                        var $target = document.getElementById(target);
+
+                        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                        $el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

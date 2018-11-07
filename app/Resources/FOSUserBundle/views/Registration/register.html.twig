@@ -1,0 +1,69 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+{% endblock fos_user_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+
+            $('form').validate({ // initialize the plugin
+                debug: true,
+                inputErrorClass: 'is-danger',
+                errorClass: 'help is-danger',
+                validClass: 'is-success',
+                errorElement: 'p',
+                highlight: function (element, inputErrorClass, validClass) {
+                    $(element).addClass("is-danger").removeClass(validClass);
+                },
+                unhighlight: function (element, inputErrorClass, validClass) {
+                    $(element).removeClass("is-danger").addClass(validClass);
+                },
+                rules: {
+                    "fos_user_registration_form[phone]": {
+                        required: true,
+                        number: true
+                    },
+                    "fos_user_registration_form[plainPassword][first]": {
+                        required: true,
+                        pwcheck: true,
+                        minlength: 8
+                    },
+                    "fos_user_registration_form[plainPassword][second]": {
+                        required: true,
+                        equalTo: "#fos_user_registration_form_plainPassword_first"
+                    }
+                },
+                messages: {
+                    "fos_user_registration_form[phone]": {
+                        number: "Please enter a valid phone number (numbers ONLY)"
+                    },
+                    "fos_user_registration_form[plainPassword][first]": {
+                        required: "Password is required",
+                        pwcheck: "Password must contain at least: one lowercase, one uppercase letter and one number",
+                        minlength: "Password must be at least 8 characters long"
+                    },
+                    "fos_user_registration_form[plainPassword][second]": {
+                        required: "Password is required",
+                        equalTo: "Passwords must match"
+                    }
+                },
+                submitHandler: function(form) {
+                    if ($(form).valid())
+                        form.submit();
+                    return false; // prevent normal form posting
+                }
+            });
+
+
+            $.validator.addMethod("pwcheck",
+                function (value) {
+                    return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+                }
+            );
+
+        });
+    </script>
+{% endblock %}

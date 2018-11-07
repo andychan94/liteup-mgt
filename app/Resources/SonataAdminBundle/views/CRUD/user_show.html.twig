@@ -1,0 +1,10 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        <a href="{{ path('admin_app_agency_show',{'id' : object.agency.id}) }}"
+           target="_blank" data-toggle="tooltip" title="Click to see {{ object.agency.username }} profile">
+            {{ object.agency.name }}
+        </a>
+    </div>
+{% endblock %}

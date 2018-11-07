@@ -1,0 +1,219 @@
+{% extends 'base.html.twig' %}
+{% set indexActive = true %}
+{% block body %}
+    <header class="box-shadow">
+        {% include 'parts/news-header.html.twig' %}
+    </header>
+    <div class="container">
+        {% set blockBg = 0 %}
+        {% for bc in blogCategories %}
+            {% set blockBg = blockBg + 1 %}
+            {% if blockBg % 2 == 1 %}
+                {#----- news section light ------#}
+                <div class="news-section news-bg-light shadow mt-4">
+                    <div class="news-content-header">
+                        <h3>
+                            <a href="{{ path('blog_category_page', {'slug' : bc[0].blogCategorySlug}) }}" class="news-content-category-title">{{ bc[0].blogCategoryTitle }}</a>
+                        </h3>
+                    </div>
+                    <div class="news-content-body mt-4 text-dark">
+                        {#------------ Index blog -----------#}
+                        {% set primary = 0 %}
+                        {% set currentRow = 0 %}
+                        {% set serviceCount = 0 %}
+                        {% set totalServices = 0 %}
+                        {% for b in blogs %}
+                            {% if b[0].blogCategory.id == bc[0].id %}
+                                {% set totalServices = bc[1] %}
+                                {% set primary = primary + 1 %}
+                                {% set serviceCount = serviceCount + 1 %}
+                                {% if primary == 1 %}
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-12">
+                                            <div class="news-content-news-image">
+                                                <img src="{{ b[0].blogOgImage | get_thumb }}" width="100%" alt="{{ b[0].blogTitle }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-12">
+                                            <div class="news-content-news-info-content">
+                                                <ul class="nav">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-user fa-fw"></i>
+                                                            {{ b[0].blogAuthor }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-clock-o fa-fw"></i>
+                                                            {{ b[0].blogCreatedAt | date("F jS \\a\\t g:ia") }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
+                                                            {{ b[1] }} Comments
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <h5 class="news-content-news-title">
+                                                    <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}" class="text-dark">
+                                                        {{ b[0].blogtitle }}
+                                                    </a>
+                                                </h5>
+                                                <hr class="hr-bg-light">
+                                                <p class="news-content-news-text text-dark">
+                                                    {{ b[0].blogShortText }}
+                                                </p>
+                                                <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}" class="btn btn-primary btn-sm">Read more<i
+                                                            class="fa fa-angle-double-right fa-fw"
+                                                            aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-bg-light">
+                                    {#------------ Index blog -----------#}
+                                {% else %}
+                                    {#------------ top blog -----------#}
+                                    {% if currentRow == 0 %}
+                                        <div class="row">
+                                    {% endif %}
+                                    <div class="col-md-6 mt-3">
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-7">
+
+                                                <div class="news-content-news-item-image">
+                                                    <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                        <img src="{{ b[0].blogOgImage | get_thumb }}" width="100%" alt="{{ b[0].blogTitle }}">
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="news-content-news-item-info">
+                                                    <span><i class="fa fa-clock-o fa-fw"></i>{{ b[0].blogCreatedAt | date("F jS \\a\\t g:ia") }}</span>
+                                                    <h6 class="news-content-news-title mt-2">
+                                                        <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}" class="text-dark">
+                                                            {{ b[0].blogTitle }}
+                                                        </a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% set currentRow = currentRow + 1 %}
+                                    {% if currentRow == 2 or serviceCount == totalServices %}
+                                        {% set currentRow = 0 %}
+                                        </div>
+                                    {% endif %}
+                                    {#------------ top blog -----------#}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% else %}
+
+                {#----- news section dark ------#}
+                <div class="news-section news-bg-dark shadow mt-4">
+                    <div class="news-content-header">
+                        <h3>
+                            <a href="{{ path('blog_category_page', {'slug' : bc[0].blogCategorySlug}) }}" class="news-content-category-title">{{ bc[0].blogCategoryTitle }}</a>
+                        </h3>
+                    </div>
+                    <div class="news-content-body mt-4 text-white">
+                        {% set primary = 0 %}
+                        {% set currentRow = 0 %}
+                        {% set serviceCount = 0 %}
+                        {% set totalServices = 0 %}
+                        {% for b in blogs %}
+                            {% if b[0].blogCategory.id == bc[0].id %}
+                                {% set totalServices = bc[1] %}
+                                {% set primary = primary + 1 %}
+                                {% set serviceCount = serviceCount + 1 %}
+                                {% if primary == 1 %}
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-12">
+                                            <div class="news-content-news-image">
+                                                <img src="{{ b[0].blogOgImage | get_thumb }}" width="100%" alt="{{ b[0].blogTitle }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-12">
+                                            <div class="news-content-news-info-content">
+                                                <ul class="nav">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-user fa-fw"></i>
+                                                            {{ b[0].blogAuthor }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-clock-o fa-fw"></i>
+                                                            {{ b[0].blogCreatedAt | date("F jS \\a\\t g:ia") }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link pl-0 disabled" href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                            <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
+                                                            {{ b[1] }} Comments
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <h5 class="news-content-news-title">
+                                                    <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}" class="text-white">
+                                                        {{ b[0].blogtitle }}
+                                                    </a>
+                                                </h5>
+                                                <hr class="hr-bg-light">
+                                                <p class="news-content-news-text text-white-50">
+                                                    {{ b[0].blogShortText }}
+                                                </p>
+                                                <a href="" class="btn btn-primary btn-sm">Read more<i class="fa fa-angle-double-right fa-fw"
+                                                                                                      aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-bg-light">
+                                {% endif %}
+                                {% if currentRow == 0 %}
+                                    <div class="row">
+                                {% endif %}
+                                <div class="col-md-6 mt-3">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-7">
+
+                                            <div class="news-content-news-item-image">
+                                                <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}">
+                                                    <img src="{{ b[0].blogOgImage | get_thumb }}" width="100%" alt="{{ b[0].blogTItle }}">
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="news-content-news-item-info">
+                                                <span><i class="fa fa-clock-o fa-fw"></i>{{ b[0].blogCreatedAt | date("F jS \\a\\t g:ia") }}</span>
+                                                <h6 class="news-content-news-title mt-2">
+                                                    <a href="{{ path("blog_view_page", {'slug': b[0].blogSlug}) }}" class="text-white">
+                                                        {{ b[0].blogTitle }}
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% set currentRow = currentRow + 1 %}
+                                {% if currentRow == 2 or serviceCount == totalServices %}
+                                    {% set currentRow = 0 %}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

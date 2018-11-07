@@ -1,0 +1,128 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(prev~'_index') }}">{{ (prev~'.title')|trans }}</a></li>
+            <li><a href="{{ path('property_edit', {id:house.id, prev:prev}) }}">{{ 'prop_id'|trans }}
+                    : {{ house.id }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Photos</a></li>
+        </ul>
+    </nav>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ (entityAltName~'.title')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id, prev:prev}) }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_upload'|trans~('more')|trans }}</span>
+        </a>
+    </div>
+    <div class="block">
+        <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
+            <label for="limit">{{ 'show'|trans }}
+                <span class="select is-small">
+                    <select name="limit" id="limit">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </span>
+                {{ 'per_page'|trans }}
+            </label>
+        </div>
+        {% set heading %}
+            <th class="has-text-right"><label>
+                    <input type="checkbox" class="check_all">
+                </label></th>
+            <th>{{ knp_pagination_sortable(pagination, 'h_photo'|trans, 'photo') }}</th>
+            <th>{{ 'h_actions'|trans }}</th>
+        {% endset %}
+        <form action="{{ path(entityAltName~'_delete_many', {"id": house.id, "prev": prev}) }}" method="post"
+              onsubmit="return confirmDelete()">
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                <tr>
+                    {{ heading }}
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for photo in pagination %}
+                    <tr>
+                        <td class="has-text-right">
+                            <label>
+                                <input class="checkbox" name="{{ entityAltNamePlu }}[]" type="checkbox"
+                                       value="{{ photo.id }}">
+                            </label></td>
+                        <td class="list-house-thumbnail">
+                            <figure><img src="{{ asset(uploads_folder~photo.path) }}"></figure>
+                        </td>
+                        <td>
+                            <a class="button is-danger tooltip is-tooltip-bottom"
+                               data-tooltip="Remove the photo"
+                               href="{{ path('photo_delete_single', {id:house.id, photo_id :photo.id, prev:prev}) }}">
+                                <span class="icon">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="buttons">
+                {{ 'with_selected'|trans }}
+                <button class="button is-warning is-small" type="submit">
+                    <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>{{ 'b_remove'|trans }}</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="block">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </nav>
+    </div>
+    {#<div class="block">#}
+    {#<a class="button is-primary" href="{{ path(entityAltName~'_add', {'id':house.id, prev:prev}) }}">#}
+    {#<span class="icon is-small">#}
+    {#<i class="fas fa-plus"></i>#}
+    {#</span>#}
+    {#<span>{{ 'b_upload'|trans~('more')|trans }}</span>#}
+    {#</a>#}
+    {#</div>#}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var limit = {{ limit }};
+        var pathWithLimit = '{{ path(entityAltName~'_index',{'id':house.id,'limit':limit, prev:prev}) }}';
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+{% endblock %}

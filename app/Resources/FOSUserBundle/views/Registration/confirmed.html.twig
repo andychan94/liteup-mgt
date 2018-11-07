@@ -1,0 +1,31 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="container">
+        <div class="block">
+            <p class="text-white">
+                {{ 'registration.confirmed'|trans({'%username%': user.username}) }}
+            </p>
+        </div>
+        <div class="block">
+            <p class="text-white">
+                Please wait until the page redirects you to the dashboard.
+                Or <a href="{{ path('dashboard_home') }}" class="text-white">click here</a> if your browser does not support redirection
+            </p>
+        </div>
+        {% if targetUrl %}
+            <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+        {% endif %}
+    </div>
+{% endblock fos_user_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        window.setTimeout(function () {
+            window.location.href = "{{ path('dashboard_home') }}";
+        }, 4000);
+    </script>
+{% endblock %}

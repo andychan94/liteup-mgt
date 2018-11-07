@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="transaction-content">
+        <table id="transaction-table">
+            <thead>
+            <tr>
+                <th>House</th>
+                <th>User</th>
+                <th>Pricing Type</th>
+                <th>CreatedAt</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for house in houses %}
+                <tr>
+                    <td>
+                        <button class="show-user-house disable button is-rounded is-small tooltip is-tooltip-right" data-tooltip="View details"
+                                data-id="{{ house.id }}">
+                            {{ house.houseTitle }}
+                        </button>
+                    </td>
+                    <td>{{ house.user.name }}</td>
+                    <td><span class="tag is-black">{{ house.availableType }}</span></td>
+                    <td>{{ house.createdAt | date('Y-m-d h:i:s') }}</td>
+                    <td class="has-text-centered">
+                        {% set break = false %}
+                        {% for r in app.user.house %}
+                            {% if r.house.id == house.id %}
+                                <span class="tag is-success is-rounded">Accepted</span>
+                                {% set break = true %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if break == false %}
+                            <a href="{{ path('accept_request_user_house', {'house' : house.id}) }}"
+                               class="button is-small is-primary is-outlined on-disable is-rounded">Accept</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if paginationTotal > 1 %}
+        <div class="column">
+            <div class="paginate-content">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous"
+                       href="{{ path('property_request_requests', {'paginate': paginate - 1}) }}" {{ (paginate == 1)? 'disabled': '' }}><<</a>
+                    <ul class="pagination-list">
+                        {% for pgnt in 1..paginationTotal %}
+                            <li><a class="pagination-link  {{ (pgnt == paginate)? 'is-current': '' }}"
+                                   href="{{ path('property_request_requests', {'paginate': pgnt}) }}">{{ pgnt }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pagination-next"
+                       href="{{ path('property_request_requests', {'paginate': paginate + 1}) }}" {{ (paginate == paginationTotal)? 'disabled': '' }}>>></a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

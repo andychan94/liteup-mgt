@@ -1,0 +1,270 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('homepage') }}">
+                    <img src="{{ asset('images/liteup-logo.png') }}" width="80" alt="LiteUp">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#houses" aria-controls="navbarsExample07" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="houses">
+                    <ul class="navbar-nav ml-auto justify-content-end">
+                        <li class="nav-item active">
+                            <a class="nav-link m-nav-link" href="{{ path('homepage') }}">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link m-nav-link" href="{{ path('blog_list_page') }}">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link m-nav-link" href="{{ path('about_page') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link m-nav-link" href="{{ path('contact_page') }}">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="col-md-12 mt-3">
+            <div class="filter-content-wrapper">
+                {#<div class="col-md-12">#}
+                    {#<form action="{{ path('announcement_list_page') }}" method="POST">#}
+                        {#<div class="form-group">#}
+                            {#<div class="form-row justify-content-end">#}
+                                {#<div class="col-md-3 col-sm-6 position-relative">#}
+                                    {#<input type="search" name="search" class="form-control form-control-sm" placeholder="search">#}
+                                    {#<div class="search-button">#}
+                                        {#<button class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</form>#}
+                {#</div>#}
+                <form action="{{ path('announcement_list_page') }}" method="get" id="search_form">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <select name="state" id="state" class="form-control form-control-sm js-search-select2">
+                                    <option {{ (old_state is null)? 'selected' }} value="all">All</option>
+                                    {% for state in states %}
+                                        <option value="{{ state.id }}" {{ (old_state == state.id)? 'selected' }}>{{ state.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lga">LGA</label>
+                                <select name="lga" id="lga" class="form-control form-control-sm js-search-select2">
+                                    <option {{ (old_lga is null)? 'selected' }} value="all">All</option>
+                                    {% for lga in lgas %}
+                                        <option value="{{ lga.id }}" {{ (old_lga == lga.id)? 'selected' }}>{{ lga.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="area">Area</label>
+                                <select name="area" id="area" class="form-control form-control-sm js-search-select2">
+                                    <option {{ (old_area is null)? 'selected' }} value="all">All</option>
+                                    {% for area in areas %}
+                                        <option value="{{ area.id }}" {{ (old_area == area.id)? 'selected' }}>{{ area.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="arend_type">Type</label>
+                                <select id="arend_type"
+                                        name="{% if rent is not null %}rent{% elseif buy is not null %}buy{% elseif short_stay is not null %}short_stay{% else %}all{% endif %}"
+                                        class="form-control form-control-sm">
+                                    <option {% if rent is null and buy is null and short_stay is null %}
+                                        selected
+                                    {% endif %}
+                                            value="all">All
+                                    </option>
+                                    <option value="1" {{ (rent == 1)? 'selected': '' }} data-name="rent">Rent</option>
+                                    <option value="1" {{ (buy == 1)? 'selected': '' }} data-name="buy">Buy</option>
+                                    <option value="1" {{ (short_stay == 1)? 'selected': '' }} data-name="short_stay">Short Stay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" name="min" value="{{ (min is not null)? min }}" class="form-control form-control-sm"
+                                               placeholder="Min">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="max" value="{{ (max is not null)? max }}" class="form-control form-control-sm"
+                                               placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bedrooms">Number of bedrooms</label>
+                                <select name="bedrooms" id="bedrooms" class="form-control form-control-sm">
+                                    <option {{ (bedrooms is null)? 'selected' }} value="all">All</option>
+                                    <option value="1" {{ (bedrooms == 1)? 'selected' }}>1</option>
+                                    <option value="2" {{ (bedrooms == 2)? 'selected' }}>2</option>
+                                    <option value="3" {{ (bedrooms == 3)? 'selected' }}>3</option>
+                                    <option value="4" {{ (bedrooms == 4)? 'selected' }}>4</option>
+                                    <option value="5" {{ (bedrooms == 5)? 'selected' }}>5</option>
+                                    <option value="6" {{ (bedrooms == 6)? 'selected' }}>6</option>
+                                    <option value="7" {{ (bedrooms == 7)? 'selected' }}>7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="bathrooms">Number of bathroom</label>
+                                <select name="bathrooms" id="bathrooms" class="form-control form-control-sm">
+                                    <option {{ (bathrooms is null)? 'selected' }} value="all">All</option>
+                                    <option value="1" {{ (bathrooms == 1)? 'selected' }}>1</option>
+                                    <option value="2" {{ (bathrooms == 2)? 'selected' }}>2</option>
+                                    <option value="3" {{ (bathrooms == 3)? 'selected' }}>3</option>
+                                    <option value="4" {{ (bathrooms == 4)? 'selected' }}>4</option>
+                                    <option value="5" {{ (bathrooms == 5)? 'selected' }}>5</option>
+                                    <option value="6" {{ (bathrooms == 6)? 'selected' }}>6</option>
+                                    <option value="7" {{ (bathrooms == 7)? 'selected' }}>7</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="toilets">Number of toilets</label>
+                                <select name="toilets" id="toilets" class="form-control form-control-sm">
+                                    <option {{ (toilets is null)? 'selected' }} value="all">All</option>
+                                    <option value="1" {{ (toilets == 1)? 'selected' }}>1</option>
+                                    <option value="2" {{ (toilets == 2)? 'selected' }}>2</option>
+                                    <option value="3" {{ (toilets == 3)? 'selected' }}>3</option>
+                                    <option value="4" {{ (toilets == 4)? 'selected' }}>4</option>
+                                    <option value="5" {{ (toilets == 5)? 'selected' }}>5</option>
+                                    <option value="6" {{ (toilets == 6)? 'selected' }}>6</option>
+                                    <option value="7" {{ (toilets == 7)? 'selected' }}>7</option>
+                                </select>
+                            </div>
+                            <input type="submit" value="Filter" class="btn btn-outline-primary btn-sm form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12  mt-3 mt-3">
+            <div class="announcement-content-wrapper">
+                {{ houses| length }}
+                {% if houses | length < 1 %}
+                    <h4 class="text-center">Result not found</h4>
+                {% endif %}
+                <div class="row">
+                    {% for house in houses %}
+                        <div class="col-md-4 mt-4">
+                            <div class="card">
+                                <div class="property-img">
+                                    <a href="{{ path('announcement_view_page', {'slug' : house.id}) }}">
+                                        {% for photo in house.photos |slice(0,1) %}
+                                            {% if photo is not defined %}
+                                                <img src="{{ asset('images/no-image.png') }}"
+                                                     alt="{{ house.title | slice(0,40) }}">
+                                            {% else %}
+                                                <img src="{{ asset('images/uploads/') }}{{ photo.path }}" width="100%"
+                                                     alt="{{ house.title | slice(0,40) }}">
+                                            {% endif %}
+                                        {% endfor %}
+                                    </a>
+                                </div>
+                                <div class="card-body pt-1">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <a href="{{ path('announcement_view_page', {'slug' : house.id}) }}">
+                                                {{ house.title | slice(0,40) }}
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item unset-hover">
+                                            <i class="fa fa-map-marker"></i>
+                                            {{ house.address }}
+                                        </li>
+                                        <li class="list-group-item unset-hover">
+                                            {% if house.isShort == 1 %}
+                                                <div class="row mt-2 mb-2">
+                                                    <div class="col">
+                                                             <span class="house-type-item">
+                                                                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
+                                                                 Short Stay
+                                                             </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        ₦{{ house.priceShort }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if house.isRent == 1 %}
+                                                <div class="row mt-2 mb-2">
+                                                    <div class="col">
+                                                             <span class="house-type-item">
+                                                                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
+                                                                Rent
+                                                             </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        ₦{{ house.priceRent }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if house.isBuy == 1 %}
+                                                <div class="row mt-2 mb-2">
+                                                    <div class="col">
+                                                             <span class="house-type-item">
+                                                                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
+                                                                Buy
+                                                             </span>
+                                                    </div>
+                                                    <div class="col">
+                                                        ₦{{ house.priceBuy }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                        <li class="list-group-item ad-actions">
+                                            <a href="{{ path('announcement_view_page', {'slug' : house.id}) }}">
+                                                View
+                                                <i class="fa fa-hand-o-right fa-fw" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% if paginationTotal > 1 %}
+            <div class="col mt-3 mb-3 text-right">
+                <nav>
+                    <ul class="pagination pagination-md">
+                        {% for pgnt in 1..paginationTotal %}
+                            {% set lenght = app.request.requestUri | length %}
+                            <li class="page-item {{ (pgnt == paginate)? 'active': '' }}"><a class="page-link"
+                                                                                            href="{{ path('announcement_list_page', {'paginate': pgnt}) }}?{{ uri }}">{{ pgnt }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

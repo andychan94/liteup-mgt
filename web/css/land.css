@@ -1,0 +1,62 @@
+@font-face {
+  font-family: liteupFront;
+  src: url(../fonts/liteup-front-font.ttf); }
+html, body {
+  font-family: "open sans", arial, sans-serif; }
+
+.hero.is-info {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/slider/slider1.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+.hero .nav, .hero.is-success .nav {
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+.hero .navbar-item, .hero .navbar-link {
+  padding: 0 !important;
+  position: relative; }
+  .hero .navbar-item:hover, .hero .navbar-link:hover {
+    background-color: unset !important; }
+.hero .navbar-item img {
+  max-height: 3rem; }
+.hero .subtitle {
+  padding: 3rem 0;
+  line-height: 1.5; }
+.hero .logo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto 10px auto;
+  padding: 8px; }
+  .hero .logo img {
+    display: inline-block; }
+.hero-body .is-signup-front {
+  background-color: #00afc0;
+  padding: 10px 20px 10px 30px;
+  font-size: 2rem;
+  border-color: transparent;
+  color: #fff;
+  letter-spacing: -2px; }
+  .hero-body .is-signup-front:hover {
+    background-color: #0095a4; }
+.hero-body .title {
+  font-family: liteupFront, arial, sans-serif;
+  font-weight: 100 !important;
+  letter-spacing: -1px !important;
+  font-size: 60px !important;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) !important; }
+  .hero-body .title a.not-link {
+    cursor: default; }
+  .hero-body .title .hide {
+    visibility: hidden; }
+
+/*# sourceMappingURL=land.css.map */

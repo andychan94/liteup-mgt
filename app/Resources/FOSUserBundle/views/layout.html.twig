@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/font/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}"/>
+    {% endblock %}
+    <title>{{ 'app.title'|trans }}</title>
+    {% include 'helper/favicon.html.twig' %}
+</head>
+<body>
+
+<div class="fos-bg" style="background-image: url({{ asset('images/bg-image/signup-bg.jpg') }})">
+    <div class="fos-gradient align-items-center">
+        {% if app.request.hasPreviousSession %}
+            {% if app.session.flashbag.all() is not empty %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+</div>
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

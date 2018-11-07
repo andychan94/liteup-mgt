@@ -1,0 +1,24 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+            <li class="is-active"><a href="{{ path('dashboard_home') }}" aria-current="page">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title has-text-primary"><i class="fas fa-tachometer-alt fa-fw"></i> Dashboard</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <!-- Any other Bulma elements you want -->
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+{% endblock %}

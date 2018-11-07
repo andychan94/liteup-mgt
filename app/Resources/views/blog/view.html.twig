@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="box-shadow">
+        {% include 'parts/news-header.html.twig' %}
+    </header>
+    <div class="container">
+        <div class="news-section mt-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="text-dark">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('blog_category_page', {'slug' : blogCategory.blogCategorySlug}) }}"
+                                                   class="text-dark">{{ blogCategory.blogCategoryTitle }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ blog[0].blogTitle }}</li>
+                </ol>
+            </nav>
+            <div class="row">
+
+                <!-- Post Content Column -->
+                <div class="col-md-8 col-sm-12 ">
+
+                    <!-- Title -->
+                    <h1 class="mt-4">{{ blog[0].blogTitle }}</h1>
+
+                    <!-- Author -->
+                    <p class="lead">
+                        <i class="fa fa-user fa-fw fa-1x"></i>
+                        {{ blog[0].blogAuthor }}
+                    </p>
+
+                    <hr>
+
+                    <!-- Date/Time -->
+                    <p>Posted on {{ blog[0].blogCreatedAt | date("F jS \\a\\t g:ia") }}</p>
+
+                    <hr>
+
+                    <!-- Preview Image -->
+                    <img class="img-fluid rounded" src="{{ blog[0].blogOgImage }}" alt="{{ blog[0].blogTitle }}">
+
+                    <hr>
+
+                    <!-- Post Content -->
+                    <p class="lead">
+                        {{ blog[0].blogShortText }}
+                    </p>
+                    <div>
+                        {{ blog[0].blogText | raw }}
+                    </div>
+
+                    <hr>
+
+                    <!-- Comments Form -->
+                    <div class="card my-4">
+                        <h5 class="card-header">{{ blog[1] }} Comment:</h5>
+                        {% if is_granted('ROLE_USER') == true %}
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                    <div class="form-group">
+                                        {{ form_widget(form.commentText, {'attr' : {'rows' : '5', 'class' : 'form-control' } }) }}
+                                    </div>
+                                    {{ form_widget(form.send, {'attr' : {'class' : 'btn btn-primary'}}) }}
+                                {{ form_end(form) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% for comment in comments %}
+
+                    <!-- Single Comment -->
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="{{ asset('images/user.png') }}" alt="{{ comment.username }}" width="40">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ comment.username }}</h5>
+                                {{ comment.blogCommentName }}
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                {#<!-- Sidebar Widgets Column -->#}
+                <div class="col-md-4 col-sm-12 ">
+                    <!-- Categories Widget -->
+                    <div class="card my-4">
+                        <h5 class="card-header">Recent news</h5>
+                        <div class="card-body">
+                            {% for blogRecent in blogRecents %}
+                                <div class="col-md-12 mt-3">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img src="{{ blogRecent.blogOgImage }}" width="100%" alt="">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <span class="recent-news-date"><i
+                                                        class="fa fa-clock-o fa-fw"></i>{{ blogRecent.blogCreatedAt | date("Y-M-D") }}</span>
+                                            <h6 class="resent-news-title">
+                                                <a href="{{ path("blog_view_page", {'slug': blogRecent.blogSlug}) }}" class="text-dark">
+                                                    {{ blogRecent.blogTitle | slice(0,30) }}..
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

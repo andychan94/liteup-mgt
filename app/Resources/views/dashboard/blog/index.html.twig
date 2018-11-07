@@ -1,0 +1,7 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="column" style="height: 100%; width: 100%;">
+        <iframe src="{{ app.request.getSchemeAndHttpHost() }}{{ path('blog_list_page') }}" style="height:100%;width:100%;"></iframe>
+    </div>
+{% endblock %}

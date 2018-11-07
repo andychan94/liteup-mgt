@@ -1,0 +1,493 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb has-arrow-separator is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li><a href="{{ path(prev~'_index') }}">{{ (prev~'.title')|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ 'edit'|trans }}</a></li>
+        </ul>
+    </nav>
+
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ 'edit'|trans~' '~(entityAltName~'.name')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns is-mobile">
+        <div class="column is-full-mobile is-two-thirds-tablet">
+            {#<div class="steps" id="stepsDemo">#}
+            {{ form_start(form, {'method': 'post', 'action': path('property_edit', {id: entity.id, prev: prev}), 'attr': {'id': 'example-form'}}) }}
+            {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+            {#<div class="step-item is-active is-success">#}
+            {#<div class="step-marker">1</div>#}
+            {#<div class="step-details">#}
+            {#<p class="step-title">Location</p>#}
+            {#</div>#}
+            {#</div>#}
+            {#<div class="step-item">#}
+            {#<div class="step-marker">2</div>#}
+            {#<div class="step-details">#}
+            {#<p class="step-title">Price and details</p>#}
+            {#</div>#}
+            {#</div>#}
+            {#<div class="step-item">#}
+            {#<div class="step-marker">3</div>#}
+            {#<div class="step-details">#}
+            {#<p class="step-title">Description</p>#}
+            {#</div>#}
+            {#</div>#}
+            {#<div class="step-item">#}
+            {#<div class="step-marker">4</div>#}
+            {#<div class="step-details">#}
+            {#<p class="step-title">Features and photos</p>#}
+            {#</div>#}
+            {#</div>#}
+            <div class="step">
+                <h3>Location</h3>
+                <section>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label for="stateSelect" class="required">{{ 'state.name'|trans }}</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        <select name="state" id="stateSelect" required="required">
+                                            {% for state in states %}
+                                                <option value="{{ state.id }}">{{ state.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-globe"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.lgaId) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        {{ form_widget(form.lgaId, { 'id': 'lgaSelect' , 'required': 'required'}) }}
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-flag"></i>
+                                    </span>
+                                    <div id="hiddenLgas" class="hider">
+                                    </div>
+                                </div>
+                                {{ form_errors(form.lgaId) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.area) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        {{ form_widget(form.area, { 'id': 'areaSelect' }) }}
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-sign"></i>
+                                    </span>
+                                    <div id="hiddenAreas" class="hider">
+                                    </div>
+                                </div>
+                                {{ form_errors(form.area) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.address) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icon has-icons-left">
+                                    {{ form_widget(form.address) }}
+                                    <span class="icon is-left">
+                                        <i class="fas fa-street-view"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(form.address) }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <h3>Price</h3>
+                <section>
+                    <div class="field is-horizontal types">
+                        <div class="field-label is-normal">
+                            <label class="required">Available for:</label>
+                        </div>
+                        <div class="field-body has-text-left" id="checkType">
+                            {{ form_widget(form.isShort) }}
+                            {{ form_label(form.isShort) }}
+                            {{ form_widget(form.isRent) }}
+                            {{ form_label(form.isRent) }}
+                            {{ form_widget(form.isBuy) }}
+                            {{ form_label(form.isBuy) }}
+                        </div>
+                    </div>
+                    <div class="field is-horizontal types">
+                        <div class="field-label is-normal">
+                            <label class="label"></label>
+                        </div>
+                        <div class="field-body has-text-left" id="checkType">
+                            <p class="help is-danger" id="checkTypeError"></p>
+                            <p class="help is-danger" id="checkTypeError">{{ error }}</p>
+                            {{ form_errors(form.lgaId) }}
+                        </div>
+                    </div>
+                    <div class="field is-horizontal" id="isShortBlock">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.priceShort) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="field has-addons">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ currency|raw }}
+                                        </a>
+                                    </p>
+                                    <input type="text" class="input liteupNumber" id="isShort" name="shortPrice"
+                                           required="required">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ 'per_month'|trans }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            {{ form_errors(form.priceShort) }}
+                        </div>
+                    </div>
+                    <div class="field is-horizontal" id="isRentBlock">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.priceRent) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="field has-addons">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ currency|raw }}
+                                        </a>
+                                    </p>
+                                    <input type="text" class="input liteupNumber" id="isRent" name="rentPrice"
+                                           required="required">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ 'per_year'|trans }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            {{ form_errors(form.priceRent) }}
+                        </div>
+                    </div>
+                    <div class="field is-horizontal" id="isBuyBlock">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.priceBuy) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="control">
+                                <div class="field has-addons">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ currency|raw }}
+                                        </a>
+                                    </p>
+                                    <input type="text" class="input liteupNumber" id="isBuy" name="buyPrice"
+                                           required="required">
+                                    <p class="control">
+                                        <a class="button is-static">
+                                            {{ 'per_year'|trans }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            {{ form_errors(form.priceBuy) }}
+                        </div>
+                    </div>
+                </section>
+                <h3>Description</h3>
+                <section>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.title) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    {{ form_widget(form.title) }}
+                                </div>
+                                {{ form_errors(form.title) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.kind) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <div class="select">
+                                        {{ form_widget(form.kind) }}
+                                    </div>
+                                </div>
+                                {{ form_errors(form.kind) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.bedrooms) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        {{ form_widget(form.bedrooms) }}
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-bed"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(form.bedrooms) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.bathrooms) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        {{ form_widget(form.bathrooms) }}
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-bath"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(form.bathrooms) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.toilets) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control has-icons-left">
+                                    <div class="select">
+                                        {{ form_widget(form.toilets) }}
+                                    </div>
+                                    <span class="icon is-left">
+                                        <i class="fas fa-door-open"></i>
+                                    </span>
+                                </div>
+                                {{ form_errors(form.toilets) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            {{ form_label(form.description) }}
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    {{ form_widget(form.description) }}
+                                </div>
+                                {{ form_errors(form.description) }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <h3>Features</h3>
+                <section>
+                    <div class="columns">
+                        <div class="column">
+                            {{ form_widget(form.features, {'class':'switch is-rounded'}) }}
+                            {{ form_errors(form.features) }}
+                        </div>
+                    </div>
+                </section>
+            </div>
+            {{ form_rest(form) }}
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+        {#<form action="{{ oneup_uploader_endpoint('gallery') }}" class="dropzone" style="width:200px; height:200px; border:4px dashed black">#}
+        {#</form>#}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
+    <script>
+
+        var form = $("#example-form");
+        form.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.closest(".control").after(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                }
+            }
+        });
+        form.children(".step").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "fade",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                form.validate().settings.ignore = ":disabled,:hidden";
+                if (currentIndex > newIndex) {
+                    return true;
+                }
+                if (currentIndex === 1) {
+                    if ($("#checkType").find("input:checkbox:checked").length === 0) {
+                        $('#checkTypeError').html('Please select at least one');
+                        return;
+                    }
+                }
+                return form.valid();
+            },
+            onFinishing: function (event, currentIndex) {
+                form.validate().settings.ignore = ":disabled";
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex) {
+                form.submit();
+            },
+            labels: {
+                finish: "Update"
+            }
+        });
+        var limit = null;
+        var pathWithLimit = null;
+        var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+        var confirmDel = '{{ 'confirm_del'|trans }}';
+    </script>
+    {% set types = ['Short','Rent','Buy'] %}
+    <script>
+        $(function () {
+            var areaSelect = $("#areaSelect") || null;
+            var lgaSelect = $("#lgaSelect") || null;
+            var stateSelect = $("#stateSelect") || null;
+            $("#hiddenLgas").html(lgaSelect.clone().prop('id', 'lgaSelectSeed').prop('name', 'lgaSeed').removeAttr('required'));
+            $("#hiddenAreas").html(areaSelect.clone().prop('id', 'areaSelectSeed').prop('name', 'areaSeed'));
+            var areaSelectSeed = $("#areaSelectSeed") || null;
+            var lgaSelectSeed = $("#lgaSelectSeed") || null;
+            var selectedState = $(stateSelect).find("option:selected").text();
+            lgaSelect.children().not('optgroup[label="' + selectedState + '"]').remove();
+            var selectedLga = $(lgaSelect).find("option:selected").text();
+            areaSelect.children().not('optgroup[label="' + selectedLga + '"]').remove();
+            var areaLength = areaSelect.find("option").length;
+            if (areaLength === 0) {
+                areaSelect.prop('disabled', true);
+            } else {
+                areaSelect.prop('disabled', false);
+            }
+            stateSelect.change(function () {
+                var selectedState = $("option:selected", this).text();
+                var optionsLga = $(lgaSelectSeed).find('optgroup[label="' + selectedState + '"]');
+                lgaSelect.html(optionsLga.children().clone());
+
+                var selectedLga = $(lgaSelect).find("option:selected").text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.children().clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+            lgaSelect.change(function () {
+                var selectedLga = $("option:selected", this).text();
+                var optionsArea = $(areaSelectSeed).find('optgroup[label="' + selectedLga + '"]');
+                areaSelect.html(optionsArea.clone());
+
+                var areaLength = areaSelect.find("option").length;
+                if (areaLength === 0) {
+                    areaSelect.prop('disabled', true);
+                } else {
+                    areaSelect.prop('disabled', false);
+                }
+            });
+        });
+        $(function () {
+            {% for type in types %}
+            $('#is{{ type }}').val($('#house_registration_price{{ type }}').val().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            if ($("#house_registration_is{{ type }}").is(':checked')) {
+                $('#is{{ type }}Block').removeClass('invisible');
+                $('#is{{ type }}').prop('required', 'required');
+                $('#checkTypeError').html('');
+            }
+            else {
+                $('#is{{ type }}Block').addClass('invisible');
+                $('#is{{ type }}').removeAttr('required');
+            }
+            $('#house_registration_is{{ type }}').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#is{{ type }}Block').removeClass('invisible');
+                    $('#is{{ type }}').prop('required', 'required');
+                    $('#checkTypeError').html('');
+                }
+                else {
+                    $('#is{{ type }}Block').addClass('invisible');
+                    $('#is{{ type }}').removeAttr('required');
+                    $('#house_registration_price{{ type }}').val('');
+                }
+            });
+            $('#is{{ type }}').blur(function (event) {
+                $('#house_registration_price{{ type }}').val(parseInt($(this).val().replace(/,/g, '')));
+            });
+            {% endfor %}
+        });
+        $('.liteupNumber').keyup(function (event) {
+
+            // skip for arrow keys#example-form
+            if (event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function (index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    ;
+            });
+            $(".remove").each(function () {
+
+                $(this).html($(this).html().replace(/,/g, ''));
+            });
+        });
+    </script>
+{% endblock %}
+

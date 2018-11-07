@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html.twig' %}
+{% set contact_history = true %}
+{% block body %}
+    {% include 'dashboard/contact_history/history_category.html.twig' %}
+    <div class="transaction-content">
+        <table id="transaction-table">
+            <tr>
+                <th>House</th>
+                <th>User</th>
+                <th>Pricing Type</th>
+                <th>CreatedAt</th>
+            </tr>
+            {% for house in houses %}
+                <tr>
+                    <td>
+                        <button class="show-user-house disable button is-rounded is-small tooltip is-tooltip-right" data-tooltip="View details"
+                                data-id="{{ house.house.id }}">
+                            {{ house.house.houseTitle }}
+                        </button>
+                    </td>
+                    <td>
+                        <button class="show-user disable button is-rounded is-small tooltip is-tooltip-right" data-tooltip="View details"
+                                data-id="{{ house.house.user.id }}">
+                            {{ house.house.user.name }}
+                        </button>
+                    </td>
+                    <td><span class="tag is-black">{{ house.house.availableType }}</span></td>
+                    <td>{{ house.house.createdAt | date('Y-m-d h:i:s') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% if paginationTotal > 1 %}
+        <div class="column">
+            <div class="paginate-content">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" href="{{ path('user_property_request_history', {'paginate': paginate - 1}) }}" {{ (paginate == 1)? 'disabled': '' }}><<</a>
+                    <ul class="pagination-list">
+                        {% for pgnt in 1..paginationTotal %}
+                            <li><a class="pagination-link  {{ (pgnt == paginate)? 'is-current': '' }}"
+                                   href="{{ path('user_property_request_history', {'paginate': pgnt}) }}">{{ pgnt }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pagination-next"
+                       href="{{ path('user_property_request_history', {'paginate': paginate + 1}) }}" {{ (paginate == paginationTotal)? 'disabled': '' }}>>></a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

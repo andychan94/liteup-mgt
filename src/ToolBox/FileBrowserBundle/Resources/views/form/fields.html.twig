@@ -1,0 +1,35 @@
+{% block file_browser_widget %}
+    {{ form_label(form) }}
+    {% spaceless %}
+
+    {% set type = type|default('hidden') %}
+    {% set attr = {'class': 'filebrowser'} %}
+
+    {% if form.vars.options.multiple is defined and form.vars.options.multiple == false %}
+        {% set attr = {'class': 'filebrowser single-select'} %}
+    {% endif %}
+
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+    {% if value is not empty %}
+        <h4>Selected Files</h4>
+        <hr>
+        <div class="">
+            {% if form.vars.options.multiple is defined and form.vars.options.multiple == false %}
+                {% if value|file_exists %}
+                    <img src="{{ asset(value|get_thumb(form.vars.options.no_image_file)) }}" width="150">
+                {% endif %}
+            {% else %}
+                {% set valueArray = value|json_decode %}
+                {% for value in valueArray %}
+                    {% if value|file_exists %}
+                        <img src="{{ asset(value|get_thumb(form.vars.options.no_image_file)) }}" width="150">
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <hr>
+    {% endif %}
+
+    {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% block feature_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            <div class="field">
+                <div class="columns is-multiline is-mobile">
+                    {% for child in form %}
+                        <div class="column is-6-mobile is-4-desktop has-text-centered">
+                            {{ form_widget(child, { 'attr': {'class': 'switch is-thin is-rounded is-outlined is-info'} }) }}
+                            {{ form_label(child) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            {{ block('choice_widget') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+{% block type_widget %}
+    {% spaceless %}
+        {% if expanded %}
+            <div class="field">
+                {% for child in form %}
+                    {{ form_widget(child, { 'attr': {'class': 'is-checkradio is-block is-success'} }) }}
+                    {{ form_label(child) }}
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ block('choice_widget') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}

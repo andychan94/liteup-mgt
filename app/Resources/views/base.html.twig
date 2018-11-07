@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=7">
+    <meta name="language" content="en-EN"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/font/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/owl-carusel/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/owl-carusel/owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('css/land.css') }}"/>#}
+        {#<link rel="stylesheet" href="{{ asset('css/style.css') }}">#}
+    {% endblock %}
+    {% include ':helper:favicon.html.twig' %}
+</head>
+<body>
+
+{% block body %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/owl-carusel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('select2/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+    {#<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"#}
+            {#integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"#}
+            {#crossorigin="anonymous"></script>#}
+    {#<script src="{{ asset('js/build.min.js') }}"></script>#}
+{% endblock %}
+</body>
+</html>

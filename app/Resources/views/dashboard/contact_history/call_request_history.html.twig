@@ -1,0 +1,74 @@
+{% extends 'dashboard/base.html.twig' %}
+{% set contact_history = true %}
+{% block body %}
+        {% include 'dashboard/contact_history/history_category.html.twig' %}
+    <div class="transaction-content">
+        <table id="transaction-table">
+            <thead>
+            <tr>
+                <th>House</th>
+                <th>User</th>
+                <th>Phone Number</th>
+                <th>Pricing Type</th>
+                <th>RequestedAt</th>
+                <th>AnsweredAt</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in callRequests %}
+                <tr>
+                    <td>
+                        <button class="show-house disable button is-rounded is-small tooltip is-tooltip-right"  data-tooltip="View details" data-id="{{ p.house.id }}">
+                            {{ p.house.title }}
+                        </button>
+                    </td>
+                    <td> {% if p.accept == true %}
+                            <button class="show-user disable button is-rounded is-small tooltip is-tooltip-right" data-tooltip="View details" data-id="{{ p.user.id }}">
+                                {{ p.user.name }}
+                            </button>
+                        {% else %}
+                            {{ p.user.name }}
+                        {% endif %}
+                    </td>
+                    <td>{% if p.accept == 1 %}
+                            {{ p.userPhone  }}
+                        {% else %}
+                            <i class="fas fa-spinner fa-spin"></i>
+                        {% endif %}
+                    </td>
+                    <td><span class="tag is-dark">{{ p.availableType }}</span></td>
+                    <td>{{ p.requestedAt | date('Y-m-d h:i:s') }}</td>
+                    <td>{{ (p.answeredAt| date('Y-m-d h:i:s') == '-0001-11-30 12:00:00')? '----' : p.answeredAt | date('Y-m-d h:i:s')}}</td>
+                    {% if p.accept == 1 %}
+                        <td class="max-w-80 has-text-centered ">
+                            <span class="tag is-success is-rounded">Accepted</span>
+                        </td>
+                    {% elseif p.dismiss == 1 %}
+                        <td class="max-w-80 has-text-centered">
+                            <span class="tag is-danger is-rounded">Dismissed</span>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if paginationTotal > 1 %}
+        <div class="column">
+            <div class="paginate-content">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" href="{{ path('call_contact_history', {'paginate': paginate - 1}) }}" {{ (paginate == 1)? 'disabled': '' }}><<</a>
+                    <ul class="pagination-list">
+                        {% for pgnt in 1..paginationTotal %}
+                            <li><a class="pagination-link  {{ (pgnt == paginate)? 'is-current': '' }}"
+                                   href="{{ path('call_contact_history', {'paginate': pgnt}) }}">{{ pgnt }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pagination-next"
+                       href="{{ path('call_contact_history', {'paginate': paginate + 1}) }}" {{ (paginate == paginationTotal)? 'disabled': '' }}>>></a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

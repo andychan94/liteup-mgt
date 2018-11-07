@@ -1,0 +1,16 @@
+{% if is_granted('ROLE_SUPER_ADMIN') == false %}
+    {% set user = app.user.verifyRequest %}
+
+    {% if user.isVerified is defined and user.isVerified == false %}
+        <div class="notification is-info alert-content">
+            <button class="delete"></button>
+            <p>Admin has not verified your request yet!</p>
+        </div>
+    {% endif %}
+    {% if user.isVerified is not defined %}
+        <div class="notification is-info alert-content">
+            <button class="delete"></button>
+            <p>Please verify your account now!</p>
+        </div>
+    {% endif %}
+{% endif %}

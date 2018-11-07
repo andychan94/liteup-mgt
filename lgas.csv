@@ -1,0 +1,798 @@
+1,Abule Egba
+1,Agege
+1,Ajah
+1,Alimosho
+1,Amuwo Odofin
+1,Apapa
+1,Badagry
+1,Egbe/Idimu
+1,Ejigbo
+1,Epe
+1,Gbagada
+1,Ibeju-Lekki
+1,Ikeja
+1,Ikorodu
+1,Ikotun/Igando
+1,Ikoyi
+1,Ilupeju
+1,Ipaja
+1,Isolo
+1,Kosofe/Ikosi
+1,Lagos Island
+1,Lekki
+1,Maryland
+1,Mushin
+1,Ogba
+1,Ogudu
+1,Ojo
+1,Ojodu
+1,Ojota
+1,Okota
+1,Orile
+1,Oshodi
+1,Sangotedo
+1,Shomolu
+1,Surulere
+1,Victoria Island
+1,Yaba
+2,Apo
+2,Asokoro
+2,Central Area
+2,Chika
+2,Dakibiyu
+2,Dakwo
+2,Dape
+2,Dei-Dei
+2,Duboyi
+2,Durumi
+2,Gaduwa
+2,Galadinmawa
+2,Garki 1
+2,Garki 2
+2,Guzape
+2,Gwagwa
+2,Gwagwalada
+2,Gwarinpa
+2,Idu
+2,Idu Industrial(Institution and Research)
+2,Jabi
+2,Jahi
+2,Jukwoyi
+2,Kabusa
+2,Kado
+2,Kafe
+2,Karimu
+2,Karmo
+2,Karsana
+2,Katampe Ext
+2,Katampe Main
+2,Kaura (Games Village)
+2,Kubwa
+2,Kuchigworro
+2,Kuje
+2,Kukwuaba
+2,Kurudu
+2,Life Camp
+2,Lokogoma
+2,Lugbe
+2,Mabushi
+2,Maitama
+2,Mararaba
+2,Mpape
+2,Nbora
+2,Nyanya
+2,Phase 1
+2,Phase 2
+2,Phase 3
+2,Pyakassa
+2,Sub-Urban District
+2,Utako
+2,Wumba
+2,Wuse 1
+2,Wuse 2
+2,Wuye
+3,Abua-Odual
+3,Ahoada West
+3,Akuku-Toru
+3,Andoni
+3,Asari-Toru
+3,Bonny
+3,Degema
+3,Eleme
+3,Emohua
+3,Etche
+3,Gokana
+3,Ikwerre
+3,Khana
+3,Obio-Akpor
+3,Ogba-Egbema-Ndoni
+3,Ogu-obolo
+3,Okirika
+3,Omuma
+3,Opobo-Nkoro
+3,Oyigbo
+3,Port Harcourt
+3,Tai
+4,Abeokuta
+4,Ado Odo/Ota
+4,Agbara-Igbesa
+4,Arepo
+4,Ewekoro
+4,Ifo
+4,Ijebu
+4,Obafemi Owode
+4,Odogbolu
+4,Ogun Waterside
+4,Remo North
+4,Sagamu
+4,Yewa
+5,Afijio
+5,Akinyele
+5,Atiba
+5,Atisbo
+5,Egbeda
+5,Ibadan
+5,Ibarapa
+5,Ido
+5,Irepo
+5,Iseyin
+5,Itesiwaju
+5,Iwajowa
+5,Kajola
+5,Lagelu
+5,Ogbomosho
+5,Oyo
+5,Surulere(Oyo)
+6,Aguata
+6,Anambra
+6,Anambra East
+6,Anambra West
+6,Anaocha
+6,Awka North
+6,Awka South
+6,Ayamelum
+6,Dunukofia
+6,Ekwusigo
+6,Idemili North
+6,Idemili south
+6,Ihiala
+6,Njikoka
+6,Nnewi North
+6,Nnewi South
+6,Ogbaru
+6,Onitsha North
+6,Onitsha South
+6,Orumba North
+6,Orumba South
+6,Oyi
+7,Aninri
+7,Enugu
+7,Ezeagu
+7,Igbo-Ekiti
+7,Igbo-Eze South
+7,IgboEze North
+7,Isi-Uzo
+7,Nkanu
+7,Nkanu East
+7,Nsukka
+7,Oji-River
+7,Udenu
+7,Udi Agwu
+7,Uzo-Uwani
+8,Abak
+8,Eastern Obolo
+8,Eket
+8,Esit Eket
+8,Essien Udim
+8,Etim Ekpo
+8,Etinan
+8,Ibeno
+8,Ibesikpo Asutan
+8,Ibiono Ibom
+8,Ika
+8,Ikono
+8,Ikot Abasi
+8,Ikot Ekpene
+8,Ini
+8,Itu
+8,Mbo
+8,Mkpat Enin
+8,Nsit Atai
+8,Nsit Ibom
+8,Nsit Ubium
+8,Obot Akara
+8,Okobo
+8,Onna
+8,Oron
+8,Oruk Anam
+8,Udung Uko
+8,Ukanafun
+8,Uruan
+8,Urue-Offong/Oruko
+8,Uyo
+9,Demsa
+9,Fufore
+9,Ganaye
+9,Gireri
+9,Gombi
+9,Guyuk
+9,Hong
+9,Jada
+9,Lamurde
+9,Madagali
+9,Maiha
+9,Mayo-Belwa
+9,Michika
+9,Mubi North
+9,Mubi South
+9,Numan
+9,Shelleng
+9,Song
+9,Toungo
+9,Yola North
+9,Yola South
+10,Aba
+10,Aba South
+10,Arochukwu
+10,Bende
+10,Ikwuano
+10,Isiala-Ngwa North
+10,Isiala-Ngwa South
+10,Isuikwato
+10,Ngwa
+10,Obi Nwa
+10,Ohafia
+10,Osisioma
+10,Ugwunagbo
+10,Ukwa East
+10,Ukwa West
+10,Umu-Neochi
+10,Umuahia North
+10,Umuahia South
+11,Alkaleri
+11,Bauchi
+11,Bogoro
+11,Damban
+11,Darazo
+11,Dass
+11,Ganjuwa
+11,Giade
+11,Itas/Gadau
+11,Jama'are
+11,Katagum
+11,Kirfi
+11,Misau
+11,Ningi
+11,Shira
+11,Tafawa-Balewa
+11,Toro
+11,Warji
+11,Zaki
+12,Brass
+12,Ekeremor
+12,Kolokuma/Opokuma
+12,Nembe
+12,Ogbia
+12,Sagbama
+12,Southern Jaw
+12,Yenegoa
+13,Ado
+13,Agatu
+13,Apa
+13,Buruku
+13,Gboko
+13,Guma
+13,Gwer East
+13,Gwer West
+13,Katsina-Ala
+13,Konshisha
+13,Kwande
+13,Logo
+13,Makurdi
+13,Obi
+13,Ogbadibo
+13,Ohimini
+13,Oju
+13,Okpokwu
+13,Oturkpo
+13,Tarka
+13,Ukum
+13,Ushongo
+13,Vandeikya
+14,Abadam
+14,Askira/Uba
+14,Bama
+14,Bayo
+14,Biu
+14,Chibok
+14,Damboa
+14,Dikwa
+14,Gubio
+14,Guzamala
+14,Gwoza
+14,Hawul
+14,Jere
+14,Kaga
+14,Kala/Balge
+14,Konduga
+14,Kukawa
+14,Kwaya Kusar
+14,Mafa
+14,Magumeri
+14,Maiduguri
+14,Marte
+14,Mobbar
+14,Monguno
+14,Ngala
+14,Nganzai
+14,Shani
+15,Abi
+15,Akamkpa
+15,Akpabuyo
+15,Bakassi
+15,Bekwara
+15,Biase
+15,Boki
+15,Calabar
+15,Etung
+15,Ikom
+15,Obanliku
+15,Obudu
+15,Odubra
+15,Odukpani
+15,Ogoja
+15,Yala
+15,Yarkur
+16,Aniocha
+16,Aniocha South
+16,Asaba
+16,Bomadi
+16,Burutu
+16,Ethiope East
+16,Ethiope West
+16,Ika North-East
+16,Ika South
+16,Isoko North
+16,Isoko south
+16,Ndokwa East
+16,Ndokwa West
+16,Okpe
+16,Oshimili
+16,Oshimili North
+16,Patani
+16,Sapele
+16,Udu
+16,Ughelli North
+16,Ughelli South
+16,Ukwani
+16,Uvwie
+16,Warri
+17,Abakaliki
+17,Afikpo
+17,Ebonyi
+17,Ezza
+17,Ezza South
+17,Ishielu
+17,Ivo
+17,lkwo
+17,Ohaozara
+17,Ohaukwu
+17,Onicha
+18,Central
+18,Egor
+18,Esan Central
+18,Esan North-East
+18,Esan South-East
+18,Esan West
+18,Etsako Central
+18,Etsako East
+18,Igueben
+18,Oredo
+18,Orhionwon
+18,Ovia South-East
+18,Ovia SouthWest
+18,Uhunmwonde
+18,Ukpoba
+19,Ado-Ekiti
+19,Efon
+19,Ekiti South-West
+19,Ekiti-East
+19,Ekiti-West
+19,Emure/Ise/Orun
+19,Gbonyin
+19,Ido/Osi
+19,Ijero
+19,Ikare
+19,Ikole
+19,Ilejemeje
+19,Irepodun-Ekiti
+19,Ise/Orun
+19,Moba
+19,Oye
+20,Akko
+20,Balanga
+20,Billiri
+20,Dukku
+20,Funakaye
+20,Gombe
+20,Kaltungo
+20,Kwami
+20,Nafada/Bajoga
+20,Shomgom
+20,Yamaltu/Delta
+21,Aboh-Mbaise
+21,Ahiazu-Mbaise
+21,Ehime-Mbano
+21,Ezinihitte
+21,Ideato North
+21,Ideato South
+21,Ihitte/Uboma
+21,Ikeduru
+21,Isiala Mbano
+21,Isu
+21,Mbaitoli
+21,Ngor-Okpala
+21,Njaba
+21,Nkwerre
+21,Nwangele
+21,Obowo
+21,Oguta
+21,Ohaji/Egbema
+21,Okigwe
+21,Orlu
+21,Orsu
+21,Oru East
+21,Oru West
+21,Owerri
+22,Auyo
+22,Babura
+22,Biriniwa
+22,Birni Kudu
+22,Buji
+22,Dutse
+22,Gagarawa
+22,Garki
+22,Gumel
+22,Guri
+22,Gwaram
+22,Gwiwa
+22,Hadejia
+22,Jahun
+22,Kafin Hausa
+22,Kaugama Kazaure
+22,Kiri Kasamma
+22,Kiyawa
+22,Maigatari
+22,Malam Madori
+22,Miga
+22,Ringim
+22,Roni
+22,Sule-Tankarkar
+22,Taura
+22,Yankwashi
+23,Birni-Gwari
+23,Chikun
+23,Giwa
+23,Igabi
+23,Ikara
+23,jaba
+23,Jema'a
+23,Kachia
+23,Kaduna North
+23,Kaduna South
+23,Kagarko
+23,Kajuru
+23,Kaura
+23,Kauru
+23,Kubau
+23,Kudan
+23,Lere
+23,Makarfi
+23,Sabon-Gari
+23,Sanga
+23,Soba
+23,Zango-Kataf
+23,Zaria
+24,Ajingi
+24,Albasu
+24,Bagwai
+24,Bebeji
+24,Bichi
+24,Bunkure
+24,Dala
+24,Dambatta
+24,Dawakin Kudu
+24,Dawakin Tofa
+24,Doguwa
+24,Fagge
+24,Gabasawa
+24,Garko
+24,Garum
+24,Gaya
+24,Gezawa
+24,Gwale
+24,Gwarzo
+24,Kabo
+24,Kano Municipal
+24,Karaye
+24,Kibiya
+24,Kiru
+24,kumbotso
+24,Kunchi
+24,Kura
+24,Madobi
+24,Makoda
+24,Mallam
+24,Minjibir
+24,Nasarawa
+24,Rano
+24,Rimin Gado
+24,Rogo
+24,Shanono
+24,Sumaila
+24,Takali
+24,Tarauni
+24,Tofa
+24,Tsanyawa
+24,Tudun Wada
+24,Ungogo
+24,Warawa
+24,Wudil
+25,Bakori
+25,Batagarawa
+25,Batsari
+25,Baure
+25,Bindawa
+25,Charanchi
+25,Dan Musa
+25,Dandume
+25,Danja
+25,Daura
+25,Dutsi
+25,Dutsin-Ma
+25,Faskari
+25,Funtua
+25,Ingawa
+25,Jibia
+25,Kafur
+25,Kaita
+25,Kankara
+25,Kankia
+25,Katsina
+25,Kurfi
+25,Kusada
+25,Mai'Adua
+25,Malumfashi
+25,Mani
+25,Mashi
+25,Matazuu
+25,Musawa
+25,Rimi
+25,Sabuwa
+25,Safana
+25,Sandamu
+25,Zango
+26,Aleiro
+26,Arewa-Dandi
+26,Argungu
+26,Augie
+26,Bagudo
+26,Birnin Kebbi
+26,Bunza
+26,Dandi
+26,Fakai
+26,Gwandu
+26,Jega
+26,Kalgo
+26,Koko/Besse
+26,Maiyama
+26,Ngaski
+26,Sakaba
+26,Shanga
+26,Suru
+26,Wasagu/Danko
+26,Yauri
+26,Zuru
+27,Adavi
+27,Ajaokuta
+27,Ankpa
+27,Bassa
+27,Dekina
+27,Ibaji
+27,Idah
+27,Igalamela-Odolu
+27,Ijumu
+27,Kabba/Bunu
+27,Kogi
+27,Lokoja
+27,Mopa-Muro
+27,Ofu
+27,Ogori/Mangongo
+27,Okehi
+27,Okene
+27,Olamabolo
+27,Omala
+27,Yagba East
+27,Yagba West
+28,Asa
+28,Baruten
+28,Edu
+28,Ekiti
+28,Ifelodun
+28,Ilorin
+28,Irepodun
+28,Isin
+28,Kaiama
+28,Moro
+28,Offa
+28,Oke-Ero
+28,Oyun
+28,Pategi
+29,Akwanga
+29,Awe
+29,Doma
+29,Karu
+29,Keana
+29,Keffi
+29,Kokona
+29,Lafia
+29,Nasarawa-Eggon
+29,Obi-Nassarawa
+29,Toto
+29,Wamba
+30,Agaie
+30,Agwara
+30,Bida
+30,Borgu
+30,Bosso
+30,Chanchaga
+30,Edati
+30,Gbako
+30,Gurara
+30,Katcha
+30,Kontagora
+30,Lapai
+30,Lavun
+30,Magama
+30,Mariga
+30,Mashegu
+30,Mokwa
+30,Muya
+30,Pailoro
+30,Rafi
+30,Rijau
+30,Shiroro
+30,Suleja
+30,Tafa
+30,Wushishi
+31,Akoko
+31,Akure
+31,Ese-Odo
+31,Idanre
+31,Ifedore
+31,Ilaje
+31,Ile-Oluji
+31,Irele
+31,Odigbo
+31,Okeigbo
+31,Okitipupa
+31,Ondo East
+31,Ondo West
+31,Ose
+31,Owo
+32,Aiyedade
+32,Aiyedire
+32,Atakumosa East
+32,Atakumosa West
+32,Boluwaduro
+32,Boripe
+32,Ede North
+32,Ede South
+32,Egbedore
+32,Ife Central
+32,Ife East
+32,Ife North
+32,Ife South
+32,Ifedayo
+32,Ila
+32,Ilesha East
+32,Ilesha West
+32,Irepodun-Osun
+32,Irewole
+32,Isokan
+32,Iwo
+32,Obokun
+32,Odo-Otin
+32,Ola-Oluwa
+32,Olorunda
+32,Oriade
+32,Orolu
+32,Osogbo
+33,Barikin Ladi
+33,Bassa-Plateau
+33,Bokkos
+33,Jos East
+33,Jos North
+33,Jos South
+33,Kanam
+33,Kanke
+33,Langtang North
+33,Langtang South
+33,Mangu
+33,Mikang
+33,Pankshin
+33,Qua'an Pan
+33,Riyom
+33,Shendam
+33,Wase
+34,Binji
+34,Bodinga
+34,Dange-shnsi
+34,Gada
+34,Gawabawa
+34,Goronyo
+34,Gudu
+34,Illela
+34,Isa
+34,kebbe
+34,Kware
+34,Rabah
+34,Sabon birni
+34,Shagari
+34,Silame
+34,Sokoto North
+34,Sokoto South
+34,Tambuwal
+34,Tqngaza
+34,Tureta
+34,Wamako
+34,Wurno
+34,Yabo
+35,Ardo-kola
+35,Bali
+35,Cassol
+35,Donga
+35,Gashaka
+35,Ibi
+35,Jalingo
+35,Karin-Lamido
+35,Kurmi
+35,Lau
+35,Sardauna
+35,Takum
+35,Ussa
+35,Wukari
+35,Yorro
+35,Zing
+36,Bade
+36,Bursari
+36,Damaturu
+36,Fika
+36,Fune
+36,Geidam
+36,Gujba
+36,Gulani
+36,Jakusko
+36,Karasuwa
+36,Karawa
+36,Machina
+36,Nangere
+36,Nguru Potiskum
+36,Tarmua
+36,Yunusari
+36,Yusufari
+37,Anka
+37,Bakura
+37,Birnin Magaji
+37,Bukkuyum
+37,Bungudu
+37,Gummi
+37,Gusau
+37,Kaura-Zamfara
+37,Maradun
+37,Maru
+37,Namoda
+37,Shinkafi
+37,Talata Mafara
+37,Tsafe
+37,Zurmi

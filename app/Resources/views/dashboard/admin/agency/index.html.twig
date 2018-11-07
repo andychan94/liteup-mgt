@@ -1,0 +1,230 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{{ path('dashboard_home') }}">{{ 'home'|trans }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ (entityAltName~'.title')|trans }}</a></li>
+        </ul>
+    </nav>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="title">
+                    {{ (entityAltName~'.title')|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <a class="button is-primary" href="{{ path('property_add', {prev: entityAltName}) }}">
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>
+        </a>
+    </div>
+    <div class="block">
+        <div class="has-text-left">{{ 'total_entities'|trans({'%entity%': (entityAltName~'.plural')|trans,'%count%': pagination.getTotalItemCount}) }}
+            <label for="limit">{{ 'show'|trans }}
+                <span class="select is-small">
+                    <select name="limit" id="limit">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </span>
+                {{ 'per_page'|trans }}
+            </label>
+        </div>
+    </div>
+    {% set heading %}
+        <th class="has-text-right">
+            <label>
+                <input type="checkbox" class="check_all">
+            </label>
+        </th>
+        <th>ID</th>
+        <th>Agency name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Verified</th>
+        <th>Logo</th>
+        <th>Last login</th>
+        <th>{{ 'h_actions'|trans }}</th>
+    {% endset %}
+    {#<form action="{{ path('property_delete_many', {prev: entityAltName}) }}" method="post" onsubmit="return confirmDelete()">#}
+    <div class="table-container">
+        <table class="liteup-agency-table table is-striped is-narrow is-hoverable is-fullwidth table-container">
+            <thead>
+            <tr>
+                {{ heading }}
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                {{ heading }}
+            </tr>
+            </tfoot>
+            <tbody>
+
+            {% for agency in pagination %}
+                <tr>
+                    <td class="has-text-right">
+                        <label>
+                            <input class="checkbox" name="agencies[]" type="checkbox"
+                                   value="{{ agency.id }}">
+                        </label></td>
+                    <td><span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.id }}">{{ agency.id }}</span></td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.name }}">{{ agency.name }}</span>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.username }}">{{ agency.username }}</span>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.email }}">{{ agency.email }}</span>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom is-tooltip-multiline" data-tooltip="{{ agency.address }}">{{ agency.address }}</span>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ agency.phone }}">{{ agency.phone }}</span>
+                    </td>
+                    <td>
+                        <span class="tag {{ agency.enabled ? 'is-success':'is-danger' }}">{{ agency.enabled ? 'Yes':'No' }}</span>
+                    </td>
+                    <td>
+                        <figure class="has-text-centered image is-64x64">
+                            <img src={% if agency.logo is not empty %}"{{ agency_logo_folder }}{{ agency.logo }}"
+                                    {% else %}
+                                        {{ asset('images/placesholder.jpg') }}
+                                    {% endif %}/>
+                        </figure>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="{{ (agency.lastLogin|date("H:i:s d F, Y", "Africa/Lagos"))|nl2br }}">{{ (agency.lastLogin|date("H:i:s\nd F, Y", "Africa/Lagos"))|nl2br }}</span>
+                    </td>
+                    <td>
+                        <span class="tooltip is-tooltip-bottom" data-tooltip="Coming soon"><em>Coming soon</em></span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {#<div class="buttons">#}
+    {#{{ 'with_selected'|trans }}#}
+    {#<button class="button is-warning is-small" type="submit">#}
+    {#<span class="icon is-small">#}
+    {#<i class="fas fa-times"></i>#}
+    {#</span>#}
+    {#<span>{{ 'b_delete'|trans }}</span>#}
+    {#</button>#}
+    {#</div>#}
+    {#</form>#}
+
+    <div class="block">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </nav>
+    </div>
+    {#<div class="block">#}
+    {#<a class="button is-primary liteup-center" href="{{ path('property_add', {prev: entityAltName}) }}">#}
+    {#<span class="icon is-small">#}
+    {#<i class="fas fa-plus"></i>#}
+    {#</span>#}
+    {#<span>{{ 'b_add'|trans~(entityAltName~'.name')|trans }}</span>#}
+    {#</a>#}
+    {#</div>#}
+    <div class="block"></div>
+{% endblock %}
+        {% block stylesheets %}
+            {{ parent() }}
+            {#<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">#}
+        {% endblock %}
+        {% block javascripts %}
+            {{ parent() }}
+            <script>
+                var limit = {{ limit }};
+                var pathWithLimit = '{{ path(entityAltName~'_index',{'limit':limit}) }}';
+                var confirmDelAll = '{{ 'confirm_del_all'|trans }}';
+                var confirmDel = '{{ 'confirm_del'|trans }}';
+            </script>
+            {#<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+            {#<script>#}
+            {#$(function () {#}
+            {#$('#pot').hide();#}
+            {#$("#slider-range").slider({#}
+            {#range: true,#}
+            {#min: 0,#}
+            {#max: 10000,#}
+            {#step: 10,#}
+            {#values: [0, 10000],#}
+            {#slide: function (event, ui) {#}
+            {#if (ui.values[0] < 1000) {#}
+            {#$("#amount").val(ui.values[0] + "K");#}
+            {#$("#amount2").val((ui.values[1] / 1000) + "M");#}
+
+            {#}#}
+
+            {#if (ui.values[1] < 1000) {#}
+            {#$("#amount").val(ui.values[0] + "K");#}
+            {#$("#amount2").val(ui.values[1] + "K");#}
+
+            {#}#}
+
+            {#if (ui.values[0] > 1000) {#}
+            {#$("#amount").val((ui.values[0] / 1000) + "M");#}
+            {#$("#amount2").val((ui.values[1] / 1000) + "M");#}
+            {#}#}
+
+
+            {#}#}
+            {#});#}
+
+            {#$("#amount").val($("#slider-range").slider("values", 0) + "K");#}
+            {#$("#amount2").val($("#slider-range").slider("values", 1) / 1000 + "M");#}
+            {#});#}
+            {#$('#stateSelect').change(function () {#}
+            {#var select_class = $("option:selected", this).val();#}
+            {#var $options = $('#pot').find('> option.state' + select_class).clone();#}
+            {#$('#areaSelect')#}
+            {#.find('option')#}
+            {#.remove()#}
+            {#.end()#}
+            {#.append($options);#}
+            {#});#}
+            {#document.querySelector('a#open-modal').addEventListener('click', function (event) {#}
+            {#event.preventDefault();#}
+            {#var modal = document.querySelector('.modal');#}
+            {#var html = document.querySelector('html');#}
+            {#modal.classList.add('is-active');#}
+            {#html.classList.add('is-clipped');#}
+
+            {#function closeModal() {#}
+            {#modal.classList.remove('is-active');#}
+            {#html.classList.remove('is-clipped');#}
+            {#}#}
+
+            {#modal.querySelector('.modal-background').addEventListener('click', function (e) {#}
+            {#e.preventDefault();#}
+            {#closeModal(e);#}
+            {#});#}
+            {#var closeBtns = document.getElementsByClassName("close-modal");#}
+            {#console.log(closeBtns.length);#}
+            {#for (var i = 0; i < closeBtns.length; i++) {#}
+            {#closeBtns[i].addEventListener('click', closeModal);#}
+            {#}#}
+            {#});#}
+            {#</script>#}
+        {% endblock %}

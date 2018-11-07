@@ -1,0 +1,23 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <section class="section notification">
+        <div class="column has-text-centered">
+            <img src="{{ asset('images/favicon/check-mark.svg') }}" width="100" alt="Verify image">
+            <h4 class="subtitle is-4">Verification request</h4>
+        </div>
+        <div class="column has-text-centered">
+            <a href="{{ path('verification_step_two') }}" class="button is-info">
+                <span class="icon  has-text-weight-bold is-marginless">
+                    <i class="fas fa-check"></i>
+                </span>
+                What is this?</a>
+            <a href="{{ path('verification_step_three') }}" class="button is-primary">
+                <span class="icon  has-text-weight-bold is-marginless">
+                    <i class="fas fa-check"></i>
+                </span>
+                Verify now</a>
+        </div>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <ul class="list-group">
+        <li class="list-group-item disabled">Agency Inforamation</li>
+        <li class="list-group-item">
+            <img src="
+                {% if object.agency.logo is not empty %}
+                    {{ asset('images/agencies/') }}{{ object.agency.logo }}
+                {% else %}
+                    {{ asset('/images/placesholder.jpg') }}
+                {% endif %}
+            " style="box-shadow: 0 2px 5px 0 #9e9e9e; width: 100%"/>
+
+        </li>
+        <li class="list-group-item">{{ object.agency.username }}</li>
+        <li class="list-group-item">{{ object.agency.email }}</li>
+        <li class="list-group-item"><a href="{{ path('admin_app_agency_show', {'id' : object.agency.id}) }}" target="_blank">Learn More</a></li>
+    </ul>
+{% endblock %}

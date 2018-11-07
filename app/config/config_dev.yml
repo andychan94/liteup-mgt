@@ -1,0 +1,45 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: '%kernel.project_dir%/app/config/routing_dev.yml'
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      grouped
+        grouped:
+            type:    group
+            members: [streamed, deduplicated]
+        streamed:
+            type:  stream
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+        deduplicated:
+            type:    deduplication
+            handler: swift
+        swift:
+            type:       swift_mailer
+            from_email: 'info@liteup.xyz'
+            to_email:   'nrashidov@gmail.com'
+            subject:    'Error on Liteup.xyz occurred!'
+            level:      info
+            formatter:  monolog.formatter.html
+            content_type: text/html
+
+#swiftmailer:
+#    delivery_addresses: ['me@example.com']
+
+doctrine:
+    dbal:
+        dbname: '%dev_database_name%'

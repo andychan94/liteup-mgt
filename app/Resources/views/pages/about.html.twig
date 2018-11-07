@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ page.pageTitle }}{% endblock %}
+
+{% block body %}
+    <section class="page-image-content">
+        {# ------------------ section header start ------------------#}
+        <header class="">
+            {% include 'parts/nav.html.twig' %}
+        </header>
+        {# ------------------ section header end ------------------#}
+        <div class="about-page-image" style="background-image: url('{{ page.pageImage }}');">
+
+            <div class="container about-page-text-content">
+                <h2 class="text-white display-2">
+                    {{ page.pageTitle }}
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="mt-5">
+            <h2 class="">
+                {{ page.pageShortText }}
+            </h2>
+        </div>
+        <div class="mt-3">
+            <div>
+                {{ page.pageText | raw }}
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

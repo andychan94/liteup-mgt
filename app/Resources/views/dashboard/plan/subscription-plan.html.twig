@@ -1,0 +1,124 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    {% if app.user.userPlan is not null %}
+
+    <div class="subscribed-plan-ifno">
+        <div class="notification is-success">
+            <button class="delete"></button>
+            <p><strong>
+                    {% if  app.user.userPlan.active == 0  %}
+                        Your subscribe  <span style="color: #000; text-decoration: underline;">{{ app.user.userPlan.plan.planTitle }}</span> limited
+                    {% else %}
+                    You are already subscribe  to <span style="color: #000; text-decoration: underline;">{{ app.user.userPlan.plan.planTitle }}</span> on
+                        {{ app.user.userPlan.planCreatedAt | date('Y-m-d') }}
+                        {% if app.user.userPlan.plan.id != 3 %}
+                            and
+                            plan limited {{app.user.userPlan.planDeadLine | date('Y-m-d') }}
+                        {% endif %}
+                    {% endif %}
+                </strong>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+    <div class="plan-subscription-wrapper">
+        {% for plan in plans %}
+            {% if plan.id  == 3 %}
+                <div class="plan-subscription">
+                    <div class="plan-item-content">
+                        <div class="no-risk-plan-header">
+                            <div class="crown-content">
+                                <img src="{{ asset('images/bg-image/crown.png') }}" alt="Crown">
+                            </div>
+                            <p>{{ plan.planTitle }}</p>
+                        </div>
+                        <div class="plan-item-price">
+                            <p class="is-size-4">{{ plan.planPrice }}</p>
+                            <p class="count-month">when there is a hot customer.</p>
+                            <p class="no-risk-best-value">Best Value for Money</p>
+                        </div>
+                        {% for cond in plan.planCondition %}
+                            <div class="plan-item-conditions">
+                                <p>{{ cond.conditionTitle }}</p>
+                            </div>
+                        {% endfor %}
+                        <div class="plan-item-footer">
+                            <div>
+                                <a type="button" class="ro-risk-plan-more-info" id="plan_text"><i>Click for details</i></a>
+                            </div>
+                            <a href="{{ path('no_risk_plan', {'slug' : plan.id}) }}" class="no-risk-plan-pay-now">Pay Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="plan_text_modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                        <div class="main-modal-content">
+                            {{ plan.planText | raw}}
+                        </div>
+                    </div>
+                    <button class="modal-close"></button>
+                </div>
+            {% else %}
+                <div class="plan-subscription">
+                    <div class="plan-item-content">
+                        <div class="plan-item-header">
+                            <p>{{ plan.planTitle }}</p>
+                        </div>
+                        <div class="plan-item-price">
+                            <p class="is-size-4">₦{{ plan.planPrice }}</p>
+                            <p class="count-month">per month</p>
+                            {% for item in plan.planAnyMonth %}
+                                <p class="plan-discount">{{ item }}</p>
+                            {% endfor %}
+                        </div>
+                        {% for cond in plan.planCondition %}
+                            <div class="plan-item-conditions">
+                                <p>{{ cond.conditionTitle }}</p>
+                            </div>
+                        {% endfor %}
+
+                        <div class="plan-item-footer">
+                            {% if plan.id == 1 %}
+                                <a href="{{ path('landlord_pack', {'slug' : plan.id}) }}" class="plan-pay-now">Pay Now</a>
+                            {% elseif plan.id == 2 %}
+                                <a id="openModal" class="plan-pay-now">Pay Now</a>
+                                <div class="modal my_modal_2" >
+                                    <div class="modal-background"></div>
+                                    <div class="modal-content">
+                                        <div class="main-modal-content">
+                                            <form action="{{ path('standard_pack', {'slug' : plan.id}) }}" method="post">
+                                                {#<div class="form-group">#}
+                                                    {#<input type="radio" class="month" name="month" value="default" checked>#}
+                                                    {#<label for="monthDefault" class="month-label">₦{{ plan.planPrice }}#}
+                                                        {#for 1 month</label>#}
+                                                {#</div>#}
+                                                <div class="field">
+                                                    <input class="is-checkradio is-info"  id="monthDefault" type="radio" name="month" checked="checked" value="default">
+                                                    <label for="monthDefault" class="month-label">₦{{ plan.planPrice }}
+                                                        for 1 month</label>
+                                                </div>
+                                                {% for planMonthPrice in planMonthPrices %}
+                                                    <div class="field">
+                                                        <input class="is-checkradio is-info"  id="month{{ planMonthPrice.id }}" type="radio" name="month" value="{{ planMonthPrice.id }}">
+                                                        <label for="month{{ planMonthPrice.id }}" class="month-label">₦{{ planMonthPrice.price }}
+                                                            for {{ planMonthPrice.monthCount }} months</label>
+                                                    </div>
+                                                {% endfor %}
+                                                    <div class="form-group">
+                                                        <button type="submit" class="plan-pay-now">Pay now</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <button class="modal-close"></button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

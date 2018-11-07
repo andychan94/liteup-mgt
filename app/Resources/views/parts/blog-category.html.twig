@@ -1,0 +1,6 @@
+{% for bc in blogCategories %}
+    <li class="nav-item">
+        <a class="nav-link m-nav-link
+" href="{{ path('blog_category_page', {'slug' : bc.blogCategorySlug }) }}">{{ bc.blogCategoryTitle }}</a>
+    </li>
+{% endfor %}

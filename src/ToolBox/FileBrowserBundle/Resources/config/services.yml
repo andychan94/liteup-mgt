@@ -1,0 +1,19 @@
+services:
+    tool_box_file_browser.file_tree:
+        class: ToolBox\FileBrowserBundle\Service\FileTreeBrowser
+        arguments: ['@service_container']
+
+    tool_box_file_browser.file_browser_type:
+        class: ToolBox\FileBrowserBundle\Form\Type\FileBrowserType
+        tags:
+            - { name: form.type }
+
+    ToolBox\FileBrowserBundle\Controller\FileBrowserController:
+        class: ToolBox\FileBrowserBundle\Controller\FileBrowserController
+        arguments: ['@tool_box_file_browser.file_tree', '@service_container']
+
+    ToolBox\FileBrowserBundle\Twig\AppExtension:
+        class: ToolBox\FileBrowserBundle\Twig\AppExtension
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension }

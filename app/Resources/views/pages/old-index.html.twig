@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
+                            <img src="{{ asset('images/liteup-logo.png') }}" alt="Logo">
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="field is-grouped">
+                                    <p class="control">
+                                        <a class="button is-white is-outlined" href="{{ path('about_page') }}">
+								            <span class="icon">
+								            	<i class="fas fa-users"></i>
+								            </span>
+                                            <span>About Us</span>
+                                        </a>
+                                    </p>
+                                    <p class="control">
+
+                                        <a class="button is-white is-outlined" href="{{ path('contact_page') }}">
+								            <span class="icon">
+								            	<i class="far fa-comment-alt"></i>
+								            </span>
+                                            <span>Contact</span>
+                                        </a>
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-white is-outlined" href="{{ path('fos_user_security_login') }}">
+								            <span class="icon">
+								            	<i class="fas fa-user"></i>
+								            </span>
+                                            <span>Sign in</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <h1 class="title">
+                        <a class="typewrite not-link" data-period="12000" data-type='[ "Linking the dream" ]'>
+                            <span class="hide">Dummy</span>
+                            <span class="wrap"></span>
+                        </a>
+                    </h1>
+                    <a class="button is-signup-front" href="{{ path('fos_user_registration_register') }}">
+					<span class="icon is-small">
+						<i class="fas fa-users"></i>
+					</span>
+                        <span>Sign up</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bulma.min.js') }}"></script>
+    <script>
+        var TxtType = function (el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function () {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+
+            // if (this.isDeleting) {
+            //     delta /= 2;
+            // }
+            //
+            // if (!this.isDeleting && this.txt === fullTxt) {
+            //     delta = this.period;
+            //     this.isDeleting = true;
+            // } else if (this.isDeleting && this.txt === '') {
+            //     this.isDeleting = false;
+            //     this.loopNum;
+            //     delta = 500;
+            // }
+
+            setTimeout(function () {
+                that.tick();
+            }, delta);
+        };
+
+        function wait(ms) {
+            var start = new Date().getTime();
+            var end = start;
+            while (end < start + ms) {
+                end = new Date().getTime();
+            }
+        }
+
+        window.onload = function () {
+            wait(1000);
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+    </script>
+{% endblock %}

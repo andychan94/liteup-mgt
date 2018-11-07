@@ -1,0 +1,9 @@
+{% block subject %}{{ email.emailSubject }}{% endblock %}
+
+{% block body_html %}
+    Hello {{ userName }} !
+
+    To finish activating your account - please visit {{ confirmationUrl }}
+
+    {{ email.emailText }}
+{% endblock %}

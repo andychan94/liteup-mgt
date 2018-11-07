@@ -1,0 +1,27 @@
+toolboxfilebrowser_file_tree:
+    path: /tbfb-filetree
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:getFileTree }
+
+toolboxfilebrowser_dir_content:
+    path: /tbfb-dircont
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:getDirectoryContent }
+
+toolboxfilebrowser_upload:
+    path: /tbfb-upload
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:uploadFile }
+
+toolboxfilebrowser_crop:
+    path: /tbfb-crop
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:cropImage }
+
+toolboxfilebrowser_create_dir:
+    path: /tbfb-createdir
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:createDir }
+
+toolboxfilebrowser_delete_file:
+    path: /tbfb-deletefile
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:deleteFile }
+
+toolboxfilebrowser_delete_tree:
+    path: /tbfb-deletetree
+    defaults: { _controller: ToolBoxFileBrowserBundle:FileBrowser:deleteTree }

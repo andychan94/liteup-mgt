@@ -1,0 +1,76 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="transaction-content">
+        {% if app.session.flashBag.has('error') %}
+            <div class="notification is-danger">
+                <button class="delete"></button>
+                {% set _flashMessage='' %}
+                {% for flashMessage in app.session.flashBag.get('error') %}
+                    {% set _flashMessage=flashMessage %}
+                {% endfor %}
+                <p>{{ _flashMessage }}</p>
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('success') %}
+
+            <div class="notification is-success">
+                <button class="delete"></button>
+                {% for flashMessage in app.session.flashBag.get('success') %}
+                    <p>{{ flashMessage }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <table id="transaction-table">
+            <thead>
+            <tr>
+                <th>House</th>
+                <th>User</th>
+                <th>Pricing Type</th>
+                <th>RequestedAt</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in callRequests %}
+                <tr>
+                    <td>
+                        <button class="show-house disable button is-rounded is-small tooltip is-tooltip-right"  data-tooltip="View details" data-id="{{ p.house.id }}">
+                            {{ p.house.title }}
+                        </button>
+                    </td>
+                    <td>
+                        {{ p.user.name }}
+                    </td>
+                    <td><span class="tag is-dark">{{ p.availableType }}</span></td>
+                    <td>{{ p.requestedAt | date('Y-m-d h:i:s') }}</td>
+                    <td class="max-w-80 has-text-centered">
+                        <a href="{{ path('accept_call_requests', {'slug' : p.id, 'house' : p.house.id }) }}" class="button is-small is-rounded
+                    is-primary  on-disable is-outlined">Accept</a>
+                        <a href="{{ path('dismiss_call_requests', {'slug' : p.id }) }}" class="button is-small is-rounded is-danger on-disable  is-outlined ">Dismiss</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if paginationTotal > 1 %}
+        <div class="column">
+            <div class="paginate-content">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" href="{{ path('call_requests', {'paginate': paginate - 1}) }}" {{ (paginate == 1)? 'disabled': '' }}><<</a>
+                    <ul class="pagination-list">
+                        {% for pgnt in 1..paginationTotal %}
+                            <li><a class="pagination-link  {{ (pgnt == paginate)? 'is-current': '' }}"
+                                   href="{{ path('call_requests', {'paginate': pgnt}) }}">{{ pgnt }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pagination-next"
+                       href="{{ path('call_requests', {'paginate': paginate + 1}) }}" {{ (paginate == paginationTotal)? 'disabled': '' }}>>></a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

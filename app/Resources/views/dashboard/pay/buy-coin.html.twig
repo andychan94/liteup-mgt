@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="columns">
+        <div class="column is-half has-text-centered">
+            <h3 class="is-size-4">
+                {{ plan.planTitle }}
+            </h3>
+            <div class="column">
+                <p class="is-size-6">
+                    {{ plan.planDescription }}
+                </p>
+            </div>
+            <div class="column">
+                <button class="button is-primary select-plan">Choose coins amount</button>
+            </div>
+            <section class="plane-price-content">
+                <hr>
+                <form action="{{ path('pay_now') }}" method="post">
+                    <div class="columns is-marginless ">
+                        {% for price in plan.planPrice %}
+                            <div class="column">
+                                <div class="plan-price-header">
+                                    <label for="plan-amount{{ price }}" class="check-plan-amount">
+                                        <i class="far fa-square"></i>
+                                        <input type="checkbox" id="plan-amount{{ price }}" class="plan-amount" name="amount" value="{{ price }}">
+                                    </label>
+                                </div>
+                                <div class="plan-price">
+                                    <p>{{ price }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="column">
+                            <div class="plan-price-header">
+                                <label for="plan-amount5" class="custom-check-plan-amount ">
+                                    <i class="far fa-square"></i>
+                                    <input type="checkbox" id="plan-amount5" class="plan-amount" name="amount">
+                                </label>
+                            </div>
+                            <div class="plan-price custom-plane-amount">
+                                <p>Custom</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <input type="submit" class="button is-primary" value="Pay now">
+                    </div>
+                </form>
+            </section>
+        </div>
+        {% if  app.user.userPlan.plan is defined and app.user.userPlan.plan.id == 3 %}
+            <div class="column is-half has-text-centered">
+                <h3 class="is-size-4">
+                    Manage Budget
+                </h3>
+                <div class="column">
+                    <p class="is-size-6">
+                        You can managed your budget.
+                    </p>
+                </div>
+                {% if app.user.userPlan.limitBasicAmount is not null %}
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <div class="tags has-addons is-large">
+                                    <span class="tag is-danger">{{ app.user.userPlan.limitBasicAmount }} coins for  {{ app.user.userPlan.limitRangeAt }}</span>
+                                    <a href="{{ path('remove_limit') }}" class="tag is-delete " ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <hr>
+                <form action="{{ path('manage_limit_budget') }}" method="post">
+                    <div class="columns is-marginless ">
+                        <div class="column">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-primary" type="text" name="amount" placeholder="Amount limited coins" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <div class="control">
+                                    <div class="select is-primary">
+                                        <select class="is-primary" name="limitRangeAt" required="required">
+                                            <option value="1 day">Daily limit</option>
+                                            <option value="1 week">Weekly limit</option>
+                                            <option value="1 month">Monthly limit</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field">
+                                <div class="control">
+                                    <input type="submit" class="button is-primary" value="Save">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

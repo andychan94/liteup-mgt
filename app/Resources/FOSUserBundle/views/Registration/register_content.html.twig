@@ -1,0 +1,105 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-7">
+            <div class="left-side">
+                <div class="logo-content">
+                    <a href="{{ path('homepage') }}">
+                        <img src="{{ asset('images/bg-image/logo-white.png') }}" class="logo" alt="Liteup">
+                    </a>
+                </div>
+                <div class="register-text-content">
+                    <h3 class="register-text-title-1">Hello!</h3>
+                    <h2 class="register-text-title-2">Welcome</h2>
+                    <h3 class="register-text-title-1">to Liteup</h3>
+
+                    <p class="register-text">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="register-form">
+                <div class="round">
+                    <i class="fa fa-2x fa-user"></i>
+                </div>
+                <h2 class="c-a">Create Account</h2>
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {% form_theme form ':dashboard/form:custom_form.html.twig' %}
+
+                <div class="form-row form-group">
+                    <div class="col-sm r-mb-1">
+                        {{ form_widget(form.name, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                        <div class="text-dark">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    </div>
+
+                    <div class="col-sm">
+                        {{ form_widget(form.lastName, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                        <div class="text-danger">
+                            {{ form_errors(form.lastName) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(form.email, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    {{ form_widget(form.phone, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                   <div class="text-danger">
+                    {{ form_errors(form.phone) }}
+                   </div>
+                </div>
+
+
+                <div class="form-group">
+                    {{ form_widget(form.plainPassword.first, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                    <div class="text-danger">
+                    {{ form_errors(form.plainPassword.first) }}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    {{ form_widget(form.plainPassword.second, {'attr' : {'class' : 'form-control r-form-field'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.plainPassword.second) }}
+                    </div>
+                </div>
+
+                <div class="user-types">
+                    <p class="you-are">You are</p>
+                    {{ form_widget(form.userType) }}
+                </div>
+                    <div class="text-danger">
+                        {{ form_errors(form.userType) }}
+                    </div>
+
+                <div class="text-center">
+                    <p class="text-white">By clicking “Register”, you agree to our<br>
+                        <a href="{{ path('tos') }}" target="_blank" class="text-white" style="text-decoration: underline">Terms of service</a>.<br/>
+                        We’ll occasionally send you account related emails.</p>
+                    {{ form_rest(form) }}
+                    <input class="btn-lg reg-btn" onclick="appInformation()" type="button" value="{{ 'registration.submit'|trans }}"/>
+                </div>
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="register-footer">
+    <div class="container">
+        <p class="footer-text">Have an account <a href="{{ path('fos_user_security_login') }}" class="footer-sign-in">Sign In</a></p>
+    </div>
+</div>
