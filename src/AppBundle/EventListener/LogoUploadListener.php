@@ -50,6 +50,7 @@ class LogoUploadListener implements EventSubscriberInterface
         $agencyLogo = $event->getRequest()->files->get('fos_user_profile_form');
         $logo = $agencyLogo['imageFile']['file'];
 
+
         if ($logo != null) {
 
             $agency = $this->em->getRepository('AppBundle:Agency')->find($user);

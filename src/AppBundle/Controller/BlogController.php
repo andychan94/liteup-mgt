@@ -24,6 +24,7 @@ class BlogController extends Controller
         return $this->render('parts/blog-category.html.twig', array(
             'blogCategories' => $blogCategories,
         ));
+
     }
 
     /**

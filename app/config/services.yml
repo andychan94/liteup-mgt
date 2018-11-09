@@ -92,13 +92,6 @@ services:
             - { name: sonata.admin, manager_type: orm, group : Slider, label: Slider, icon:  "<i class='fa fa-book'></i>" }
         public: true
 
-    admin.contact:
-        class: AppBundle\Admin\ContactAdmin
-        arguments: [~, AppBundle\Entity\Contact, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact , icon:  "<i class='fa fa-book'></i>" }
-        public: true
-
     admin.contact_message:
         class: AppBundle\Admin\ContactMessageAdmin
         arguments: [~, AppBundle\Entity\ContactMessage, ~]
@@ -190,10 +183,24 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: "Email", label: Email Reaction, icon: '<i class="fa fa-envelope" aria-hidden="true"></i>' }
         public: true
-#
-#    admin.contact_group:
-#        class: AppBundle\Admin\ContactGroupAdmin
-#        arguments: [~, AppBundle\Entity\ContactGroup, ~]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact Group, icon:  "<i class='fa fa-book'></i>" }
-#        public: true
+
+    admin.contact:
+        class: AppBundle\Admin\ContactAdmin
+        arguments: [~, AppBundle\Entity\Contact, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact , icon:  "<i class='fa fa-book'></i>" }
+        public: true
+
+    admin.contact_group:
+        class: AppBundle\Admin\ContactGroupAdmin
+        arguments: [~, AppBundle\Entity\ContactGroup, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact Group, icon:  "<i class='fa fa-book'></i>", show_in_dashboard: false }
+        public: true
+
+    admin.image_security:
+        class: AppBundle\Admin\ImageSecurityAdmin
+        arguments: [~, AppBundle\Entity\ImageSecurity, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group : ImageSecurity, label: ImageSecurity, icon:  "<i class='fa fa-picture-o' aria-hidden='true'></i>" }
+        public: true

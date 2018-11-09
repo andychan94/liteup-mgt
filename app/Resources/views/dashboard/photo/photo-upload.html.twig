@@ -142,7 +142,14 @@
             validation:
                 {
                     allowedExtensions: ['jpg', 'jpeg', 'gif', 'png']
-                }
+                },
+            done: function (e, data)
+            {
+                alert(data)
+                // enabling file input
+
+            }
         });
+
     </script>
 {% endblock %}
