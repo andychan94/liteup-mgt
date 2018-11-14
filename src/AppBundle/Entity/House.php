@@ -86,6 +86,11 @@ class House extends EntityBase
     private $priceShort;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+    */
+    private $shortRentDate;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="rent", type="boolean")
@@ -202,6 +207,12 @@ class House extends EntityBase
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\HouseInspection", mappedBy="house")
      */
     protected $callRequest;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $showOnTop = false;
 
     /**
      * Constructor
@@ -730,6 +741,22 @@ class House extends EntityBase
     }
 
     /**
+     * @return mixed
+     */
+    public function getShortRentDate()
+    {
+        return $this->shortRentDate;
+    }
+
+    /**
+     * @param mixed $shortRentDate
+     */
+    public function setShortRentDate($shortRentDate)
+    {
+        $this->shortRentDate = $shortRentDate;
+    }
+
+    /**
      * Set isRent
      *
      * @param boolean $isRent
@@ -841,5 +868,21 @@ class House extends EntityBase
     public function setDeactivate($deactivate)
     {
         $this->deactivate = $deactivate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShowOnTop()
+    {
+        return $this->showOnTop;
+    }
+
+    /**
+     * @param mixed $showOnTop
+     */
+    public function setShowOnTop($showOnTop)
+    {
+        $this->showOnTop = $showOnTop;
     }
 }

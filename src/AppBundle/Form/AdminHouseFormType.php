@@ -76,6 +76,11 @@ class AdminHouseFormType extends AbstractType
                 'label' => 'house.form.priceShort',
                 'required' => false
             ))
+            ->add('shortRentDate',HiddenType::class,array(
+                'attr' => array(
+                    'class' => 'short-rent-date',
+                )
+            ))
             ->add('priceRent', HiddenType::class, array(
                 'label' => 'house.form.priceRent',
                 'required' => false

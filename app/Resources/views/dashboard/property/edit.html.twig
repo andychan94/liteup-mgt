@@ -131,9 +131,9 @@
                 </section>
                 <h3>Price</h3>
                 <section>
-                    <div class="field is-horizontal types">
+                    <div class="field is-horizontal types is-aligned-baseline">
                         <div class="field-label is-normal">
-                            <label class="required">Available for:</label>
+                            <label class="required is-size-5">Available for:</label>
                         </div>
                         <div class="field-body has-text-left" id="checkType">
                             {{ form_widget(form.isShort) }}
@@ -168,10 +168,48 @@
                                     </p>
                                     <input type="text" class="input liteupNumber" id="isShort" name="shortPrice"
                                            required="required">
+                                    {#<p class="control">#}
+                                    {#<a class="button is-static">#}
+                                    {#{{ 'per_month'|trans }}#}
+                                    {#</a>#}
+                                    {#</p>#}
                                     <p class="control">
-                                        <a class="button is-static">
-                                            {{ 'per_month'|trans }}
-                                        </a>
+                                    <div class="buttons has-addons">
+                                        {% set x = 0 %}
+                                        {% if form.shortRentDate.vars.value == 'day' %}
+                                            {% set x = 1 %}
+                                        {% elseif form.shortRentDate.vars.value == 'week' %}
+                                            {% set x = 2 %}
+                                        {% elseif form.shortRentDate.vars.value == 'month' %}
+                                            {% set x = 3 %}
+                                        {% endif %}
+
+                                        <span class="button short_date {{ (x == 1)? 'is-info' }}" data-name="day">
+                                            {% if x == 1 %}
+                                                <span class="icon is-small ">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                            {% endif %}
+                                            <span>day</span>
+                                        </span>
+                                        <span class="button short_date {{ (x == 2)? 'is-info' }}" data-name="week">
+                                             {% if x == 2 %}
+                                                 <span class="icon is-small ">
+                                                    <i class="fas fa-check"></i>
+                                                 </span>
+                                             {% endif %}
+                                            <span>week</span>
+                                        </span>
+                                        <span class="button short_date {{ (x == 3)? 'is-info' }}" data-name="month">
+                                             {% if x == 3 %}
+                                                 <span class="icon is-small ">
+                                                    <i class="fas fa-check"></i>
+                                                 </span>
+                                             {% endif %}
+                                            <span>month</span>
+                                        </span>
+                                        {{ form_widget(form.shortRentDate) }}
+                                    </div>
                                     </p>
                                 </div>
                             </div>

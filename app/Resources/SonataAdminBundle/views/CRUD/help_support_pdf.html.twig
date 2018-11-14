@@ -1,0 +1,10 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        {% if object.document is not empty %}
+            <a href="{{ object.document }}" download>Download PDF Document
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

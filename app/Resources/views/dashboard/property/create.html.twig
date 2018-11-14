@@ -130,9 +130,9 @@
                 </section>
                 <h3>Price</h3>
                 <section>
-                    <div class="field is-horizontal types">
+                    <div class="field is-horizontal types is-aligned-baseline">
                         <div class="field-label is-normal">
-                            <label class="required">Available for:</label>
+                            <label class="required is-size-5">Available for:</label>
                         </div>
                         <div class="field-body has-text-left" id="checkType">
                             {{ form_widget(form.isShort) }}
@@ -168,9 +168,21 @@
                                     <input type="text" class="input liteupNumber" id="isShort" name="shortPrice"
                                            required="required">
                                     <p class="control">
-                                        <a class="button is-static">
-                                            {{ 'per_month'|trans }}
-                                        </a>
+                                    <div class="buttons has-addons">
+                                        <span class="button short_date" data-name="day">
+                                            <span>day</span>
+                                        </span>
+                                        <span class="button short_date" data-name="week">
+                                             <span>week</span>
+                                        </span>
+                                        <span class="button short_date  is-info" data-name="month">
+                                            <span class="icon is-small ">
+                                               <i class="fas fa-check"></i>
+                                             </span>
+                                             <span>month</span>
+                                        </span>
+                                        {{ form_widget(form.shortRentDate) }}
+                                    </div>
                                     </p>
                                 </div>
                             </div>
@@ -215,11 +227,6 @@
                                     </p>
                                     <input type="text" class="input liteupNumber" id="isBuy" name="buyPrice"
                                            required="required">
-                                    <p class="control">
-                                        <a class="button is-static">
-                                            {{ 'per_year'|trans }}
-                                        </a>
-                                    </p>
                                 </div>
                             </div>
                             {{ form_errors(form.priceBuy) }}
@@ -325,12 +332,10 @@
                     </div>
                 </section>
                 <h3>Features</h3>
-                <section>
-                    <div class="columns">
-                        <div class="column has-text-left">
-                            {{ form_widget(form.features, {'class':'switch is-rounded'}) }}
-                            {{ form_errors(form.features) }}
-                        </div>
+                <section class="has-text-centered  ">
+                    <div class="features-centered">
+                        {{ form_widget(form.features) }}
+                        {{ form_errors(form.features) }}
                     </div>
                 </section>
             </div>

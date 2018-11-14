@@ -40,7 +40,7 @@ class FileTreeBrowser
         'audio/mpeg3'                   => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
         'audio/x-mpeg-3'                => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
         'video/mpeg'                    => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
-        'video/x-mpeg'                  => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
+        'video/mp4'                     => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
         'text/plain'                    => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
         'text/plain'                    => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
         'application/excel'             => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),

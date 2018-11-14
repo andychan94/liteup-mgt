@@ -61,7 +61,7 @@ class VerifyRequestAdmin extends AbstractAdmin
     {
         $show
             ->with('Content', ['class' => 'col-md-4'])
-            ->add('isVerified', null, ['editable' => true])
+            ->add('isVerified')
             ->add('agency.username')
             ->add('agency.email')
             ->add('verifyCondition.verificationConditionText', null, ['label' => 'Condition Type'])

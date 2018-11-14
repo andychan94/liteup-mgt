@@ -1,0 +1,15 @@
+{% extends get_admin_template('base_list_field', admin.code) %}
+
+{% block field %}
+    <div class="row">
+        {% for img in object.photos %}
+            <div class="col-md-4">
+                <img src="
+                    {% if img is not null %}
+                        {{ asset('images/uploads/') }}{{ img.path }}
+                    {% endif %}
+                " style="box-shadow: 0 2px 5px 0 #9e9e9e; max-width: 100%"/>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

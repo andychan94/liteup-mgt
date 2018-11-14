@@ -212,7 +212,7 @@ class PropertyController extends BaseController
                         try {
                             $em->persist($house);
                             $em->flush();
-                           $email = $em->getRepository('AppBundle:Email')->find(6);
+                            $email = $em->getRepository('AppBundle:Email')->find(6);
                             $message = (new \Swift_Message($email->getEmailSubject()))
                                 ->setFrom($this->getParameter('mailer_user'))
                                 ->setTo($user->getEmail())

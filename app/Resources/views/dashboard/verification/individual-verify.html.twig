@@ -2,52 +2,64 @@
 
 {% block body %}
     <section class="section notification">
-        <form action="{{ path('verify_confirm_request') }}" method="post" autocomplete="off" enctype="multipart/form-data">
-            <div class="column">
-                <h6 class="is-size-5 has-text-info">You can choose what 1 – {{ verifyConditions| length }} document to use
-                    for verification and then upload that document. </h6><br>
-                {% set count = 0 %}
-                {% for vf in verifyConditions %}
-                    {% set count = count + 1 %}
-                    <div>
-                        <span>{{ count }}.</span>
-                        <input {{ (count == 1)? 'checked' :'' }} type="radio" value="{{ vf.id }}" id="{{ count }}" name="verifyCondition" required>
-                        <label for="{{ count }}" class="has-text-grey-darker">{{ vf.verificationConditionText }}
-                        </label>
+        <div class="verification-wrapper">
+            <form action="{{ path('verify_confirm_request') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+                    <h4 class="subtitle is-4 m-t-b-10 f-w-b has-text-info">Individual Verification</h4>
+                    <div class="columns">
+                        <div class="column">
+                            <p class="is-size-6">Please select any document of your choice 1 – {{ verifyConditions| length }} and the uploade</p>
+                        </div>
+                        <div class="column">
+                            <p style="color: #c55a11; " class="is-size-6">
+                                <a href="#!">
+                                <span><i class="fas fa-gift"></i></span>
+                                Benefits of verified account
+                                </a>
+                            </p>
+                        </div>
                     </div>
+                <div class="columns m-t-b-10">
+                    {% set count = 0 %}
+                <div class="column">
+                    {% for vf in verifyConditions %}
+                        {% set count = count + 1 %}
+                        <div class="has-text-left">
+                            <span>{{ count }}.</span>
+                            <input {{ (count == 1)? 'checked' :'' }} type="radio" value="{{ vf.id }}" id="{{ count }}" name="verifyCondition" required>
+                            <label for="{{ count }}" class="has-text-grey-darker">{{ vf.verificationConditionText }}
+                            </label>
+                        </div>
+                    {% endfor %}
 
-                {% endfor %}
-            </div>
-
-            <div class="column">
-                <div class="field">
-                    <div class="file is-boxed has-name">
-                        <label class="file-label">
-                            <input class="file-input" type="file" name="document" required>
-                            <span class="file-cta">
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <div class="file is-boxed has-name">
+                            <label class="file-label">
+                                <input class="file-input verify-document-file" type="file" name="document" required>
+                                <span class="file-cta">
                                 <span class="file-icon">
                                   <i class="fas fa-upload"></i>
                                 </span>
                                    <span class="file-label">
                                    Upload Document
                                  </span>
-                  </span>
-                                        <span class="file-name">
-                    Screen Shot 2017-07-29 at 15.54.25.png
-                  </span>
-                        </label>
+                                </span>
+                                  <span class="file-name" id="verify-docs-file-name">....</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="column">
-                <button type="submit" class="button is-success is-size-5">
+                </div>
+                <div class="column">
+                    <button type="submit" class="button is-success is-size-5">
                 <span class="icon is-small">
                   <i class="fas fa-check"></i>
                 </span>
-                    <span>Confirm</span>
-                </button>
-            </div>
-
-        </form>
+                        <span>Confirm</span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </section>
 {% endblock %}

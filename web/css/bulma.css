@@ -8481,5 +8481,7 @@ label.panel-block {
 .is-checkradio[type="radio"].is-danger:checked.has-background-color + label::after, .is-checkradio[type="radio"].is-danger:checked.has-background-color + label:after {
   border-color: #fff !important;
   background-color: #fff !important; }
-
+.is-aligned-baseline{
+  align-items: baseline;
+}
 /*# sourceMappingURL=bulma.css.map */

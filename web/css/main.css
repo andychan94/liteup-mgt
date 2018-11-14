@@ -1,3 +1,14 @@
+
+.m-t-b-10{
+    margin: 10px 0;
+}
+
+.f-w-b{
+    font-weight: 700;
+}
+
+
+
 .nav-tag {
     padding-right: 30px;
 }
@@ -162,6 +173,23 @@
     top: 5px;
     margin-left: 10px;
 }
+.features-centered{
+    margin: auto!important;
+}
+
+.features-centered div div label{
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0 !important;
+}
+
+.verification-wrapper{
+    max-width: 570px;
+    margin: auto;
+    text-align: center;
+}
+
 
 @media (max-width: 768px) {
     .tag-notif {

@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div class="welcome-page-wrapper">
+    <section class="welcome-page-wrapper">
         {# ------------- welcoime slider start ----------- #}
         <div class="owl-carousel owl-theme owl-loaded" id="owl-home">
             <div class="owl-stage-outer">
@@ -35,7 +35,7 @@
                         <form action="{{ path('announcement_list_page') }}" method="post">
                             <div class="btn-group search-type-group ">
                                 <label for="buy" class="m-l-active check-type">Buy
-                                        <input type="hidden" id="buy" name="buy" value="1">
+                                    <input type="hidden" id="buy" name="buy" value="1">
                                 </label>
                                 <label for="rent" class="check-type">Rent
                                     <input type="hidden" id="rent" name="rent" value="0">
@@ -46,12 +46,86 @@
                                 </label>
                             </div>
                             <div class="search-input-content">
-                                <input type="text" id="property_search" class="search" autocomplete="off" name="search">
+                                <input type="text" id="property_search" class="search" autocomplete="off" name="search" placeholder="Enter text">
                                 <button class="search-btn">
                                     <img src="{{ asset('images/search-icon.png') }}" alt="">
                                 </button>
                                 <div class="search-result">
 
+                                </div>
+                                <div class="multiple-search-form-content">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <select name="" id="state-select" class="form-control form-control-sm">
+                                                    <option selected>State</option>
+                                                    {% for state in states %}
+                                                        <option value="{{ state.id }}">{{ state.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="" id="lga-select" class="form-control form-control-sm" disabled>
+                                                    <option value="all" selected>LGA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <select name="" id="area-select" class="form-control form-control-sm" disabled>
+                                                    <option value="all" selected>Area</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="" id="" class="form-control form-control-sm">
+                                                    <option value="">Bathrooms</option>
+                                                    {% for i in 1..7 %}
+                                                        <option value="{{ i }}">
+                                                            {{ i }}{{ (i == 7)?'+' }}
+
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="form-group input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">₦</div>
+                                                </div>
+                                                <input type="text" placeholder="Min" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="" id="" class="form-control form-control-sm">
+                                                    <option value="">Bedrooms</option>
+                                                    {% for i in 1..7 %}
+                                                        <option value="{{ i }}">
+                                                            {{ i }}{{ (i == 7)?'+' }}
+
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="form-group input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">₦</div>
+                                                </div>
+                                                <input type="text" placeholder="Max" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="" id="" class="form-control form-control-sm">
+                                                    <option value="">Toilets</option>
+                                                    {% for i in 1..7 %}
+                                                        <option value="{{ i }}">
+                                                            {{ i }}{{ (i == 7)?'+' }}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -59,6 +133,208 @@
                 </div>
             </section>
         </div>
-    </div>
+        <div class="new-listings-wrapper container-fluid">
+            <div class="col">
+                <h2 class="new-listings-text">New Listings</h2>
+            </div>
+            <div class="owl-carousel owl-theme owl-loaded" id="listing-property">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        {% for house in houses %}
+                            <div class="owl-item">
+                                <div class="new-property-content">
+                                    <a href="{{ path('announcement_view_page', {'slug' : house.id}) }}" class="lhat">
+                                        <div class="new-property-header">
+                                            <img src="
+                                    {% if house.photos is not empty %}{{ uploads_folder }}{{ house.photos | first.path }}
+                                        {% else %}
+                                            {{ asset('images/placesholder.jpg') }}
+                                        {% endif %}
+                                    "
+                                                 width="100%" alt="{{ house.title }}">
+                                        </div>
+                                        <div class="new-property-body">
+                                            <div class="new-property-info">
+                                        <span class="new-house">
+                                        ₦
+                                            {% if house.priceBuy is not null %}
+                                                {{ house.priceBuy }} Buy
+                                            {% elseif house.priceRent is not null %}
+                                                {{ house.priceRent }} Rent
+                                            {% elseif house.priceShort is not null %}
+                                                {{ house.priceShort }} Short Rent
+                                            {% endif %}
+                                            </span>
+                                            </div>
+                                            <div class="new-property-info">
+                                                {{ house.title | slice(0,30) }}
+                                            </div>
 
+                                            <div class="new-property-info">
+                                                <i class="fa fa-map-marker " aria-hidden="true"></i>
+                                                {{ house.lgaId.state.name }},{{ house.lgaId.name }}
+                                                {% if house.area is not null %}
+                                                    , {{ house.area.name }}
+                                                {% endif %}
+
+                                            </div>
+                                            <div class="new-property-info property-room-info">
+                                                <div class="new-property-room-count">
+                                                    <div class="new-property-icon">
+                                                        <i class="fa fa-bath " aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="new-property-room-type-count">
+                                                        {% for count,name in roomCount if   count == house.bathrooms %}
+                                                            {{ name }}
+                                                        {% endfor %}
+                                                        <br>
+                                                        Bathrooms
+                                                    </div>
+                                                </div>
+                                                <div class="new-property-room-count">
+                                                    <div class="new-property-icon">
+                                                        <i class="fa fa-bed" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="new-property-room-type-count">
+                                                        {% for count,name in roomCount if   count == house.bedrooms %}
+                                                            {{ name }}<br>
+                                                        {% endfor %}
+                                                        Bedrooms
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            {#<div class="row justify-content-md-center">#}
+                {#{% for house in houses %}#}
+                    {#<div class="col-md-2 col-sm-6">#}
+                        {#<div class="new-property-content">#}
+                            {#<a href="{{ path('announcement_view_page', {'slug' : house.id}) }}" class="lhat">#}
+                                {#<div class="new-property-header">#}
+                                    {#<img src="#}
+                                    {#{% if house.photos is not empty %}{{ uploads_folder }}{{ house.photos | first.path }}#}
+                                        {#{% else %}#}
+                                            {#{{ asset('images/placesholder.jpg') }}#}
+                                        {#{% endif %}#}
+                                    {#"#}
+                                         {#width="100%" alt="{{ house.title }}">#}
+                                {#</div>#}
+                                {#<div class="new-property-body">#}
+                                    {#<div class="new-property-info">#}
+                                        {#<span class="new-house">#}
+                                        {#₦#}
+                                            {#{% if house.priceBuy is not null %}#}
+                                                {#{{ house.priceBuy }} Buy#}
+                                            {#{% elseif house.priceRent is not null %}#}
+                                                {#{{ house.priceRent }} Rent#}
+                                            {#{% elseif house.priceShort is not null %}#}
+                                                {#{{ house.priceShort }} Short Rent#}
+                                            {#{% endif %}#}
+                                            {#</span>#}
+                                    {#</div>#}
+                                    {#<div class="new-property-info">#}
+                                        {#{{ house.title | slice(0,30) }}#}
+                                    {#</div>#}
+
+                                    {#<div class="new-property-info">#}
+                                        {#<i class="fa fa-map-marker " aria-hidden="true"></i>#}
+                                        {#{{ house.lgaId.state.name }},{{ house.lgaId.name }}#}
+                                        {#{% if house.area is not null %}#}
+                                            {#, {{ house.area.name }}#}
+                                        {#{% endif %}#}
+
+                                    {#</div>#}
+                                    {#<div class="new-property-info property-room-info">#}
+                                        {#<div class="new-property-room-count">#}
+                                            {#<div class="new-property-icon">#}
+                                                {#<i class="fa fa-bath " aria-hidden="true"></i>#}
+                                            {#</div>#}
+                                            {#<div class="new-property-room-type-count">#}
+                                                {#{% for count,name in roomCount if   count == house.bathrooms %}#}
+                                                    {#{{ name }}#}
+                                                {#{% endfor %}#}
+                                                {#<br>#}
+                                                {#Bathrooms#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                        {#<div class="new-property-room-count">#}
+                                            {#<div class="new-property-icon">#}
+                                                {#<i class="fa fa-bed" aria-hidden="true"></i>#}
+                                            {#</div>#}
+                                            {#<div class="new-property-room-type-count">#}
+                                                {#{% for count,name in roomCount if   count == house.bedrooms %}#}
+                                                    {#{{ name }}<br>#}
+                                                {#{% endfor %}#}
+                                                {#Bedrooms#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</a>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#{% endfor %}#}
+            {#</div>#}
+        </div>
+        <div class="liteup-university">
+            <a href="#!">
+                <img src="{{ asset('images/bg-image/liteup-uni.jpeg') }}" alt="">
+            </a>
+        </div>
+        <div class="container">
+            <div class="about-us-content">
+                <h2 class="new-listings-text">About Us</h2>
+            </div>
+            <div class="about-page-text-content">
+                {{ aboutUs.pageText | raw }}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="about-us-content">
+                <h2 class="new-listings-text">Latest news</h2>
+            </div>
+            {% for blog in blogs %}
+                <div class="latest-news-content">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{{ path('blog_view_page',{'slug': blog.blogSlug}) }}">
+                                <img src="{{ blog.blogOgImage | get_thumb }}" alt="Blog Title" class="img-thumbnail">
+                            </a>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="latest-news-title-content">
+                                <a href="{{ path('blog_view_page',{'slug': blog.blogSlug}) }}" class="latest-news-title">
+                                    {{ blog.blogTitle }}
+                                </a>
+                            </div>
+                            <div class="latest-news-text">
+                                {{ blog.blogShortText }}
+                            </div>
+                            <div class="latest-news-footer">
+                                <p class="latest-news-date">
+                                    <span><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                    {{ blog.blogCreatedAt| date("Y-m-d h:s:i") }}
+                                </p>
+                                <div class="latest-news-link-content">
+                                    <a href="{{ path('blog_view_page',{'slug': blog.blogSlug}) }}" class="latest-news-link">
+                                        Read more
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% include 'parts/footer.html.twig' %}
 {% endblock %}

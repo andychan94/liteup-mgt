@@ -188,6 +188,6 @@ sonata_translation:
 
 tool_box_file_browser:
     max_file_size: 5000000
-    file_types: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml']
+    file_types: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'application/pdf', 'video/avi', 'video/mp4' ]
     no_image_file: /img/no-image.jpg
     default_upload_dir: /img

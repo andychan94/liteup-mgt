@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class AjaxController extends Controller
 {
@@ -75,29 +74,29 @@ class AjaxController extends Controller
 
 
     /**
-     * @Route("/get-property-title-ajax")
-     */
-    public function getPropertyAjax(Request $request){
-
-        $val =  $request->get('val');
+     * @Route("/get_property_title_ajax")
+    */
+    public function getPropertyAjax(Request $request)
+    {
+        $val = $request->get('$val');
         $houses = $this->getDoctrine()->getRepository('AppBundle:House');
         $query = $houses->createQueryBuilder('h')
             ->select('h.title')
             ->where('h.title LIKE :title')
             ->setParameter('title', $val."%")
             ->groupBy('h.title')
-            ->addOrderBy('h.title','ASC')
-            ->addOrderBy('h.createdAt', 'DESC')
+            ->orderBy('h.title', 'ASC')
+            ->setMaxResults(20)
             ->getQuery();
-        $title = $query->getResult();
-
-        return new JsonResponse(json_encode($title));
+        $title = $query->getArrayResult();
+        return new JsonResponse($title);
     }
 
     /**
      * @Route("/check-notification")
      */
-    public function checkNotificationAction(Request $request){
+    public function checkNotificationAction(Request $request)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $id = $request->get('id');
@@ -106,6 +105,45 @@ class AjaxController extends Controller
         $em->flush();
         return new JsonResponse(true);
 
+    }
+
+
+    /**
+     * @Route("/get-lga")
+     */
+    public function getLgaAction(Request $request)
+    {
+        $state_id = $request->get('state_id');
+        $state = $this->getDoctrine()->getRepository('AppBundle:State')->find($state_id);
+        $lgaRepository = $this->getDoctrine()->getRepository('AppBundle:Lga');
+        $query = $lgaRepository->createQueryBuilder('l')
+            ->select('l')
+            ->where('l.state = :state')
+            ->setParameter('state', $state)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery();
+        $lga = $query->getArrayResult();
+
+        return new JsonResponse($lga);
+    }
+
+    /**
+     * @Route("/get-area")
+     */
+    public function getAreaAction(Request $request)
+    {
+        $lga_id = $request->get('lga_id');
+        $lga = $this->getDoctrine()->getRepository('AppBundle:Lga')->find($lga_id);
+        $lgaRepository = $this->getDoctrine()->getRepository('AppBundle:Area');
+        $query = $lgaRepository->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.lga = :lga')
+            ->setParameter('lga', $lga)
+            ->orderBy('a.name', 'ASC')
+            ->getQuery();
+        $area = $query->getArrayResult();
+
+        return new JsonResponse($area);
     }
 
 

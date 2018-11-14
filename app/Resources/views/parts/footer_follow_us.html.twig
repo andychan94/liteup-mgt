@@ -1,0 +1,7 @@
+{% for logo in followUs %}
+    <span class="footer-social">
+        <a href="{{ logo.href }}" target="_blank">
+         <img src="{{ logo.logo }}" alt="{{ logo.title }}" title="{{ logo.title }}">
+        </a>
+     </span>
+{% endfor %}

@@ -78,6 +78,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group : Content, label: Page, icon:  "<i class='fa  fa-th-list'></i>" }
         public: true
 
+    admin.slider:
+        class: AppBundle\Admin\SliderAdmin
+        arguments: [~, AppBundle\Entity\Slider, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : Content, label: Slider, icon:  "<i class='fa fa-book'></i>" }
+        public: true
+
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\Agency, ~]
@@ -85,68 +92,60 @@ services:
             - { name: sonata.admin, manager_type: orm, group : Users, label: Users, icon: "<i class='fa  fa-users'></i>" }
         public: true
 
-    admin.slider:
-        class: AppBundle\Admin\SliderAdmin
-        arguments: [~, AppBundle\Entity\Slider, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group : Slider, label: Slider, icon:  "<i class='fa fa-book'></i>" }
-        public: true
-
-    admin.contact_message:
-        class: AppBundle\Admin\ContactMessageAdmin
-        arguments: [~, AppBundle\Entity\ContactMessage, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group : Contact, label: Contacts Message, icon:  "<i class='fa fa-address-book'></i>" }
-        public: true
-
     admin.verify_request:
         class: AppBundle\Admin\VerifyRequestAdmin
         arguments: [~, AppBundle\Entity\VerifyRequest, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  Verification    , label: Verification Request, icon:  "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  Verification, label: Verification Request, icon:  "<i class='fa fa-first-order'></i>" }
         public: true
 
     admin.verification_condition:
         class: AppBundle\Admin\VerificationConditionAdmin
         arguments: [~, AppBundle\Entity\VerificationCondition, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  Verification, label: Verification Text , icon:  "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  Verification, label: Verification Conditions , icon:  "<i class='fa fa-first-order'></i>" }
         public: true
 
     admin.payment_order:
         class: AppBundle\Admin\PaymentOrderAdmin
         arguments: [~, AppBundle\Entity\PaymentOrder, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  PaymentOrder, label: Payment Order , icon: "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  PaymentOrder, label: Payment Order , icon: "<i class='fa fa-money'></i>" }
         public: true
 
     admin.payment:
         class: AppBundle\Admin\PlanBuyCoinAdmin
         arguments: [~, AppBundle\Entity\PlanBuyCoin, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  PaymentOrder, label: Plan Buy Coin, icon: "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  PaymentOrder, label: Plan Buy Coin, icon: "<i class='fa fa-money'></i>" }
         public: true
-
 
     admin.plan_subscription:
         class: AppBundle\Admin\PlanSubscriptionAdmin
         arguments: [~, AppBundle\Entity\PlanSubscription, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plans, icon: "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plans, icon: "<i class='fa fa-globe'></i>" }
         public: true
 
     admin.plan_month_price:
         class: AppBundle\Admin\PlanMonthPriceAdmin
         arguments: [~, AppBundle\Entity\PlanMonthPrice, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plan Month Price, icon: "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plan Month Price, icon: "<i class='fa fa-globe'></i>" }
         public: true
 
     admin.plan_subscription_condition:
         class: AppBundle\Admin\PlanSubscriptionConditionAdmin
         arguments: [~, AppBundle\Entity\PlanSubscriptionCondition, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plans Conditions, icon: "<i class='fa fa-file'></i>" }
+            - { name: sonata.admin, manager_type: orm, group :  Plan Subscription, label: Plans Conditions, icon: "<i class='fa fa-globe'></i>" }
+        public: true
+
+    admin.house:
+        class: AppBundle\Admin\HouseAdmin
+        arguments: [~, AppBundle\Entity\House, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : House, label: House, icon:  "<i class='fa fa-home'></i>" }
         public: true
 
     admin.blog_admin:
@@ -191,16 +190,38 @@ services:
         - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact , icon:  "<i class='fa fa-book'></i>" }
         public: true
 
-    admin.contact_group:
-        class: AppBundle\Admin\ContactGroupAdmin
-        arguments: [~, AppBundle\Entity\ContactGroup, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact Group, icon:  "<i class='fa fa-book'></i>", show_in_dashboard: false }
-        public: true
-
     admin.image_security:
         class: AppBundle\Admin\ImageSecurityAdmin
         arguments: [~, AppBundle\Entity\ImageSecurity, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group : ImageSecurity, label: ImageSecurity, icon:  "<i class='fa fa-picture-o' aria-hidden='true'></i>" }
+            - { name: sonata.admin, manager_type: orm, group : ImageSecurity, label: Image Security, icon:  "<i class='fa fa-picture-o' aria-hidden='true'></i>" }
         public: true
+
+    admin.follow_us:
+        class: AppBundle\Admin\FollowUsAdmin
+        arguments: [~, AppBundle\Entity\FollowUs, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group : FollowUs, label: Follow Us, icon:  "<i class='fa fa-share-square' aria-hidden='true'></i>" }
+        public: true
+
+    admin.help_support:
+        class: AppBundle\Admin\HelpSupportAdmin
+        arguments: [~, AppBundle\Entity\HelpSupport, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group : HelpSupport, label: Help Support, icon:  "<i class='fa fa-question-circle' aria-hidden='true'></i>" }
+        public: true
+
+    admin.contact_message:
+        class: AppBundle\Admin\ContactMessageAdmin
+        arguments: [~, AppBundle\Entity\ContactMessage, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : Contact, label: Contacts Message, icon:  "<i class='fa fa-address-book'></i>" }
+        public: true
+
+    admin.contact_group:
+        class: AppBundle\Admin\ContactGroupAdmin
+        arguments: [~, AppBundle\Entity\ContactGroup, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact Group, icon:  "<i class='fa fa-book'></i>", show_in_dashboard: false }
+        public: true
+

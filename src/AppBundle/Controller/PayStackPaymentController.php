@@ -27,8 +27,8 @@ class PayStackPaymentController extends Controller
     {
         $amount = $request->get('amount');
 
-        if ($amount < 10000) {
-            $this->addFlash('error', 'Price less then 10,000');
+        if ($amount <= 0) {
+            $this->addFlash('error', 'Price can not be 0');
             return $this->redirectToRoute('buy_coins_dashboard');
         }
 

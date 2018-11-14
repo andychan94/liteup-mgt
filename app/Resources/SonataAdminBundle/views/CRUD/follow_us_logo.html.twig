@@ -1,0 +1,11 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        {% if object.logo is not empty %}
+            <img src="
+                    {{ object.logo }}
+            " width="35" style="box-shadow: 0 2px 5px 0 #9e9e9e" data-toggle="{{ object.title }}"/>
+        {% endif %}
+    </div>
+{% endblock %}

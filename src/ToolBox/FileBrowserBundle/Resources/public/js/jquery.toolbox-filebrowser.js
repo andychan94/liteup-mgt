@@ -117,7 +117,7 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
 
         var dropzoneOptions = {
             paramName: 'img',
-            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, application/pdf, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, video/*, application/pdf, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             url: '/tbfb-upload',
             maxFilesize: 100, //in MB
             createImageThumbnails: false,

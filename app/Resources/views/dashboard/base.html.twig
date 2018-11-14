@@ -23,7 +23,7 @@
         <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item is--brand top-logo-link" href="{{ path('dashboard_home') }}">
-                    <img class="top-logo" src="{{ asset('images/bg-image/logo-white.png') }}"  alt="Liteup logo">
+                    <img class="top-logo" src="{{ asset('images/bg-image/logo-white.png') }}" alt="Liteup logo">
                 </a>
                 <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
@@ -33,11 +33,37 @@
             </div>
             <div class="navbar-end">
                 {% if app.user.userPlan.limitBalanceAmount is defined and app.user.userPlan.limitBalanceAmount is not null %}
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-item">
-                            <span class="tag is-danger">{{ app.user.userPlan.limitBalanceAmount }} coins remain</span>
-                        </a>
-                    </div>
+                    <a class="navbar-item">
+                        <span class="tag is-danger">{{ app.user.userPlan.limitBalanceAmount }} coins remain</span>
+                    </a>
+                {% endif %}
+
+                {% if app.user.userPlan is not null %}
+                    <a href="{{ path('subscription_plan') }}" class="navbar-item tooltip is-tooltip-bottom" data-tooltip="Your Subscribed plan">
+                            <span class="icon is-small mr-5" style="color: #23d160;">
+                                <i class="fas fa-circle"></i>
+                            </span>
+                        <span>
+                            {{ app.user.userPlan.plan.planTitle }}
+                            </span>
+                    </a>
+                {% else %}
+                    <a href="{{ path('subscription_plan') }}" class="navbar-item">
+                            <span class="icon is-small mr-5" style="color: #ff3860;">
+                                <i class="fas fa-circle"></i>
+                            </span>
+                        <span>
+                               Not Plan Subscribed
+                           </span>
+                    </a>
+                {% endif %}
+                {% if is_granted('ROLE_SUPER_ADMIN') == false and  app.user.verifyRequest is null %}
+                    <a href="{{ path('verification_step_one') }}" class="navbar-item">
+                                <span class="icon is-small mr-5">
+                                    <i class="fab fa-angellist"></i>
+                                </span>
+                        <span>Verify Profile</span>
+                    </a>
                 {% endif %}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
@@ -45,7 +71,7 @@
                     </a>
                     <div class="navbar-dropdown is-right">
                         <div class="main-drop-pay">
-                            <a href="{{ path('buy_coins_dashboard') }}" class="button is-dark is-fullwidth">Buy Coins</a>
+                            <a href="{{ path('buy_coins_dashboard') }}" class="button is-primary is-fullwidth">Buy Coins</a>
                         </div>
                     </div>
                 </div>

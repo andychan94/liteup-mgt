@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="6ce6f013-0802-4ff1-9ebf-53b2d2affc5c" name="dev_liteup_mgt" url="http://92.63.98.106">
-        <fileTransfer host="92.63.98.106" port="21">
+      <webServer id="d4c6feb0-8216-4a95-83bd-b797eedada1a" name="dev_liteup.xyz" url="http://liteup.xyz">
+        <fileTransfer host="liteup.xyz" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

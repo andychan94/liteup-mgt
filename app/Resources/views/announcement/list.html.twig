@@ -171,15 +171,12 @@
                             <div class="card">
                                 <div class="property-img">
                                     <a href="{{ path('announcement_view_page', {'slug' : house.id}) }}">
-                                        {% for photo in house.photos |slice(0,1) %}
-                                            {% if photo is not defined %}
-                                                <img src="{{ asset('images/no-image.png') }}"
-                                                     alt="{{ house.title | slice(0,40) }}">
-                                            {% else %}
-                                                <img src="{{ asset('images/uploads/') }}{{ photo.path }}" width="100%"
-                                                     alt="{{ house.title | slice(0,40) }}">
-                                            {% endif %}
-                                        {% endfor %}
+                                        <img src="
+                                        {% if house.photos is not empty %}{{ uploads_folder }}{{ house.photos | first.path }}
+                                        {% else %}
+                                            {{ asset('images/placesholder.jpg') }}
+                                        {% endif %}
+                                        " alt="">
                                     </a>
                                 </div>
                                 <div class="card-body pt-1">

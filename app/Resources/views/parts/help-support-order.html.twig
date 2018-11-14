@@ -1,0 +1,5 @@
+{% for helpSupport in helpSupports %}
+    <li class="footer-nav-item">
+        <a href="{{ helpSupport.document }}" class="footer-nav-link" download="{{ helpSupport.title }}.pdf">{{ helpSupport.title }}</a>
+    </li>
+{% endfor %}

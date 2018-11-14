@@ -1,0 +1,72 @@
+<section class="footer-section">
+    <footer class="container-fluid">
+        <div class="row justify-content-lg-center justify-content-md-center">
+            <div class="col-md-5 col-sm-12">
+                <div class="row">
+                    <div class="col-md-5 col-sm-6">
+                        <div class="footer-logo">
+                            <a href="{{ path('homepage') }}">
+                                <img src="{{ asset('images/liteup-logo.png') }}" alt="LiteUp Logo">
+                            </a>
+                        </div>
+                        <p class="footer-underlogo-text">Linking The Dream</p>
+                    </div>
+                    <div class="col-md-7 col-sm-6">
+                        <p class="footer-follow-us">Follow us</p>
+                        <div class="social-accounts-icons">
+                            {{ render(controller('AppBundle:Page:followUs')) }}
+                        </div>
+                        <p class="footer-follow-us">
+                            Download Our Mobile App
+                        </p>
+                        <div class="google-play-logo-content">
+                            {{ render(controller('AppBundle:Page:playMarket')) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <p class="footer-follow-us">Our Company</p>
+                        <ul class="footer-nav-list">
+                            <li class="footer-nav-item">
+                                <a href="{{ path('about_page') }}" class="footer-nav-link">About Us</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="#!" class="footer-nav-link">How It Works</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="#!" class="footer-nav-link">Affiliates</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="#!" class="footer-nav-link">Testimonials</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="{{ path('contact_page') }}" class="footer-nav-link">Contact Us</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="#!" class="footer-nav-link">Plan & Pricing</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="{{ path('blog_list_page') }}" class="footer-nav-link">Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <p class="footer-follow-us">Help Support</p>
+                        <ul class="footer-nav-list">
+                            {{ render(controller('AppBundle:Page:helpSupport')) }}
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <p class="footer-follow-us">Liteup University</p>
+                        <div class="footer-logo">
+                            <img src="{{ asset('images/bg-image/homepage-footer.png') }}" alt="LiteUp Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
