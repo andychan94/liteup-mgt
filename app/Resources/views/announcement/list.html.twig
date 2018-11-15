@@ -34,63 +34,71 @@
     <div class="container">
         <div class="col-md-12 mt-3">
             <div class="filter-content-wrapper">
-                {#<div class="col-md-12">#}
-                    {#<form action="{{ path('announcement_list_page') }}" method="POST">#}
-                        {#<div class="form-group">#}
-                            {#<div class="form-row justify-content-end">#}
-                                {#<div class="col-md-3 col-sm-6 position-relative">#}
-                                    {#<input type="search" name="search" class="form-control form-control-sm" placeholder="search">#}
-                                    {#<div class="search-button">#}
-                                        {#<button class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</form>#}
-                {#</div>#}
                 <form action="{{ path('announcement_list_page') }}" method="get" id="search_form">
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <select name="state" id="state" class="form-control form-control-sm js-search-select2">
-                                    <option {{ (old_state is null)? 'selected' }} value="all">All</option>
+                                {#<select name="state" id="state" class="form-control form-control-sm js-search-select2">#}
+                                    {#<option {{ (old_state is null)? 'selected' }} value="all">All</option>#}
+                                    {#{% for state in states %}#}
+                                        {#<option value="{{ state.id }}" {{ (old_state == state.id)? 'selected' }}>{{ state.name }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                                <select name="state" id="state-select" class="form-control form-control-sm js-search-select2" >
+                                    <option value="all" selected>State</option>
                                     {% for state in states %}
-                                        <option value="{{ state.id }}" {{ (old_state == state.id)? 'selected' }}>{{ state.name }}</option>
+                                        <option value="{{ state.id }}">{{ state.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="lga">LGA</label>
-                                <select name="lga" id="lga" class="form-control form-control-sm js-search-select2">
-                                    <option {{ (old_lga is null)? 'selected' }} value="all">All</option>
-                                    {% for lga in lgas %}
-                                        <option value="{{ lga.id }}" {{ (old_lga == lga.id)? 'selected' }}>{{ lga.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                {#<select name="lga" id="lga" class="form-control form-control-sm js-search-select2">#}
+                                    {#<option {{ (old_lga is null)? 'selected' }} value="all">All</option>#}
+                                    {#{% for lga in lgas %}#}
+                                        {#<option value="{{ lga.id }}" {{ (old_lga == lga.id)? 'selected' }}>{{ lga.name }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                                <div class="form-group">
+                                    <select name="lga" id="lga-select" class="form-control form-control-sm js-search-select2">
+                                        <option value="all" selected>LGA</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label for="area">Area</label>
-                                <select name="area" id="area" class="form-control form-control-sm js-search-select2">
-                                    <option {{ (old_area is null)? 'selected' }} value="all">All</option>
-                                    {% for area in areas %}
-                                        <option value="{{ area.id }}" {{ (old_area == area.id)? 'selected' }}>{{ area.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                {#<select name="area" id="area" class="form-control form-control-sm js-search-select2">#}
+                                    {#<option {{ (old_area is null)? 'selected' }} value="all">All</option>#}
+                                    {#{% for area in areas %}#}
+                                        {#<option value="{{ area.id }}" {{ (old_area == area.id)? 'selected' }}>{{ area.name }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                                <div class="form-group">
+                                    <select name="area" id="area-select" class="form-control form-control-sm js-search-select2">
+                                        <option value="all" selected>Area</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="arend_type">Type</label>
-                                <select id="arend_type"
-                                        name="{% if rent is not null %}rent{% elseif buy is not null %}buy{% elseif short_stay is not null %}short_stay{% else %}all{% endif %}"
-                                        class="form-control form-control-sm">
-                                    <option {% if rent is null and buy is null and short_stay is null %}
-                                        selected
-                                    {% endif %}
-                                            value="all">All
-                                    </option>
+                                {#<select id="arend_type"#}
+                                        {#name="{% if rent is not null %}rent{% elseif buy is not null %}buy{% elseif short_stay is not null %}short_stay{% else %}all{% endif %}"#}
+                                        {#class="form-control form-control-sm">#}
+                                    {#<option {% if rent is null and buy is null and short_stay is null %}#}
+
+                                    {#{% endif %}#}
+                                            {#value="all" selected>All#}
+                                    {#</option>#}
+                                    {#<option value="1" {{ (rent == 1)? 'selected': '' }} data-name="rent">Rent</option>#}
+                                    {#<option value="1" {{ (buy == 1)? 'selected': '' }} data-name="buy">Buy</option>#}
+                                    {#<option value="1" {{ (short_stay == 1)? 'selected': '' }} data-name="short_stay">Short Stay</option>#}
+                                {#</select>#}
+                                <select id="arend_type" class="form-control form-control-sm" name="all">
+                                    <option value="1" data-name="all" selected>All</option>
                                     <option value="1" {{ (rent == 1)? 'selected': '' }} data-name="rent">Rent</option>
                                     <option value="1" {{ (buy == 1)? 'selected': '' }} data-name="buy">Buy</option>
                                     <option value="1" {{ (short_stay == 1)? 'selected': '' }} data-name="short_stay">Short Stay</option>
@@ -124,6 +132,9 @@
                                     <option value="7" {{ (bedrooms == 7)? 'selected' }}>7</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <input type="text" name="search" placeholder="Search" class="form-control form-control-sm">
+                            </div>
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <div class="form-group">
@@ -152,7 +163,7 @@
                                     <option value="7" {{ (toilets == 7)? 'selected' }}>7</option>
                                 </select>
                             </div>
-                            <input type="submit" value="Filter" class="btn btn-outline-primary btn-sm form-control">
+                            <input type="submit" value="Filter" class="property_filter form-control form-control-sm">
                         </div>
                     </div>
                 </form>

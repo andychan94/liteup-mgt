@@ -17,16 +17,16 @@ $(document).ready(function () {
         autoplayHoverPause: true
     });
 
-    $('.check-type').click(function () {
+    let chek_type = $('.check-type')
+    chek_type.click(function () {
+        let name = $(this).data('name');
+        console.log(name);
+        chek_type.find('input').val('');
+        chek_type.find('input').removeAttr('name');
+        chek_type.removeClass('m-l-active');
 
-        $('.check-type').each(function () {
-            $(this).find('input').val('0');
-            $(this).removeClass('m-l-active');
-            $(this).find('input').prop('checked', false);
-        });
-
-        $(this).find('input').prop('checked', true);
         $(this).find('input').val('1');
+        $(this).find('input').attr('name',name);
         $(this).addClass('m-l-active');
     });
 
@@ -120,7 +120,7 @@ $('#state-select').change(function () {
             let $lga = $('#lga-select').empty();
             if (r.length > 0) {
                 $lga.prop('disabled', false);
-
+                $lga.append(`<option value="all" selected>LGA</option>`);
                 r.forEach(function (item) {
                     let $option = `<option value="${item.id}">${item.name}</option>`;
                     $lga.append($option);
@@ -143,6 +143,7 @@ $('#lga-select').change(function () {
             let $area = $('#area-select').empty();
             if (r.length > 0) {
                 $area.prop('disabled', false);
+                $area.append(`<option value="all" selected>Area</option>`);
                 r.forEach(function (item) {
                     let $option = `<option value="${item.id}">${item.name}</option>`;
                     $area.append($option);

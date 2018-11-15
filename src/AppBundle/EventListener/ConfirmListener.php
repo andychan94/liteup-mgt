@@ -8,6 +8,7 @@
 
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\UserPlan;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
@@ -42,6 +43,20 @@ class ConfirmListener implements EventSubscriberInterface
     {
        $user =  $getResponseUserEvent->getUser();
        $agency =  $this->em->getRepository('AppBundle:Agency')->find($user);
+       $date = new \DateTime('2018-12-13 23:59:59');
+
+        if ($date >= new \DateTime()){
+            $userPlan = new UserPlan();
+            $selectedPlan = $this->em->getRepository('AppBundle:PlanSubscription')->find(2);
+            $userPlan->setUser($agency);
+            $userPlan->setPlan($selectedPlan);
+            $userPlan->setPlanCreatedAt(new \DateTime());
+            $userPlan->setPlanDeadLine(new \DateTime('2019-01-01 00:00:00'));
+            $userPlan->setActive(true);
+            $userPlan->setFreePlanActive(true);
+            $this->em->persist($userPlan);
+        }
+
        $agency->setFirstLogin(new \DateTime());
        $this->em->flush();
        $container = $this->container;

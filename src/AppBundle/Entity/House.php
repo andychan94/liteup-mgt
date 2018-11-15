@@ -57,6 +57,12 @@ class House extends EntityBase
     private $area;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\State", inversedBy="house")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $state;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Lga")
      * @ORM\JoinColumn(name="lga_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
@@ -884,5 +890,21 @@ class House extends EntityBase
     public function setShowOnTop($showOnTop)
     {
         $this->showOnTop = $showOnTop;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
     }
 }

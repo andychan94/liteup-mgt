@@ -1,19 +1,17 @@
 
-.m-t-b-10{
+.m-t-b-10 {
     margin: 10px 0;
 }
 
-.f-w-b{
+.f-w-b {
     font-weight: 700;
 }
-
-
 
 .nav-tag {
     padding-right: 30px;
 }
 
-.plane-price-content{
+.plane-price-content {
     display: none;
 }
 
@@ -74,7 +72,7 @@
     color: #208fc2;
 }
 
-.transaction-content{
+.transaction-content {
     overflow-x: auto;
 }
 
@@ -89,9 +87,13 @@
     padding: 8px;
 }
 
-#transaction-table tr:nth-child(even){background-color: #f2f2f2;}
+#transaction-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-#transaction-table tr:hover {background-color: #efefef;}
+#transaction-table tr:hover {
+    background-color: #efefef;
+}
 
 #transaction-table th {
     padding-top: 12px;
@@ -101,7 +103,7 @@
     color: white;
 }
 
-.isCheck{
+.isCheck {
     position: absolute;
     right: 15px;
     top: 8px;
@@ -110,7 +112,8 @@
     border: none;
     cursor: pointer;
 }
-.checked{
+
+.checked {
     position: absolute;
     right: 15px;
     top: 8px;
@@ -119,7 +122,7 @@
     border: none;
 }
 
-.notification-count{
+.notification-count {
     position: absolute;
     right: 15px;
     background: #ff3860;
@@ -130,15 +133,15 @@
     color: #ffffff;
 }
 
-.p-relative{
+.p-relative {
     position: relative;
 }
 
-.mr-5{
+.mr-5 {
     margin-right: 5px;
 }
 
-.top-logo-link{
+.top-logo-link {
     position: relative;
 }
 
@@ -173,21 +176,100 @@
     top: 5px;
     margin-left: 10px;
 }
-.features-centered{
-    margin: auto!important;
+
+.features-centered {
+    margin: auto !important;
 }
 
-.features-centered div div label{
+.features-centered div div label {
     display: flex !important;
     justify-content: flex-start;
     align-items: center;
     padding-top: 0 !important;
 }
 
-.verification-wrapper{
+.verification-wrapper {
     max-width: 570px;
     margin: auto;
     text-align: center;
+}
+
+.block-content {
+    border: 4px solid #bfbfbf;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 15px 15px 10px 10px;
+    overflow: hidden;
+    /*margin: auto;*/
+}
+
+.block-footer {
+    background: whitesmoke;
+    padding: 10px 0;
+}
+
+.block-footer a {
+    color: #000000;
+    font-weight: 600;
+}
+
+.block-body {
+    text-align: center;
+    color: #f5f5f5;
+    font-size: 23px;
+    border-bottom: 4px solid #bfbfbf;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-1 {
+    background-color: #33cccc;
+}
+
+.color-2 {
+    background-color: #ed7d31;
+}
+
+.color-3 {
+    background-color: #548235;
+}
+
+.color-4 {
+    background-color: #f00;
+}
+
+.contact-content {
+    position: fixed;
+    bottom: 25px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-icon{
+    background: #2e363f;
+    border: 3px solid #44546a;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px 10px;
+    position: relative;
+    left: 7px;
+}
+.contact-icon a{
+    font-size: 30px;
+    color: #bebfc1;
+}
+
+.contact-text{
+    background: #2e363f;
+    color: white;
+    padding: 3px 20px 3px 25px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 0 5px 5px 0;
 }
 
 
@@ -641,7 +723,7 @@
     transform: translate(-50%, -50%) rotate(229deg);
 }
 
-.plan-subscription-wrapper{
+.plan-subscription-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -650,20 +732,18 @@
     flex-wrap: wrap;
 }
 
-.plan-subscription{
+.plan-subscription {
     width: 280px;
     margin: 25px;
 
 }
 
-
-.plan-item-content{
-    max-width: 280px ;
-    border: 1px solid #afabab ;
+.plan-item-content {
+    max-width: 280px;
+    border: 1px solid #afabab;
 }
 
-
-.plan-item-header{
+.plan-item-header {
     padding: 15px 0;
     background: #3273dc;
     color: white;
@@ -672,26 +752,26 @@
     position: relative;
 }
 
-.plan-item-price{
+.plan-item-price {
     padding: 15px 0;
     background: #e7e6e6;
     color: #000000;
-    border-bottom:1px solid #afabab;
+    border-bottom: 1px solid #afabab;
 }
 
-.plan-item-conditions{
+.plan-item-conditions {
     padding: 10px 0;
-    border-bottom:1px solid #afabab;
+    border-bottom: 1px solid #afabab;
     font-weight: 500;
     color: #833c0b;
 }
 
-.plan-item-footer{
+.plan-item-footer {
     padding: 15px 0;
 
 }
 
-.plan-pay-now{
+.plan-pay-now {
     background: #3273dc;
     color: #ffffff;
     font-size: 20px;
@@ -701,25 +781,24 @@
     border: none;
 }
 
-.plan-pay-now:hover{
+.plan-pay-now:hover {
     background: #4C85DC;
     color: #ffffff;
     transition: .3s;
 }
 
-.plan-discount{
+.plan-discount {
     font-size: 13px;
     margin-top: 4px;
     color: #833c0b;
 }
 
-.count-month{
+.count-month {
     font-weight: 500;
     color: #833c0b;
 }
 
-
-.no-risk-plan-header{
+.no-risk-plan-header {
     background: #bf9000;
     border: 1px solid #bf9000;
     padding: 15px 0;
@@ -729,7 +808,7 @@
     overflow: hidden;
 }
 
-.no-risk-plan-pay-now{
+.no-risk-plan-pay-now {
     background: #bf9000;
     color: #ffffff;
     font-size: 20px;
@@ -738,17 +817,17 @@
     transition: .3s;
 }
 
-.no-risk-plan-pay-now:hover{
+.no-risk-plan-pay-now:hover {
     background: #bf991e;
     color: #ffffff;
 }
 
-.no-risk-best-value{
+.no-risk-best-value {
     font-size: 14px;
     color: #ff0000;
 }
 
-.ro-risk-plan-more-info{
+.ro-risk-plan-more-info {
     font-style: italic;
     color: #ff0000;
     text-decoration: underline;
@@ -756,7 +835,7 @@
     margin-bottom: 6px;
 }
 
-.crown-content{
+.crown-content {
     position: absolute;
     right: -38px;
     top: -6px;
@@ -767,11 +846,11 @@
     padding: 10px 0 0 0;
 }
 
-.crown-content img{
+.crown-content img {
     width: 28px;
 }
 
-.main-modal-content{
+.main-modal-content {
     width: 550px;
     background: #f7f7f7;
     border-radius: 3px;
@@ -779,20 +858,20 @@
     padding: 15px;
 }
 
-.form-group{
+.form-group {
     padding: 10px;
 }
 
-.month-label{
+.month-label {
     position: relative;
     font-size: 20px;
 }
 
-.my_modal{
+.my_modal {
     display: none;
 }
 
-.paginate-content{
+.paginate-content {
     margin-top: 25px;
     float: right;
 }

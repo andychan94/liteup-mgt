@@ -53,22 +53,24 @@
                 <section>
                     <div class="field is-horizontal">
                         <div class="field-label is-normal">
-                            <label for="stateSelect" class="required">{{ 'state.name'|trans }}</label>
+                            {{ form_label(form.state) }}
                         </div>
                         <div class="field-body">
                             <div class="field">
                                 <div class="control has-icons-left">
                                     <div class="select">
-                                        <select name="state" id="stateSelect" required="required">
-                                            {% for state in states %}
-                                                <option value="{{ state.id }}">{{ state.name }}</option>
-                                            {% endfor %}
-                                        </select>
+                                        {#<select name="state" id="stateSelect" required="required">#}
+                                            {#{% for state in states %}#}
+                                                {#<option value="{{ state.id }}">{{ state.name }}</option>#}
+                                            {#{% endfor %}#}
+                                        {#</select>#}
+                                        {{ form_widget(form.state, { 'id': 'stateSelect' , 'required': 'required'}) }}
                                     </div>
                                     <span class="icon is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>
                                 </div>
+                                {{ form_errors(form.state) }}
                             </div>
                         </div>
                     </div>

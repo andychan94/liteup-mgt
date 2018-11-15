@@ -39,6 +39,11 @@ class State extends EntityBase
     private $position;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\House", mappedBy="state")
+     */
+    private $house;
+
+    /**
      * @ORM\OneToMany(targetEntity="Lga", mappedBy="state")
      */
     private $lgas;
@@ -150,5 +155,21 @@ class State extends EntityBase
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHouse()
+    {
+        return $this->house;
+    }
+
+    /**
+     * @param mixed $house
+     */
+    public function setHouse($house)
+    {
+        $this->house = $house;
     }
 }

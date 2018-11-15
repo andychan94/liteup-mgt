@@ -782,6 +782,22 @@
     margin: 15px 0;
 }
 
+.property_filter{
+    background: #00e5ee;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.property_filter:hover{
+    background: #02d7df;
+    transition: .3s ease;
+}
+.property_filter:focus{
+    background: #57f2f8;
+}
+
 .new-property-content:hover .new-property-header > img{
     transform: scale(1.1);
     -webkit-transition: ease-in-out .3s;

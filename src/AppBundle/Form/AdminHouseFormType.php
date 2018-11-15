@@ -30,6 +30,16 @@ class AdminHouseFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('state', EntityType::class, array(
+                'class' => 'AppBundle\Entity\State',
+                'query_builder' => function (EntityRepository $repository) {
+                    return $repository->createQueryBuilder('s')->orderBy('s.name', 'ASC');
+                },
+                'label' => 'state.name',
+                'choice_attr' => array(
+                'class' => 'someClass',
+                )
+            ))
             ->add('lgaId', EntityType::class, array(
                 'class' => 'AppBundle\Entity\Lga',
                 'query_builder' => function (EntityRepository $repository) {

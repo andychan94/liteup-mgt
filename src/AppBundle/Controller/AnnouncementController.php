@@ -23,13 +23,16 @@ class AnnouncementController extends Controller
         $uri = $request->server->get('QUERY_STRING');
 
         $em = $this->getDoctrine()->getManager();
-        $houseRepository = $em->getRepository('AppBundle:House');
 
         $states = $em->getRepository('AppBundle:State')->findBy([], ['name' => 'ASC']);
-        $lgas = $em->getRepository('AppBundle:Lga')->findBy([], ['name' => 'ASC']);
-        $areas = $em->getRepository('AppBundle:Area')->findBy([], ['name' => 'ASC']);
+
+        $all = $request->get('all');
 
         $search = $request->get('search');
+
+        $state = $request->get('state');
+        $lga = $request->get('lga');
+        $area = $request->get('area');
         $rent = $request->get('rent');
         $buy = $request->get('buy');
         $short_stay = $request->get('short_stay');
@@ -38,9 +41,17 @@ class AnnouncementController extends Controller
         $toilets = $request->get('toilets');
         $min = $request->get('min');
         $max = $request->get('max');
-        $state = $request->get('state');
-        $lga = $request->get('lga');
-        $area = $request->get('area');
+
+        if ($all === "1") {
+            $rent = 'all';
+            $buy = 'all';
+            $short_stay = 'all';
+        }
+
+        if ($lga === null) {
+            $lga = 'all';
+        }
+
 
         $postsPerPage = 18;
         $paginationTotal = 1;
@@ -50,13 +61,13 @@ class AnnouncementController extends Controller
             $offset = $postsPerPage * $paginate - $postsPerPage;
         }
 
-        if (!empty($search)) {
-            $houseQuery = $em->createQuery("
-                SELECT h FROM AppBundle:House h
+        if ($search === null) {
+            $query = $em->createQuery("
+                SELECT count(h.id) FROM AppBundle:House h
                 
-                  WHERE h.title LIKE  :search  
-                
-                  AND (h.isRent = :rent OR :rent = :all OR h.isBuy = :buy OR :buy =:all OR h.isShort = :short_stay OR :short_stay = :all)
+                  WHERE
+                  
+                  (h.isRent = :rent OR :rent = :all OR h.isBuy = :buy OR :buy =:all OR h.isShort = :short_stay OR :short_stay = :all)
                  
                   AND (h.isAvailable = 1
                   
@@ -66,27 +77,59 @@ class AnnouncementController extends Controller
                  
                   ORDER BY h.createdAt DESC   
             ");
-            $houseQuery
-                ->setParameter('search', $search."%")
+
+            $query
                 ->setParameter('all', 'all')
                 ->setParameter('rent', $rent)
                 ->setParameter('buy', $buy)
                 ->setParameter('short_stay', $short_stay);
 
-        } else {
+            $blogsTotalCount = $query->getSingleScalarResult();
 
-            $offset = $paginate - 1;
-            if ($paginate !== 1) {
-                $offset = $postsPerPage * $paginate - $postsPerPage;
-            }
+
+            $paginationTotal = ceil($blogsTotalCount / $postsPerPage);
+
+            $houseQuery = $em->createQuery("
+                SELECT h FROM AppBundle:House h
+                
+                  WHERE
+                  
+                  (h.isRent = :rent OR :rent = :all OR h.isBuy = :buy OR :buy =:all OR h.isShort = :short_stay OR :short_stay = :all)
+                 
+                  AND (h.isAvailable = 1
+                  
+                  AND h.isDeleted = 0
+                  
+                  AND h.deactivate = 0)
+                 
+                  ORDER BY h.createdAt DESC   
+            ");
+
+            $houseQuery
+                ->setParameter('all', 'all')
+                ->setParameter('rent', $rent)
+                ->setParameter('buy', $buy)
+                ->setParameter('short_stay', $short_stay)
+                ->setFirstResult($offset)
+                ->setMaxResults($postsPerPage);
+
+        } else {
 
             $query = $em->createQuery("
 
                 SELECT count(h) FROM AppBundle:House h
                             
-                  JOIN h.lgaId l
+                  LEFT JOIN h.lgaId l
                   
-                  WHERE (l.id = :lga or :lga = :all)  
+                  LEFT JOIN h.area a
+                  
+                  LEFT JOIN h.state s
+                  
+                  WHERE 
+                  
+                  h.title LIKE :search 
+                  
+                  AND (s.id = :state or :state = :all AND l.id = :lga or :lga = :all AND a.id = :area or :area = :all)
                            
                   AND (h.bedrooms = :bedrooms OR :bedrooms = :all)
 
@@ -112,10 +155,11 @@ class AnnouncementController extends Controller
             ");
 //
             $query
+                ->setParameter('search', $search . "%")
                 ->setParameter('all', 'all')
                 ->setParameter('lga', $lga)
-//                ->setParameter('area', $area)
-//                ->setParameter('state', $state)
+                ->setParameter('area', $area)
+                ->setParameter('state', $state)
                 ->setParameter('bedrooms', $bedrooms)
                 ->setParameter('bathrooms', $bathrooms)
                 ->setParameter('toilets', $toilets)
@@ -134,10 +178,18 @@ class AnnouncementController extends Controller
             $houseQuery = $em->createQuery("
                 SELECT h FROM AppBundle:House h
                   
-                  JOIN h.lgaId l
+                  LEFT JOIN h.lgaId l
                   
-                  WHERE (l.id = :lga or :lga = :all)  
-                           
+                  LEFT JOIN h.area a
+                  
+                  LEFT JOIN h.state s
+                  
+                  WHERE 
+                  
+                  h.title LIKE :search  
+                    
+                  AND (s.id = :state or :state = :all AND l.id = :lga or :lga = :all AND a.id = :area or :area = :all)
+                  
                   AND (h.bedrooms = :bedrooms OR :bedrooms = :all)
 
                   AND (h.bathrooms = :bathrooms OR :bathrooms = :all)
@@ -160,11 +212,14 @@ class AnnouncementController extends Controller
                  
                   ORDER BY h.createdAt DESC  
             ");
+
+
             $houseQuery
+                ->setParameter('search', $search . "%")
                 ->setParameter('all', 'all')
                 ->setParameter('lga', $lga)
-//                ->setParameter('area', $area)
-//                ->setParameter('state', $state)
+                ->setParameter('area', $area)
+                ->setParameter('state', $state)
                 ->setParameter('bedrooms', $bedrooms)
                 ->setParameter('bathrooms', $bathrooms)
                 ->setParameter('toilets', $toilets)
@@ -179,6 +234,7 @@ class AnnouncementController extends Controller
         }
         $houses = $houseQuery->getResult();
 
+
         return $this->render('announcement/list.html.twig',
             array(
                 'houses' => $houses,
@@ -191,11 +247,6 @@ class AnnouncementController extends Controller
                 'min' => $min,
                 'max' => $max,
                 'states' => $states,
-                'lgas' => $lgas,
-                'areas' => $areas,
-                'old_state' => $state,
-                'old_lga' => $lga,
-                'old_area' => $area,
                 'paginate' => $paginate,
                 'paginationTotal' => $paginationTotal,
                 'uri' => $uri,

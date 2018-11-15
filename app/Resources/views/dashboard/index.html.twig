@@ -1,24 +1,81 @@
 {% extends 'dashboard/base.html.twig' %}
 
 {% block body %}
-    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
-        <ul>
-            <li class="is-active"><a href="{{ path('dashboard_home') }}" aria-current="page">Home</a></li>
-        </ul>
-    </nav>
+    <div class="column">
+        <div class="navbar has-background-light">
+            <div class="navbar-start is-primary">
+                <a href="" class="navbar-item">
+                 <span class="icon is-small mr-5">
+                     <i class="fas fa-upload"></i>
+                 </span>
+                    <span>Post a property</span>
+                </a>
+                <a href="{{ path('buy_coins_dashboard') }}" class="navbar-item">
+                 <span class="icon is-small mr-5">
+                     <i class="fas fa-plus-circle"></i>
+                 </span>
+                    <span>Add coins</span>
+                </a>
+            </div>
 
-    <div class="level">
-        <div class="level-left">
-            <div class="level-item">
-                <div class="title has-text-primary"><i class="fas fa-tachometer-alt fa-fw"></i> Dashboard</div>
+            <div class="navbar-end">
+                <a href="" class="navbar-item">
+                 <span class="icon is-small mr-5">
+                    <i class="fas fa-certificate"></i>
+                 </span>
+                    <span>How to use</span>
+                </a>
             </div>
         </div>
     </div>
-    <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <!-- Any other Bulma elements you want -->
+    <div class="columns m-t-b-10">
+        <div class="column">
+            <div class="block-content">
+                <div class="block-body color-1">
+                    <h3 class="f-w-b">
+                        My Listings
+                    </h3>
+                </div>
+                <div class="block-footer">
+                    <a href="">View Details</a>
+                </div>
+            </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <div class="column">
+            <div class="block-content">
+                <div class="block-body color-2">
+                    <h3 class="f-w-b">
+                        Sales Advice
+                    </h3>
+                </div>
+                <div class="block-footer">
+                    <a href="">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="block-content">
+                <div class="block-body color-3">
+                    <h3 class="f-w-b">
+                        Property Requests
+                    </h3>
+                </div>
+                <div class="block-footer">
+                    <a href="{{ path('property_request_requests') }}">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="block-content">
+                <div class="block-body color-4">
+                    <h3 class="f-w-b">
+                        Subscription Plan
+                    </h3>
+                </div>
+                <div class="block-footer">
+                    <a href="{{ path('subscription_plan') }}">View Details</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

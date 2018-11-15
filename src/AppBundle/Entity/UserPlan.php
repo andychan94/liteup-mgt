@@ -76,6 +76,11 @@ class UserPlan
     private $active;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $freePlanActive = false;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -241,6 +246,22 @@ class UserPlan
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFreePlanActive()
+    {
+        return $this->freePlanActive;
+    }
+
+    /**
+     * @param mixed $freePlanActive
+     */
+    public function setFreePlanActive($freePlanActive)
+    {
+        $this->freePlanActive = $freePlanActive;
     }
 
 

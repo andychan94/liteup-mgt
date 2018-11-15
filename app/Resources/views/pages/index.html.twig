@@ -32,17 +32,17 @@
                 </div>
                 <div class="welcome-search-wrapper">
                     <div class="search-content">
-                        <form action="{{ path('announcement_list_page') }}" method="post">
+                        <form action="{{ path('announcement_list_page') }}" method="get">
                             <div class="btn-group search-type-group ">
-                                <label for="buy" class="m-l-active check-type">Buy
-                                    <input type="hidden" id="buy" name="buy" value="1">
+                                <label for="buy" class="m-l-active check-type" data-name="buy">Buy
+                                    <input type="hidden" id="buy" name="buy"  value="1">
                                 </label>
-                                <label for="rent" class="check-type">Rent
-                                    <input type="hidden" id="rent" name="rent" value="0">
+                                <label for="rent" class="check-type" data-name="rent">Rent
+                                    <input type="hidden" id="rent">
                                 </label>
 
-                                <label for="short" class="check-type">Short Rent
-                                    <input type="hidden" id="short_stay" name="short_stay" value="0">
+                                <label for="short" class="check-type" data-name="short_stay">Short Rent
+                                    <input type="hidden" id="short_stay">
                                 </label>
                             </div>
                             <div class="search-input-content">
@@ -57,29 +57,29 @@
                                     <div class="row">
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <select name="" id="state-select" class="form-control form-control-sm">
-                                                    <option selected>State</option>
+                                                <select name="state" id="state-select" class="form-control form-control-sm">
+                                                    <option value="all" selected>State</option>
                                                     {% for state in states %}
                                                         <option value="{{ state.id }}">{{ state.name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <select name="" id="lga-select" class="form-control form-control-sm" disabled>
+                                                <select name="lga" id="lga-select" class="form-control form-control-sm" >
                                                     <option value="all" selected>LGA</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <select name="" id="area-select" class="form-control form-control-sm" disabled>
+                                                <select name="area" id="area-select" class="form-control form-control-sm" >
                                                     <option value="all" selected>Area</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <select name="" id="" class="form-control form-control-sm">
-                                                    <option value="">Bathrooms</option>
-                                                    {% for i in 1..7 %}
+                                                <select name="bathrooms" id="" class="form-control form-control-sm">
+                                                    <option value="all" selected>Bathrooms</option>
+                                                    {% for i in 0..7 %}
                                                         <option value="{{ i }}">
                                                             {{ i }}{{ (i == 7)?'+' }}
 
@@ -93,12 +93,12 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">₦</div>
                                                 </div>
-                                                <input type="text" placeholder="Min" class="form-control form-control-sm">
+                                                <input type="text" name="min" placeholder="Min" class="form-control form-control-sm">
                                             </div>
                                             <div class="form-group">
-                                                <select name="" id="" class="form-control form-control-sm">
-                                                    <option value="">Bedrooms</option>
-                                                    {% for i in 1..7 %}
+                                                <select name="bedrooms" id="" class="form-control form-control-sm">
+                                                    <option value="all" selected>Bedrooms</option>
+                                                    {% for i in 0..7 %}
                                                         <option value="{{ i }}">
                                                             {{ i }}{{ (i == 7)?'+' }}
 
@@ -112,12 +112,12 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">₦</div>
                                                 </div>
-                                                <input type="text" placeholder="Max" class="form-control form-control-sm">
+                                                <input type="text" name="max" placeholder="Max" class="form-control form-control-sm">
                                             </div>
                                             <div class="form-group">
-                                                <select name="" id="" class="form-control form-control-sm">
-                                                    <option value="">Toilets</option>
-                                                    {% for i in 1..7 %}
+                                                <select name="toilets" id="" class="form-control form-control-sm">
+                                                    <option value="all" selected>Toilets</option>
+                                                    {% for i in 0..7 %}
                                                         <option value="{{ i }}">
                                                             {{ i }}{{ (i == 7)?'+' }}
                                                         </option>
@@ -172,7 +172,7 @@
 
                                             <div class="new-property-info">
                                                 <i class="fa fa-map-marker " aria-hidden="true"></i>
-                                                {{ house.lgaId.state.name }},{{ house.lgaId.name }}
+                                                {{ ( house.state is not null)? house.state.name:'' }},{{ house.lgaId.name }}
                                                 {% if house.area is not null %}
                                                     , {{ house.area.name }}
                                                 {% endif %}
