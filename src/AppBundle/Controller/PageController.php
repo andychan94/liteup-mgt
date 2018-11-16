@@ -12,7 +12,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ContactMessage;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
@@ -22,10 +21,10 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        $states = $this->getDoctrine()->getRepository('AppBundle:State')->findBy([],['name'=> 'ASC']);
+        $states = $this->getDoctrine()->getRepository('AppBundle:State')->findBy([], ['name' => 'ASC']);
         $slider = $this->getDoctrine()->getRepository('AppBundle:Slider')->find(1);
         $aboutUs = $this->getDoctrine()->getRepository('AppBundle:Page')->find(1);
-        $blogs = $this->getDoctrine()->getRepository('AppBundle:Blog')->findBy([],['blogCreatedAt' => 'DESC'],3);
+        $blogs = $this->getDoctrine()->getRepository('AppBundle:Blog')->findBy([], ['blogCreatedAt' => 'DESC'], 3);
         $housesRepository = $this->getDoctrine()->getRepository('AppBundle:House');
         $housesQuery = $housesRepository->createQueryBuilder('h')
             ->where('h.isDeleted = 0')
@@ -39,14 +38,14 @@ class PageController extends Controller
 
 
         $roomCount = array(
-             "0"=> 'ZERO',
-             "1"=> 'ONE',
-             "2"=> 'TWO',
-             "3"=> 'THREE',
-             "4"=> 'FOUR',
-             "5"=> 'FIVE',
-             "6"=> 'SIX',
-             "7"=> 'SEVENPLUS',
+            "0" => 'ZERO',
+            "1" => 'ONE',
+            "2" => 'TWO',
+            "3" => 'THREE',
+            "4" => 'FOUR',
+            "5" => 'FIVE',
+            "6" => 'SIX',
+            "7" => 'SEVENPLUS',
         );
 
         return $this->render('pages/index.html.twig', [
@@ -59,32 +58,34 @@ class PageController extends Controller
         ]);
     }
 
-    public function followUsAction(){
+    public function followUsAction()
+    {
         $followUsRepository = $this->getDoctrine()->getRepository('AppBundle:FollowUs');
 
         $query = $followUsRepository->createQueryBuilder('f')
             ->where('f.id != 7')
-            ->orderBy('f.followOrder','ASC')
-            ->getQuery()
-            ;
+            ->orderBy('f.followOrder', 'ASC')
+            ->getQuery();
         $followUs = $query->getResult();
         return $this->render('parts/footer_follow_us.html.twig', array(
             'followUs' => $followUs
         ));
     }
 
-    public function helpSupportAction(){
-        $helpSupports = $this->getDoctrine()->getRepository('AppBundle:HelpSupport')->findBy([],['helpSupportOrder' => 'ASC']);
+    public function helpSupportAction()
+    {
+        $helpSupports = $this->getDoctrine()->getRepository('AppBundle:HelpSupport')->findBy([], ['helpSupportOrder' => 'ASC']);
 
-        return $this->render('parts/help-support-order.html.twig',array(
+        return $this->render('parts/help-support-order.html.twig', array(
             'helpSupports' => $helpSupports,
         ));
     }
 
-    public function playMarketAction(){
+    public function playMarketAction()
+    {
         $playMarket = $this->getDoctrine()->getRepository('AppBundle:FollowUs')->find(7);
 
-        return $this->render('parts/play-market.html.twig',array(
+        return $this->render('parts/play-market.html.twig', array(
             'playMarket' => $playMarket
         ));
     }
@@ -139,5 +140,14 @@ class PageController extends Controller
                 'page' => $page,
             )
         );
+    }
+
+
+    /**
+     * @Route("/liteup-university", name="liteup_university")
+     */
+    public function liteupUniversityAction()
+    {
+        return $this->render('pages/liteup-univercity.html.twig');
     }
 }

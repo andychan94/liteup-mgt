@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+
     <div class="columns m-t-b-10">
         <div class="column">
             <div class="block-content">
@@ -74,6 +75,59 @@
                 </div>
                 <div class="block-footer">
                     <a href="{{ path('subscription_plan') }}">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-t-b-60">
+        <h3 class="has-text-centered is-size-3 f-w-b">Housing news</h3>
+        <div class=" column main">
+            <div class="owl-carousel owl-theme owl-loaded" id="dashboard-news-carusel">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        {% for blog in blogs %}
+                            <div class="owl-item">
+                                <div class="dashboard-news-content">
+                                    <a href="{{ path('blog_view_page', {'slug' : blog.blogSlug}) }}">
+                                        <div class="dashboard-news-image">
+                                            <img src="{{ blog.blogOgImage | get_thumb }}" alt="{{ blog.blogTitle }}">
+                                        </div>
+                                        <div class="dashboard-news-body">
+                                            <span class="dashboard-newc-date">
+                                                <i class="far fa-clock fa-fw"></i> {{ blog.blogCreatedAt | date('Y-M-d') }}
+                                            </span>
+                                            <p class="m-t-b-10">{{ blog.blogShortText | slice(0,90) }}...</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-t-b-60">
+        <div class="column">
+            <div class="notification-content">
+                <div class="notification-header">
+                    <p>Notification</p>
+                </div>
+                <div class="notification-body">
+                    {% if notifications | length > 0 %}
+
+                        {% for notification in notifications %}
+                            <div class="notification-text">
+                                <a href="{{ path('notifications') }}">
+                                    <p class="txt">{{ notification.notificationText }}</p>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="not-notifications">
+                            <p>Not Notifications</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

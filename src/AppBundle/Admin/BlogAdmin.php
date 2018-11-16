@@ -57,6 +57,7 @@ class BlogAdmin extends AbstractAdmin
 
         $formMapper
             ->add('isTop')
+            ->add('isAdminDashboard',null,['label' => 'Show in admin dashboard'])
             ->add('blogTitle')
             ->add('blogShortText')
             ->add('blogText', CKEditorType::class, array(
@@ -106,6 +107,7 @@ class BlogAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('isAdminDashboard',null,['editable' => true] )
             ->add('isTop',null,['editable' => true] )
             ->add('blogTitle')
             ->add('blogCreatedAt')

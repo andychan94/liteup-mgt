@@ -127,9 +127,9 @@ class AnnouncementController extends Controller
                   
                   WHERE 
                   
-                  h.title LIKE :search 
+                  (h.title LIKE :search)
                   
-                  AND (s.id = :state or :state = :all AND l.id = :lga or :lga = :all AND a.id = :area or :area = :all)
+                  AND ((s.id = :state or :state = :all) AND (l.id = :lga or :lga = :all) AND (a.id = :area or :area = :all))
                            
                   AND (h.bedrooms = :bedrooms OR :bedrooms = :all)
 
@@ -186,9 +186,9 @@ class AnnouncementController extends Controller
                   
                   WHERE 
                   
-                  h.title LIKE :search  
+                  (h.title LIKE :search)
                     
-                  AND (s.id = :state or :state = :all AND l.id = :lga or :lga = :all AND a.id = :area or :area = :all)
+                  AND ((s.id = :state or :state = :all) AND (l.id = :lga or :lga = :all) AND (a.id = :area or :area = :all))
                   
                   AND (h.bedrooms = :bedrooms OR :bedrooms = :all)
 

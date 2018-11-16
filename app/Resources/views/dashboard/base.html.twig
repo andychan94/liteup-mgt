@@ -10,6 +10,8 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
               integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('assets/owl-carusel/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/owl-carusel/owl.theme.default.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bulma.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     {% endblock %}
@@ -108,7 +110,7 @@
     <div class="columns is-multiline is-marginless">
 
         {{ include(':dashboard/blocks:left.html.twig') }}
-        <main class="column main">
+        <main class="column main" style="overflow: hidden">
             {{ include('dashboard/verification/verification-notification.html.twig') }}
             {% if app.session.flashBag.has('error') %}
                 <div class="notification is-danger alert-content">
@@ -146,6 +148,7 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/owl-carusel/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/scripts.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

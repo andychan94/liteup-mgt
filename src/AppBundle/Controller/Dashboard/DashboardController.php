@@ -17,8 +17,14 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $blogs = $this->getDoctrine()->getRepository('AppBundle:Blog')->findBy(['isAdminDashboard' => true],['blogCreatedAt' => 'DESC']);
+
+        $notifications = $this->getDoctrine()->getRepository('AppBundle:Notification')->findBy(['isCheck' => false],['createdAt' => 'DESC']);
+
         return $this->render('dashboard/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'blogs' => $blogs,
+            'notifications' => $notifications,
         ]);
     }
 }

@@ -42,6 +42,7 @@ class ProfileType extends AbstractType
             ))
             ->add('address', TextType::class, array(
                 'label' => 'profile.address',
+                'required' => false,
                 'attr' => array(
                     'class' => 'input'
                 )

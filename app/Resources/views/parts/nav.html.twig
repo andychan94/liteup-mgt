@@ -18,7 +18,7 @@
                 <a class="nav-link m-nav-link" href="{{ path('blog_list_page') }}">Housing news</a>
             </li>
             <li class="nav-item m-nav-item m-active">
-                <a class="nav-link m-nav-link" href="#">Liteup University</a>
+                <a class="nav-link m-nav-link" href="{{ path('liteup_university') }}">Liteup University</a>
             </li>
             <li class="nav-item m-nav-item m-active">
                 <a class="nav-link m-nav-link" href="{{ path('announcement_list_page') }}?buy=1">Buy</a>
@@ -31,12 +31,18 @@
             </li>
         </ul>
         <ul class="navbar-nav justify-content-end ml-auto">
-            <li class="nav-item m-nav-item active-auth-btn">
-                <a class="nav-link user-nav-link" href="{{ path('fos_user_security_login') }}">Sign In</a>
-            </li>
-            <li class="nav-item m-nav-item active-auth-btn">
-                <a class="nav-link user-nav-link" href="{{ path('fos_user_registration_register') }}">Sign Up</a>
-            </li>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li class="nav-item m-nav-item active-auth-btn">
+                    <a class="nav-link user-nav-link" href="{{ path('fos_user_security_logout') }}">Log out</a>
+                </li>
+            {% else %}
+                <li class="nav-item m-nav-item active-auth-btn">
+                    <a class="nav-link user-nav-link" href="{{ path('fos_user_security_login') }}">Sign In</a>
+                </li>
+                <li class="nav-item m-nav-item active-auth-btn">
+                    <a class="nav-link user-nav-link" href="{{ path('fos_user_registration_register') }}">Sign Up</a>
+                </li>
+            {% endif %}
         </ul>
 
     </div>

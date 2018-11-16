@@ -36,6 +36,11 @@ class Blog
     private $isTop = false;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAdminDashboard = false;
+
+    /**
      * @ORM\Column(type="string",unique=true)
      * @Gedmo\Slug(fields={"blogTitle"})
      */
@@ -287,6 +292,22 @@ class Blog
     public function setBlogMetaDescription($blogMetaDescription)
     {
         $this->blogMetaDescription = $blogMetaDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisAdminDashboard()
+    {
+        return $this->isAdminDashboard;
+    }
+
+    /**
+     * @param mixed $isAdminDashboard
+     */
+    public function setIsAdminDashboard($isAdminDashboard)
+    {
+        $this->isAdminDashboard = $isAdminDashboard;
     }
 
 

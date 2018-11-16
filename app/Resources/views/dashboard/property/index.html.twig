@@ -180,7 +180,7 @@
                 <tbody>
 
                 {% for house in pagination %}
-                    {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lgaId.state.name %}
+                    {% set stateName = (house.state is not empty)? house.state.name : '' %}
                     {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lgaId.name %}
                     {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
                     <tr>
@@ -212,7 +212,7 @@
                                 <span class="icon is-small">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </span>
-                                {{ stateName }}, {{ lgaName }}, {{ areaName }}{{ house.address }}
+                                {{ stateName }} {{ lgaName }}, {{ areaName }}{{ house.address }}
                             </p>
                             {% if house.isShort %}
                             <p class="sm-block">

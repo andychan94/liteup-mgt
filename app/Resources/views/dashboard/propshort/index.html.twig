@@ -184,7 +184,7 @@
                 <tbody>
 
                 {% for house in pagination %}
-                    {% set stateName = (house.area is not empty)? house.area.lga.state.name: house.lgaId.state.name %}
+                    {% set stateName = (house.state is not empty)? house.state: '' %}
                     {% set lgaName = (house.area is not empty)? house.area.lga.name: house.lgaId.name %}
                     {% set areaName = (house.area is not empty)? house.area.name~", ": "" %}
                     <tr>
