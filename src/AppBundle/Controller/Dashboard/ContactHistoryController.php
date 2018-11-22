@@ -164,4 +164,52 @@ class ContactHistoryController extends Controller
                 'paginationTotal' => $paginationTotal
             ));
     }
+
+    /**
+     * @Route("/user-call/request/history/{paginate}", name="user_call_request_history")
+     */
+    public function userCallRequestHistoryAction($paginate = 1){
+
+       $userCallRequestRepository =  $this->getDoctrine()->getRepository('AppBundle:UserCallRequest');
+
+
+        $housePerPage = 15;
+        $paginationTotal = 1;
+
+
+        $offset = $paginate - 1;
+        if ($paginate !== 1) {
+            $offset = $housePerPage * $paginate - $housePerPage;
+        }
+
+        $houseTotalCountQuery = $userCallRequestRepository->createQueryBuilder('q')
+            ->select('count(q.id)')
+            ->join('q.property', 'p')
+            ->where('p.agency = :agency')
+            ->orderBy('q.requestedAt', 'DESC')
+            ->setParameter('agency', $this->getUser())
+            ->getQuery();
+        $houseTotalCount = $houseTotalCountQuery->getSingleScalarResult();
+
+        $paginationTotal = ceil($houseTotalCount / $housePerPage);
+
+        $query = $userCallRequestRepository->createQueryBuilder('q')
+            ->join('q.property', 'p')
+            ->where('p.agency = :agency')
+            ->orderBy('q.createdAt', 'DESC')
+            ->setParameter('agency', $this->getUser())
+            ->orderBy('q.requestedAt', 'DESC')
+            ->setParameter('agency', $this->getUser())
+            ->setFirstResult($offset)
+            ->setMaxResults($housePerPage)
+            ->getQuery();
+        $userCallRequest = $query->getResult();
+
+       return $this->render('dashboard/contact_history/user_call_request.html.twig',
+           array(
+               'userCallRequest' => $userCallRequest,
+               'paginate' => $paginate,
+               'paginationTotal' => $paginationTotal
+           ));
+    }
 }

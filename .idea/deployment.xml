@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="On explicit save action">
     <serverData>
-      <paths name="dev_liteup.xyz">
+      <paths name="dev_liteup_xyz">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />

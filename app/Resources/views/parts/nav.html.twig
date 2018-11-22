@@ -33,6 +33,9 @@
         <ul class="navbar-nav justify-content-end ml-auto">
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <li class="nav-item m-nav-item active-auth-btn">
+                    <a class="nav-link user-nav-link" href="{{ path('dashboard_home') }}">Dashboard</a>
+                </li>
+                <li class="nav-item m-nav-item active-auth-btn">
                     <a class="nav-link user-nav-link" href="{{ path('fos_user_security_logout') }}">Log out</a>
                 </li>
             {% else %}

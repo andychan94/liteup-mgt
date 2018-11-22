@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class StandardPackCommand extends Command
 {
-    protected static $defaultName = 'check:standard-pack';
+    protected static $defaultName = 'app:standard-pack';
 
     protected $em;
 

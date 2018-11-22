@@ -4,14 +4,14 @@
     <section class="section notification">
         <div class="verification-wrapper">
             <form action="{{ path('verify_confirm_request') }}" method="post" autocomplete="off" enctype="multipart/form-data">
-                <h4 class="subtitle is-4 m-t-b-10 f-w-b has-text-info">Corporate verification</h4>
+                <h4 class="subtitle is-4 m-t-b-10 f-w-b has-text-info">{{ verificationType.verificationTypeText }}</h4>
                 <div class="columns">
                     <div class="column">
                         <p class="is-size-6">Please upload your <span style="color: #f53939;">CAC</span> document</p>
                     </div>
                     <div class="column">
                         <p style="color: #c55a11; " class="is-size-6">
-                            <a href="#!">
+                            <a href="{{ verificationType.verificationTypeDocument }}" download="LiteUp">
                                 <span><i class="fas fa-gift"></i></span>
                                 Benefits of verified account
                             </a>

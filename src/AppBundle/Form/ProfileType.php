@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -66,7 +67,17 @@ class ProfileType extends AbstractType
                 'attr' => array(
                     'class' => 'file-input'
                 )
-            ));
+            ))
+            ->add('userStatus',ChoiceType::class,
+                array(
+                    'choices' => array(
+                        'Hot customer' => true,
+                        'All customer' => false,
+                    ),
+
+
+                ))
+        ;
         $builder->remove('current_password');
         $builder->remove('username');
     }

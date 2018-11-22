@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html.twig' %}
+{% set user_call_history = true %}
+{% block body %}
+    {% include 'dashboard/contact_history/history_category.html.twig' %}
+    <div class="transaction-content">
+        <table id="transaction-table">
+            <thead>
+            <tr>
+                <th>House</th>
+                <th>User Name</th>
+                <th>Phone Number</th>
+                <th>RequestedAt</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in userCallRequest %}
+                <tr>
+                    <td>
+                        <button class="show-house disable button is-rounded is-small tooltip is-tooltip-right"  data-tooltip="View details" data-id="{{ p.property.id }}">
+                            {{ p.property.title }}
+                        </button>
+                    </td>
+                    <td>{{ p.userName }}</td>
+                    <td>{{ p.userTel }}</td>
+                    <td>{{ p.requestedAt | date('Y-m-d h:i:s') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if paginationTotal > 1 %}
+        <div class="column">
+            <div class="paginate-content">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous" href="{{ path('user_call_request_history', {'paginate': paginate - 1}) }}" {{ (paginate == 1)? 'disabled': '' }}><<</a>
+                    <ul class="pagination-list">
+                        {% for pgnt in 1..paginationTotal %}
+                            <li><a class="pagination-link  {{ (pgnt == paginate)? 'is-current': '' }}"
+                                   href="{{ path('user_call_request_history', {'paginate': pgnt}) }}">{{ pgnt }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pagination-next"
+                       href="{{ path('user_call_request_history', {'paginate': paginate + 1}) }}" {{ (paginate == paginationTotal)? 'disabled': '' }}>>></a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

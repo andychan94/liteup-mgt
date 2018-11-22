@@ -49,10 +49,12 @@ class VerificationController extends Controller
         $verificationConditions = $this->getDoctrine()->getRepository(VerificationCondition::class)->findBy(
             ['isTop' => true],
             ['verificationConditionOrder' => 'ASC']);
+        $verificationType = $this->getDoctrine()->getRepository('AppBundle:VerificationType')->find(2);
 
         return $this->render('dashboard/verification/individual-verify.html.twig',
             array(
                 'verifyConditions' => $verificationConditions,
+                'verificationType' => $verificationType,
 
             ));
     }
@@ -62,7 +64,12 @@ class VerificationController extends Controller
      */
     public function corporateVerificationAction(Request $request)
     {
-        return $this->render('dashboard/verification/corporate-verify.html.twig');
+        $verificationType = $this->getDoctrine()->getRepository('AppBundle:VerificationType')->find(1);
+
+        return $this->render('dashboard/verification/corporate-verify.html.twig',
+            array(
+                'verificationType' => $verificationType,
+            ));
     }
 
     /**

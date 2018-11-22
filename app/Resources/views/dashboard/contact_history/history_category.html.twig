@@ -38,11 +38,11 @@
                     <span>Accepted property request</span>
                 </a>
             </li>
-            {#<li>#}
-                {#<a>#}
-                    {#<span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>#}
-                    {#<span>Documents</span>#}
-                {#</a>#}
-            {#</li>#}
+            <li class="{{ (app.request.get('_route') == 'user_call_request_history') ? 'is-active':''}}">
+                <a href="{{ path('user_call_request_history') }}">
+                    <span class="icon is-small"><i class="fas fa-mobile-alt"></i></span>
+                    <span>Users Calls</span>
+                </a>
+            </li>
         </ul>
     </div>

@@ -85,6 +85,14 @@ services:
         - { name: sonata.admin, manager_type: orm, group : Content, label: Slider, icon:  "<i class='fa fa-book'></i>" }
         public: true
 
+
+    admin.custom_text_admin:
+        class: AppBundle\Admin\CustomTextAdmin
+        arguments: [~, AppBundle\Entity\CustomText, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : Content, label: Custom Text, icon:  "<i class='fa fa-book'></i>" }
+        public: true
+
     admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\Agency, ~]
@@ -104,6 +112,13 @@ services:
         arguments: [~, AppBundle\Entity\VerificationCondition, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group :  Verification, label: Verification Conditions , icon:  "<i class='fa fa-first-order'></i>" }
+        public: true
+
+    admin.verification_type:
+        class: AppBundle\Admin\VerificationTypeAdmin
+        arguments: [~, AppBundle\Entity\VerificationType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group :  Verification, label: Verification Type, icon:  "<i class='fa fa-first-order'></i>" }
         public: true
 
     admin.payment_order:

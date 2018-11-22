@@ -25,6 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link m-nav-link" href="{{ path('contact_page') }}">Contact Us</a>
                         </li>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <li class="nav-item">
+                                <a class="nav-link m-nav-link" href="{{ path('dashboard_home') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link m-nav-link" href="{{ path('fos_user_security_logout') }}">Log Out</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link m-nav-link" href="{{ path('fos_user_security_login') }}">Sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link m-nav-link" href="{{ path('fos_user_registration_register') }}">Sign up</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -39,13 +54,7 @@
                         <div class="col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label for="state">State</label>
-                                {#<select name="state" id="state" class="form-control form-control-sm js-search-select2">#}
-                                    {#<option {{ (old_state is null)? 'selected' }} value="all">All</option>#}
-                                    {#{% for state in states %}#}
-                                        {#<option value="{{ state.id }}" {{ (old_state == state.id)? 'selected' }}>{{ state.name }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
-                                <select name="state" id="state-select" class="form-control form-control-sm js-search-select2" >
+                                <select name="state" id="state-select" class="form-control form-control-sm js-search-select2">
                                     <option value="all" selected>State</option>
                                     {% for state in states %}
                                         <option value="{{ state.id }}">{{ state.name }}</option>
@@ -54,12 +63,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="lga">LGA</label>
-                                {#<select name="lga" id="lga" class="form-control form-control-sm js-search-select2">#}
-                                    {#<option {{ (old_lga is null)? 'selected' }} value="all">All</option>#}
-                                    {#{% for lga in lgas %}#}
-                                        {#<option value="{{ lga.id }}" {{ (old_lga == lga.id)? 'selected' }}>{{ lga.name }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
                                 <div class="form-group">
                                     <select name="lga" id="lga-select" class="form-control form-control-sm js-search-select2">
                                         <option value="all" selected>LGA</option>
@@ -71,12 +74,6 @@
                         <div class="col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label for="area">Area</label>
-                                {#<select name="area" id="area" class="form-control form-control-sm js-search-select2">#}
-                                    {#<option {{ (old_area is null)? 'selected' }} value="all">All</option>#}
-                                    {#{% for area in areas %}#}
-                                        {#<option value="{{ area.id }}" {{ (old_area == area.id)? 'selected' }}>{{ area.name }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
                                 <div class="form-group">
                                     <select name="area" id="area-select" class="form-control form-control-sm js-search-select2">
                                         <option value="all" selected>Area</option>
@@ -84,24 +81,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="arend_type">Type</label>
-                                {#<select id="arend_type"#}
-                                        {#name="{% if rent is not null %}rent{% elseif buy is not null %}buy{% elseif short_stay is not null %}short_stay{% else %}all{% endif %}"#}
-                                        {#class="form-control form-control-sm">#}
-                                    {#<option {% if rent is null and buy is null and short_stay is null %}#}
-
-                                    {#{% endif %}#}
-                                            {#value="all" selected>All#}
-                                    {#</option>#}
-                                    {#<option value="1" {{ (rent == 1)? 'selected': '' }} data-name="rent">Rent</option>#}
-                                    {#<option value="1" {{ (buy == 1)? 'selected': '' }} data-name="buy">Buy</option>#}
-                                    {#<option value="1" {{ (short_stay == 1)? 'selected': '' }} data-name="short_stay">Short Stay</option>#}
-                                {#</select>#}
+                                <label for="arend_type">Category</label>
                                 <select id="arend_type" class="form-control form-control-sm" name="all">
                                     <option value="1" data-name="all" selected>All</option>
                                     <option value="1" {{ (rent == 1)? 'selected': '' }} data-name="rent">Rent</option>
                                     <option value="1" {{ (buy == 1)? 'selected': '' }} data-name="buy">Buy</option>
                                     <option value="1" {{ (short_stay == 1)? 'selected': '' }} data-name="short_stay">Short Stay</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="kind" class="form-control form-control-sm">
+                                    <option value="all" selected>Type</option>
+                                    {% for kind in kinds %}
+                                        <option value="{{ kind }}">{{ kind | capitalize }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>

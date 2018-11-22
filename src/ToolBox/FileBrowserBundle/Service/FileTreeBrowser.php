@@ -3,6 +3,7 @@
 namespace ToolBox\FileBrowserBundle\Service;
 
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\HttpFoundation\File\File;
 
 class FileTreeBrowser
 {
@@ -13,40 +14,41 @@ class FileTreeBrowser
     private $allowedMimeTypes;
 
     private $fileToIcon = array(
-        'image/gif'                     => array('type' => 'image', 'icon' => 'gif.png', 'displayName' => 'GIF'),
-        'image/png'                     => array('type' => 'image', 'icon' => 'png.png', 'displayName' => 'PNG'),
-        'image/jpeg'                    => array('type' => 'image', 'icon' => 'jpg.png', 'displayName' => 'JPG'),
-        'image/pjpeg'                   => array('type' => 'image', 'icon' => 'jpg.png', 'displayName' => 'JPEG'),
-        'image/svg+xml'                 => array('type' => 'image', 'icon' => 'svg.png', 'displayName' => 'SVG'),
-        'image/tiff'                    => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
-        'image/x-tiff'                  => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
-        'image/tiff'                    => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
-        'image/x-tiff'                  => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
-        'application/octet-stream'      => array('type' => 'other', 'icon' => 'psd.png', 'displayName' => 'PSD'),
-        'application/pdf'               => array('type' => 'other', 'icon' => 'pdf.png', 'displayName' => 'PDF'),
-        'application/postscript'        => array('type' => 'other', 'icon' => 'ai.png', 'displayName' => 'AI'),
-        'application/x-troff-msvideo'   => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
-        'video/avi'                     => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
-        'video/msvideo'                 => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
-        'video/x-msvideo'               => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
-        'application/msword'            => array('type' => 'other', 'icon' => 'doc.png', 'displayName' => 'DOC'),
-        'text/html'                     => array('type' => 'other', 'icon' => 'html.png', 'displayName' => 'HTML'),
-        'application/x-javascript'      => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
-        'application/javascript'        => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
-        'application/ecmascript'        => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
-        'text/javascript'               => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
-        'text/ecmascript'               => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
-        'video/quicktime'               => array('type' => 'other', 'icon' => 'mov.png', 'displayName' => 'MOV'),
-        'audio/mpeg3'                   => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
-        'audio/x-mpeg-3'                => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
-        'video/mpeg'                    => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
-        'video/mp4'                     => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
-        'text/plain'                    => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
-        'text/plain'                    => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
-        'application/excel'             => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
-        'application/vnd.ms-excel'      => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
-        'application/x-excel'           => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
-        'application/x-msexcel'         => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
+        'image/gif' => array('type' => 'image', 'icon' => 'gif.png', 'displayName' => 'GIF'),
+        'image/png' => array('type' => 'image', 'icon' => 'png.png', 'displayName' => 'PNG'),
+        'image/jpeg' => array('type' => 'image', 'icon' => 'jpg.png', 'displayName' => 'JPG'),
+        'image/pjpeg' => array('type' => 'image', 'icon' => 'jpg.png', 'displayName' => 'JPEG'),
+        'image/svg+xml' => array('type' => 'image', 'icon' => 'svg.png', 'displayName' => 'SVG'),
+        'image/tiff' => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
+        'image/x-tiff' => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
+        'image/tiff' => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
+        'image/x-tiff' => array('type' => 'other', 'icon' => 'tiff.png', 'displayName' => 'TIFF'),
+        'image/psd' => array('type' => 'other', 'icon' => 'psd.png', 'displayName' => 'PSD'),
+        'application/octet-stream' => array('type' => 'other', 'icon' => 'pdf.png', 'displayName' => 'PDF'),
+        'application/pdf' => array('type' => 'other', 'icon' => 'pdf.png', 'displayName' => 'PDF'),
+        'application/postscript' => array('type' => 'other', 'icon' => 'ai.png', 'displayName' => 'AI'),
+        'application/x-troff-msvideo' => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
+        'video/avi' => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
+        'video/msvideo' => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
+        'video/x-msvideo' => array('type' => 'other', 'icon' => 'avi.png', 'displayName' => 'AVI'),
+        'application/msword' => array('type' => 'other', 'icon' => 'doc.png', 'displayName' => 'DOC'),
+        'text/html' => array('type' => 'other', 'icon' => 'html.png', 'displayName' => 'HTML'),
+        'application/x-javascript' => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
+        'application/javascript' => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
+        'application/ecmascript' => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
+        'text/javascript' => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
+        'text/ecmascript' => array('type' => 'other', 'icon' => 'js.png', 'displayName' => 'JS'),
+        'video/quicktime' => array('type' => 'other', 'icon' => 'mov.png', 'displayName' => 'MOV'),
+        'audio/mpeg3' => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
+        'audio/x-mpeg-3' => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
+        'video/mpeg' => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
+        'video/x-mpeg' => array('type' => 'other', 'icon' => 'mp3.png', 'displayName' => 'MP3'),
+        'text/plain' => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
+        'text/plain' => array('type' => 'other', 'icon' => 'txt.png', 'displayName' => 'TXT'),
+        'application/excel' => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
+        'application/vnd.ms-excel' => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
+        'application/x-excel' => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
+        'application/x-msexcel' => array('type' => 'other', 'icon' => 'xls.png', 'displayName' => 'XLS'),
     );
 
 
@@ -56,9 +58,11 @@ class FileTreeBrowser
         $this->container = $container;
         $this->rootDir = $this->container->get('kernel')->getRootDir() . '/../web';
 
+
     }
 
-    public function setConfig($config){
+    public function setConfig($config)
+    {
 
         $this->maxFileSize = $config['max_file_size'];
         $this->allowedMimeTypes = $config['file_types'];
@@ -115,7 +119,8 @@ class FileTreeBrowser
 
                 if (!is_dir($this->rootDir . $path . '/' . $dir) && $dir !== '.' && $dir !== '..') {
 
-                    $filetype = mime_content_type($this->rootDir . '/' . $path . '/' . $dir);
+                    $filetype = image_type_to_mime_type(exif_imagetype($this->rootDir . '/' . $path . '/' . $dir));
+
                     $icon = 'unknown.png';
                     $type = $this->fileToIcon[$filetype]['type'];
                     if (isset($this->fileToIcon[$filetype])) {
@@ -147,11 +152,12 @@ class FileTreeBrowser
 
     }
 
-    public function uploadFile($image, $dir){
+    public function uploadFile($image, $dir)
+    {
 
-        $dir = $this->rootDir.$dir;
+        $dir = $this->rootDir . $dir;
 
-        if(isset($image)){
+        if (isset($image)) {
 
             $allowed_extentions = $this->allowedMimeTypes;
             $max_file_size = $this->maxFileSize;
@@ -169,15 +175,14 @@ class FileTreeBrowser
 
             $image_extention = $image->getMimeType();
 
-            $new_path = $dir.'/'.$image->getClientOriginalName();
-            $new_thumb_path = $dir.'/thumb';
-            $new_thumb_image_path = $dir.'/thumb'.'/'.$image->getClientOriginalName();
-
+            $new_path = $dir . '/' . $image->getClientOriginalName();
+            $new_thumb_path = $dir . '/thumb';
+            $new_thumb_image_path = $dir . '/thumb' . '/' . $image->getClientOriginalName();
 
 
             if ($image->getClientSize() < $max_file_size) {
 
-                if(in_array($image_extention, $allowed_extentions)) {
+                if (in_array($image_extention, $allowed_extentions)) {
 
                     list($ini_w, $ini_h) = getimagesize($image->getRealPath());
                     $new_w = 1920;
@@ -186,8 +191,16 @@ class FileTreeBrowser
                     $thumb_ini_w = $ini_w;
                     $thumb_ini_h = $ini_h;
 
-                    if($ini_w > $new_w) { $new_h = $ini_h * $new_w / $ini_w; $thumb_ini_h = $new_h; $resize = true; }
-                    if($ini_h > $new_h) { $new_w = $ini_w * $new_h / $ini_h; $thumb_ini_w = $new_w; $resize = true; }
+                    if ($ini_w > $new_w) {
+                        $new_h = $ini_h * $new_w / $ini_w;
+                        $thumb_ini_h = $new_h;
+                        $resize = true;
+                    }
+                    if ($ini_h > $new_h) {
+                        $new_w = $ini_w * $new_h / $ini_h;
+                        $thumb_ini_w = $new_w;
+                        $resize = true;
+                    }
 
                     $thumb_ini_ratio = $thumb_ini_w / $thumb_ini_h;
 
@@ -198,11 +211,11 @@ class FileTreeBrowser
                     $thumb_res_w = 0;
                     $thumb_res_h = 0;
 
-                    if((!empty($thumb_crop_w) && $thumb_crop_w > 0) && (!empty($thumb_crop_h) && $thumb_crop_h > 0)){
+                    if ((!empty($thumb_crop_w) && $thumb_crop_w > 0) && (!empty($thumb_crop_h) && $thumb_crop_h > 0)) {
 
                         $thumbnail = true;
 
-                        if($thumb_crop_ratio > $thumb_ini_ratio) {
+                        if ($thumb_crop_ratio > $thumb_ini_ratio) {
 
                             $thumb_res_w = $thumb_crop_w;
                             $thumb_res_h = $thumb_ini_h * $thumb_res_w / $thumb_ini_w;
@@ -211,7 +224,7 @@ class FileTreeBrowser
 
                         }
 
-                        if($thumb_crop_ratio < $thumb_ini_ratio) {
+                        if ($thumb_crop_ratio < $thumb_ini_ratio) {
 
                             $thumb_res_h = $thumb_crop_h;
                             $thumb_res_w = $thumb_ini_w * $thumb_res_h / $thumb_ini_h;
@@ -220,7 +233,7 @@ class FileTreeBrowser
 
                         }
 
-                        if($thumb_crop_ratio == $thumb_ini_ratio){
+                        if ($thumb_crop_ratio == $thumb_ini_ratio) {
 
                             $thumb_res_w = $thumb_crop_w;
                             $thumb_res_h = $thumb_crop_h;
@@ -232,17 +245,17 @@ class FileTreeBrowser
 
                     }
 
-                    if(!file_exists($new_path)){
+                    if (!file_exists($new_path)) {
 
-                        if(preg_match('/thumb(\/|)$/', $dir)){
+                        if (preg_match('/thumb(\/|)$/', $dir)) {
                             $thumbnail = false;
                         }
 
                         if (move_uploaded_file($image->getRealPath(), $new_path)) {
 
-                            if($resize) {
+                            if ($resize) {
 
-                                if($this->resizeImage($new_path, $new_path, $new_w, $new_h, $ini_w, $ini_h)){
+                                if ($this->resizeImage($new_path, $new_path, $new_w, $new_h, $ini_w, $ini_h)) {
 
                                     $resized = true;
 
@@ -250,9 +263,9 @@ class FileTreeBrowser
 
                             }
 
-                            if($thumbnail){
+                            if ($thumbnail) {
 
-                                if($this->createThumbnail(
+                                if ($this->createThumbnail(
                                     $new_path,
                                     $new_thumb_image_path,
                                     $thumb_res_w,
@@ -262,7 +275,7 @@ class FileTreeBrowser
                                     $thumb_crop_w,
                                     $thumb_crop_h,
                                     $margin_x,
-                                    $margin_y)){
+                                    $margin_y)) {
 
                                     $thumbnail_created = true;
 
@@ -270,15 +283,19 @@ class FileTreeBrowser
 
                             }
 
-                            if($resized || $thumbnail_created){
+                            if ($resized || $thumbnail_created) {
 
                                 $message_resize = "";
                                 $message_thumbnail = "";
 
-                                if($resized) { $message_resize = "Image is resized."; }
-                                if($thumbnail_created) { $message_thumbnail = "Thumbnail is created."; }
+                                if ($resized) {
+                                    $message_resize = "Image is resized.";
+                                }
+                                if ($thumbnail_created) {
+                                    $message_thumbnail = "Thumbnail is created.";
+                                }
 
-                                $response = array("success" => true, "message" => "Image is successfully uploaded! ".$message_resize.$message_thumbnail);
+                                $response = array("success" => true, "message" => "Image is successfully uploaded! " . $message_resize . $message_thumbnail);
                                 return $response;
 
                             } else {
@@ -290,7 +307,7 @@ class FileTreeBrowser
 
                         } else {
 
-                            $response = array("success" => false, "message" => "Image is not uploaded! ".$new_path);
+                            $response = array("success" => false, "message" => "Image is not uploaded! " . $new_path);
                             return $response;
 
                         }
@@ -307,12 +324,12 @@ class FileTreeBrowser
                     $allowedText = "";
                     $delimiter = "";
 
-                    foreach($this->allowedMimeTypes as $type){
-                        $allowedText .= $delimiter.$this->fileToIcon[$type]['displayName'];
+                    foreach ($this->allowedMimeTypes as $type) {
+                        $allowedText .= $delimiter . $this->fileToIcon[$type]['displayName'];
                         $delimiter = ", ";
                     }
 
-                    $response = array("success" => false, "message" => "Only ".$allowedText." files allowed");
+                    $response = array("success" => false, "message" => "Only " . $allowedText . " files allowed");
                     return $response;
 
                 }
@@ -333,14 +350,17 @@ class FileTreeBrowser
 
     }
 
-    public function createThumbnail($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h, $crop_w, $crop_h, $x, $y) {
+    public function createThumbnail($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h, $crop_w, $crop_h, $x, $y)
+    {
 
         $thumb_path = dirname($new_path);
-        if(!file_exists($thumb_path)){ mkdir($thumb_path); }
+        if (!file_exists($thumb_path)) {
+            mkdir($thumb_path);
+        }
 
-        if($this->resizeImage($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h)) {
+        if ($this->resizeImage($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h)) {
 
-            if($this->resizeImage($new_path, $new_path, $crop_w, $crop_h, $crop_w, $crop_h, $x, $y)) {
+            if ($this->resizeImage($new_path, $new_path, $crop_w, $crop_h, $crop_w, $crop_h, $x, $y)) {
 
                 return true;
 
@@ -358,14 +378,15 @@ class FileTreeBrowser
 
     }
 
-    public function resizeImage($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h, $x = null, $y = null){
+    public function resizeImage($image_path, $new_path, $new_w, $new_h, $ini_w, $ini_h, $x = null, $y = null)
+    {
 
         $image_path = $image_path;
         $new_path = $new_path;
         $image_file_type = pathinfo($image_path, PATHINFO_EXTENSION);
         $image_done = false;
 
-        switch($image_file_type){
+        switch ($image_file_type) {
             case 'jpeg':
                 $img_r = @imagecreatefromjpeg($image_path);
                 break;
@@ -388,16 +409,16 @@ class FileTreeBrowser
 
         $dst_r = ImageCreateTrueColor($new_w, $new_h);
 
-        if($image_file_type == 'png' || $image_file_type == 'PNG'){
+        if ($image_file_type == 'png' || $image_file_type == 'PNG') {
             imagealphablending($dst_r, false);
             imagesavealpha($dst_r, true);
             $transparent = imagecolorallocatealpha($dst_r, 255, 255, 255, 127);
             imagefilledrectangle($dst_r, 0, 0, $new_w, $new_h, $transparent);
         }
 
-        imagecopyresampled($dst_r ,$img_r ,0 ,0 ,$x ,$y ,$new_w ,$new_h ,$ini_w ,$ini_h);
+        imagecopyresampled($dst_r, $img_r, 0, 0, $x, $y, $new_w, $new_h, $ini_w, $ini_h);
 
-        switch($image_file_type){
+        switch ($image_file_type) {
             case 'jpeg':
                 $image_done = imagejpeg($dst_r, $new_path);
                 break;
@@ -425,11 +446,12 @@ class FileTreeBrowser
 
     }
 
-    public function createDir($path){
+    public function createDir($path)
+    {
 
-        if(!file_exists($this->rootDir.$path)){
+        if (!file_exists($this->rootDir . $path)) {
 
-            if(mkdir($this->rootDir.$path)){
+            if (mkdir($this->rootDir . $path)) {
 
                 $response = array(
                     'success' => true,
@@ -458,20 +480,23 @@ class FileTreeBrowser
 
     }
 
-    public function deleteFile($file){
+    public function deleteFile($file)
+    {
 
         $response = array();
-        $file_path = $this->rootDir.$file;
+        $file_path = $this->rootDir . $file;
 
-        if(file_exists($file_path)){
+        if (file_exists($file_path)) {
 
             $file_dir = dirname($file_path);
             $file_name = basename($file_path);
-            $thumb_dir = $file_dir.'/thumb/';
+            $thumb_dir = $file_dir . '/thumb/';
 
-            if(file_exists($thumb_dir.$file_name)){ unlink($thumb_dir.$file_name); }
+            if (file_exists($thumb_dir . $file_name)) {
+                unlink($thumb_dir . $file_name);
+            }
 
-            if(unlink($file_path)) {
+            if (unlink($file_path)) {
 
                 $response = array(
                     'success' => true,
@@ -500,26 +525,27 @@ class FileTreeBrowser
 
     }
 
-    public function deleteTree($dir) {
+    public function deleteTree($dir)
+    {
 
-        $files = array_diff(scandir($dir), array('.','..'));
+        $files = array_diff(scandir($dir), array('.', '..'));
         $new_dir = preg_replace('/\/$/', '', $dir);
 
         foreach ($files as $file) {
 
-            if(is_dir($new_dir.'/'.$file)){
+            if (is_dir($new_dir . '/' . $file)) {
 
-                $this->deleteTree($new_dir.'/'.$file);
+                $this->deleteTree($new_dir . '/' . $file);
 
             } else {
 
-                unlink($new_dir.'/'.$file);
+                unlink($new_dir . '/' . $file);
 
             }
 
         }
 
-        if(rmdir($new_dir)) {
+        if (rmdir($new_dir)) {
 
             return true;
 

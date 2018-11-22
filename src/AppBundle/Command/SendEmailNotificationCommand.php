@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SendEmailNotificationCommand extends ContainerAwareCommand
 {
     protected $em;
-
+    protected static $defaultName = 'app:send-emails';
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
@@ -29,9 +29,9 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
 
     protected function configure()
     {
-        $this
-            ->setName('send:emails')
-            ->setDescription('Send Mail Not active users');
+//        $this
+//            ->setName('app:send-emails')
+//            ->setDescription('Send Mail Not active users');
     }
 
     /**
@@ -48,8 +48,8 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
 
         $mailer = $container->get('mailer');
         $spool = $mailer->getTransport()->getSpool();
-        $transport = $container->get('swiftmailer.transport.real');
-        $spool->flushQueue($transport);
+//        $transport = $container->get('swiftmailer.transport.real');
+//        $spool->flushQueue($transport);
         $em = $this->em;
         /*--------------- Connect to agency repository ---------------*/
         $agencyRepository = $em->getRepository('AppBundle:Agency');
@@ -65,6 +65,7 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         /*--------------- Create query to find users that not activated  ---------------*/
         $query = $agencyRepository->createQueryBuilder('a')
             ->where('a.enabled = :false')
+            ->andWhere('a.blockMessage = :false')
             ->andWhere('a.createdAt < :date AND a.createdAt > :date2')
             ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 2 day'))
@@ -101,7 +102,9 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         $notLogoAgencies = $agencyRepository->createQueryBuilder('a')
             ->where('a.logo = :empty')
             ->andWhere('a.firstLogin < :date AND a.firstLogin > :date2')
+            ->andWhere('a.blockMessage = :false')
             ->setParameter('empty', "")
+            ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 1 day'))
             ->setParameter('date2', new \DateTime('- 2 day'))
             ->getQuery();
@@ -145,15 +148,17 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
             ->select('count(h.id), a')
             ->join('a.houses', 'h')
             ->where('a.firstLogin < :date AND a.firstLogin > :date2')
+            ->andWhere('a.blockMessage = :false')
+            ->groupBy('a')
+            ->setParameter('false',false)
             ->setParameter('date', new \DateTime('- 2 day'))
             ->setParameter('date2', new \DateTime('- 3 day'))
             ->getQuery();
 
         $noPropertyUpload = $noPropertyUploadQuery->getResult();
-
         foreach ($noPropertyUpload as $agency) {
 
-            if ($agency[0] != null) {
+            if ($agency[0] == null) {
 
                 $body = $container->get('templating')->render('Emails/activation_email.html.twig', array(
                     'user' => $agency[0]->getName(),
@@ -190,7 +195,9 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
             ->leftJoin('a.houses', 'h')
             ->where('v.id is null and h.id is null and a.logo = :empty')
             ->andWhere('a.firstLogin <  :date and a.firstLogin > :date2')
+            ->andWhere('a.blockMessage = :false')
             ->setParameter('empty', '')
+            ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 14 day'))
             ->setParameter('date2', new \DateTime('- 15 day'))
             ->getQuery();
@@ -226,8 +233,10 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         $noCoinPurchaseQuery = $agencyRepository->createQueryBuilder('a')
             ->select('a')
             ->leftJoin('a.paymentOrder', 'p')
-            ->Where('a.firstLogin < :date and a.firstLogin > :date2')
+            ->where('a.firstLogin < :date and a.firstLogin > :date2')
             ->andWhere('p.id is null')
+            ->andWhere('a.blockMessage = :false')
+            ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 6 day'))
             ->setParameter('date2', new \DateTime('- 7 day'))
             ->getQuery();
@@ -269,7 +278,7 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         $lastDay = new \DateTime('last day of this month');
         if ($today->format('Y-m-d') == $lastDay->format('Y-m-d')) {
 
-            $allAgencies = $agencyRepository->findAll();
+            $allAgencies = $agencyRepository->findBy(['blockMessage' => false]);
 
             $email = $em->getRepository('AppBundle:EmailReaction')->find(6);
 
@@ -311,13 +320,16 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
             ->leftJoin('a.verifyRequest', 'v')
             ->where('v.id is null')
             ->andWhere('p.createdAt < :date and p.createdAt > :date2')
-            ->groupBy('p.createdAt')
+            ->andWhere('a.blockMessage = :false')
+            ->groupBy('p')
             ->orderBy('p.createdAt', 'ASC')
+            ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 2 day'))
             ->setParameter('date2', new \DateTime('- 3 day'))
             ->getQuery();
 
         $notVerified = $notVerifiedQuery->getResult();
+
 
         foreach ($notVerified as $agency) {
 
@@ -356,9 +368,11 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
             ->leftJoin('AppBundle\Entity\ContactCount', 'c',  'WITH','c.agency = a.id')
             ->leftJoin('a.houses','p')
             ->where('p.createdAt < :date')
+            ->andWhere('a.blockMessage = :false')
             ->andWhere('c.count is null')
-            ->groupBy('p.createdAt')
+            ->groupBy('p')
             ->orderBy('p.createdAt','ASC')
+            ->setParameter('false', false)
             ->setParameter('date', new \DateTime('- 21 day'))
             ->getQuery()
         ;
@@ -376,8 +390,8 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
                 ->setCharset('UTF-8')
                 ->setContentType('text/html')
                 ->setBody($body);
-
             $mailer->send($message);
+
         }
         /*--------------- //TODO No contact  21 days after property Upload  End*/
         ############################################################################
@@ -399,7 +413,7 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         $date = new \DateTime('today');
         $today = $date->format('Y-m-d');
 
-        $agencies = $agencyRepository->findAll();
+        $agencies = $agencyRepository->findBy(['blockMessage' => false]);
 
         if ($lastEmailInterval == $today){
             $email = $em->getRepository('AppBundle:EmailReaction')->find(9);
@@ -435,9 +449,11 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
 
         $noCoinOneDayQuery = $agencyRepository->createQueryBuilder('a')
             ->where('a.noCoin = :true and a.totalBudgetLimitAt < :date and a.totalBudgetLimitAt > :date2')
+            ->andWhere('a.blockMessage = :false')
             ->setParameters(
                 [
                     'true' => true,
+                    'false' => false,
                     'date' => new \DateTime('- 1 day'),
                     'date2' => new \DateTime('- 2 day'),
                 ]
@@ -474,13 +490,15 @@ class SendEmailNotificationCommand extends ContainerAwareCommand
         ##             SECTION No coin 6 day after budget finished                ##
         ##                                                                        ##
         ############################################################################
-        /*--------------- //TODO No coin 6 day after budget finished  Start*/
+      /*--------------- //TODO No coin 6 day after budget finished  Start*/
 
         $noCoinSixDayQuery = $agencyRepository->createQueryBuilder('a')
             ->where('a.noCoin = :true and a.totalBudgetLimitAt < :date and a.totalBudgetLimitAt > :date2')
+            ->andWhere('a.blockMessage = :false')
             ->setParameters(
                 [
                     'true' => true,
+                    'false' => false,
                     'date' => new \DateTime('- 6 day'),
                     'date2' => new \DateTime('- 7 day'),
                 ]

@@ -82,6 +82,7 @@ class PlanController extends Controller
                 $hasPlan->setLimitCreatedAt(null);
                 $hasPlan->setLimitDeadLine(null);
                 $hasPlan->setLimitRangeAt(null);
+                $hasPlan->setFreePlanActive(false);
                 $activeUser->setBudget($userActualBudget - $planPrice);
             }
 
@@ -164,6 +165,7 @@ class PlanController extends Controller
                 $hasPlan->setLimitCreatedAt(null);
                 $hasPlan->setLimitDeadLine(null);
                 $hasPlan->setLimitRangeAt(null);
+                $hasPlan->setFreePlanActive(false);
                 $activeUser->setBudget($userActualBudget - $planPrice);
 
             }
@@ -213,6 +215,7 @@ class PlanController extends Controller
             $hasPlan->setPlan($selectedPlan);
             $hasPlan->setActive(true);
             $hasPlan->setPlanCreatedAt(new \DateTime());
+            $hasPlan->setFreePlanActive(false);
             $hasPlan->setPlanDeadLine(null);
 
         }

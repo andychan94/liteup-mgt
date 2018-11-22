@@ -117,7 +117,7 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
 
         var dropzoneOptions = {
             paramName: 'img',
-            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, application/pdf, video/*, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, application/pdf, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             url: '/tbfb-upload',
             maxFilesize: 100, //in MB
             createImageThumbnails: false,
@@ -418,15 +418,15 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
                         method: 'POST',
                         url: '/tbfb-crop',
                         data: 'file_path=' + cropDimentionObj.file_path +
-                        '&action=crop'+
-                        '&crop_width=' + cropWidth +
-                        '&crop_height=' + cropHeight +
-                        '&ini_width=' + (cropDimentionObj.x2 - cropDimentionObj.x) +
-                        '&ini_height=' + (cropDimentionObj.y2 - cropDimentionObj.y) +
-                        '&res_width=' + cropDimentionObj.resWidth +
-                        '&res_height=' + cropDimentionObj.resHeight +
-                        '&scaleX=' + cropDimentionObj.x +
-                        '&scaleY=' + cropDimentionObj.y,
+                            '&action=crop'+
+                            '&crop_width=' + cropWidth +
+                            '&crop_height=' + cropHeight +
+                            '&ini_width=' + (cropDimentionObj.x2 - cropDimentionObj.x) +
+                            '&ini_height=' + (cropDimentionObj.y2 - cropDimentionObj.y) +
+                            '&res_width=' + cropDimentionObj.resWidth +
+                            '&res_height=' + cropDimentionObj.resHeight +
+                            '&scaleX=' + cropDimentionObj.x +
+                            '&scaleY=' + cropDimentionObj.y,
                         success: function(success_response){
 
                             if(success_response.success == 'false'){
@@ -494,7 +494,7 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
 
     function createDirectory(rootDir) {
 
-        alertMessages('alert-success', '<input type="text" name="new-dir-name"/><button class="tb-create-dir"><i class="fa fa-plus"></i> Create</button><button class="tb-message-close"><i class="fa fa-times"></i> Cancel</button>');
+        alertMessages('alert-success', '<input type="text" style="color: #000;" name="new-dir-name" /><button class="tb-create-dir" style="color: #000;"><i class="fa fa-plus"></i> Create</button><button class="tb-message-close" style="color: #000;"><i class="fa fa-times"></i> Cancel</button>');
 
         $('.tb-create-dir').on('click', function(){
 
@@ -683,20 +683,12 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
                             $('.tb-preview__content__file').on('click', 'a', function(){
 
                                 var dataPath = $(this).attr('data-path');
-
-                                /* Copy the text inside the text field */
                                 settings.current_file = dataPath;
                                 $('.tb-filepath').html('Copy path: '+settings.current_file);
-
 
                             });
 
                         });
-
-
-
-
-
 
                         $('.tb-preview__content').append('<div class="clearfix"></div>');
 
@@ -811,4 +803,3 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
     }
 
 };
-

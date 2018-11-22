@@ -145,7 +145,19 @@
                 </div>
             </div>
         </div>
-
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                {{ form_label(form.userStatus) }}
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left select">
+                        {{ form_widget(form.userStatus) }}
+                    </p>
+                    {{ form_errors(form.userStatus) }}
+                </div>
+            </div>
+        </div>
         <div class="has-text-centered">
             <input class="button is-success" type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
         </div>

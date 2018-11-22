@@ -135,11 +135,24 @@
     </div>
 </div>
 
+<div class="chat-content">
+    <div class="chat-header">
+        <p>Support</p>
+        <span class="close-chat"><i class="far fa-times-circle"></i></span>
+    </div>
+    <form action="{{ path('support_message') }}" method="post">
+        <div class="chat-body">
+            <textarea name="support_message" id="support-message" class="chat-textarea" placeholder="Input Message" required></textarea>
+            <div class="chat-footer">
+                <input type="submit" value="Send" class="send-contact-message-bnt">
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="contact-content">
     <div class="contact-icon">
-        <a href="#!" >
-            <i class="fas fa-envelope"></i>
-        </a>
+        <i class="fas fa-envelope"></i>
     </div>
     <div class="contact-text">
         <p>Contact us</p>

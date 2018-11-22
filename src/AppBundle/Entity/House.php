@@ -221,6 +221,11 @@ class House extends EntityBase
     protected $showOnTop = false;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserCallRequest", mappedBy="property")
+     */
+    protected $userCallRequest;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -906,5 +911,21 @@ class House extends EntityBase
     public function setState($state)
     {
         $this->state = $state;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCallRequest()
+    {
+        return $this->userCallRequest;
+    }
+
+    /**
+     * @param mixed $userCallRequest
+     */
+    public function setUserCallRequest($userCallRequest)
+    {
+        $this->userCallRequest = $userCallRequest;
     }
 }

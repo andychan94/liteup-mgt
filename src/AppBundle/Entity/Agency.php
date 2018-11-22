@@ -224,6 +224,15 @@ class Agency extends BaseUser
      */
     protected $noCoin = false;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $blockMessage = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $userStatus = false;
 
     /**
      * Constructor
@@ -743,6 +752,39 @@ class Agency extends BaseUser
     {
         $this->noCoin = $noCoin;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBlockMessage()
+    {
+        return $this->blockMessage;
+    }
+
+    /**
+     * @param mixed $blockMessage
+     */
+    public function setBlockMessage($blockMessage)
+    {
+        $this->blockMessage = $blockMessage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserStatus()
+    {
+        return $this->userStatus;
+    }
+
+    /**
+     * @param mixed $userStatus
+     */
+    public function setUserStatus($userStatus)
+    {
+        $this->userStatus = $userStatus;
+    }
+
 
 
 }

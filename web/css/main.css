@@ -260,12 +260,11 @@
     position: relative;
     left: 7px;
     box-shadow: 0 3px 8px -1px #2e363f;
-}
-
-.contact-icon a {
     font-size: 30px;
     color: #bebfc1;
 }
+
+
 
 .contact-text {
     background: #2e363f;
@@ -371,6 +370,62 @@
     border-radius: 2px;
 }
 
+.chat-content {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+}
+
+.chat-header {
+    background: #2e363f;
+    color: white;
+    padding: 3px 15px;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+}
+
+.chat-body{
+    border: 1px solid #2e363f;
+    border-radius: 0 0 2px 2px;
+    padding: 5px;
+    width: 250px;
+    height: 300px;
+    background: #ffffff;
+}
+
+input.send-contact-message-bnt {
+    background: #2e363f;
+    border: none;
+    padding: 5px 35px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px -2px #2e2e2e;
+}
+
+textarea.chat-textarea {
+    width: 100% !important;
+    height: 87% !important;
+    padding: 5px;
+    border-radius: 2px;
+    background: transparent;
+    border-color: #2e363f;
+}
+
+
+.close-chat{
+    color: #ffffff;
+    font-size: 18px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
     .tag-notif {

@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Enum\HouseKindEnum;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +27,8 @@ class AnnouncementController extends Controller
 
         $states = $em->getRepository('AppBundle:State')->findBy([], ['name' => 'ASC']);
 
+        $kinds = HouseKindEnum::getAvailableTypes();
+
         $all = $request->get('all');
 
         $search = $request->get('search');
@@ -41,6 +44,10 @@ class AnnouncementController extends Controller
         $toilets = $request->get('toilets');
         $min = $request->get('min');
         $max = $request->get('max');
+        $kind = $request->get('kind');
+        if ($kind === null){
+            $kind = 'all';
+        }
 
         if ($all === "1") {
             $rent = 'all';
@@ -51,7 +58,6 @@ class AnnouncementController extends Controller
         if ($lga === null) {
             $lga = 'all';
         }
-
 
         $postsPerPage = 18;
         $paginationTotal = 1;
@@ -137,10 +143,12 @@ class AnnouncementController extends Controller
 
                   AND (h.toilets = :toilets OR :toilets = :all)
                   
+                  AND (h.kind = :kind or :kind = :all)
+                  
                   AND (h.isRent = :rent OR :rent = :all OR h.isBuy = :buy OR :buy =:all OR h.isShort = :short_stay OR :short_stay = :all)
                   
                   AND ( ( (h.priceRent > :min  or :min = :all)  AND (h.priceRent < :max or :max = :all))
-                  
+                        
                   OR ( (h.priceBuy > :min  or :min = :all)  AND (h.priceBuy < :max or :max = :all))
                   
                   OR ( (h.priceShort > :min  or :min = :all)  AND (h.priceShort < :max or :max = :all)))
@@ -165,6 +173,7 @@ class AnnouncementController extends Controller
                 ->setParameter('toilets', $toilets)
                 ->setParameter('rent', $rent)
                 ->setParameter('buy', $buy)
+                ->setParameter('kind', $kind)
                 ->setParameter('short_stay', $short_stay)
                 ->setParameter('max', intval($max))
                 ->setParameter('min', intval($min));
@@ -196,6 +205,8 @@ class AnnouncementController extends Controller
 
                   AND (h.toilets = :toilets OR :toilets = :all)
                   
+                  AND (h.kind = :kind or :kind = :all)
+                  
                   AND (h.isRent = :rent OR :rent = :all OR h.isBuy = :buy OR :buy =:all OR h.isShort = :short_stay OR :short_stay = :all)
                   
                   AND ( ( (h.priceRent > :min  or :min = :all)  AND (h.priceRent < :max or :max = :all))
@@ -225,6 +236,7 @@ class AnnouncementController extends Controller
                 ->setParameter('toilets', $toilets)
                 ->setParameter('rent', $rent)
                 ->setParameter('buy', $buy)
+                ->setParameter('kind', $kind)
                 ->setParameter('short_stay', $short_stay)
                 ->setParameter('max', intval($max))
                 ->setParameter('min', intval($min))
@@ -233,7 +245,6 @@ class AnnouncementController extends Controller
 
         }
         $houses = $houseQuery->getResult();
-
 
         return $this->render('announcement/list.html.twig',
             array(
@@ -250,6 +261,7 @@ class AnnouncementController extends Controller
                 'paginate' => $paginate,
                 'paginationTotal' => $paginationTotal,
                 'uri' => $uri,
+                'kinds' => $kinds,
             ));
     }
 
@@ -258,13 +270,14 @@ class AnnouncementController extends Controller
      */
     public function announcementViewAction(Request $request, $slug)
     {
-
+        $customText = $this->getDoctrine()->getRepository('AppBundle:CustomText')->find(1);
         $house = $this->getDoctrine()->getRepository("AppBundle:House")->find($slug);
         $user = $house->getAgency();
 
         return $this->render('announcement/view.html.twig',
             array(
                 'house' => $house,
+                'customText' => $customText,
             ));
     }
 }

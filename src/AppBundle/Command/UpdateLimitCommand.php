@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UpdateLimitCommand extends Command
 {
-    protected static $defaultName = 'check:update-limit';
+    protected static $defaultName = 'app:update-limit';
 
     protected $em;
 
@@ -25,7 +25,6 @@ class UpdateLimitCommand extends Command
 
         parent::__construct();
     }
-
 
     protected function configure()
     {

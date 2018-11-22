@@ -33,7 +33,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Sonata\TranslationBundle\SonataTranslationBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new \ToolBox\FileBrowserBundle\ToolBoxFileBrowserBundle(),
+            new ToolBox\FileBrowserBundle\ToolBoxFileBrowserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

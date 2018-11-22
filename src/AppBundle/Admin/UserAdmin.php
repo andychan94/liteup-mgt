@@ -26,6 +26,7 @@ class UserAdmin extends AbstractAdmin
     {
         $form
             ->add('enabled')
+            ->add('blockMessage')
             ->add('username', null)
             ->add('name', null)
             ->add('roles', 'choice', array(

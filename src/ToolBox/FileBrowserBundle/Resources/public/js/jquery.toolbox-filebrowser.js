@@ -117,7 +117,7 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
 
         var dropzoneOptions = {
             paramName: 'img',
-            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, video/*, application/pdf, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            acceptedFiles: "image/jpeg, image/png, image/gif, image/svg+xml, application/pdf, application/excel, application/vnd.ms-excel, application/x-excel, application/x-msexcel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             url: '/tbfb-upload',
             maxFilesize: 100, //in MB
             createImageThumbnails: false,
@@ -418,15 +418,15 @@ jQuery.fn.toolboxFilebrowser = function( options ) {
                         method: 'POST',
                         url: '/tbfb-crop',
                         data: 'file_path=' + cropDimentionObj.file_path +
-                        '&action=crop'+
-                        '&crop_width=' + cropWidth +
-                        '&crop_height=' + cropHeight +
-                        '&ini_width=' + (cropDimentionObj.x2 - cropDimentionObj.x) +
-                        '&ini_height=' + (cropDimentionObj.y2 - cropDimentionObj.y) +
-                        '&res_width=' + cropDimentionObj.resWidth +
-                        '&res_height=' + cropDimentionObj.resHeight +
-                        '&scaleX=' + cropDimentionObj.x +
-                        '&scaleY=' + cropDimentionObj.y,
+                            '&action=crop'+
+                            '&crop_width=' + cropWidth +
+                            '&crop_height=' + cropHeight +
+                            '&ini_width=' + (cropDimentionObj.x2 - cropDimentionObj.x) +
+                            '&ini_height=' + (cropDimentionObj.y2 - cropDimentionObj.y) +
+                            '&res_width=' + cropDimentionObj.resWidth +
+                            '&res_height=' + cropDimentionObj.resHeight +
+                            '&scaleX=' + cropDimentionObj.x +
+                            '&scaleY=' + cropDimentionObj.y,
                         success: function(success_response){
 
                             if(success_response.success == 'false'){

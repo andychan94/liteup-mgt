@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class LandlordPackCommand extends Command
 {
-    protected static $defaultName = 'check:landlord-pack';
+    protected static $defaultName = 'app:landlord-pack';
 
     protected $em;
 
@@ -26,10 +26,8 @@ class LandlordPackCommand extends Command
         parent::__construct();
     }
 
-
     protected function configure()
     {
-
 
     }
 
@@ -70,7 +68,6 @@ class LandlordPackCommand extends Command
                 ->execute();
             $this->em->flush();
         }
-
 
         $output->writeln([
             'Plan Landlord Pack updated successfully',

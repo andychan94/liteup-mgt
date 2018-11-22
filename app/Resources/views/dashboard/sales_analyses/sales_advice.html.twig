@@ -1,0 +1,26 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block body %}
+    <div class="transaction-content">
+        <table id="transaction-table">
+            <thead>
+            <tr>
+                <th>Area Name</th>
+                <th>Buy Count</th>
+                <th>Rent Count</th>
+                <th>Short Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in sales %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.inspectBuy + c.CallBuy }}</td>
+                    <td>{{ c.inspectRent + c.CallRent }}</td>
+                    <td>{{ c.inspectShort + c.CallShort }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

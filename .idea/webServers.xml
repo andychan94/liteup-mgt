@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="d4c6feb0-8216-4a95-83bd-b797eedada1a" name="dev_liteup.xyz" url="http://liteup.xyz">
+      <webServer id="e478b2e2-2a12-47f5-b540-c8463a706e87" name="dev_liteup_xyz" url="http://liteup.xyz">
         <fileTransfer host="liteup.xyz" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />

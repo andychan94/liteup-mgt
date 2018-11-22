@@ -111,7 +111,6 @@ function setVal(This) {
 
 $('#state-select').change(function () {
     let state_id = $(this).val();
-
     $.ajax({
         url: "/get-lga",
         type: "post",
@@ -119,14 +118,11 @@ $('#state-select').change(function () {
         success: function (r) {
             let $lga = $('#lga-select').empty();
             if (r.length > 0) {
-                $lga.prop('disabled', false);
                 $lga.append(`<option value="all" selected>LGA</option>`);
                 r.forEach(function (item) {
                     let $option = `<option value="${item.id}">${item.name}</option>`;
                     $lga.append($option);
                 })
-            } else {
-                $lga.prop('disabled', true)
             }
         }
     })
@@ -148,8 +144,6 @@ $('#lga-select').change(function () {
                     let $option = `<option value="${item.id}">${item.name}</option>`;
                     $area.append($option);
                 })
-            } else {
-                $lga.prop('disabled', true)
             }
         }
     })
