@@ -94,10 +94,10 @@ services:
         public: true
 
     admin.user:
-        class: AppBundle\Admin\UserAdmin
+        class: AppBundle\Admin\AgencyAdmin
         arguments: [~, AppBundle\Entity\Agency, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group : Users, label: Users, icon: "<i class='fa  fa-users'></i>" }
+            - { name: sonata.admin, manager_type: orm, group : Agencies, label: Agencies, icon: "<i class='fa  fa-users'></i>" }
         public: true
 
     admin.verify_request:
@@ -238,5 +238,12 @@ services:
         arguments: [~, AppBundle\Entity\ContactGroup, ~]
         tags:
         - { name: sonata.admin, manager_type: orm, group : Contact, label: Contact Group, icon:  "<i class='fa fa-book'></i>", show_in_dashboard: false }
+        public: true
+
+    admin.contact_count:
+        class: AppBundle\Admin\ContactCountByPriceAdmin
+        arguments: [~, AppBundle\Entity\ContactCountByPrice, ~]
+        tags:
+        - { name: sonata.admin, manager_type: orm, group : ContactCountByPrice, label: Contact Count By Price, icon:  "<i class='fa fa-book'></i>" }
         public: true
 

@@ -2,22 +2,22 @@
     <nav class="menu">
         <ul class="menu-list">
             {#<li class="tooltip is-tooltip-right" data-tooltip="Your Subscribed plan">#}
-                {#{% if app.user.userPlan is not null %}#}
+            {#{% if app.user.userPlan is not null %}#}
 
-                    {#<a href="{{ path('subscription_plan') }}">#}
-                    {#<span class="icon is-small mr-5" style="color: #23d160;">#}
-                        {#<i class="fas fa-circle"></i>#}
-                    {#</span>#}
-                        {#{{ app.user.userPlan.plan.planTitle }}#}
-                    {#</a>#}
-                {#{% else %}#}
-                    {#<a class="" href="{{ path('subscription_plan') }}">#}
-                    {#<span class="icon is-small mr-5" style="color: #ff3860;">#}
-                        {#<i class="fas fa-circle"></i>#}
-                    {#</span>#}
-                        {#Not Plan Subscribed#}
-                    {#</a>#}
-                {#{% endif %}#}
+            {#<a href="{{ path('subscription_plan') }}">#}
+            {#<span class="icon is-small mr-5" style="color: #23d160;">#}
+            {#<i class="fas fa-circle"></i>#}
+            {#</span>#}
+            {#{{ app.user.userPlan.plan.planTitle }}#}
+            {#</a>#}
+            {#{% else %}#}
+            {#<a class="" href="{{ path('subscription_plan') }}">#}
+            {#<span class="icon is-small mr-5" style="color: #ff3860;">#}
+            {#<i class="fas fa-circle"></i>#}
+            {#</span>#}
+            {#Not Plan Subscribed#}
+            {#</a>#}
+            {#{% endif %}#}
             {#</li>#}
             <li>
                 <a {% if app.request.get('_route') == 'dashboard_home' %}
@@ -177,19 +177,16 @@
             {#Transaction History#}
             {#</a>#}
             {#</li>#}
-         {#   <li><a {% if app.request.get('_route') == 'history_index' %}
-                    class="is-active"
-                {% endif %}
 
-                        href="{{ path('history_index') }}"><span class="icon is-small mr-5"><i class="fas fa-history"></i></span>
-                    Contact history</a></li>#}
-            <li><a
-                        {% if app.request.get('_route') == 'proptbin_index' %}
-                            class="is-active"
-                        {% endif %}
+            <li>
+                <a {% if app.request.get('_route') == 'proptbin_index' %}
+                    class="is-active"
+                   {% endif %}
                         href="{{ path('proptbin_index') }}"><span class="icon is-small mr-5"><i
                                 class="fas fa-trash-alt"></i></span>
-                    Recycle bin</a></li>
+                    <span>Recycle bin</span>
+                </a>
+            </li>
             <li><a href="{{ path('fos_user_security_logout') }}"><span class="icon is-small mr-5"><i
                                 class="fas fa-sign-out-alt"></i></span>
                     Logout</a></li>

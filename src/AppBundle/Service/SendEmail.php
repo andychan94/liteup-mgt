@@ -29,8 +29,20 @@ class SendEmail
     }
 
     /*---------- send email if has contact ---------*/
-    public function sendEmail($agency, $userEmail)
+    public function sendEmail($agency, $userEmail, $user = null, $propertyID=null)
     {
+//        $text = "User%20Name%20{$user->getName()}%20Phone%20Number%20{$user->getPhone()}%20PropertyId%20{$propertyID}";
+//
+//        $url = "https://api.smsglobal.com/http-api.php?action=sendsms&user=2o3waknt&password=p95akytp&&from=Liteup&to={$user->getPhone()}&text={$text}";
+//
+//        $curl = curl_init();
+//        curl_setopt_array($curl, array(
+//            CURLOPT_RETURNTRANSFER => 1,
+//            CURLOPT_URL => $url,
+//            CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+//        ));
+//        $resp = curl_exec($curl);
+
         $em = $this->em;
 
         $sender_email = $this->container->getParameter('mailer_user');
@@ -60,7 +72,6 @@ class SendEmail
                 'user' => $agency->getName(),
                 'text' => $email->getEmailText(),
             ));
-
             $message = (new \Swift_Message($email->getEmailSubject()))
                 ->setFrom($sender_email)
                 ->setTo($userEmail)

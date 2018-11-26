@@ -75,7 +75,6 @@ class CallRequestController extends Controller
      */
     public function acceptHouseInspectionRequestsAction(Request $request, $slug, $house, SendEmail $sendEmail, ContactCount $contactCount)
     {
-
         $em = $this->getDoctrine()->getManager();
 
         $agency = $em->getRepository('AppBundle:Agency')->find($this->getUser());
@@ -92,7 +91,7 @@ class CallRequestController extends Controller
             $houseInspection->setAnsweredAt(new \DateTime());
             $houseInspection->setAccept(true);
             $em->flush();
-            $contactCount->contactCount($agency);
+//            $contactCount->contactCount($agency);
             $sendEmail->sendEmail($agency, $agency->getEmail());
             return $this->redirectToRoute('call_requests');
         }
@@ -192,7 +191,7 @@ class CallRequestController extends Controller
         return $this->redirectToRoute('call_requests');
     }
 
-    public function blockLimitAction($request, $agency, SendEmail $sendEmail, ContactCount $contactCount)
+    public function blockLimitAction($request, $agency, SendEmail $sendEmail, ContactCount $contactCount, $propertyId)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -226,12 +225,9 @@ class CallRequestController extends Controller
                 ->setParameter('agency', $user)
                 ->setParameter('true', true)
                 ->getQuery();
-
             $query->execute();
-
             $this->addFlash('error', 'Your limit end. Please remove limit to activate your property');
             return $this->redirectToRoute($request);
-
         }
         $contactCount->contactCount($agency);
         $sendEmail->sendEmail($agency, $agency->getEmail());

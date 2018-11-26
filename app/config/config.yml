@@ -18,7 +18,6 @@ parameters:
     remove_verify_docs: 'uploads/verify_docs/'
     remove_uploads_folder: 'images/uploads/'
 
-
 framework:
     templating:
             engines: ['twig']
@@ -43,7 +42,6 @@ framework:
     assets: ~
     php_errors:
         log: true
-
 
 # Twig Configuration
 twig:
@@ -73,7 +71,6 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #path: '%database_path%'
-
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore

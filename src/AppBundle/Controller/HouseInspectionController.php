@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Service\ContactCount;
 use AppBundle\Service\SendEmail;
+use AppBundle\Service\SmsMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -77,6 +78,7 @@ class HouseInspectionController extends Controller
     public function acceptHouseInspectionRequestsAction(Request $request, $slug, $house, SendEmail $sendEmail, ContactCount $contactCount)
     {
 
+
         $em = $this->getDoctrine()->getManager();
 
         $agency = $em->getRepository('AppBundle:Agency')->find($this->getUser());
@@ -85,16 +87,20 @@ class HouseInspectionController extends Controller
 
         $houseInspectionRepository = $em->getRepository('AppBundle:HouseInspection');
 
-        $houseInspection = $houseInspectionRepository->find($slug);
 
+        $houseInspection = $houseInspectionRepository->find($slug);
+        $propertyID = $houseInspection->getHouse()->getId();
+        $user = $houseInspection->getUser();
         /* ete user@ uni plan@ u  unlimita */
         if ($agencyPlan->getActive() == 1 && $agencyPlan->getPlan()->getId() != 3) {
 
             $houseInspection->setAnsweredAt(new \DateTime());
             $houseInspection->setAccept(true);
             $em->flush();
-            $contactCount->contactCount($agency);
-            $sendEmail->sendEmail($agency,$agency->getEmail());
+
+//            $contactCount->contactCount($agency);
+            $sendEmail->sendEmail($agency,$agency->getEmail(), $user, $propertyID);
+
             return $this->redirectToRoute('house_inspection_requests');
         }
 

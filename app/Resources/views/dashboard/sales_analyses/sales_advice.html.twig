@@ -2,25 +2,313 @@
 
 {% block body %}
     <div class="transaction-content">
-        <table id="transaction-table">
-            <thead>
-            <tr>
-                <th>Area Name</th>
-                <th>Buy Count</th>
-                <th>Rent Count</th>
-                <th>Short Count</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for c in sales %}
+    <table class="transaction-table" id="areaContactCountTab">
+        <thead>
+        <tr>
+            <th>Area Name</th>
+            <th>Buy Count</th>
+            <th>Rent Count</th>
+            <th>Short Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set count = 0 %}
+        {% set accb = 0 %}
+        {% set accs = 0 %}
+        {% set accr = 0 %}
+        {% for c in sales %}
+            {% set count = count + 1 %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.inspectBuy + c.CallBuy }}</td>
+                    <td>{{ c.inspectRent + c.CallRent }}</td>
+                    <td>{{ c.inspectShort + c.CallShort }}</td>
+                    {% set accb = accb + c.inspectBuy + c.CallBuy %}
+                    {% set accr = accr + c.inspectRent + c.CallRent %}
+                    {% set accs = accs + c.inspectShort + c.CallShort %}
+                </tr>
+            {% elseif (count <= 5) %}
                 <tr>
                     <td>{{ c.name }}</td>
                     <td>{{ c.inspectBuy + c.CallBuy }}</td>
                     <td>{{ c.inspectRent + c.CallRent }}</td>
                     <td>{{ c.inspectShort + c.CallShort }}</td>
                 </tr>
+            {% endif %}
+        {% endfor %}
+        <input type="hidden" value="{{ accs }}" class="area-contact-count-short">
+        <input type="hidden" value="{{ accr }}" class="area-contact-count-rent">
+        <input type="hidden" value="{{ accb }}" class="area-contact-count-buy">
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="button  m-t-b-10" onclick="fnExcelReport()">
+                <span class="icon">
+                  <i class="fas fa-download"></i>
+                </span>
+            <span>Download excel</span>
+        </a>
+    {% endif %}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <div class="columns">
+            <div class="column">
+                <div id="pricingBuyCount" style="max-width: 600px; height: 500px;"></div>
+            </div>
+            <div class="column">
+                <div id="pricingRentCount" style="max-width: 600px; height: 500px;"></div>
+            </div>
+            <div class="column">
+                <div id="pricingShortCount" style="max-width: 600px; height: 500px;"></div>
+            </div>
+        </div>
+        <table class="transaction-table  m-t-b-60">
+            <thead>
+            <tr>
+                <th colspan="4">Bathrooms</th>
+                <th colspan="4">BedRooms</th>
+                <th colspan="4">Toilets</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="1">Room Count</td>
+                <td>Buy</td>
+                <td>Rent</td>
+                <td>Short Let</td>
+                <td colspan="1">Room Count</td>
+                <td>Buy</td>
+                <td>Rent</td>
+                <td>Short Let</td>
+                <td colspan="1">Room Count</td>
+                <td>Buy</td>
+                <td>Rent</td>
+                <td>Short Let</td>
+            </tr>
+            {% for i in 0..7 %}
+                <tr>
+                    <th>{{ i }}</th>
+                    {% for x in bathrooms if x.bathrooms == i %}
+                        <td>{{ x.inspectBuy +   x.CallBuy }}</td>
+                        <td>{{ x.inspectRent +  x.CallRent }}</td>
+                        <td>{{ x.inspectShort + x.CallShort }}</td>
+                    {% else %}
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    {% endfor %}
+                    <th>{{ i }}</th>
+                    {% for a in bedrooms if a.bedrooms == i %}
+                        <td>{{ a.inspectBuy +   a.CallBuy }}</td>
+                        <td>{{ a.inspectRent +  a.CallRent }}</td>
+                        <td>{{ a.inspectShort + a.CallShort }}</td>
+                    {% else %}
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    {% endfor %}
+                    <th>{{ i }}</th>
+                    {% for t in toilets if t.toilets == i %}
+                        <td>{{ t.inspectBuy +   t.CallBuy }}</td>
+                        <td>{{ t.inspectRent +  t.CallRent }}</td>
+                        <td>{{ t.inspectShort + t.CallShort }}</td>
+                    {% else %}
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
-            </tbody>
         </table>
-    </div>
+        <button id="change-chart">Change to Classic</button>
+        <br>
+        <div id="chart_div"></div>
+        <table class="transaction-table m-t-b-60">
+            <thead>
+            <tr>
+                <th>Sales</th>
+                <th>Rent</th>
+                <th>Short Let</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ buy }}</td>
+                <td>{{ rent }}</td>
+                <td>{{ short }}</td>
+            </tr>
+        </table>
+        </div>
+        {#{{ dump(arr.data) }}#}
+    {% endif %}
 {% endblock body %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        google.charts.load('current', {'packages':['line', 'corechart']});
+        google.charts.setOnLoadCallback(pricingRentCount);
+        google.charts.setOnLoadCallback(pricingBuyCount);
+        google.charts.setOnLoadCallback(pricingShortCount);
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var button = document.getElementById('change-chart');
+            var chartDiv = document.getElementById('chart_div');
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Month');
+            data.addColumn('number', "Bedrooms");
+            data.addColumn('number', "Bathrooms");
+            data.addColumn('number', "Tioltes");
+
+            data.addRows([
+                {#{% for x in arr.data %}#}
+                    {#[new Date(2018, 2), 0, 15.3],#}
+                {#{% endfor %}#}
+                [new Date(2018, 3), 1, 18.6, 18.2],
+                [new Date(2018, 4), 2, 20.9, 20.2],
+                [new Date(2018, 5), 2, 19.8, 19.2],
+                [new Date(2018, 6), 4, 16.6, 16.2],
+                [new Date(2018, 7), 4, 13.3, 13.2],
+                [new Date(2018, 8), 6,  9.9,  9.2],
+                [new Date(2018, 11),7,  4.5,  4.2]
+            ]);
+
+            var materialOptions = {
+                chart: {
+                    title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
+                },
+                width: 900,
+                height: 500,
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    0: {axis: 'Temps'},
+                    1: {axis: 'Daylight'}
+                },
+                axes: {
+                    // Adds labels to each axis; they don't have to match the axis names.
+                    y: {
+                        Temps: {label: 'Temps (Celsius)'},
+                        Daylight: {label: 'Daylight'}
+                    }
+                }
+            };
+
+            var classicOptions = {
+                title: 'Average Temperatures and Daylight in Iceland Throughout the Year',
+                width: 900,
+                height: 500,
+                // Gives each series an axis that matches the vAxes number below.
+                series: {
+                    0: {targetAxisIndex: 0},
+                    1: {targetAxisIndex: 1}
+                },
+                vAxes: {
+                    // Adds titles to each axis.
+                    0: {title: 'Temps (Celsius)'},
+                    1: {title: 'Daylight'}
+                },
+                hAxis: {
+                    // ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
+                    //     new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
+                    //     new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
+                    // ]
+                },
+                vAxis: {
+                    viewWindow: {
+                        max: 30
+                    }
+                }
+            };
+
+            function drawMaterialChart() {
+                var materialChart = new google.charts.Line(chartDiv);
+                materialChart.draw(data, materialOptions);
+                button.innerText = 'Change to Classic';
+                button.onclick = drawClassicChart;
+            }
+
+            function drawClassicChart() {
+                var classicChart = new google.visualization.LineChart(chartDiv);
+                classicChart.draw(data, classicOptions);
+                button.innerText = 'Change to Material';
+                button.onclick = drawMaterialChart;
+            }
+
+            drawMaterialChart();
+
+        }
+
+
+
+
+        {% set countBuy = 100 %}
+        function pricingBuyCount() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                {% for i in pricingBuyCount %}
+                {% set countBuy = countBuy - (i.inspectShort + i.cellShort) %}
+                ['{{ i.name }}',{{ i.inspectShort + i.cellShort }}],
+                {% endfor %}
+                ['Other', {{ countBuy }}],
+            ]);
+
+            var options = {
+                title: ' Top 5 contacts by area Sell',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pricingBuyCount'));
+            chart.draw(data, options);
+        }
+
+
+        {% set countShort = 100 %}
+        function pricingShortCount() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                {% for i in pricingShortCount %}
+                {% set countShort = countShort - (i.inspectShort + i.cellShort) %}
+                ['{{ i.name }}',{{ i.inspectShort + i.cellShort }}],
+                {% endfor %}
+                ['Other', {{ countShort }}],
+            ]);
+
+            var options = {
+                title: ' Top 5 contacts by area Short',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pricingShortCount'));
+            chart.draw(data, options);
+        }
+
+
+        {% set countRent = 100 %}
+        function pricingRentCount() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                {% for i in pricingRentCount %}
+                {% set countRent = countRent - (i.inspectShort + i.cellShort) %}
+                ['{{ i.name }}',{{ i.inspectShort + i.cellShort }}],
+                {% endfor %}
+                ['Other', {{ countRent }}],
+            ]);
+
+            var options = {
+                title: ' Top 5 contacts by area Rent',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('pricingRentCount'));
+            chart.draw(data, options);
+        }
+
+
+    </script>
+
+{% endblock javascripts %}

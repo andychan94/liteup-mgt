@@ -11,7 +11,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class UserAdmin extends AbstractAdmin
+class AgencyAdmin extends AbstractAdmin
 {
     protected $searchResultActions = ['edit', 'show'];
 
@@ -27,8 +27,9 @@ class UserAdmin extends AbstractAdmin
         $form
             ->add('enabled')
             ->add('blockMessage')
-            ->add('username', null)
-            ->add('name', null)
+            ->add('name' )
+            ->add('lastName')
+            ->add('email')
             ->add('roles', 'choice', array(
                     'choices' => $this->getConfigurationPool()->getContainer()->getParameter(
                         'security.role_hierarchy.roles'),
@@ -38,7 +39,6 @@ class UserAdmin extends AbstractAdmin
                     'multiple' => true
                 )
             )
-            ->add('email')
             ->add('budget',TextType::class)
             ->add('phone')
             ->add('address')
